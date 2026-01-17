@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Sidebar, SidebarProvider, MainContent } from "@/components/layout";
+import { ChatWidget } from "@/components/chat";
 
 export const metadata: Metadata = {
   title: "Austin FC GM Lab | MLS Analytics & Roster Management",
@@ -30,6 +31,7 @@ export default function RootLayout({
               {children}
             </MainContent>
           </div>
+          <ChatWidget />
         </SidebarProvider>
       </body>
     </html>
