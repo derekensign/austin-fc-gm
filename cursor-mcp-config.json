@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "mls-stats": {
+      "command": "node",
+      "args": ["mcp-servers/mls-stats/src/index.js"],
+      "cwd": "${workspaceFolder}"
+    },
+    "player-valuations": {
+      "command": "node",
+      "args": ["mcp-servers/player-valuations/src/index.js"],
+      "cwd": "${workspaceFolder}"
+    },
+    "roster-rules": {
+      "command": "node",
+      "args": ["mcp-servers/roster-rules/src/index.js"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}
+

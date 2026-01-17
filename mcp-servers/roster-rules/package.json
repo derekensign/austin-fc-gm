@@ -1,0 +1,15 @@
+{
+  "name": "roster-rules-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for MLS roster rules and salary cap compliance",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.2"
+  }
+}
+
