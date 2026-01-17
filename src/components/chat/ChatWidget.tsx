@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect, useState, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Bot, User, Loader2 } from 'lucide-react';
 
@@ -8,73 +8,15 @@ interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
-  timestamp: Date;
 }
-
-// Sample responses - In production, this would call an AI API
-const getAIResponse = async (message: string): Promise<string> => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
-
-  const lowerMessage = message.toLowerCase();
-
-  // Roster questions
-  if (lowerMessage.includes('roster') && lowerMessage.includes('size')) {
-    return "Austin FC currently has **13 players** on the senior roster out of a maximum of 20. There are also 8 supplemental roster spots filled out of 10 available.";
-  }
-
-  if (lowerMessage.includes('dp') || lowerMessage.includes('designated player')) {
-    return "**Designated Player (DP) Rules:**\n\n• Austin FC has **1 DP** (Sebastián Driussi) out of 3 slots\n• DP budget charge: $683,750 regardless of actual salary\n• Young DP (≤23 years): Reduced charge of $150,000\n\n**2 DP slots are available** for potential signings!";
-  }
-
-  if (lowerMessage.includes('cap') || lowerMessage.includes('salary')) {
-    return "**Austin FC Salary Cap Status:**\n\n• Budget: $5.27M\n• Current Spend: $4.87M\n• Cap Space: $400K\n• TAM Available: $450K\n• GAM Available: $1.2M\n\n**Total spending power: $2.05M** when combining cap space with allocation money!";
-  }
-
-  if (lowerMessage.includes('sign') && (lowerMessage.includes('can') || lowerMessage.includes('able'))) {
-    return "To check if Austin FC can sign a player, I need to know:\n\n1. **Salary** - How much will they earn?\n2. **International** - Do they need an international slot?\n3. **Age** - Are they U22 eligible?\n4. **Designation** - DP, TAM, or senior roster?\n\nTry asking something like: \"Can we sign a $2M international striker?\"";
-  }
-
-  if (lowerMessage.includes('driussi')) {
-    return "**Sebastián Driussi** (#10)\n\n• Position: CAM\n• Age: 28\n• Nationality: 🇦🇷 Argentina\n• Salary: $3.5M (DP)\n• Market Value: $12M\n• Contract: Through 2027\n\n**2025 Stats:** 14 goals, 8 assists in 30 appearances\n\nHe's Austin FC's most valuable player and only Designated Player!";
-  }
-
-  if (lowerMessage.includes('u22') || lowerMessage.includes('under 22')) {
-    return "**U22 Initiative:**\n\n• Austin FC uses **2 of 3** U22 slots\n• Current U22 players: Guilherme Biro, Damian Las\n• Budget charge: Only $200,000\n• Max salary: $612,500\n\n**1 U22 slot available** - great for signing young talent at a reduced cap hit!";
-  }
-
-  if (lowerMessage.includes('international') || lowerMessage.includes('intl')) {
-    return "**International Slots:**\n\n• Austin FC uses **6 of 8** international slots\n• **2 slots available**\n• Slots are tradeable between teams\n\nPlayers who don't need a slot: US citizens, green card holders, and homegrown players.";
-  }
-
-  if (lowerMessage.includes('top scorer') || lowerMessage.includes('goals')) {
-    return "**Austin FC Top Scorers (2025):**\n\n1. Sebastián Driussi - 14 goals\n2. Maxi Urruti - 9 goals\n3. Emiliano Rigoni - 7 goals\n4. Gyasi Zardes - 5 goals\n5. Jader Obrian - 4 goals\n\nDriussi leads with 14 goals and 8 assists!";
-  }
-
-  if (lowerMessage.includes('value') || lowerMessage.includes('worth')) {
-    return "**Austin FC Squad Valuation:**\n\n• Total Squad Value: **$29.6M**\n• Most Valuable: Sebastián Driussi ($12M)\n• Rising Stars: Owen Wolff ($3M), Guilherme Biro ($2.5M)\n\nThe squad is valued well above their combined salaries, indicating good value signings!";
-  }
-
-  if (lowerMessage.includes('standing') || lowerMessage.includes('rank') || lowerMessage.includes('position')) {
-    return "**Austin FC 2025 Season:**\n\n• **8th place** in Western Conference\n• 45 points (12W-9D-13L)\n• Goals: 48 for, 52 against (GD: -4)\n• Just inside playoff positions!\n\nRecent form: W-D-L-W-W (trending up!)";
-  }
-
-  if (lowerMessage.includes('help') || lowerMessage.includes('what can you')) {
-    return "I can help you with Austin FC roster management! Try asking about:\n\n🏆 **Stats** - \"Who are our top scorers?\"\n💰 **Salary Cap** - \"What's our cap situation?\"\n📋 **Roster Rules** - \"Explain DP rules\"\n🔄 **Signings** - \"Can we sign a $2M player?\"\n📊 **Valuations** - \"What's Driussi worth?\"\n🌍 **Slots** - \"How many int'l slots do we have?\"\n\nJust ask anything about the roster!";
-  }
-
-  // Default response
-  return "I'm your Austin FC GM assistant! I can help with:\n\n• Roster composition and player stats\n• Salary cap and allocation money\n• DP, U22, and international slot rules\n• Player valuations and signings\n\nTry asking: \"What's our cap situation?\" or \"Can we sign a DP?\"";
-};
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: '1',
+      id: 'welcome',
       role: 'assistant',
-      content: "Hey! I'm your Austin FC GM assistant. Ask me anything about the roster, salary cap, or potential signings! 🌳⚽",
-      timestamp: new Date(),
+      content: "Hey! I'm your Austin FC GM assistant powered by Claude AI. Ask me anything about the roster, salary cap, potential signings, or MLS rules! 🌳⚽",
     },
   ]);
   const [input, setInput] = useState('');
@@ -89,14 +31,14 @@ export function ChatWidget() {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = async () => {
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
     if (!input.trim() || isLoading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
       content: input.trim(),
-      timestamp: new Date(),
     };
 
     setMessages(prev => [...prev, userMessage]);
@@ -104,32 +46,74 @@ export function ChatWidget() {
     setIsLoading(true);
 
     try {
-      const response = await getAIResponse(input);
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: response,
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, assistantMessage]);
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [...messages, userMessage].map(m => ({
+            role: m.role,
+            content: m.content,
+          })),
+        }),
+      });
+
+      if (!response.ok) throw new Error('Failed to fetch');
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+      let assistantContent = '';
+      const assistantId = (Date.now() + 1).toString();
+
+      // Add empty assistant message
+      setMessages(prev => [...prev, { id: assistantId, role: 'assistant', content: '' }]);
+
+      while (reader) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value);
+        const lines = chunk.split('\n');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data === '[DONE]') continue;
+            
+            try {
+              const parsed = JSON.parse(data);
+              if (parsed.type === 'text-delta' && parsed.delta) {
+                assistantContent += parsed.delta;
+                setMessages(prev => 
+                  prev.map(m => 
+                    m.id === assistantId 
+                      ? { ...m, content: assistantContent }
+                      : m
+                  )
+                );
+              }
+            } catch {
+              // Skip non-JSON lines
+            }
+          }
+        }
+      }
     } catch (error) {
-      const errorMessage: Message = {
+      console.error('Chat error:', error);
+      setMessages(prev => [...prev, {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: "Sorry, I encountered an error. Please try again!",
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, errorMessage]);
+        content: "Sorry, I encountered an error. Please try again.",
+      }]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
+  const handleQuickAction = (action: string) => {
+    const text = action === 'Can we sign...?' 
+      ? 'Can we sign a $2M international striker?' 
+      : action;
+    setInput(text);
   };
 
   return (
@@ -153,7 +137,7 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-100px)] rounded-2xl bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 w-[400px] max-w-[calc(100vw-48px)] h-[550px] max-h-[calc(100vh-100px)] rounded-2xl bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--obsidian-lighter)] bg-gradient-to-r from-[var(--verde)]/10 to-transparent">
@@ -163,7 +147,7 @@ export function ChatWidget() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white">GM Assistant</h3>
-                  <p className="text-xs text-[var(--verde)]">Austin FC Roster Expert</p>
+                  <p className="text-xs text-[var(--verde)]">Powered by Claude AI</p>
                 </div>
               </div>
               <button
@@ -194,12 +178,26 @@ export function ChatWidget() {
                       <User className="h-4 w-4 text-white/60" />
                     )}
                   </div>
-                  <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${
+                  <div className={`max-w-[85%] rounded-2xl px-4 py-2.5 ${
                     message.role === 'assistant'
                       ? 'bg-[var(--obsidian-light)] text-white rounded-tl-sm'
                       : 'bg-[var(--verde)] text-black rounded-tr-sm'
                   }`}>
-                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                    <div className="text-sm whitespace-pre-wrap prose prose-invert prose-sm max-w-none">
+                      {message.content.split('\n').map((line, i) => {
+                        const parts = line.split(/(\*\*.*?\*\*)/g);
+                        return (
+                          <p key={i} className={i > 0 ? 'mt-2' : ''}>
+                            {parts.map((part, j) => {
+                              if (part.startsWith('**') && part.endsWith('**')) {
+                                return <strong key={j} className="font-bold text-[var(--verde)]">{part.slice(2, -2)}</strong>;
+                              }
+                              return <span key={j}>{part}</span>;
+                            })}
+                          </p>
+                        );
+                      })}
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -213,40 +211,52 @@ export function ChatWidget() {
                     <Bot className="h-4 w-4 text-black" />
                   </div>
                   <div className="bg-[var(--obsidian-light)] rounded-2xl rounded-tl-sm px-4 py-3">
-                    <Loader2 className="h-4 w-4 text-[var(--verde)] animate-spin" />
+                    <div className="flex items-center gap-2">
+                      <Loader2 className="h-4 w-4 text-[var(--verde)] animate-spin" />
+                      <span className="text-sm text-white/50">Thinking...</span>
+                    </div>
                   </div>
                 </motion.div>
               )}
               <div ref={messagesEndRef} />
             </div>
 
+            {/* Quick Actions */}
+            <div className="px-4 py-2 border-t border-[var(--obsidian-lighter)] flex gap-2 overflow-x-auto">
+              {['Cap status', 'DP slots', 'Top scorers', 'Can we sign...?'].map((action) => (
+                <button
+                  key={action}
+                  type="button"
+                  onClick={() => handleQuickAction(action)}
+                  className="px-3 py-1 rounded-full bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] text-xs text-white/70 hover:text-white hover:border-[var(--verde)] whitespace-nowrap transition-colors"
+                >
+                  {action}
+                </button>
+              ))}
+            </div>
+
             {/* Input */}
-            <div className="p-4 border-t border-[var(--obsidian-lighter)]">
+            <form onSubmit={handleSubmit} className="p-4 border-t border-[var(--obsidian-lighter)]">
               <div className="flex gap-2">
                 <input
                   type="text"
                   placeholder="Ask about roster, cap, signings..."
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={handleKeyPress}
                   className="flex-1 px-4 py-2.5 rounded-xl bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] text-white placeholder:text-white/40 focus:border-[var(--verde)] focus:outline-none text-sm"
                 />
                 <button
-                  onClick={handleSend}
+                  type="submit"
                   disabled={!input.trim() || isLoading}
                   className="px-4 py-2.5 rounded-xl bg-[var(--verde)] text-black font-semibold hover:bg-[var(--verde-dark)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   <Send className="h-4 w-4" />
                 </button>
               </div>
-              <p className="text-[10px] text-white/30 mt-2 text-center">
-                Powered by Austin FC GM Lab MCP
-              </p>
-            </div>
+            </form>
           </motion.div>
         )}
       </AnimatePresence>
     </>
   );
 }
-

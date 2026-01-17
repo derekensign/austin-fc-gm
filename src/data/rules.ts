@@ -170,3 +170,5 @@ export function getCapSpaceWithAllocation(): number {
   return c.available + c.tamAvailable + c.gamAvailable;
 }
 
+
+

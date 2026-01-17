@@ -109,3 +109,5 @@ export function formatCurrency(amount: number): string {
   return `$${(amount / 1000).toFixed(0)}K`;
 }
 
+
+
