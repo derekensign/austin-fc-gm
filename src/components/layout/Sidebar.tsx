@@ -89,7 +89,7 @@ export function Sidebar() {
           </div>
           {showFull && (
             <div className="overflow-hidden whitespace-nowrap">
-              <h1 className="font-display text-lg tracking-wide text-white">GM LAB</h1>
+              <h1 className="font-display text-lg tracking-wide text-white">VERDE MANAGER</h1>
               <p className="text-xs text-white/50">Austin FC</p>
             </div>
           )}
@@ -232,7 +232,7 @@ export function Sidebar() {
           <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[var(--verde)] to-[var(--verde-dark)] flex items-center justify-center">
             <span className="font-display text-base text-black font-bold">A</span>
           </div>
-          <h1 className="font-display text-base tracking-wide text-white">GM LAB</h1>
+          <h1 className="font-display text-base tracking-wide text-white">VERDE MANAGER</h1>
         </div>
         <button
           onClick={() => setIsMobileOpen(true)}

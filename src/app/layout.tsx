@@ -4,7 +4,7 @@ import { Sidebar, SidebarProvider, MainContent } from "@/components/layout";
 import { ChatWidget } from "@/components/chat";
 
 export const metadata: Metadata = {
-  title: "Austin FC GM Lab | MLS Analytics & Roster Management",
+  title: "Verde Manager | Austin FC Analytics & Roster Tools",
   description: "Advanced analytics and roster management tools for Austin FC fans. Research stats, analyze roster rules, and explore transfer possibilities.",
 };
 
