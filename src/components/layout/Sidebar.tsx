@@ -7,12 +7,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard,
   Users,
-  TrendingUp,
+  // TrendingUp, // Hidden per user request
   FileText,
   Settings,
   Search,
-  DollarSign,
-  BarChart3,
+  // DollarSign, // Hidden per user request
+  // BarChart3, // Hidden per user request
   Shield,
   ChevronDown,
   ChevronLeft,
@@ -25,9 +25,9 @@ import {
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
   { name: 'Roster', href: '/roster', icon: Users },
-  { name: 'Player Stats', href: '/stats', icon: BarChart3 },
-  { name: 'Valuations', href: '/valuations', icon: DollarSign },
-  { name: 'Salary Cap', href: '/salary-cap', icon: TrendingUp },
+  // { name: 'Player Stats', href: '/stats', icon: BarChart3 }, // Hidden per user request
+  // { name: 'Valuations', href: '/valuations', icon: DollarSign }, // Hidden per user request
+  // { name: 'Salary Cap', href: '/salary-cap', icon: TrendingUp }, // Hidden per user request
   { name: 'GAM/TAM Transactions', href: '/transactions', icon: ArrowLeftRight },
   { name: 'Roster Rules', href: '/rules', icon: FileText },
 ];
@@ -215,7 +215,6 @@ export function Sidebar() {
           </div>
           {showFull && (
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white truncate">Derek Ensing</p>
               <p className="text-xs text-white/50">Fan GM Mode</p>
             </div>
           )}

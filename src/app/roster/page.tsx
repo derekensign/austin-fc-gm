@@ -285,8 +285,8 @@ export default function RosterPage() {
                     Value <ArrowUpDown className="h-3 w-3" />
                   </button>
                 </th>
-                <th className="px-4 py-3 text-left hidden xl:table-cell">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-white/60">Contract</span>
+                <th className="px-4 py-3 text-left hidden lg:table-cell">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-white/60">Contract Until</span>
                 </th>
               </tr>
             </thead>
@@ -296,7 +296,7 @@ export default function RosterPage() {
                   key={player.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.02 }}
+                  transition={{ delay: index * 0.015 }}
                   className="border-b border-[var(--obsidian-lighter)] hover:bg-[var(--verde)]/5 transition-colors"
                 >
                   <td className="px-4 py-3">
@@ -335,9 +335,9 @@ export default function RosterPage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-white/70">{player.age}</td>
+                  <td className="px-4 py-3 text-white/70 text-center">{player.age}</td>
                   <td className="px-4 py-3">
-                    <span className={`font-semibold ${player.budgetCharge === 0 ? 'text-white/40' : 'text-[var(--verde)]'}`}>
+                    <span className={`font-semibold ${player.budgetCharge === 0 ? 'text-white/40 italic' : 'text-[var(--verde)]'}`}>
                       {player.budgetCharge === 0 ? 'Off-cap' : player.budgetChargeFormatted}
                     </span>
                   </td>
@@ -347,7 +347,7 @@ export default function RosterPage() {
                   <td className="px-4 py-3 hidden lg:table-cell">
                     <span className="text-blue-400">{formatSalary(player.marketValue)}</span>
                   </td>
-                  <td className="px-4 py-3 hidden xl:table-cell text-white/50 text-sm">{player.contractEnd}</td>
+                  <td className="px-4 py-3 hidden lg:table-cell text-white/50 text-sm">{player.contractEnd}</td>
                 </motion.tr>
               ))}
             </tbody>

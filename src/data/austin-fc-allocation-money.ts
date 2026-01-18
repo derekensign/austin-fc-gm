@@ -105,7 +105,7 @@ export const AUSTIN_FC_GAM_JAN_2026 = {
     rosterModelGAM: 0,                   // If 2/4/GAM build, could get up to $2M more
     playoffMissBonus: 0,                 // "You suck!" allocation (small)
     thirdDPDistribution: 250_000,        // With only 2 DPs, get share of pool (estimated)
-    bukariSaleGAM: 1_900_000,           // Estimated from €5.5M sale (if converted)
+    bukariSaleGAM: 0,                   // $0! Sold at LOSS (€5.5M vs €8M acquisition) - no GAM generated
   },
   
   // Discretionary TAM (separate from GAM)
@@ -127,12 +127,11 @@ export const AUSTIN_FC_GAM_JAN_2026 = {
     2026 Additions:
     - Annual GAM allocation: +$3,280,000
     - Third DP distribution (~estimate): +$250,000
-    - Bukari sale GAM (if converted): +$1,900,000
+    - Bukari sale GAM: $0 (sold at loss, no GAM generated)
+    - Driussi sale GAM: $0 (DP not eligible for buydown)
     
     PROJECTED 2026 GAM AVAILABLE:
-    -$605K + $3.28M + $0.25M + $1.9M = ~$4.82M
-    
-    Without Bukari conversion: ~$2.92M available
+    -$605K + $3.28M + $0.25M = ~$2.92M
   `,
 };
 
@@ -158,13 +157,17 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
     nelsonTradeGAM2027: -550_000,   // Owes Vancouver $550K in 2027 GAM
     
     // Current available GAM (2026)
-    available2026: 3_280_000 + 250_000 + 0 - 605_364, // = $2,924,636
+    // Note: deficit includes Nelson ($700K), but Taylor ($250K) is separate
+    taylorTrade2026: -250_000,
+    available2026: 3_280_000 + 250_000 + 0 - 605_364 - 250_000, // = $2,674,636
     
-    // Reserved for cap compliance
-    estimatedBuydownsNeeded: 1_900_000, // To bring $8.31M charge under $6.43M budget
+    // Reserved for cap compliance (GAM portion only - TAM covers $2.0M first)
+    // Total buydowns needed: $2.44M (from $8.86M charge - $6.42M budget)
+    // TAM covers: $2.0M, GAM covers remainder: $0.44M
+    estimatedBuydownsNeeded: 440_000, // GAM portion after TAM exhausted
     
     // Free GAM after compliance
-    freeGAM: 3_280_000 + 250_000 + 0 - 605_364 - 1_900_000, // = $1,024,636
+    freeGAM: 3_280_000 + 250_000 + 0 - 605_364 - 250_000 - 440_000, // = $2,234,636
   },
   
   // =====================================================
@@ -174,10 +177,12 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
     annualAllocation: 2_125_000,
     
     // TAM is used first for buydowns (use-it-or-lose-it)
-    estimatedBuydownsUsed: 1_500_000,
+    // Total buydowns needed: $2.44M (from $8.86M charge - $6.42M budget)
+    // TAM covers most of it
+    estimatedBuydownsUsed: 2_000_000,
     
     // Available for new signings
-    available: 2_125_000 - 1_500_000, // = $625,000
+    available: 2_125_000 - 2_000_000, // = $125,000
   },
   
   // =====================================================
@@ -185,12 +190,13 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
   // =====================================================
   combined: {
     // For new signings (after cap compliance)
-    freeGAM: 1_024_636,       // Much lower without Bukari GAM!
-    freeTAM: 625_000,
-    totalFlexibility: 1_024_636 + 625_000, // = $1,649,636
+    // GAM: $3.28M + $0.25M - $0.6M deficit - $0.25M Taylor - $0.44M buydowns = $2.23M
+    freeGAM: 2_234_636,
+    freeTAM: 125_000,
+    totalFlexibility: 2_234_636 + 125_000, // = $2,359,636
     
     // For trades
-    tradeableGAM: 1_024_636,  // GAM is tradeable
+    tradeableGAM: 2_234_636,  // GAM is tradeable
     tradeableTAM: 0,          // TAM cannot be traded
   },
   
@@ -208,9 +214,10 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
   // ASSUMPTIONS & NOTES
   // =====================================================
   assumptions: [
-    'Bukari sale GAM converted at ~$1.9M (€5.5M × tier conversion)',
+    'Bukari sale: $0 GAM (sold at loss - €5.5M vs €8M acquisition)',
+    'Driussi sale: $0 GAM (DP not eligible to be bought down)',
     'TAM used first for buydowns before GAM',
-    'Budget charge ~$8.31M needs ~$1.9M buydown to fit $6.43M budget',
+    'Budget charge $8.86M needs ~$2.44M buydown to fit $6.42M budget',
     'Third DP distribution estimated at $250K (varies by league)',
     'Model A (3 DPs + 3 U22) assumed - no $2M U22 model bonus',
   ],
@@ -221,6 +228,74 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
     'https://www.austinfc.com/news/',
     'https://www.mlssoccer.com/about/roster-rules-and-regulations',
   ],
+};
+
+/**
+ * AUSTIN FC 2027 ALLOCATION POSITION - PROJECTED
+ * Based on CBA allocations and known future obligations
+ */
+export const AUSTIN_FC_2027_ALLOCATION_POSITION = {
+  // =====================================================
+  // GAM POSITION (PROJECTED)
+  // =====================================================
+  gam: {
+    // Annual allocation per CBA
+    annualAllocation: 3_921_000,
+    thirdDPDistribution: 250_000,   // Estimated - depends on roster build
+    
+    // Carried over from 2026 (estimated - depends on 2026 usage)
+    estimatedCarryover: 1_024_636,   // Assuming same free GAM as projected 2026
+    
+    // 2027 Debits (already committed from previous trades)
+    nelsonGAMToVancouver: -550_000,
+    taylorConditionalToMiami: -50_000,
+    
+    // Gross available (before buydowns)
+    grossAvailable: 3_921_000 + 250_000 + 1_024_636 - 550_000 - 50_000, // = $4,595,636
+    
+    // Estimated for cap compliance (will vary based on roster)
+    estimatedBuydownsNeeded: 1_500_000,
+    
+    // Free GAM after compliance
+    freeGAM: 3_921_000 + 250_000 + 1_024_636 - 550_000 - 50_000 - 1_500_000, // = $3,095,636
+  },
+  
+  // =====================================================
+  // TAM POSITION (PROJECTED)
+  // =====================================================
+  tam: {
+    annualAllocation: 2_025_000,
+    
+    // TAM is use-it-or-lose-it, so no carryover
+    estimatedBuydownsUsed: 1_500_000,
+    
+    available: 2_025_000 - 1_500_000, // = $525,000
+  },
+  
+  // =====================================================
+  // COMBINED FLEXIBILITY (PROJECTED)
+  // =====================================================
+  combined: {
+    freeGAM: 3_095_636,
+    freeTAM: 525_000,
+    totalFlexibility: 3_095_636 + 525_000, // = $3,620,636
+    
+    tradeableGAM: 3_095_636,
+    tradeableTAM: 0,
+  },
+  
+  // =====================================================
+  // KEY NOTES
+  // =====================================================
+  notes: [
+    'GAM allocation increases to $3.92M in 2027 (up from $3.28M)',
+    'TAM allocation decreases to $2.03M in 2027 (down from $2.13M)',
+    'Must pay $550K GAM to Vancouver (Nelson trade)',
+    'Must pay $50K conditional GAM to Miami (Taylor trade)',
+    'CBA expires Jan 31, 2028 - 2027 is final full year under current rules',
+  ],
+  
+  lastUpdated: '2026-01-18',
 };
 
 // ============================================================================
@@ -345,14 +420,18 @@ export interface AllocationTransaction {
 export const austinFCAllocationHistory: AllocationTransaction[] = [
   // ============================================================================
   // ANNUAL ALLOCATIONS (From MLS CBA - amounts vary by year!)
+  // 
+  // NOTE: For UI display, we filter to show only 2024+ transactions.
+  // Historical data (2021-2023) is kept for reference but the MLS Official
+  // GAM Publication ($3,162,071 entering 2025) is our authoritative baseline.
   // ============================================================================
   
   // 2021 - Austin FC's first year
   {
     id: '2021-gam-annual',
-    date: '2021-03-01',  // Use March to avoid timezone issues
+    date: '2021-03-01',
     type: 'GAM_RECEIVED',
-    amount: 1_525_000,  // 2021 CBA amount
+    amount: 1_525_000,
     amountEstimated: false,
     description: 'Annual GAM allocation from MLS (2021 CBA rate)',
     counterparty: 'MLS League Office',
@@ -363,7 +442,7 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2021-tam-annual',
     date: '2021-03-01',
     type: 'TAM_RECEIVED',
-    amount: 2_800_000,  // 2021 CBA amount
+    amount: 2_800_000,
     amountEstimated: false,
     description: 'Annual TAM allocation from MLS (2021 CBA rate)',
     counterparty: 'MLS League Office',
@@ -376,7 +455,7 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2022-gam-annual',
     date: '2022-03-01',
     type: 'GAM_RECEIVED',
-    amount: 1_625_000,  // 2022 CBA amount
+    amount: 1_625_000,
     amountEstimated: false,
     description: 'Annual GAM allocation from MLS (2022 CBA rate)',
     counterparty: 'MLS League Office',
@@ -387,7 +466,7 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2022-tam-annual',
     date: '2022-03-01',
     type: 'TAM_RECEIVED',
-    amount: 2_800_000,  // 2022 CBA amount
+    amount: 2_800_000,
     amountEstimated: false,
     description: 'Annual TAM allocation from MLS (2022 CBA rate)',
     counterparty: 'MLS League Office',
@@ -400,7 +479,7 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2023-gam-annual',
     date: '2023-03-01',
     type: 'GAM_RECEIVED',
-    amount: 1_900_000,  // 2023 CBA amount
+    amount: 1_900_000,
     amountEstimated: false,
     description: 'Annual GAM allocation from MLS (2023 CBA rate)',
     counterparty: 'MLS League Office',
@@ -411,7 +490,7 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2023-tam-annual',
     date: '2023-03-01',
     type: 'TAM_RECEIVED',
-    amount: 2_720_000,  // 2023 CBA amount - TAM starts decreasing
+    amount: 2_720_000,
     amountEstimated: false,
     description: 'Annual TAM allocation from MLS (2023 CBA rate)',
     counterparty: 'MLS League Office',
@@ -491,233 +570,73 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     verified: true,
   },
   
+  // 2027 (Final year of current CBA)
+  {
+    id: '2027-gam-annual',
+    date: '2027-03-01',
+    type: 'GAM_RECEIVED',
+    amount: 3_921_000,  // 2027 CBA amount - highest GAM year
+    amountEstimated: false,
+    description: 'Annual GAM allocation from MLS (2027 CBA rate)',
+    counterparty: 'MLS League Office',
+    source: 'MLS Roster Rules',
+    verified: true,
+  },
+  {
+    id: '2027-tam-annual',
+    date: '2027-03-01',
+    type: 'TAM_RECEIVED',
+    amount: 2_025_000,  // 2027 CBA amount - lowest TAM year
+    amountEstimated: false,
+    description: 'Annual TAM allocation from MLS (2027 CBA rate)',
+    counterparty: 'MLS League Office',
+    source: 'MLS Roster Rules',
+    verified: true,
+  },
+  
   // ============================================================================
-  // TAM/GAM BUYDOWNS BY YEAR
+  // TAM/GAM BUYDOWNS (ESTIMATES)
+  // 
+  // ⚠️ IMPORTANT: These are ESTIMATES based on roster data and cap math.
+  // Exact buydown allocations are not publicly disclosed by MLS.
   // 
   // KEY CONCEPT: Total Budget Charge must be under Salary Budget!
   // - Salary Budget (2026): $6,425,000
   // - If total budget charge exceeds this, must use TAM/GAM to buy down
   // - TAM/GAM reduces individual player's budget charge (not their actual salary)
   // 
-  // Source: The North End Podcast Spreadsheet + MLS roster compliance
+  // Source: The North End Podcast Spreadsheet + MLS roster compliance math
   // ============================================================================
   
-  // --- 2021 BUYDOWNS ---
-  // Austin FC's inaugural season
-  // Salary Budget: $4.9M | Total payroll much higher
-  // Key players needing buydowns: Cecilio Domínguez (DP), Tomás Pochettino, etc.
+  // --- 2026 BUYDOWNS (ESTIMATED) ---
+  // Budget charge $8.86M vs $6.42M budget = $2.44M buydowns needed
   {
-    id: '2021-tam-buydowns',
-    date: '2021-03-01',
+    id: '2026-tam-buydowns-est',
+    date: '2026-03-01',
     type: 'TAM_SPENT',
-    amount: 2_400_000,
+    amount: 2_000_000,
     amountEstimated: true,
-    description: '2021 TAM used for salary buydowns to fit under $4.9M budget',
+    description: '2026 TAM buydowns (ESTIMATE)',
     counterparty: 'Salary Buydowns',
-    source: 'Estimated based on roster construction',
-    notes: 'Inaugural roster: Domínguez (DP), Pochettino, Ring, Cascante, etc. all needed buydowns',
+    source: 'Estimated: $8.86M charge - $6.42M budget = $2.44M needed',
+    notes: 'TAM used first (use-it-or-lose-it), then GAM for remainder',
     verified: false,
   },
   {
-    id: '2021-gam-buydowns',
-    date: '2021-03-01',
+    id: '2026-gam-buydowns-est',
+    date: '2026-03-01',
     type: 'GAM_SPENT',
-    amount: 800_000,
+    amount: 440_000,
     amountEstimated: true,
-    description: '2021 GAM used for additional salary buydowns',
+    description: '2026 GAM buydowns (ESTIMATE)',
     counterparty: 'Salary Buydowns',
-    source: 'Estimated based on roster construction',
-    notes: 'GAM used alongside TAM to get total budget charge under $4.9M',
-    verified: false,
-  },
-  
-  // --- 2022 BUYDOWNS ---
-  // Salary Budget: $4.9M | Driussi signed as DP
-  // Key additions: Sebastián Driussi (DP - $6.7M salary!)
-  {
-    id: '2022-tam-buydowns',
-    date: '2022-03-01',
-    type: 'TAM_SPENT',
-    amount: 2_500_000,
-    amountEstimated: true,
-    description: '2022 TAM used for salary buydowns (Ring, Cascante, Urruti, etc.)',
-    counterparty: 'Salary Buydowns',
-    source: 'Estimated based on roster construction',
-    notes: 'Driussi as DP helped - his $6.7M only counts as $612K against cap',
-    verified: false,
-  },
-  {
-    id: '2022-gam-buydowns',
-    date: '2022-03-01',
-    type: 'GAM_SPENT',
-    amount: 600_000,
-    amountEstimated: true,
-    description: '2022 GAM used for additional salary buydowns',
-    counterparty: 'Salary Buydowns',
-    source: 'Estimated based on roster construction',
+    source: 'Estimated: $2.44M total - $2.0M TAM = $0.44M GAM needed',
     notes: 'GAM supplements TAM for cap compliance',
     verified: false,
   },
   
-  // --- 2023 BUYDOWNS ---
-  // Salary Budget: $5.21M | Driussi still DP, Ring extended
-  // Mid-season: Fagundez traded to LA Galaxy
-  {
-    id: '2023-tam-buydowns',
-    date: '2023-03-01',
-    type: 'TAM_SPENT',
-    amount: 2_300_000,
-    amountEstimated: true,
-    description: '2023 TAM used for salary buydowns (Ring $1.6M, Cascante $800K, etc.)',
-    counterparty: 'Salary Buydowns',
-    source: 'Estimated based on roster construction',
-    notes: 'Ring earning $1.6M+ needed significant buydown to fit under max cap hit',
-    verified: false,
-  },
-  {
-    id: '2023-gam-buydowns',
-    date: '2023-03-01',
-    type: 'GAM_SPENT',
-    amount: 200_000,
-    amountEstimated: true,
-    description: '2023 GAM used for additional salary buydowns',
-    counterparty: 'Salary Buydowns',
-    source: 'Estimated based on roster construction',
-    notes: 'Less GAM needed due to Fagundez trade freeing cap space',
-    verified: false,
-  },
-  
-  // --- 2024 BUYDOWNS (VERIFIED from North End) ---
-  // Salary Budget: $5.47M | Max Cap Hit: $683,750
-  // Total GAM/TAM used: $1,406,250 per North End
-  // Key: Declared U22 Initiative Model - received $1M extra GAM
-  {
-    id: '2024-ring-buydown',
-    date: '2024-03-01',
-    type: 'GAM_SPENT',
-    amount: 981_250,
-    amountEstimated: false,
-    description: 'GAM buydown: Alex Ring ($1.665M → $683,750 cap hit)',
-    relatedPlayer: 'Alex Ring',
-    counterparty: 'Salary Buydown',
-    source: 'The North End Podcast Cap Sheet',
-    notes: 'Used U22 Initiative GAM. Ring: $1,665,000 - $683,750 = $981,250 buydown',
-    verified: true,
-  },
-  {
-    id: '2024-zardes-buydown',
-    date: '2024-03-01',
-    type: 'TAM_SPENT',
-    amount: 316_250,
-    amountEstimated: false,
-    description: 'TAM buydown: Gyasi Zardes ($1M → $683,750 cap hit)',
-    relatedPlayer: 'Gyasi Zardes',
-    counterparty: 'Salary Buydown',
-    source: 'The North End Podcast Cap Sheet',
-    notes: 'Zardes: $1,000,000 - $683,750 = $316,250 buydown needed',
-    verified: true,
-  },
-  {
-    id: '2024-cascante-buydown-tam',
-    date: '2024-03-01',
-    type: 'TAM_SPENT',
-    amount: 170_000,
-    amountEstimated: true,
-    description: 'TAM buydown: Julio Cascante ($853K → $683,750 cap hit)',
-    relatedPlayer: 'Julio Cascante',
-    counterparty: 'Salary Buydown',
-    source: 'Estimated based on salary data',
-    notes: 'Cascante: $853,750 - $683,750 = $170,000 buydown needed',
-    verified: false,
-  },
-  {
-    id: '2024-other-tam-buydowns',
-    date: '2024-03-01',
-    type: 'TAM_SPENT',
-    amount: 913_750,
-    amountEstimated: true,
-    description: 'TAM buydowns: Other players above max cap hit (Urruti, Lima, etc.)',
-    counterparty: 'Salary Buydowns',
-    source: 'Estimated to reach North End total of $1.4M GAM/TAM',
-    notes: 'Total 2024 GAM/TAM per North End: $1,406,250',
-    verified: false,
-  },
-  
-  // --- 2025 BUYDOWNS ---
-  // Salary Budget: $5.95M | Max Cap Hit: $743,750
-  // 3 DPs: Vazquez, Uzuni, Bukari (each count as $743,750)
-  // Total roster payroll: ~$17M+ | Must fit under $5.95M budget!
-  {
-    id: '2025-cascante-buydown',
-    date: '2025-03-01',
-    type: 'TAM_SPENT',
-    amount: 110_000,
-    amountEstimated: false,
-    description: 'TAM buydown: Julio Cascante ($853,750 → $743,750 cap hit)',
-    relatedPlayer: 'Julio Cascante',
-    counterparty: 'Salary Buydown',
-    source: 'The North End Podcast Cap Sheet',
-    notes: 'Cascante: $853,750 - $743,750 = $110,000 buydown',
-    verified: true,
-  },
-  {
-    id: '2025-taylor-buydown',
-    date: '2025-03-01',
-    type: 'GAM_SPENT',
-    amount: 483_333,
-    amountEstimated: true,
-    description: 'Robert Taylor arrived with cap hit pre-bought down by Miami',
-    relatedPlayer: 'Robert Taylor',
-    counterparty: 'Trade - Inter Miami',
-    source: 'North End notes - Miami bought down before trade',
-    notes: 'Taylor: $633K salary but traded with $150K cap hit (Miami used their GAM)',
-    verified: false,
-  },
-  {
-    id: '2025-other-tam-buydowns',
-    date: '2025-03-01',
-    type: 'TAM_SPENT',
-    amount: 1_500_000,
-    amountEstimated: true,
-    description: 'TAM buydowns: Senior roster players above max cap hit',
-    counterparty: 'Salary Buydowns',
-    source: 'Estimated based on roster salaries vs budget',
-    notes: 'Multiple players in $500K-$750K range needed partial buydowns',
-    verified: false,
-  },
-  
-  // --- 2026 BUYDOWNS ---
-  // Salary Budget: $6,425,000 | Max Cap Hit: $803,125
-  // 2 DPs: Vazquez ($3.55M), Uzuni ($2.23M) - each count as $803,125
-  // 3 U22: Dubersarsky, Djordjevic, Wolff - each count as $200,000
-  // 
-  // MUST use TAM/GAM to get total budget charge under $6.425M!
-  // Current total budget charge: ~$8.31M (per North End)
-  // Budget needed: $8.31M - $6.425M = ~$1.89M in buydowns
-  {
-    id: '2026-tam-buydowns',
-    date: '2026-03-01',  // Use March to avoid timezone issues
-    type: 'TAM_SPENT',
-    amount: 1_500_000,
-    amountEstimated: true,
-    description: '2026 TAM used for salary buydowns to fit under $6.425M budget',
-    counterparty: 'Salary Buydowns',
-    source: 'Estimated based on roster total of $8.31M charge vs $6.425M budget',
-    notes: 'Total charge ~$8.31M, budget $6.425M = ~$1.89M buydowns needed. TAM covers most.',
-    verified: false,
-  },
-  {
-    id: '2026-gam-buydowns',
-    date: '2026-03-01',  // Use March to avoid timezone issues
-    type: 'GAM_SPENT',
-    amount: 400_000,
-    amountEstimated: true,
-    description: '2026 GAM used for additional buydowns beyond TAM',
-    counterparty: 'Salary Buydowns',
-    source: 'Estimated based on remaining buydown needs',
-    notes: 'GAM supplements TAM to achieve full cap compliance',
-    verified: false,
-  },
+  // TODO: Add 2024 and 2025 buydown estimates when we have more detailed data
+  // Historical buydowns are already accounted for in the MLS official GAM baseline
 
   // ============================================================================
   // VERIFIED TRANSACTIONS FROM OFFICIAL PRESS RELEASES
@@ -726,7 +645,7 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
   // Discovery Rights Trade with Minnesota United
   {
     id: '2022-minnesota-discovery-rights',
-    date: '2022-01-01', // Exact date TBD
+    date: '2022-01-01',
     type: 'GAM_TRADED_IN',
     amount: 50_000,
     amountEstimated: false,
@@ -779,7 +698,7 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     date: '2023-08-01',
     type: 'GAM_TRADED_IN',
     amount: 300_000,
-    conditionalAmount: 600_000,  // Up to $900K total
+    conditionalAmount: 600_000,
     conditionalTerms: 'Performance-based conditions',
     amountEstimated: false,
     description: 'GAM received in Diego Fagundez trade to LA Galaxy (guaranteed $300K 2023, up to $900K total)',
@@ -943,45 +862,14 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
   //   notes: 'Per MLS rules, DPs not eligible for buydown cannot generate GAM from sales.',
   // },
 
-  // OSMAN BUKARI SALE (2025/26 Season)
-  // Sold to Widzew Lodz (Poland) for €5.50m (~$6.4M USD)
-  // 
-  // CRITICAL: Bukari was a DP! Acquisition costs must be recouped first.
-  // Bukari acquired for €8M (~$8.5M) from Red Star Belgrade in 2024
-  // Sale price: €5.5M (~$6.4M)
-  // NET RESULT: LOSS of ~€2.5M
-  // 
-  // Because Austin FC LOST money on Bukari, there is NO net revenue
-  // eligible for GAM conversion. GAM = $0
-  {
-    id: '2025-bukari-sale-gam',
-    date: '2025-12-19',
-    type: 'PLAYER_SALE_GAM',
-    amount: 0,  // $0 - Sold at a loss, acquisition costs not recouped
-    amountEstimated: false,
-    description: 'Bukari sale - NO GAM (sold at loss: €5.5M sale vs €8M acquisition)',
-    relatedPlayer: 'Osman Bukari',
-    counterparty: 'Widzew Lodz (Poland)',
-    source: 'https://www.transfermarkt.us/austin-fc/alletransfers/verein/72309',
-    notes: 'DP acquisition costs must be recouped before GAM is generated. Austin lost ~€2.5M on this transfer.',
-    verified: true,  // Rule is clear: no profit = no GAM
-  },
+  // OSMAN BUKARI SALE (2025/26 Season) - NO GAM GENERATED
+  // Sold to Widzew Lodz (Poland) for €5.50m, but acquired for €8M
+  // NET RESULT: LOSS of ~€2.5M = $0 GAM (DP acquisition costs not recouped)
+  // Not adding as transaction since it generated no allocation money.
   
-  // CECILIO DOMÍNGUEZ SALE (2022)
-  // Sold to Club Guaraní (Paraguay) for €2m (~$2.3M USD)
-  {
-    id: '2022-dominguez-sale-gam',
-    date: '2022-06-01',
-    type: 'PLAYER_SALE_GAM',
-    amount: 800_000,
-    amountEstimated: true,
-    description: 'GAM from Cecilio Domínguez sale to Club Guaraní (€2m / ~$2.3M)',
-    relatedPlayer: 'Cecilio Domínguez',
-    counterparty: 'Club Guaraní (Paraguay)',
-    source: 'https://www.transfermarkt.us/austin-fc/alletransfers/verein/72309',
-    notes: 'Net ~$2M × tiered rates = ~$800K GAM',
-    verified: false,
-  },
+  // CECILIO DOMÍNGUEZ - CONTRACT MUTUALLY TERMINATED (July 2022)
+  // NOT a sale - no transfer fee, no GAM generated
+  // Source: https://www.austinfc.com/news/austin-fc-cecilio-dominguez-mutually-agree-to-terminate-contract
   {
     id: '2027-nelson-vancouver-2027gam',
     date: '2027-03-01',
@@ -1027,15 +915,16 @@ export const AUSTIN_FC_TRANSFER_HISTORY = {
       { player: 'Mateja Djordjević', fee: null, from: 'FK TSC Backa Topola', type: 'Unknown' },
     ],
     departures: [
-      // THIS IS THE BIG ONE - Generates ~$1.9M GAM!
-      { player: 'Osman Bukari', fee: 5_500_000, feeEUR: 5_500_000, to: 'Widzew Lodz', type: 'International', gam: 1_900_000 },
+      // Bukari sold at LOSS - $0 GAM (acquired €8M, sold €5.5M)
+      { player: 'Osman Bukari', fee: 5_500_000, feeEUR: 5_500_000, to: 'Widzew Lodz', type: 'International', gam: 0 },
       { player: 'Stefan Cleveland', fee: 43_000, feeEUR: 43_000, to: 'Sporting Kansas City', type: 'MLS trade' },
       { player: 'Nicky Beloko', fee: 0, to: 'FC Lausanne-Sport', type: 'Free' },
       { player: 'Julio Cascante', fee: 0, to: 'Without Club', type: 'Released' },
       { player: 'Diego Rubio', fee: 0, to: 'Without Club', type: 'Released' },
     ],
     netTransferRecord: '+€3.27m',
-    estimatedGAMFromSales: 1_900_000,
+    estimatedGAMFromSales: 0,
+    note: 'Bukari: $0 GAM - sold at LOSS (€5.5M sale vs €8M acquisition)',
   },
   
   // 2024/25 Season
@@ -1050,14 +939,16 @@ export const AUSTIN_FC_TRANSFER_HISTORY = {
       { player: 'Jon Gallagher', fee: 0, from: 'Aberdeen FC', type: 'Free' },
     ],
     departures: [
-      { player: 'Sebastián Driussi', fee: 14_000_000, to: 'River Plate', type: 'International', gam: 2_750_000 },
+      // Driussi: DP NOT eligible to be bought down (salary ~$4.7M), so $0 GAM
+      // Per Transfermarkt: acquired €6.4M (Jul 2021), sold €9.75M (Jan 2025)
+      { player: 'Sebastián Driussi', fee: 9_750_000, feeEUR: 9_750_000, to: 'River Plate', type: 'International', gam: 0 },
       { player: 'Alex Ring', fee: 0, to: 'Without Club', type: 'Released' },
       { player: 'Emiliano Rigoni', fee: 0, to: 'Without Club', type: 'Released' },
       { player: 'Gyasi Zardes', fee: 0, to: 'Without Club', type: 'Released' },
     ],
     netTransferRecord: '+€3.35m',  // Driussi sold for profit per Transfermarkt
     estimatedGAMFromSales: 0,
-    note: 'Driussi sale €9.75m → $0 GAM (DP not eligible to be bought down, salary too high)',
+    note: 'Driussi: $0 GAM - DP NOT eligible to be bought down (salary ~$4.7M exceeded buydown limit)',
   },
   
   // 2023/24 Season  
@@ -1078,13 +969,15 @@ export const AUSTIN_FC_TRANSFER_HISTORY = {
   // 2022/23 Season
   '2022-23': {
     arrivals: [
-      { player: 'Sebastián Driussi', fee: 9_000_000, from: 'Zenit St. Petersburg', type: 'International' },
+      { player: 'Sebastián Driussi', fee: 6_400_000, feeEUR: 6_400_000, from: 'Zenit St. Petersburg', type: 'International' },
       { player: 'Danny Hoesen', fee: 0, from: 'D.C. United', type: 'Free' },
     ],
     departures: [
-      { player: 'Cecilio Domínguez', fee: 2_000_000, to: 'Club Guaraní', type: 'International', gam: 800_000 },
+      // Domínguez contract mutually terminated July 2022 - NOT a sale, no fee, no GAM
+      { player: 'Cecilio Domínguez', fee: 0, to: 'Contract Terminated', type: 'Mutual Termination', gam: 0 },
     ],
-    estimatedGAMFromSales: 800_000,
+    estimatedGAMFromSales: 0,
+    note: 'Domínguez contract mutually terminated - no transfer fee, no GAM generated',
   },
 };
 
@@ -1093,14 +986,14 @@ export const AUSTIN_FC_TRANSFER_HISTORY = {
 // ============================================================================
 
 export const GAM_FROM_PLAYER_SALES = {
-  total: 8_350_000, // Approximate total GAM from all player sales
+  total: 900_000, // Total GAM from player sales/trades
   byYear: {
-    2022: 800_000,   // Cecilio Domínguez
-    2023: 900_000,   // Fagundez (MLS trade GAM)
-    2024: 2_750_000, // Driussi (max GAM cap)
-    2025: 1_900_000, // Bukari
+    2022: 0,         // Domínguez: $0 GAM - contract mutually terminated, not sold
+    2023: 900_000,   // Fagundez (MLS trade GAM - traded to LA Galaxy)
+    2024: 0,         // Driussi: $0 GAM - DP not eligible to be bought down (salary ~$4.7M)
+    2025: 0,         // Bukari: $0 GAM - Sold at LOSS (€5.5M sale vs €8M acquisition)
   },
-  note: 'Player sales abroad are a MAJOR source of GAM that offset acquisitions!',
+  note: 'CRITICAL: DPs not eligible for buydown cannot generate GAM. Contract terminations and losses generate $0 GAM.',
 };
 
 // ============================================================================
@@ -1247,7 +1140,7 @@ export const AUSTIN_FC_ALLOCATION_SUMMARY = `
 **Example (2026):**
 - Brandon Vazquez earns $3.55M but counts as only $803K (DP designation)
 - Robert Taylor earns $633K and counts as $633K (under max, no buydown needed)
-- If total budget charge is $8.31M vs $6.425M budget = need $1.89M in buydowns
+- If total budget charge is $8.86M vs $6.42M budget = need $2.44M in buydowns
 
 ## Annual Allocations by Year (CBA)
 
@@ -1279,8 +1172,8 @@ export const AUSTIN_FC_ALLOCATION_SUMMARY = `
 - VERIFIED: Cascante buydown $110K TAM
 - 3 DPs (Vazquez, Uzuni, Bukari) helps minimize buydowns needed
 
-**2026:** ~$1.9M needed (TAM: $1.5M est, GAM: $0.4M est)
-- Budget charge ~$8.31M vs $6.425M budget
+**2026:** ~$2.44M needed (TAM: $2.0M est, GAM: $0.44M est)
+- Budget charge $8.86M vs $6.42M budget
 - 2 DPs (Vazquez, Uzuni), 3 U22s help
 - All non-DP/U22 players under max cap hit = efficient roster construction
 
@@ -1315,7 +1208,7 @@ Rolled-over: ~$44K + $50K - $700K = **-$605K** (small deficit)
 -$605K + $3,280K = **~$2.67M available**
 
 ### Plus potential Bukari sale GAM:
-If converted: +~$1.9M → Total: **~$4.6M**
+If converted: +~$2.1M → Total: **~$4.3M**
 
 ---
 

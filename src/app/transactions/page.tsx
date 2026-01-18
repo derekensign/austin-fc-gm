@@ -72,9 +72,13 @@ function TransactionCard({ transaction }: { transaction: AllocationTransaction }
               }`}>
                 {typeLabel}
               </span>
-              {transaction.verified && (
+              {transaction.verified ? (
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
-              )}
+              ) : transaction.amountEstimated ? (
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-medium">
+                  EST
+                </span>
+              ) : null}
             </div>
             {transaction.conditionalAmount && (
               <p className="text-xs text-white/40 mt-0.5">
@@ -185,36 +189,36 @@ export default function TransactionsPage() {
   const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
   const gamByYear = getGAMBalanceByYear();
   const tamByYear = getTAMBalanceByYear();
-  const years = Object.keys(gamByYear).map(Number).sort((a, b) => b - a);
+  
+  // Only display 2026+ years (historical data hidden for clarity)
+  const MIN_DISPLAY_YEAR = 2026;
+  const years = Object.keys(gamByYear)
+    .map(Number)
+    .filter(y => y >= MIN_DISPLAY_YEAR)
+    .sort((a, b) => b - a);
+  
   const allocPosition = AUSTIN_FC_2026_ALLOCATION_POSITION;
   
-  // Get non-annual transactions sorted by date, with optional year filter
+  // Get non-annual transactions sorted by date, filtered to 2024+
   const allTransactions = austinFCAllocationHistory
     .filter(t => !t.id.includes('-annual'))
+    .filter(t => new Date(t.date).getFullYear() >= MIN_DISPLAY_YEAR)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   
   const transactions = selectedYear === 'all' 
     ? allTransactions
     : allTransactions.filter(t => new Date(t.date).getFullYear() === selectedYear);
   
-  // Calculate totals based on selected year filter
-  const totalGAMReceived = selectedYear === 'all'
-    ? Object.values(gamByYear).reduce((sum, y) => sum + y.received, 0)
-    : (gamByYear[selectedYear]?.received || 0);
-  const totalGAMSpent = selectedYear === 'all'
-    ? Object.values(gamByYear).reduce((sum, y) => sum + y.spent, 0)
-    : (gamByYear[selectedYear]?.spent || 0);
-  const totalTAMReceived = selectedYear === 'all'
-    ? Object.values(tamByYear).reduce((sum, y) => sum + y.received, 0)
-    : (tamByYear[selectedYear]?.received || 0);
-  const totalTAMSpent = selectedYear === 'all'
-    ? Object.values(tamByYear).reduce((sum, y) => sum + y.spent, 0)
-    : (tamByYear[selectedYear]?.spent || 0);
-  
-  // Calculate net for selected year
-  const gamNet = totalGAMReceived - totalGAMSpent;
-  const tamNet = totalTAMReceived - totalTAMSpent;
-  const yearLabel = selectedYear === 'all' ? 'Since 2021' : `${selectedYear}`;
+  // Summary card totals hidden per user request
+  // const relevantGamYears = Object.entries(gamByYear).filter(([y]) => Number(y) >= MIN_DISPLAY_YEAR);
+  // const relevantTamYears = Object.entries(tamByYear).filter(([y]) => Number(y) >= MIN_DISPLAY_YEAR);
+  // const totalGAMReceived = ...
+  // const totalGAMSpent = ...
+  // const totalTAMReceived = ...
+  // const totalTAMSpent = ...
+  // const gamNet = ...
+  // const tamNet = ...
+  // const yearLabel = ...
   
   return (
     <div className="p-4 md:p-6 stripe-pattern min-h-screen">
@@ -256,10 +260,12 @@ export default function TransactionsPage() {
                 <span className="text-white/50">Annual + Distributions</span>
                 <span className="text-green-400">+{formatSalary(allocPosition.gam.annualAllocation + allocPosition.gam.thirdDPDistribution)}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-white/50">Bukari Sale GAM</span>
-                <span className="text-green-400">+{formatSalary(allocPosition.gam.bukariSaleGAM)}</span>
-              </div>
+              {allocPosition.gam.bukariSaleGAM > 0 && (
+                <div className="flex justify-between">
+                  <span className="text-white/50">Bukari Sale GAM</span>
+                  <span className="text-green-400">+{formatSalary(allocPosition.gam.bukariSaleGAM)}</span>
+                </div>
+              )}
               <div className="flex justify-between">
                 <span className="text-white/50">Rolled Over (deficit)</span>
                 <span className="text-red-400">{formatSalary(allocPosition.gam.rolledOverDeficit)}</span>
@@ -321,80 +327,15 @@ export default function TransactionsPage() {
         
         <p className="text-[10px] text-white/40 mt-3 flex items-center gap-1.5">
           <Info className="h-3 w-3" />
-          Source: Matthew Doyle analysis + Austin FC press releases + MLS CBA rules. Bukari sale GAM estimated at €5.5M × tiered conversion.
+          Source: Matthew Doyle analysis + Austin FC press releases + MLS CBA rules. Note: Bukari ($0 GAM - sold at loss) and Driussi ($0 GAM - DP not eligible for buydown) transfers did not generate GAM.
         </p>
       </motion.div>
 
-      {/* Summary Cards */}
+      {/* Summary Cards - Hidden per user request
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-xl p-4"
-        >
-          <div className="flex items-center gap-2 text-purple-400 text-xs mb-1">
-            <TrendingUp className="h-3.5 w-3.5" />
-            GAM RECEIVED
-          </div>
-          <p className="font-display text-2xl text-green-400">
-            {formatSalary(totalGAMReceived)}
-          </p>
-          <p className="text-white/40 text-xs mt-1">{yearLabel}</p>
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-          className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-xl p-4"
-        >
-          <div className="flex items-center gap-2 text-purple-400 text-xs mb-1">
-            <TrendingDown className="h-3.5 w-3.5" />
-            GAM SPENT
-          </div>
-          <p className="font-display text-2xl text-red-400">
-            {formatSalary(totalGAMSpent)}
-          </p>
-          <p className={`text-xs mt-1 ${gamNet >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-            Net: {gamNet >= 0 ? '+' : ''}{formatSalary(gamNet)}
-          </p>
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-xl p-4"
-        >
-          <div className="flex items-center gap-2 text-blue-400 text-xs mb-1">
-            <TrendingUp className="h-3.5 w-3.5" />
-            TAM RECEIVED
-          </div>
-          <p className="font-display text-2xl text-green-400">
-            {formatSalary(totalTAMReceived)}
-          </p>
-          <p className="text-white/40 text-xs mt-1">{yearLabel}</p>
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25 }}
-          className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-xl p-4"
-        >
-          <div className="flex items-center gap-2 text-blue-400 text-xs mb-1">
-            <TrendingDown className="h-3.5 w-3.5" />
-            TAM SPENT
-          </div>
-          <p className="font-display text-2xl text-red-400">
-            {formatSalary(totalTAMSpent)}
-          </p>
-          <p className={`text-xs mt-1 ${tamNet >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-            Net: {tamNet >= 0 ? '+' : ''}{formatSalary(tamNet)}
-          </p>
-        </motion.div>
+        ...
       </div>
+      */}
       
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -482,6 +423,10 @@ export default function TransactionsPage() {
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span className="text-white/50">Verified from official source</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-medium">EST</span>
+                <span className="text-white/50">Estimated (not officially disclosed)</span>
               </div>
               <div className="flex items-center gap-2">
                 <ArrowDownLeft className="h-4 w-4 text-green-400" />
