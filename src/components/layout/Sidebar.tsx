@@ -19,6 +19,7 @@ import {
   ChevronRight,
   Menu,
   X,
+  ArrowLeftRight,
 } from 'lucide-react';
 
 const navigation = [
@@ -27,6 +28,7 @@ const navigation = [
   { name: 'Player Stats', href: '/stats', icon: BarChart3 },
   { name: 'Valuations', href: '/valuations', icon: DollarSign },
   { name: 'Salary Cap', href: '/salary-cap', icon: TrendingUp },
+  { name: 'GAM/TAM Transactions', href: '/transactions', icon: ArrowLeftRight },
   { name: 'Roster Rules', href: '/rules', icon: FileText },
 ];
 
