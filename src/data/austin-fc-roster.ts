@@ -1,12 +1,23 @@
 /**
  * Austin FC Roster Data (2026 Season)
  * 
- * SOURCE OF TRUTH: https://www.austinfc.com/roster/
+ * DATA SOURCES:
+ * - Salaries: MLSPA Salary Guide (mlsplayers.org/resources/salary-guide) - SOURCE OF TRUTH
+ * - Roster/Designations: https://www.austinfc.com/roster/
+ * - Cap Hit Calculations: The North End Podcast Spreadsheet (HIGH CONFIDENCE)
+ * - Transactions: Official Austin FC press releases
+ * 
  * Last Updated: January 2026
+ * 
+ * 2026 SALARY CAP:
+ * - Salary Budget: $6,425,000 (up from $5.95M in 2025)
+ * - Max Cap Hit: $803,125 (DP charge)
+ * - TAM: $2,125,000 | GAM: $3,280,000
+ * - Senior Min: $113,400 | Reserve Min: $88,025
  * 
  * SALARY CAP EXPLANATION:
  * - Guaranteed Compensation = Actual salary (from MLSPA)
- * - Budget Charge = What counts against the $5.95M salary cap
+ * - Budget Charge = What counts against the $6.425M salary cap
  * - TAM/GAM = Allocation money used to "buy down" budget charges
  * 
  * Example: Player earns $1.2M, team applies $500K TAM → Budget charge = $700K
@@ -98,20 +109,20 @@ export interface AustinFCPlayer {
   previousClub?: string;
 }
 
-// MLS 2026 Constants (projected from CBA)
+// MLS 2026 Constants (from CBA via North End Podcast)
 export const MLS_2026_RULES = {
-  salaryBudget: 5_950_000,
-  maxBudgetCharge: 743_750,       // Above this = DP or needs TAM
-  dpBudgetCharge: 743_750,        // What DPs count as
+  salaryBudget: 6_425_000,        // Up from $5.95M in 2025
+  maxBudgetCharge: 803_125,       // Above this = DP or needs TAM
+  dpBudgetCharge: 803_125,        // What DPs count as
   youngDPBudgetCharge: 200_000,   // Young DP (≤23) charge
   u22BudgetCharge: 200_000,       // U22 Initiative charge
-  seniorMinSalary: 71_750,
-  reserveMinSalary: 67_360,
+  seniorMinSalary: 113_400,       // Up from $104K in 2025
+  reserveMinSalary: 88_025,       // Up from $80,622 in 2025
   maxSeniorRoster: 20,
   maxSupplementalRoster: 10,
   maxInternationalSlots: 8,
-  tamAnnual: 2_317_500,
-  gamAnnual: 1_825_000,
+  tamAnnual: 2_125_000,           // Down from $2.225M in 2025
+  gamAnnual: 3_280_000,           // Up from $2.93M in 2025
 };
 
 /**
@@ -133,12 +144,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'United States',
     countryCode: 'US',
     photo: playerImg('htazouqbrahn1btwxytc'),
-    baseSalary: 425_000,
-    guaranteedCompensation: 500_000,
+    baseSalary: 484_500,  // MLSPA Oct 2025
+    guaranteedCompensation: 507_313,  // MLSPA Oct 2025
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 500_000,
-    contractEnd: '2026',
+    budgetCharge: 507_313,
+    contractEnd: '2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false,
@@ -160,12 +171,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Poland',
     countryCode: 'PL',
     photo: playerImg('m9kffz475citj1yzsqr1'),
-    baseSalary: 67_360,
-    guaranteedCompensation: 85_000,
+    baseSalary: 125_000,  // MLSPA via North End
+    guaranteedCompensation: 125_000,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 0, // Supplemental
-    contractEnd: '2027',
+    budgetCharge: 0, // Supplemental / On Loan
+    contractEnd: 'Dec 2027',
     designation: 'Homegrown',
     rosterSlot: 'Supplemental',
     isInternational: false,
@@ -189,8 +200,8 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'United States',
     countryCode: 'US',
     photo: playerImg('fnz65tyhquzanjitftaw'),
-    baseSalary: 67_360,
-    guaranteedCompensation: 70_000,
+    baseSalary: 88_025,  // Reserve minimum per North End
+    guaranteedCompensation: 88_025,  // Reserve minimum per North End
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 0, // Supplemental
@@ -216,12 +227,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Denmark',
     countryCode: 'DK',
     photo: playerImg('jlfqjgtcodltisx5ko80'),
-    baseSalary: 300_000,
-    guaranteedCompensation: 350_000,
+    baseSalary: 550_000,  // MLSPA Oct 2025
+    guaranteedCompensation: 550_000,  // MLSPA Oct 2025
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 350_000,
-    contractEnd: '2026',
+    budgetCharge: 550_000,
+    contractEnd: '2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false, // Green card
@@ -243,12 +254,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'United States',
     countryCode: 'US',
     photo: playerImg('a7vpviy1afjhefsebkgt'),
-    baseSalary: 225_000,
-    guaranteedCompensation: 275_000,
+    baseSalary: 325_000,  // MLSPA Oct 2025
+    guaranteedCompensation: 325_000,  // MLSPA Oct 2025
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 275_000,
-    contractEnd: '2026',
+    budgetCharge: 325_000,
+    contractEnd: '2025',  // Option for 2026
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false,
@@ -270,12 +281,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Ukraine',
     countryCode: 'UA',
     photo: playerImg('bmblirlojdy29w37g2ds'),
-    baseSalary: 125_000,
-    guaranteedCompensation: 150_000,
+    baseSalary: 500_000,  // MLSPA Oct 2025
+    guaranteedCompensation: 505_000,  // MLSPA Oct 2025
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 150_000,
-    contractEnd: '2026',
+    budgetCharge: 505_000,
+    contractEnd: '2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: true,
@@ -297,12 +308,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Ireland',
     countryCode: 'IE',
     photo: playerImg('rp2bhpb3l6uigvbhkc8s'),
-    baseSalary: 325_000,
-    guaranteedCompensation: 375_000,
+    baseSalary: 375_000,  // MLSPA Oct 2025
+    guaranteedCompensation: 375_000,  // MLSPA Oct 2025
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 375_000,
-    contractEnd: '2026',
+    contractEnd: '2028',  // Extended Jan 2026
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false, // Green card
@@ -324,8 +335,8 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Slovenia',
     countryCode: 'SI',
     photo: playerImg('yovynwnhcuvmsy9oatdt'),
-    baseSalary: 300_000,
-    guaranteedCompensation: 350_000,
+    baseSalary: 350_000,  // MLSPA Oct 2025
+    guaranteedCompensation: 350_000,  // MLSPA Oct 2025
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 350_000,
@@ -351,11 +362,11 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Brazil',
     countryCode: 'BR',
     photo: playerImg('t9exssoo29m90jp8wupe'),
-    baseSalary: 200_000,
-    guaranteedCompensation: 250_000,
+    baseSalary: 275_000,  // MLSPA Oct 2025
+    guaranteedCompensation: 275_000,  // MLSPA Oct 2025
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 250_000,
+    budgetCharge: 275_000,
     contractEnd: '2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
@@ -378,12 +389,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Serbia',
     countryCode: 'RS',
     photo: playerImg('nop1fj45vlhsw1djft3g'),
-    baseSalary: 175_000,
-    guaranteedCompensation: 225_000,
+    baseSalary: 337_500,  // MLSPA via North End
+    guaranteedCompensation: 347_500,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 200_000, // U22 fixed charge
-    contractEnd: '2028',
+    contractEnd: 'Dec 2028',
     designation: 'U22',
     rosterSlot: 'Senior',
     isInternational: true,
@@ -436,11 +447,11 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Spain',
     countryCode: 'ES',
     photo: playerImg('y0z46cqdtbzt3ivjnv3h'),
-    baseSalary: 350_000,
-    guaranteedCompensation: 400_000,
+    baseSalary: 600_000,  // New contract Nov 2025, salary from 2025 pending new MLSPA
+    guaranteedCompensation: 600_000,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 400_000,
+    budgetCharge: 600_000,
     contractEnd: '2026',
     designation: 'Senior',
     rosterSlot: 'Senior',
@@ -463,13 +474,13 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Venezuela',
     countryCode: 'VE',
     photo: playerImg('wc90b7unzzmn05n6elja'),
-    baseSalary: 650_000,
-    guaranteedCompensation: 750_000,
-    tamApplied: 250_000,  // TAM buydown
+    baseSalary: 475_000,  // MLSPA via North End
+    guaranteedCompensation: 514_375,  // MLSPA via North End
+    tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 500_000, // 750K - 250K TAM = 500K
-    contractEnd: '2026',
-    designation: 'TAM',
+    budgetCharge: 514_375,
+    contractEnd: 'June 2028',
+    designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false, // Green card
     isHomegrown: false,
@@ -490,12 +501,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Sweden',
     countryCode: 'SE',
     photo: playerImg('veltppjtysozeshww4mq'),
-    baseSalary: 275_000,
-    guaranteedCompensation: 325_000,
+    baseSalary: 550_000,  // MLSPA via North End
+    guaranteedCompensation: 550_000,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 325_000,
-    contractEnd: '2026',
+    budgetCharge: 550_000,
+    contractEnd: 'Dec 2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: true,
@@ -517,11 +528,11 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Finland',
     countryCode: 'FI',
     photo: playerImg('ps03xx7stokprxdka5e4'),
-    baseSalary: 250_000,
-    guaranteedCompensation: 300_000,
+    baseSalary: 575_000,  // MLSPA via North End
+    guaranteedCompensation: 633_333,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 300_000,
+    budgetCharge: 633_333,
     contractEnd: '2026',
     designation: 'Senior',
     rosterSlot: 'Senior',
@@ -530,12 +541,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     isU22: false,
     isDP: false,
     isGenerationAdidas: false,
-    marketValue: 450_000,
+    marketValue: 600_000,
   },
   {
     id: 16,
-    name: 'Nico Dubersarsky',
-    firstName: 'Nico',
+    name: 'Nicolás Dubersarsky',
+    firstName: 'Nicolás',
     lastName: 'Dubersarsky',
     number: 20,
     position: 'CM',
@@ -544,12 +555,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Argentina',
     countryCode: 'AR',
     photo: playerImg('aeyqqn5vq9jmtgzkahkn'),
-    baseSalary: 350_000,
-    guaranteedCompensation: 425_000,
+    baseSalary: 275_000,  // MLSPA via North End
+    guaranteedCompensation: 297_986,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 200_000, // U22 fixed charge
-    contractEnd: '2027',
+    contractEnd: 'Dec 2029',
     designation: 'U22',
     rosterSlot: 'Senior',
     isInternational: true,
@@ -571,12 +582,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'United States',
     countryCode: 'US',
     photo: playerImg('xp6vxrlv18czxbfigg9c'),
-    baseSalary: 67_360,
-    guaranteedCompensation: 75_000,
+    baseSalary: 113_400,  // MLSPA via North End (senior min)
+    guaranteedCompensation: 115_000,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 0, // Supplemental
-    contractEnd: '2027',
+    contractEnd: 'Dec 2027',
     designation: 'Homegrown',
     rosterSlot: 'Supplemental',
     isInternational: false,
@@ -625,12 +636,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'United States',
     countryCode: 'US',
     photo: playerImg('kysdrfbe7fubwjfhonja'),
-    baseSalary: 67_360,
-    guaranteedCompensation: 70_000,
+    baseSalary: 88_025,  // Reserve minimum per North End
+    guaranteedCompensation: 88_025,  // Reserve minimum per North End
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 0, // Supplemental
-    contractEnd: '2026',
+    contractEnd: 'Dec 2028',
     designation: 'Homegrown',
     rosterSlot: 'Supplemental',
     isInternational: false,
@@ -681,12 +692,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Canada',
     countryCode: 'CA',
     photo: '', // New acquisition - no ATX photo yet
-    baseSalary: 275_000,
-    guaranteedCompensation: 325_000,
+    baseSalary: 360_000,  // MLSPA via North End
+    guaranteedCompensation: 414_000,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 325_000,
-    contractEnd: '2028',
+    budgetCharge: 414_000,
+    contractEnd: 'Dec 2028',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: true,
@@ -712,11 +723,11 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Colombia',
     countryCode: 'CO',
     photo: playerImg('wcrxs6k1dohrn07bcjyu'),
-    baseSalary: 400_000,
-    guaranteedCompensation: 475_000,
+    baseSalary: 495_000,  // MLSPA via North End
+    guaranteedCompensation: 505_401,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 475_000,
+    budgetCharge: 505_401,
     contractEnd: '2026',
     designation: 'Senior',
     rosterSlot: 'Senior',
@@ -739,12 +750,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'United States',
     countryCode: 'US',
     photo: playerImg('s6umv5k9pbdvwirq4kaq'),
-    baseSalary: 2_000_000,
-    guaranteedCompensation: 2_400_000,
+    baseSalary: 3_200_000,  // MLSPA via North End
+    guaranteedCompensation: 3_551_778,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 743_750, // DP fixed charge
-    contractEnd: '2027',
+    budgetCharge: 803_125, // 2026 DP max cap charge
+    contractEnd: 'Dec 2028',
     designation: 'DP',
     rosterSlot: 'Senior',
     isInternational: false,
@@ -766,12 +777,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Albania',
     countryCode: 'AL',
     photo: playerImg('ix7d845kt7g6mme8t8ix'),
-    baseSalary: 2_200_000,
-    guaranteedCompensation: 2_700_000,
+    baseSalary: 1_520_000,  // MLSPA via North End
+    guaranteedCompensation: 2_225_000,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 743_750, // DP fixed charge
-    contractEnd: '2027',
+    budgetCharge: 803_125, // 2026 DP max cap charge
+    contractEnd: 'Dec 2027',
     designation: 'DP',
     rosterSlot: 'Senior',
     isInternational: true,
@@ -793,12 +804,12 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'United States',
     countryCode: 'US',
     photo: playerImg('mqa9ymj7msgph4hauilf'),
-    baseSalary: 70_000,
-    guaranteedCompensation: 85_000,
+    baseSalary: 113_400,  // MLSPA via North End (senior min)
+    guaranteedCompensation: 113_400,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 0, // Supplemental / GA
-    contractEnd: '2027',
+    contractEnd: 'Dec 2027',
     designation: 'GA',
     rosterSlot: 'Supplemental',
     isInternational: false,
