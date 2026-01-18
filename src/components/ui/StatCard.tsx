@@ -27,7 +27,7 @@ export function StatCard({ title, value, subtitle, icon: Icon, trend, delay = 0,
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <p className="text-xs font-medium uppercase tracking-wider text-white/50">{title}</p>
+          <p className="text-xs font-medium uppercase tracking-wider text-white/50">{title}</p>
             {isLive && (
               <span className="text-[8px] px-1 py-0.5 bg-[var(--verde)]/20 text-[var(--verde)] rounded">LIVE</span>
             )}

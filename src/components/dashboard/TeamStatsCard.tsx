@@ -51,8 +51,8 @@ export function TeamStatsCard() {
     >
       <div className="border-b border-[var(--obsidian-lighter)] px-4 py-3 flex items-center justify-between">
         <div>
-          <h2 className="font-display text-lg text-white tracking-wide">STANDINGS</h2>
-          <p className="text-xs text-white/50">2024 Western Conference</p>
+        <h2 className="font-display text-lg text-white tracking-wide">STANDINGS</h2>
+          <p className="text-xs text-white/50">2025 Western Conference</p>
         </div>
         <span className="text-[10px] px-1.5 py-0.5 bg-[var(--verde)]/20 text-[var(--verde)] rounded">LIVE</span>
       </div>
@@ -104,22 +104,22 @@ export function TeamStatsCard() {
 
         {/* Form */}
         {formArray.length > 0 && (
-          <div>
-            <p className="text-xs text-white/50 mb-2">Recent Form</p>
-            <div className="flex gap-1.5">
+        <div>
+          <p className="text-xs text-white/50 mb-2">Recent Form</p>
+          <div className="flex gap-1.5">
               {formArray.map((result, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.7 + index * 0.1 }}
+              <motion.div
+                key={index}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.7 + index * 0.1 }}
                   className={`h-7 w-7 rounded-md ${formColors[result] || 'bg-white/20'} flex items-center justify-center`}
-                >
-                  <span className="font-bold text-black text-xs">{result}</span>
-                </motion.div>
-              ))}
-            </div>
+              >
+                <span className="font-bold text-black text-xs">{result}</span>
+              </motion.div>
+            ))}
           </div>
+        </div>
         )}
 
         {/* Games Played */}

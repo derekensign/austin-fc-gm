@@ -6,12 +6,15 @@
 
 import { NextResponse } from 'next/server';
 import {
-  getMLSStandings,
   getTeamSquad,
   getMLSTopScorers,
   getTeamFixtures,
   AUSTIN_FC_ID,
 } from '@/lib/data-sources/api-football';
+import {
+  scrapeMLSStandings,
+  type MLSStanding,
+} from '@/lib/data-sources/mls-scraper';
 import {
   getTeamValuations,
   getTeamMarketValue,
@@ -22,6 +25,31 @@ import {
 } from '@/lib/data-sources/mls-salaries';
 import { clearCache, getCacheInfo } from '@/lib/cache/file-cache';
 
+// Transform MLS scraper data to match the expected Standing interface
+function transformStandings(standings: MLSStanding[]) {
+  return standings.map(s => ({
+    rank: s.rank,
+    team: {
+      id: 0,
+      name: s.team.name,
+      logo: s.team.logo || '',
+    },
+    points: s.points,
+    goalsDiff: s.goalDiff,
+    form: '', // Form data not available from scraper
+    all: {
+      played: s.gamesPlayed,
+      win: s.wins,
+      draw: s.draws,
+      lose: s.losses,
+      goals: {
+        for: s.goalsFor,
+        against: s.goalsAgainst,
+      },
+    },
+  }));
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const source = searchParams.get('source');
@@ -30,8 +58,22 @@ export async function GET(request: Request) {
   try {
     switch (source) {
       case 'standings':
-        const standings = await getMLSStandings(forceRefresh);
-        return NextResponse.json({ success: true, data: standings, source: 'api-football' });
+        const mlsStandings = await scrapeMLSStandings(forceRefresh);
+        if (mlsStandings) {
+          // Combine both conferences and transform to expected format
+          const allStandings = transformStandings([
+            ...mlsStandings.western,
+            ...mlsStandings.eastern,
+          ]);
+          return NextResponse.json({ 
+            success: true, 
+            data: allStandings, 
+            source: 'mlssoccer.com',
+            season: mlsStandings.season,
+            lastUpdated: mlsStandings.lastUpdated,
+          });
+        }
+        return NextResponse.json({ success: false, error: 'Failed to fetch standings' });
 
       case 'squad':
         const squad = await getTeamSquad(AUSTIN_FC_ID, forceRefresh);
@@ -73,7 +115,7 @@ export async function GET(request: Request) {
         return NextResponse.json({
           success: true,
           availableSources: [
-            'standings - MLS standings from API-Football',
+            'standings - MLS 2025 standings from mlssoccer.com',
             'squad - Austin FC squad from API-Football',
             'fixtures - Austin FC fixtures from API-Football',
             'topscorers - MLS top scorers from API-Football',
@@ -103,12 +145,12 @@ export async function POST(request: Request) {
 
   const results: Record<string, { success: boolean; source: string; error?: string }> = {};
 
-  // Refresh API-Football data
+  // Refresh MLS standings from scraper
   try {
-    await getMLSStandings(forceRefresh);
-    results.standings = { success: true, source: 'api-football' };
+    await scrapeMLSStandings(forceRefresh);
+    results.standings = { success: true, source: 'mlssoccer.com' };
   } catch (e) {
-    results.standings = { success: false, source: 'api-football', error: String(e) };
+    results.standings = { success: false, source: 'mlssoccer.com', error: String(e) };
   }
 
   try {

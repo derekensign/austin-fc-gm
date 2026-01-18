@@ -26,11 +26,11 @@ export default function RootLayout({
       <body className="antialiased">
         <SidebarProvider>
           <div className="flex min-h-screen w-screen">
-            <Sidebar />
+          <Sidebar />
             <MainContent>
               {children}
             </MainContent>
-          </div>
+            </div>
           <ChatWidget />
         </SidebarProvider>
       </body>

@@ -1,10 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, DollarSign, Trophy, TrendingUp, Globe } from 'lucide-react';
+import { Users, DollarSign, TrendingUp, TrendingDown, Globe, Info, CheckCircle2, AlertCircle } from 'lucide-react';
 import { StatCard } from '@/components/ui';
 import { RosterOverview, SalaryCapCard, TeamStatsCard } from '@/components/dashboard';
-import { useStandings } from '@/hooks/useLiveData';
 import { 
   austinFCRoster, 
   calculateRosterCapSummary, 
@@ -13,7 +12,6 @@ import {
 } from '@/data/austin-fc-roster';
 
 export default function Dashboard() {
-  const { austinStanding } = useStandings();
   const cap = calculateRosterCapSummary();
 
   // Calculate average age
@@ -49,25 +47,26 @@ export default function Dashboard() {
         <StatCard
           title="Budget Charge"
           value={formatSalary(cap.totalBudgetCharge)}
-          subtitle={`of ${formatSalary(MLS_2026_RULES.salaryBudget)} budget`}
+          subtitle={`needs ${formatSalary(Math.max(0, cap.totalBudgetCharge - MLS_2026_RULES.salaryBudget))} TAM/GAM`}
           icon={DollarSign}
           trend={{ 
-            value: cap.capUsagePercent > 95 ? 'Near cap limit' : `${formatSalary(cap.capSpaceRemaining)} available`, 
-            isPositive: cap.capUsagePercent <= 95 
+            value: cap.totalBudgetCharge <= MLS_2026_RULES.salaryBudget 
+              ? `${formatSalary(cap.capSpaceRemaining)} under cap` 
+              : `Compliant after buydowns`, 
+            isPositive: true 
           }}
           delay={0.15}
         />
         <StatCard
-          title="Conference Rank"
-          value={austinStanding?.rank || '—'}
-          subtitle={austinStanding ? `${austinStanding.points} pts` : 'Western Conference'}
-          icon={Trophy}
-          trend={austinStanding ? { 
-            value: austinStanding.rank <= 9 ? 'Playoff position' : 'Outside playoffs', 
-            isPositive: austinStanding.rank <= 9 
-          } : undefined}
+          title="Total Salary"
+          value={formatSalary(cap.totalGuaranteedComp)}
+          subtitle="Actual player salaries (MLSPA)"
+          icon={DollarSign}
+          trend={{ 
+            value: `${formatSalary(cap.totalGuaranteedComp - cap.totalBudgetCharge)} bought down`, 
+            isPositive: true 
+          }}
           delay={0.2}
-          isLive={!!austinStanding}
         />
         <StatCard
           title="International"
@@ -131,6 +130,52 @@ export default function Dashboard() {
           <TeamStatsCard />
         </div>
       </div>
+
+      {/* Key Assumptions & Rules */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+        className="mt-4 bg-gradient-to-r from-[var(--verde)]/10 to-purple-500/10 border border-[var(--verde)]/30 rounded-xl p-4"
+      >
+        <h2 className="font-display text-sm text-white/70 mb-3 flex items-center gap-2">
+          <Info className="h-4 w-4 text-[var(--verde)]" />
+          2026 ALLOCATION POSITION (Calculated)
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+          <div className="flex items-start gap-2">
+            <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 shrink-0" />
+            <div>
+              <span className="text-white font-medium">Bukari GAM: $0</span>
+              <p className="text-white/50">Sold at loss (€5.5M vs €8M acquisition)</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <TrendingUp className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
+            <div>
+              <span className="text-white font-medium">2026 GAM: +$2.92M</span>
+              <p className="text-white/50">$3.28M annual + $0.25M dist - $0.6M deficit</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <DollarSign className="h-4 w-4 text-blue-400 mt-0.5 shrink-0" />
+            <div>
+              <span className="text-white font-medium">TAM: $2.13M</span>
+              <p className="text-white/50">Use-it-or-lose-it, used first for buydowns</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <AlertCircle className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
+            <div>
+              <span className="text-white font-medium">Free GAM: ~$1.02M</span>
+              <p className="text-white/50">Very limited after cap buydowns!</p>
+            </div>
+          </div>
+        </div>
+        <p className="text-[10px] text-white/40 mt-3">
+          Source: Matthew Doyle analysis + Austin FC press releases + MLS CBA rules. Bukari sale GAM estimated at €5.5M × tiered conversion.
+        </p>
+      </motion.div>
     </div>
   );
 }

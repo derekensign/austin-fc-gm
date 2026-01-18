@@ -13,6 +13,9 @@ export * from './transfermarkt';
 // MLS Salaries (MLSPA data)
 export * from './mls-salaries';
 
+// MLS Website Scraper (2025 standings)
+export * from './mls-scraper';
+
 // Re-export cache utilities
 export { getCached, setCache, clearCache, getCacheInfo } from '../cache/file-cache';
 

@@ -76,12 +76,16 @@ export async function getTopSalaries(limit: number = 20): Promise<MLSSalaryEntry
 }
 
 export function formatSalary(amount: number): string {
-  if (amount >= 1_000_000) {
-    return `$${(amount / 1_000_000).toFixed(2)}M`;
-  } else if (amount >= 1_000) {
-    return `$${(amount / 1_000).toFixed(0)}K`;
+  const isNegative = amount < 0;
+  const absAmount = Math.abs(amount);
+  const prefix = isNegative ? '-' : '';
+  
+  if (absAmount >= 1_000_000) {
+    return `${prefix}$${(absAmount / 1_000_000).toFixed(2)}M`;
+  } else if (absAmount >= 1_000) {
+    return `${prefix}$${(absAmount / 1_000).toFixed(0)}K`;
   }
-  return `$${amount.toLocaleString()}`;
+  return `${prefix}$${absAmount.toLocaleString()}`;
 }
 
 // ============ SALARY CAP CALCULATIONS ============

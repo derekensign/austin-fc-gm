@@ -22,6 +22,19 @@
  * 
  * Example: Player earns $1.2M, team applies $500K TAM → Budget charge = $700K
  * The player still gets paid $1.2M, but only $700K counts against the cap.
+ * 
+ * ⚠️ TRANSFER FEE WARNING (MLSPA DATA LIMITATION):
+ * Transfer fees are AMORTIZED over contract years and ADD to budget charge!
+ * Formula: Annual Budget Charge = Base Salary + (Transfer Fee ÷ Contract Years)
+ * 
+ * MLSPA reports ONLY salaries, NOT transfer fees. So MLSPA data alone 
+ * UNDERSTATES true budget charges for players acquired via transfer.
+ * 
+ * EXEMPTIONS (where fees DON'T add to cap):
+ * - DP: Budget charge capped at $803,125 regardless of fee
+ * - U22: Budget charge fixed at $150K-$200K regardless of fee
+ * 
+ * For non-exempt players, GAM/TAM must buy down BOTH salary AND amortized fee!
  */
 
 // Country code to flag emoji mapping
@@ -107,6 +120,13 @@ export interface AustinFCPlayer {
   // Acquisition info
   acquisitionDate?: string;
   previousClub?: string;
+  
+  // Transfer Fee / Acquisition Cost (CRITICAL for cap calculation!)
+  // For non-DP/non-U22 players, amortized fee ADDS to budget charge
+  // Formula: Annual Acquisition Cost = transferFee / contractYearsGuaranteed
+  transferFee?: number;              // Total fee paid (cash, GAM, etc.)
+  contractYearsGuaranteed?: number;  // Years to amortize over
+  amortizedAnnualFee?: number;       // Calculated: transferFee / years (adds to cap for non-exempt)
 }
 
 // MLS 2026 Constants (from CBA via North End Podcast)
@@ -123,6 +143,19 @@ export const MLS_2026_RULES = {
   maxInternationalSlots: 8,
   tamAnnual: 2_125_000,           // Down from $2.225M in 2025
   gamAnnual: 3_280_000,           // Up from $2.93M in 2025
+  maxBuyoutsPerYear: 2,           // Contract buyouts allowed per year
+  maxCashTransfersPerWindow: 2,   // Cash transfers per trade window
+};
+
+// Austin FC 2026 Transaction Usage Tracking
+export const AUSTIN_FC_2026_TRANSACTIONS = {
+  buyoutsUsed: 0,                 // No buyouts used yet in 2026
+  buyoutsAvailable: 2,
+  cashTransfersUsed: 1,           // Rosales ($1.5M cash from Minnesota)
+  cashTransfersAvailable: 1,
+  notes: [
+    'Joseph Rosales acquired via $1.5M cash transfer (Dec 2025)',
+  ],
 };
 
 /**
@@ -665,11 +698,14 @@ export const austinFCRoster: AustinFCPlayer[] = [
     photo: '', // New acquisition - no ATX photo yet
     baseSalary: 325_000,
     guaranteedCompensation: 375_000,
-    tamApplied: 0,
+    // ⚠️ CRITICAL: Cash trade fee IS amortized and added to budget charge per 2025 MLS rules!
+    // $1.5M cash / 3.5 years guaranteed = ~$428K/year amortized
+    tamApplied: 428_000,  // TAM needed to buy down amortized acquisition cost
     gamApplied: 0,
-    budgetCharge: 375_000,
-    contractEnd: '2027',
-    designation: 'Senior',
+    budgetCharge: 375_000, // After TAM buydown - salary only hits cap
+    trueBudgetCharge: 803_000, // $375K salary + $428K amortized = $803K (at max!)
+    contractEnd: '2029',
+    designation: 'TAM',  // Effectively TAM-level after acquisition cost
     rosterSlot: 'Senior',
     isInternational: false, // Green card per official roster
     isHomegrown: false,
@@ -679,6 +715,11 @@ export const austinFCRoster: AustinFCPlayer[] = [
     marketValue: 1_200_000,
     acquisitionDate: 'Dec 23, 2025',
     previousClub: 'Minnesota United FC',
+    // Transfer fee info - CRITICAL for true cap calculation
+    transferFee: 1_500_000,           // $1.5M cash per Austin FC press release
+    contractYearsGuaranteed: 3.5,     // 3.5 years through June 2029
+    amortizedAnnualFee: 428_000,      // $1.5M / 3.5 years = ~$428K/year adds to cap charge
+    acquisitionNotes: 'Cash trade - fee amortized over contract, needs TAM buydown',
   },
   {
     id: 21,
@@ -696,18 +737,24 @@ export const austinFCRoster: AustinFCPlayer[] = [
     guaranteedCompensation: 414_000,  // MLSPA via North End
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 414_000,
+    // ⚠️ NOTE: If transfer fee is amortized, true budget charge is HIGHER
+    // He's 22 - if placed in U22 slot, fee doesn't add to cap
+    budgetCharge: 414_000, // Salary only - may need U22 slot or TAM for amortized fee
     contractEnd: 'Dec 2028',
-    designation: 'Senior',
+    designation: 'Senior', // ⚠️ Should verify if he's using a U22 slot (would exempt fee)
     rosterSlot: 'Senior',
     isInternational: true,
     isHomegrown: false,
-    isU22: false,
+    isU22: false, // ⚠️ If true, his $416K amortized fee wouldn't count against cap!
     isDP: false,
     isGenerationAdidas: false,
     marketValue: 1_500_000,
     acquisitionDate: 'Dec 18, 2025',
     previousClub: 'Vancouver Whitecaps FC',
+    // Transfer fee info - CRITICAL for true cap calculation
+    transferFee: 1_250_000,           // $700K 2026 GAM + $550K 2027 GAM
+    contractYearsGuaranteed: 3,       // Through Dec 2028 (3 full years)
+    amortizedAnnualFee: 416_667,      // ~$417K/year adds to cap charge (unless U22)
   },
 
   // ============ FORWARDS ============
@@ -875,6 +922,12 @@ export interface RosterCapSummary {
   capSpaceRemaining: number;
   capUsagePercent: number;
   
+  // Breakdown of cap savings by mechanism
+  dpSavings: number;           // DP salaries - DP cap charges ($803K each)
+  u22Savings: number;          // U22 salaries - U22 cap charges ($200K each)
+  supplementalSavings: number; // Supplemental roster salaries (don't count)
+  tamGamBuydowns: number;      // Actual TAM/GAM applied
+  
   // TAM/GAM Usage
   tamUsed: number;
   tamAvailable: number;
@@ -906,9 +959,24 @@ export function calculateRosterCapSummary(): RosterCapSummary {
   const totalBudgetCharge = austinFCRoster.reduce((sum, p) => sum + p.budgetCharge, 0);
   const capSpaceRemaining = MLS_2026_RULES.salaryBudget - totalBudgetCharge;
   
-  // TAM/GAM usage
+  // Calculate savings by mechanism
+  // DP Savings: Their actual salary minus their capped charge ($803,125)
+  const dpSavings = dps.reduce((sum, p) => {
+    return sum + (p.guaranteedCompensation - MLS_2026_RULES.dpBudgetCharge);
+  }, 0);
+  
+  // U22 Savings: Their actual salary minus their capped charge ($200,000)
+  const u22Savings = u22s.reduce((sum, p) => {
+    return sum + (p.guaranteedCompensation - MLS_2026_RULES.u22BudgetCharge);
+  }, 0);
+  
+  // Supplemental Savings: Their entire salary (they don't count against cap)
+  const supplementalSavings = supplemental.reduce((sum, p) => sum + p.guaranteedCompensation, 0);
+  
+  // TAM/GAM usage (explicit buydowns tracked on players)
   const tamUsed = austinFCRoster.reduce((sum, p) => sum + p.tamApplied, 0);
   const gamUsed = austinFCRoster.reduce((sum, p) => sum + p.gamApplied, 0);
+  const tamGamBuydowns = tamUsed + gamUsed;
   
   return {
     totalPlayers: austinFCRoster.length,
@@ -925,6 +993,12 @@ export function calculateRosterCapSummary(): RosterCapSummary {
     totalBudgetCharge,
     capSpaceRemaining,
     capUsagePercent: Math.round((totalBudgetCharge / MLS_2026_RULES.salaryBudget) * 100),
+    
+    // Savings breakdown
+    dpSavings,
+    u22Savings,
+    supplementalSavings,
+    tamGamBuydowns,
     
     tamUsed,
     tamAvailable: MLS_2026_RULES.tamAnnual - tamUsed,
@@ -943,12 +1017,16 @@ export function calculateRosterCapSummary(): RosterCapSummary {
 }
 
 export function formatSalary(amount: number): string {
-  if (amount >= 1_000_000) {
-    return `$${(amount / 1_000_000).toFixed(2)}M`;
-  } else if (amount >= 1_000) {
-    return `$${Math.round(amount / 1_000)}K`;
+  const isNegative = amount < 0;
+  const absAmount = Math.abs(amount);
+  const prefix = isNegative ? '-' : '';
+  
+  if (absAmount >= 1_000_000) {
+    return `${prefix}$${(absAmount / 1_000_000).toFixed(2)}M`;
+  } else if (absAmount >= 1_000) {
+    return `${prefix}$${Math.round(absAmount / 1_000)}K`;
   }
-  return `$${amount.toLocaleString()}`;
+  return `${prefix}$${absAmount.toLocaleString()}`;
 }
 
 export function getFlag(nationality: string): string {
