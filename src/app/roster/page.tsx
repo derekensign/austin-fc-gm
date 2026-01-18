@@ -316,7 +316,9 @@ export default function RosterPage() {
                         <div className="flex items-center gap-2">
                           <p className="font-medium text-white">{player.name}</p>
                           {player.isInternational && (
-                            <Globe className="h-3 w-3 text-purple-400" title="International slot" />
+                            <span title="International slot">
+                              <Globe className="h-3 w-3 text-purple-400" />
+                            </span>
                           )}
                         </div>
                         <p className="text-xs text-white/40">{player.nationality}</p>

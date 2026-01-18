@@ -147,7 +147,7 @@ export function getAverageAge() {
   return (roster.reduce((sum, p) => sum + p.age, 0) / roster.length).toFixed(1);
 }
 
-export function getTopScorers(limit = 5) {
+export function getRosterTopScorers(limit = 5) {
   return [...roster].sort((a, b) => b.stats.goals - a.stats.goals).slice(0, limit);
 }
 

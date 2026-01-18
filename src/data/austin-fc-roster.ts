@@ -127,6 +127,9 @@ export interface AustinFCPlayer {
   transferFee?: number;              // Total fee paid (cash, GAM, etc.)
   contractYearsGuaranteed?: number;  // Years to amortize over
   amortizedAnnualFee?: number;       // Calculated: transferFee / years (adds to cap for non-exempt)
+  
+  // True budget charge before TAM/GAM buydowns (for analytics)
+  trueBudgetCharge?: number;         // Salary + amortized fee (what it would cost without buydowns)
 }
 
 // MLS 2026 Constants (from CBA via North End Podcast)
@@ -719,7 +722,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     transferFee: 1_500_000,           // $1.5M cash per Austin FC press release
     contractYearsGuaranteed: 3.5,     // 3.5 years through June 2029
     amortizedAnnualFee: 428_000,      // $1.5M / 3.5 years = ~$428K/year adds to cap charge
-    acquisitionNotes: 'Cash trade - fee amortized over contract, needs TAM buydown',
+    // Note: Cash trade - fee amortized over contract, needs TAM buydown
   },
   {
     id: 21,

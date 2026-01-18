@@ -109,7 +109,7 @@ export default function TransferCalculatorPage() {
             {formatBudget(allocPosition.combined.totalFlexibility)}
           </p>
           <p className="text-xs text-white/40">
-            {formatBudget(allocPosition.tam.available)} TAM + {formatBudget(allocPosition.gam.available)} GAM
+            {formatBudget(allocPosition.combined.freeTAM)} TAM + {formatBudget(allocPosition.combined.freeGAM)} GAM
           </p>
         </div>
       </motion.div>

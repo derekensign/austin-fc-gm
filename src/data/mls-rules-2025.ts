@@ -257,9 +257,11 @@ export const allocationMoney = {
      * - Player must earn > $743,750 to qualify for TAM
      * - Compensation ceiling for TAM-eligible players: $1,743,750
      * - Cannot buy down below $150,000 using TAM
+     * - Max buydown per player = ceiling - max budget charge = $1,743,750 - $743,750 = $1,000,000
      */
     minSalaryToQualify: 743_750,
     maxCompensationCeiling: 1_743_750,
+    maxBuydownPerPlayer: 1_000_000, // Max TAM that can be applied to a single player
     minBuydownFloor: 150_000,
     canBuyDownDP: true,
     tradeable: false, // TAM cannot be traded per official rules
@@ -524,6 +526,24 @@ export const freeAgencyRules = {
    */
   cbaReference: 'Article 29, Section 29.4',
   
+  /**
+   * PRIOR RULES (before 2026)
+   * Per original CBA: "24 years old and has completed at least 5 MLS seasons"
+   */
+  priorRules: {
+    minAge: 24,
+    minServiceYears: 5,
+  },
+
+  /**
+   * NEW RULES (2026+)
+   * Per 2023 CBA amendment: "24 years old and has completed at least 4 MLS seasons"
+   */
+  newRules2026: {
+    minAge: 24,
+    minServiceYears: 4,  // Reduced from 5 in 2023 CBA amendment
+  },
+
   /**
    * CURRENT RULES (2025+)
    * Per CBA: "24 years old and has completed at least 4 MLS seasons"
