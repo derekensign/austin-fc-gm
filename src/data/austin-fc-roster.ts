@@ -389,7 +389,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     firstName: 'Guilherme',
     lastName: 'Biro',
     number: 29,
-    position: 'RB',
+    position: 'LB',
     positionGroup: 'DEF',
     age: 22,
     nationality: 'Brazil',
@@ -690,8 +690,8 @@ export const austinFCRoster: AustinFCPlayer[] = [
     firstName: 'Joseph',
     lastName: 'Rosales',
     number: null,
-    position: 'CM',
-    positionGroup: 'MID',
+    position: 'LB',
+    positionGroup: 'DEF',
     age: 25,
     nationality: 'Honduras',
     countryCode: 'HN',
@@ -705,7 +705,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     budgetCharge: 375_000, // After TAM buydown - salary only hits cap
     trueBudgetCharge: 803_000, // $375K salary + $428K amortized = $803K (at max!)
     contractEnd: '2029',
-    designation: 'TAM',  // Effectively TAM-level after acquisition cost
+    designation: 'Senior',  // Salary alone ($375K) is senior-level; TAM offsets acquisition cost only
     rosterSlot: 'Senior',
     isInternational: false, // Green card per official roster
     isHomegrown: false,
