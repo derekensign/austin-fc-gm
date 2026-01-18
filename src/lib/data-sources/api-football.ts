@@ -9,16 +9,25 @@
 import { getCached, setCache } from '../cache/file-cache';
 
 const API_KEY = process.env.API_FOOTBALL_KEY || '';
+
+// Support both direct API-Football and RapidAPI
+// Direct: https://v3.football.api-sports.io
+// RapidAPI: https://api-football-v1.p.rapidapi.com/v3
+const USE_RAPIDAPI = API_KEY.length > 40; // RapidAPI keys are longer
+const BASE_URL = USE_RAPIDAPI 
+  ? 'https://api-football-v1.p.rapidapi.com/v3'
+  : 'https://v3.football.api-sports.io';
 const API_HOST = 'api-football-v1.p.rapidapi.com';
-const BASE_URL = `https://${API_HOST}/v3`;
 
 // MLS League ID in API-Football
 const MLS_LEAGUE_ID = 253;
-const CURRENT_SEASON = 2025; // API-Football uses calendar year
+// Note: Free API-Football plan only has 2022-2024 data
+// Change to 2025 when you upgrade or when season data becomes available
+const CURRENT_SEASON = 2024;
 
 interface ApiResponse<T> {
   response: T;
-  errors: string[];
+  errors: Record<string, string> | string[];
 }
 
 async function fetchFromApi<T>(endpoint: string, params: Record<string, string | number> = {}): Promise<T | null> {
@@ -32,13 +41,18 @@ async function fetchFromApi<T>(endpoint: string, params: Record<string, string |
     url.searchParams.set(key, String(value));
   });
 
-  try {
-    const response = await fetch(url.toString(), {
-      headers: {
+  // Set headers based on API type
+  const headers: Record<string, string> = USE_RAPIDAPI
+    ? {
         'x-rapidapi-key': API_KEY,
         'x-rapidapi-host': API_HOST,
-      },
-    });
+      }
+    : {
+        'x-apisports-key': API_KEY,
+      };
+
+  try {
+    const response = await fetch(url.toString(), { headers });
 
     if (!response.ok) {
       console.error(`API-Football error: ${response.status}`);
@@ -161,8 +175,8 @@ export interface TeamInfo {
   };
 }
 
-// Austin FC team ID in API-Football
-export const AUSTIN_FC_ID = 9003;
+// Austin FC team ID in API-Football (Q2 Stadium, founded 2021)
+export const AUSTIN_FC_ID = 16489;
 
 export async function getTeamInfo(teamId: number = AUSTIN_FC_ID): Promise<TeamInfo | null> {
   const cacheKey = `team-info-${teamId}`;
