@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowDownLeft, 
@@ -13,14 +14,17 @@ import {
   AlertCircle,
   TrendingUp,
   TrendingDown,
-  Info
+  Info,
+  Filter
 } from 'lucide-react';
 import { 
   austinFCAllocationHistory, 
   NON_GAM_MOVEMENTS,
   getGAMBalanceByYear,
   getTAMBalanceByYear,
-  AllocationTransaction 
+  AllocationTransaction,
+  MLS_ALLOCATION_BY_YEAR,
+  MLS_ALLOCATION_RULES
 } from '@/data/austin-fc-allocation-money';
 import { formatSalary } from '@/data/austin-fc-roster';
 
@@ -224,16 +228,21 @@ function YearSummaryCard({ year, gam, tam }: {
 }
 
 export default function TransactionsPage() {
+  const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
   const gamByYear = getGAMBalanceByYear();
   const tamByYear = getTAMBalanceByYear();
   const years = Object.keys(gamByYear).map(Number).sort((a, b) => b - a);
   
-  // Get non-annual transactions sorted by date
-  const transactions = austinFCAllocationHistory
+  // Get non-annual transactions sorted by date, with optional year filter
+  const allTransactions = austinFCAllocationHistory
     .filter(t => !t.id.includes('-annual'))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   
-  // Calculate totals
+  const transactions = selectedYear === 'all' 
+    ? allTransactions
+    : allTransactions.filter(t => new Date(t.date).getFullYear() === selectedYear);
+  
+  // Calculate totals (always for all years)
   const totalGAMReceived = Object.values(gamByYear).reduce((sum, y) => sum + y.received, 0);
   const totalGAMSpent = Object.values(gamByYear).reduce((sum, y) => sum + y.spent, 0);
   const totalTAMReceived = Object.values(tamByYear).reduce((sum, y) => sum + y.received, 0);
@@ -322,6 +331,50 @@ export default function TransactionsPage() {
         </motion.div>
       </div>
       
+      {/* MLS Allocation Progression */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="mb-6"
+      >
+        <h2 className="font-display text-lg text-white tracking-wide mb-3 flex items-center gap-2">
+          <TrendingUp className="h-5 w-5 text-[var(--verde)]" />
+          MLS ALLOCATION PROGRESSION (CBA)
+        </h2>
+        <div className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-xl p-4 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-white/50 text-xs">
+                <th className="text-left py-2 px-2">Year</th>
+                <th className="text-right py-2 px-2">GAM</th>
+                <th className="text-right py-2 px-2">TAM</th>
+                <th className="text-right py-2 px-2">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(MLS_ALLOCATION_BY_YEAR).map(([year, data]) => (
+                <tr 
+                  key={year} 
+                  className={`border-t border-white/5 ${year === '2026' ? 'bg-[var(--verde)]/10' : ''}`}
+                >
+                  <td className={`py-2 px-2 font-medium ${year === '2026' ? 'text-[var(--verde)]' : 'text-white/70'}`}>
+                    {year}
+                  </td>
+                  <td className="text-right py-2 px-2 text-purple-400">{formatSalary(data.gam)}</td>
+                  <td className="text-right py-2 px-2 text-blue-400">{formatSalary(data.tam)}</td>
+                  <td className="text-right py-2 px-2 text-white">{formatSalary(data.gam + data.tam)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="text-xs text-white/40 mt-3 flex items-center gap-1.5">
+            <Info className="h-3 w-3" />
+            GAM increases each year while TAM decreases per CBA. GAM no longer expires (as of 1/14/25).
+          </p>
+        </div>
+      </motion.div>
+
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left: Transactions Timeline */}
@@ -329,18 +382,39 @@ export default function TransactionsPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.35 }}
           >
-            <h2 className="font-display text-lg text-white tracking-wide mb-4 flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-green-500" />
-              VERIFIED TRANSACTIONS
-            </h2>
-            
-            <div className="space-y-3">
-              {transactions.map((transaction, index) => (
-                <TransactionCard key={transaction.id} transaction={transaction} />
-              ))}
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-display text-lg text-white tracking-wide flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 text-green-500" />
+                VERIFIED TRANSACTIONS
+              </h2>
+              
+              {/* Year Filter */}
+              <div className="flex items-center gap-2">
+                <Filter className="h-4 w-4 text-white/40" />
+                <select
+                  value={selectedYear}
+                  onChange={(e) => setSelectedYear(e.target.value === 'all' ? 'all' : Number(e.target.value))}
+                  className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg px-3 py-1.5 text-sm text-white focus:border-[var(--verde)] focus:outline-none"
+                >
+                  <option value="all">All Years</option>
+                  {years.map(year => (
+                    <option key={year} value={year}>{year}</option>
+                  ))}
+                </select>
+              </div>
             </div>
+            
+            {transactions.length === 0 ? (
+              <p className="text-white/50 text-sm py-8 text-center">No transactions found for {selectedYear}.</p>
+            ) : (
+              <div className="space-y-3">
+                {transactions.map((transaction) => (
+                  <TransactionCard key={transaction.id} transaction={transaction} />
+                ))}
+              </div>
+            )}
           </motion.div>
           
           {/* Non-GAM Movements Section */}
@@ -389,11 +463,39 @@ export default function TransactionsPage() {
             </div>
           </motion.div>
           
-          {/* Legend */}
+          {/* Key Rules */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
+            className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-xl p-4"
+          >
+            <h3 className="font-display text-sm text-white/70 mb-3">KEY RULES</h3>
+            <div className="space-y-2 text-xs text-white/60">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="h-3.5 w-3.5 text-green-500 mt-0.5 shrink-0" />
+                <span><strong className="text-white">GAM rolls over</strong> - Unused GAM carries to next season (as of 1/14/25)</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <AlertCircle className="h-3.5 w-3.5 text-amber-500 mt-0.5 shrink-0" />
+                <span><strong className="text-white">TAM can't be traded</strong> - Only used for buydowns</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Info className="h-3.5 w-3.5 text-blue-400 mt-0.5 shrink-0" />
+                <span><strong className="text-white">TAM decreasing</strong> - $2.8M (2021) → $2.13M (2026)</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <TrendingUp className="h-3.5 w-3.5 text-purple-400 mt-0.5 shrink-0" />
+                <span><strong className="text-white">GAM increasing</strong> - $1.53M (2021) → $3.28M (2026)</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Legend */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.45 }}
             className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-xl p-4"
           >
             <h3 className="font-display text-sm text-white/70 mb-3">LEGEND</h3>

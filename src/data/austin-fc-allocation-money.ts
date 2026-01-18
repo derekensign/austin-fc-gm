@@ -11,13 +11,28 @@
  */
 
 // ============================================================================
+// MLS ALLOCATION MONEY BY YEAR (FROM CBA)
+// ============================================================================
+
+export const MLS_ALLOCATION_BY_YEAR = {
+  2021: { gam: 1_525_000, tam: 2_800_000 },
+  2022: { gam: 1_625_000, tam: 2_800_000 },
+  2023: { gam: 1_900_000, tam: 2_720_000 },
+  2024: { gam: 2_585_000, tam: 2_400_000 },
+  2025: { gam: 2_930_000, tam: 2_225_000 },
+  2026: { gam: 3_280_000, tam: 2_125_000 },
+  2027: { gam: 3_921_000, tam: 2_025_000 },
+};
+
+// ============================================================================
 // MLS ALLOCATION MONEY BASICS
 // ============================================================================
 
 export const MLS_ALLOCATION_RULES = {
-  // Annual allocation amounts (2025 figures, adjusted annually)
-  annualTAM: 2_317_500,  // Targeted Allocation Money per year
-  annualGAM: 1_825_000,  // General Allocation Money per year
+  // Annual allocation amounts vary by year (see MLS_ALLOCATION_BY_YEAR)
+  // 2026 figures:
+  annualTAM: 2_125_000,  // Targeted Allocation Money - decreasing each year
+  annualGAM: 3_280_000,  // General Allocation Money - increasing each year
   
   // How GAM is generated
   gamSources: [
@@ -45,6 +60,13 @@ export const MLS_ALLOCATION_RULES = {
     'Pay transfer fees for incoming players',
     'Trade for other assets (players, draft picks, etc.)',
   ],
+  
+  // Important rule changes
+  ruleChanges: {
+    gamExpiration: 'GAM no longer expires as of January 14, 2025 (except U22 Initiative GAM)',
+    tamTrading: 'TAM cannot be traded between clubs',
+    rollover: 'Unused GAM rolls over to next season',
+  },
 };
 
 // ============================================================================
@@ -86,17 +108,17 @@ export interface AllocationTransaction {
 
 export const austinFCAllocationHistory: AllocationTransaction[] = [
   // ============================================================================
-  // ANNUAL ALLOCATIONS (MLS STANDARD)
+  // ANNUAL ALLOCATIONS (From MLS CBA - amounts vary by year!)
   // ============================================================================
   
-  // 2021
+  // 2021 - Austin FC's first year
   {
     id: '2021-gam-annual',
     date: '2021-01-01',
     type: 'GAM_RECEIVED',
-    amount: 1_825_000,
+    amount: 1_525_000,  // 2021 CBA amount
     amountEstimated: false,
-    description: 'Annual GAM allocation from MLS',
+    description: 'Annual GAM allocation from MLS (2021 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -105,9 +127,9 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2021-tam-annual',
     date: '2021-01-01',
     type: 'TAM_RECEIVED',
-    amount: 2_317_500,
+    amount: 2_800_000,  // 2021 CBA amount
     amountEstimated: false,
-    description: 'Annual TAM allocation from MLS',
+    description: 'Annual TAM allocation from MLS (2021 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -118,9 +140,9 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2022-gam-annual',
     date: '2022-01-01',
     type: 'GAM_RECEIVED',
-    amount: 1_825_000,
+    amount: 1_625_000,  // 2022 CBA amount
     amountEstimated: false,
-    description: 'Annual GAM allocation from MLS',
+    description: 'Annual GAM allocation from MLS (2022 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -129,9 +151,9 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2022-tam-annual',
     date: '2022-01-01',
     type: 'TAM_RECEIVED',
-    amount: 2_317_500,
+    amount: 2_800_000,  // 2022 CBA amount
     amountEstimated: false,
-    description: 'Annual TAM allocation from MLS',
+    description: 'Annual TAM allocation from MLS (2022 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -142,9 +164,9 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2023-gam-annual',
     date: '2023-01-01',
     type: 'GAM_RECEIVED',
-    amount: 1_825_000,
+    amount: 1_900_000,  // 2023 CBA amount
     amountEstimated: false,
-    description: 'Annual GAM allocation from MLS',
+    description: 'Annual GAM allocation from MLS (2023 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -153,9 +175,9 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2023-tam-annual',
     date: '2023-01-01',
     type: 'TAM_RECEIVED',
-    amount: 2_317_500,
+    amount: 2_720_000,  // 2023 CBA amount - TAM starts decreasing
     amountEstimated: false,
-    description: 'Annual TAM allocation from MLS',
+    description: 'Annual TAM allocation from MLS (2023 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -166,9 +188,9 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2024-gam-annual',
     date: '2024-01-01',
     type: 'GAM_RECEIVED',
-    amount: 1_825_000,
+    amount: 2_585_000,  // 2024 CBA amount - big jump
     amountEstimated: false,
-    description: 'Annual GAM allocation from MLS',
+    description: 'Annual GAM allocation from MLS (2024 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -177,9 +199,9 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2024-tam-annual',
     date: '2024-01-01',
     type: 'TAM_RECEIVED',
-    amount: 2_317_500,
+    amount: 2_400_000,  // 2024 CBA amount
     amountEstimated: false,
-    description: 'Annual TAM allocation from MLS',
+    description: 'Annual TAM allocation from MLS (2024 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -190,9 +212,9 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2025-gam-annual',
     date: '2025-01-01',
     type: 'GAM_RECEIVED',
-    amount: 1_825_000,
+    amount: 2_930_000,  // 2025 CBA amount
     amountEstimated: false,
-    description: 'Annual GAM allocation from MLS',
+    description: 'Annual GAM allocation from MLS (2025 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -201,9 +223,9 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2025-tam-annual',
     date: '2025-01-01',
     type: 'TAM_RECEIVED',
-    amount: 2_317_500,
+    amount: 2_225_000,  // 2025 CBA amount
     amountEstimated: false,
-    description: 'Annual TAM allocation from MLS',
+    description: 'Annual TAM allocation from MLS (2025 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -214,9 +236,9 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2026-gam-annual',
     date: '2026-01-01',
     type: 'GAM_RECEIVED',
-    amount: 1_825_000,
+    amount: 3_280_000,  // 2026 CBA amount
     amountEstimated: false,
-    description: 'Annual GAM allocation from MLS',
+    description: 'Annual GAM allocation from MLS (2026 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
     verified: true,
@@ -225,11 +247,59 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     id: '2026-tam-annual',
     date: '2026-01-01',
     type: 'TAM_RECEIVED',
-    amount: 2_317_500,
+    amount: 2_125_000,  // 2026 CBA amount
     amountEstimated: false,
-    description: 'Annual TAM allocation from MLS',
+    description: 'Annual TAM allocation from MLS (2026 CBA rate)',
     counterparty: 'MLS League Office',
     source: 'MLS Roster Rules',
+    verified: true,
+  },
+  
+  // ============================================================================
+  // KNOWN BUYDOWNS (TAM/GAM used on player salaries)
+  // Source: The North End Podcast Spreadsheet
+  // ============================================================================
+  
+  // 2024 Buydowns
+  {
+    id: '2024-ring-buydown',
+    date: '2024-01-01',
+    type: 'GAM_SPENT',  // This was GAM from U22 Initiative
+    amount: 1_000_000,
+    amountEstimated: false,
+    description: 'GAM used to buy down Alex Ring salary to max cap hit (from U22 Initiative)',
+    relatedPlayer: 'Alex Ring',
+    counterparty: 'Salary Buydown',
+    source: 'The North End Podcast Cap Sheet',
+    notes: 'Ring earned $1.665M guaranteed, bought down to $683,750 cap hit',
+    verified: true,
+  },
+  {
+    id: '2024-zardes-buydown',
+    date: '2024-01-01',
+    type: 'TAM_SPENT',
+    amount: 316_250,
+    amountEstimated: false,
+    description: 'TAM used to buy down Gyasi Zardes salary to max cap hit',
+    relatedPlayer: 'Gyasi Zardes',
+    counterparty: 'Salary Buydown',
+    source: 'The North End Podcast Cap Sheet',
+    notes: 'Zardes earned $1M guaranteed, bought down to $683,750 cap hit',
+    verified: true,
+  },
+  
+  // 2025 Buydowns
+  {
+    id: '2025-cascante-buydown',
+    date: '2025-01-01',
+    type: 'TAM_SPENT',
+    amount: 110_000,
+    amountEstimated: false,
+    description: 'TAM used to buy down Julio Cascante salary to max cap hit',
+    relatedPlayer: 'Julio Cascante',
+    counterparty: 'Salary Buydown',
+    source: 'The North End Podcast Cap Sheet',
+    notes: 'Cascante earned $853,750 guaranteed, bought down to $743,750 cap hit',
     verified: true,
   },
 
