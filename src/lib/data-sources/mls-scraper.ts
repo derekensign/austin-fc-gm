@@ -3,10 +3,28 @@
  * Scrapes standings and other data from mlssoccer.com
  * 
  * Source: https://www.mlssoccer.com/standings/
+ * 
+ * IMPORTANT: Puppeteer is a devDependency - this module won't work on Vercel.
+ * Scraping should be done locally and data committed to the repo.
  */
 
-import puppeteer from 'puppeteer';
 import { getCached, setCache } from '../cache/file-cache';
+
+// Dynamic import for puppeteer (devDependency - may not be available on Vercel)
+let puppeteer: typeof import('puppeteer') | null = null;
+
+async function loadPuppeteer() {
+  if (!puppeteer) {
+    try {
+      puppeteer = await import('puppeteer');
+    } catch {
+      throw new Error(
+        'Puppeteer is not available. This feature requires running locally with puppeteer installed (npm install puppeteer).'
+      );
+    }
+  }
+  return puppeteer;
+}
 
 export interface MLSStanding {
   rank: number;
@@ -57,7 +75,8 @@ export async function scrapeMLSStandings(forceRefresh = false): Promise<MLSStand
 
   let browser;
   try {
-    browser = await puppeteer.launch({
+    const pptr = await loadPuppeteer();
+    browser = await pptr.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });

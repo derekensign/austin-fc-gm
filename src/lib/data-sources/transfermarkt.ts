@@ -6,10 +6,29 @@
  * 
  * Note: Transfermarkt TOS may prohibit scraping.
  * For production, consider using their official API partnership.
+ * 
+ * IMPORTANT: Puppeteer is a devDependency - this module won't work on Vercel.
+ * Scraping should be done locally and data committed to the repo.
  */
 
 import { getCached, setCache } from '../cache/file-cache';
-import puppeteer, { Browser } from 'puppeteer';
+
+// Dynamic import for puppeteer (devDependency - may not be available on Vercel)
+type Browser = import('puppeteer').Browser;
+let puppeteer: typeof import('puppeteer') | null = null;
+
+async function loadPuppeteer() {
+  if (!puppeteer) {
+    try {
+      puppeteer = await import('puppeteer');
+    } catch {
+      throw new Error(
+        'Puppeteer is not available. This feature requires running locally with puppeteer installed (npm install puppeteer).'
+      );
+    }
+  }
+  return puppeteer;
+}
 
 const BASE_URL = 'https://www.transfermarkt.us';
 
@@ -24,8 +43,9 @@ const MIN_REQUEST_INTERVAL = 3000; // 3 seconds between requests
 let browserInstance: Browser | null = null;
 
 async function getBrowser(): Promise<Browser> {
+  const pptr = await loadPuppeteer();
   if (!browserInstance || !browserInstance.isConnected()) {
-    browserInstance = await puppeteer.launch({
+    browserInstance = await pptr.launch({
       headless: true,
       args: [
         '--no-sandbox',
@@ -44,6 +64,40 @@ async function closeBrowser(): Promise<void> {
   if (browserInstance) {
     await browserInstance.close();
     browserInstance = null;
+  }
+}
+
+// Rate-limited scrape helper using puppeteer
+async function rateLimitedScrape(url: string): Promise<string | null> {
+  const now = Date.now();
+  const timeSinceLastRequest = now - lastRequest;
+  if (timeSinceLastRequest < MIN_REQUEST_INTERVAL) {
+    await new Promise(resolve => setTimeout(resolve, MIN_REQUEST_INTERVAL - timeSinceLastRequest));
+  }
+  lastRequest = Date.now();
+
+  try {
+    const browser = await getBrowser();
+    const page = await browser.newPage();
+    
+    await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+    
+    // Handle cookie consent
+    try {
+      const acceptButton = await page.$('[title="ACCEPT ALL"], .sp_choice_type_11, [data-testid="uc-accept-all-button"]');
+      if (acceptButton) {
+        await acceptButton.click();
+        await new Promise(r => setTimeout(r, 1000));
+      }
+    } catch { /* no popup */ }
+    
+    const html = await page.content();
+    await page.close();
+    return html;
+  } catch (error) {
+    console.error('Scraping error:', error);
+    return null;
   }
 }
 
