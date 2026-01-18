@@ -8,7 +8,8 @@ import {
   LayoutDashboard,
   Users,
   // TrendingUp, // Hidden per user request
-  FileText,
+  // FileText, // Replaced by Calculator
+  Calculator,
   Settings,
   Search,
   // DollarSign, // Hidden per user request
@@ -29,7 +30,7 @@ const navigation = [
   // { name: 'Valuations', href: '/valuations', icon: DollarSign }, // Hidden per user request
   // { name: 'Salary Cap', href: '/salary-cap', icon: TrendingUp }, // Hidden per user request
   { name: 'GAM/TAM Transactions', href: '/transactions', icon: ArrowLeftRight },
-  { name: 'Roster Rules', href: '/rules', icon: FileText },
+  { name: 'Transfer Calculator', href: '/rules', icon: Calculator },
 ];
 
 const secondaryNav = [
