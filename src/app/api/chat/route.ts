@@ -1,5 +1,5 @@
 import { anthropic } from '@ai-sdk/anthropic';
-import { streamText, createUIMessageStreamResponse } from 'ai';
+import { streamText } from 'ai';
 import { getRulesContext, austinFC2025QuickReference, rosterConstructionModels, designatedPlayerRules, u22InitiativeRules, allocationMoney, internationalSlots, freeAgencyRules, homegrownRules, tradeRules } from '@/data/mls-rules-2025';
 
 export const maxDuration = 30;
@@ -113,13 +113,11 @@ Answer questions about MLS roster rules, cap situations, signing feasibility, tr
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
-  const result = await streamText({
+  const result = streamText({
     model: anthropic('claude-sonnet-4-5'),
     system: systemPrompt,
     messages,
   });
 
-  return createUIMessageStreamResponse({
-    stream: result.toUIMessageStream(),
-  });
+  return result.toTextStreamResponse();
 }
