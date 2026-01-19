@@ -41,19 +41,21 @@ export function inferCountryFromClub(club: string): string {
     return 'USA (Draft/Pool)';
   }
   
-  // MLS Next Pro teams (all USA-based development teams)
+  // MLS Next Pro teams (all USA-based development teams, including encoded versions)
   const mlsNextProTeams = [
-    'switchback', 'lv light', 'las vegas', 'san antonio fc', 'phoenix rising',
-    'orange county', 'loudoun united', 'north texas', 'revolution ii', 
-    'san diego loyal', 'tacoma defiance', 'huntsville city', 'carolina core',
-    'crown legacy', 'atlanta united 2', 'chicago fire ii', 'fc cincinnati 2',
+    'switchback', 'lv light', 'las vegas', 'san antonio fc', 'phoenix rising', 'phoenix ri ing',
+    'orange county', 'loudoun united', 'loudoun', 'north texas', 'north texa', 'revolution ii', 
+    'san diego loyal', 'tacoma defiance', 'tacoma', 'huntsville city', 'carolina core',
+    'crown legacy', 'atlanta united 2', 'atl utd 2', 'atl utd', 'chicago fire ii', 'fc cincinnati 2',
     'columbus crew 2', 'colorado rapids 2', 'fc dallas 2', 'houston dynamo 2',
     'inter miami ii', 'lafc 2', 'la galaxy ii', 'minnesota united 2',
     'nashville sc ii', 'new england revolution ii', 'new york city fc ii',
-    'new york red bulls ii', 'orlando city b', 'philadelphia union ii',
-    'portland timbers 2', 'real monarchs', 'real salt lake 2', 'san jose earthquakes ii',
+    'new york red bulls ii', 'ny red bull ii', 'ny red bulls ii', 'rbny ii',
+    'orlando city b', 'philadelphia union ii',
+    'portland timbers 2', 'real monarchs', 'real monarch', 'real salt lake 2', 
+    'san jose earthquakes ii', 'sj earthquake',
     'seattle sounders 2', 'sporting kc ii', 'st louis city 2', 'toronto fc ii',
-    'vancouver whitecaps 2', 'austin fc ii', 'nycfc ii', 'rbny ii'
+    'vancouver whitecaps 2', 'austin fc ii', 'nycfc ii'
   ];
   
   for (const team of mlsNextProTeams) {
@@ -62,14 +64,14 @@ export function inferCountryFromClub(club: string): string {
     }
   }
   
-  // USL Championship teams
+  // USL Championship teams (including encoded versions with missing 's')
   const uslTeams = [
     'birmingham legion', 'legion fc', 'charleston battery', 'charle ton', 'colorado springs', 
-    'detroit city', 'el paso', 'el pa o', 'fc tulsa', 'tul a', 'hartford athletic', 'indy eleven',
-    'las vegas lights', 'louisville city', 'loui ville', 'memphis 901', 'memphi', 'miami fc',
-    'monterey bay', 'new mexico united', 'oakland roots', 'pittsburgh riverhounds',
+    'detroit city', 'el paso', 'el pa o', 'fc tulsa', 'tul a', 'tulsa', 'hartford athletic', 'hartford',
+    'indy eleven', 'las vegas lights', 'louisville city', 'loui ville', 'memphis 901', 'memphi',
+    'miami fc', 'monterey bay', 'new mexico united', 'oakland roots', 'pittsburgh', 'pitt burgh',
     'rio grande valley', 'rgv', 'sacramento republic', 'tampa bay rowdies', 'tb rowdie',
-    'tulsa roughnecks', 'tulsa fc', 'birmingham'
+    'tulsa roughnecks', 'birmingham', 'the town fc'
   ];
   
   for (const team of uslTeams) {
@@ -93,15 +95,16 @@ export function inferCountryFromClub(club: string): string {
   
   // Check for MLS internal transfers (partial team names)
   // These show up as just "New York", "Colorado", "Miami", etc.
+  // Including encoded versions with missing 's' characters
   const mlsPartialNames = [
-    'lafc', 'la galaxy', 'galaxy', 'inter miami', 'atlanta united', 'atl utd',
-    'seattle', 'portland', 'austin', 'nashville', 'cincinnati', 'columbus',
+    'lafc', 'la galaxy', 'galaxy', 'inter miami', 'miami', 'atlanta united', 'atl utd', 'atlanta',
+    'seattle', 'portland', 'austin', 'nashville', 'na hville', 'cincinnati', 'columbus', 'columbu',
     'new york city', 'nyc', 'nycfc', 'red bull', 'rbny', 'orlando', 'orlando city',
     'philadelphia', 'union', 'new england', 'revolution', 'chicago', 'fire',
-    'minnesota', 'loon', 'houston', 'dynamo', 'dallas', 'fc dallas',
-    'colorado', 'rapid', 'salt lake', 'real salt', 'rsl', 'san jose', 'earthquake',
-    'sj earthquake', 'vancouver', 'whitecap', 'charlotte', 'st. louis', 'st louis',
-    'stl city', 'san diego fc', 'd.c.', 'dc united', 'sporting k', 'skc',
+    'minnesota', 'minne ota', 'loon', 'houston', 'hou ton', 'dynamo', 'dallas', 'dalla', 'fc dallas',
+    'colorado', 'rapid', 'salt lake', 'real salt', 'rsl', 'san jose', 'earthquake', 'sj earthquake',
+    'vancouver', 'whitecap', 'charlotte', 'st. louis', 'st louis', 'st. loui', 
+    'stl city', 'san diego fc', 'd.c.', 'dc united', 'sporting k', 'kansas city', 'skc',
     'toronto', 'tfc', 'montreal', 'montréal', 'cf montreal'
   ];
   
@@ -184,30 +187,37 @@ export function inferCountryFromClub(club: string): string {
     'Braga': 'Portugal', 'Famalicão': 'Portugal', 'Vitória': 'Portugal',
     'Gil Vicente': 'Portugal', 'Guimarães': 'Portugal', 'Leiria': 'Portugal',
     
-    // South America - Brazil
-    'Botafogo': 'Brazil', 'Vasco': 'Brazil', 'Palmeiras': 'Brazil',
-    'Corinthians': 'Brazil', 'Bahia': 'Brazil', 'Fortaleza': 'Brazil',
-    'Grêmio': 'Brazil', 'Atlético Mineiro': 'Brazil', 'Flamengo': 'Brazil',
-    'Santos': 'Brazil', 'Internacional': 'Brazil', 'Fluminense': 'Brazil',
-    'São Paulo': 'Brazil', 'Cruzeiro': 'Brazil', 'Cuiabá': 'Brazil',
-    'Red Bull Bragantino': 'Brazil', 'Athletico': 'Brazil', 'Goiás': 'Brazil',
+    // South America - Brazil (including encoded versions)
+    'Botafogo': 'Brazil', 'Vasco': 'Brazil', 'Palmeiras': 'Brazil', 'Palmeira': 'Brazil',
+    'Corinthians': 'Brazil', 'Corinthian': 'Brazil', 'Bahia': 'Brazil', 'Fortaleza': 'Brazil',
+    'Grêmio': 'Brazil', 'Gremio': 'Brazil', 'Atlético Mineiro': 'Brazil', 'Flamengo': 'Brazil',
+    'Santos': 'Brazil', 'Internacional': 'Brazil', 'Fluminense': 'Brazil', 'Fluminen e': 'Brazil',
+    'São Paulo': 'Brazil', 'Sao Paulo': 'Brazil', 'Cruzeiro': 'Brazil', 'Cuiabá': 'Brazil',
+    'Red Bull Bragantino': 'Brazil', 'Bragantino': 'Brazil', 'Athletico': 'Brazil', 
+    'Goiás': 'Brazil', 'Goia': 'Brazil', 'Ceará': 'Brazil', 'Coritiba': 'Brazil',
+    'America MG': 'Brazil', 'Sport Recife': 'Brazil', 'Vitória': 'Brazil',
     
-    // Argentina
-    'Racing': 'Argentina', 'Boca': 'Argentina', 'River': 'Argentina',
-    'Vélez': 'Argentina', 'Independiente': 'Argentina', 'Godoy Cruz': 'Argentina',
-    'Estudiantes': 'Argentina', 'San Lorenzo': 'Argentina', 'Lanús': 'Argentina',
-    'Tucumán': 'Argentina', 'Instituto': 'Argentina', 'Talleres': 'Argentina',
-    'Newell': 'Argentina', 'Rosario': 'Argentina', 'Colón': 'Argentina',
-    'Platense': 'Argentina', 'Argentinos': 'Argentina', 'Gimnasia': 'Argentina',
-    'Huracán': 'Argentina', 'Defensa': 'Argentina', 'Tigre': 'Argentina',
+    // Argentina (including encoded versions)
+    'Racing': 'Argentina', 'Racing Club': 'Argentina', 'Boca': 'Argentina', 'River': 'Argentina',
+    'Vélez': 'Argentina', 'Velez': 'Argentina', 'Independiente': 'Argentina', 'Godoy Cruz': 'Argentina',
+    'Estudiantes': 'Argentina', 'E tudiante': 'Argentina', 'San Lorenzo': 'Argentina', 
+    'Lanús': 'Argentina', 'Lanu': 'Argentina', 'Tucumán': 'Argentina', 'Instituto': 'Argentina', 
+    'Talleres': 'Argentina', 'Tallere': 'Argentina', 'Newell': 'Argentina', 'Rosario': 'Argentina', 
+    'Colón': 'Argentina', 'Platense': 'Argentina', 'Platen e': 'Argentina', 
+    'Argentinos': 'Argentina', 'Argentino': 'Argentina', 'Gimnasia': 'Argentina', 'Gimna ia': 'Argentina',
+    'Huracán': 'Argentina', 'Huracan': 'Argentina', 'Defensa': 'Argentina', 'Defen a': 'Argentina', 
+    'Tigre': 'Argentina', 'Banfield': 'Argentina', 'Central Córdoba': 'Argentina',
+    'Unión': 'Argentina', 'Union Santa Fe': 'Argentina', 'Belgrano': 'Argentina',
     
-    // Mexico
-    'Monterrey': 'Mexico', 'Cruz Azul': 'Mexico', 'Tigres': 'Mexico',
-    'Atlas': 'Mexico', 'Chivas': 'Mexico', 'Pumas': 'Mexico',
-    'Toluca': 'Mexico', 'América': 'Mexico', 'Pachuca': 'Mexico',
-    'Santos Laguna': 'Mexico', 'León': 'Mexico', 'Querétaro': 'Mexico',
-    'Necaxa': 'Mexico', 'Tijuana': 'Mexico', 'Mazatlán': 'Mexico',
-    'San Luis': 'Mexico', 'Puebla': 'Mexico', 'Juárez': 'Mexico',
+    // Mexico (including encoded versions)
+    'Monterrey': 'Mexico', 'Cruz Azul': 'Mexico', 'Tigres': 'Mexico', 'Tigre UANL': 'Mexico',
+    'Atlas': 'Mexico', 'Chivas': 'Mexico', 'Chiva': 'Mexico', 'Guadalajara': 'Mexico',
+    'Pumas': 'Mexico', 'Puma': 'Mexico', 'UNAM': 'Mexico',
+    'Toluca': 'Mexico', 'América': 'Mexico', 'America': 'Mexico', 'Club America': 'Mexico',
+    'Pachuca': 'Mexico', 'Santos Laguna': 'Mexico', 'Santo Laguna': 'Mexico',
+    'León': 'Mexico', 'Leon': 'Mexico', 'Querétaro': 'Mexico', 'Queretaro': 'Mexico',
+    'Necaxa': 'Mexico', 'Tijuana': 'Mexico', 'Xolo': 'Mexico', 'Mazatlán': 'Mexico', 'Mazatlan': 'Mexico',
+    'San Luis': 'Mexico', 'Puebla': 'Mexico', 'Juárez': 'Mexico', 'Juarez': 'Mexico',
     
     // Colombia
     'Millonarios': 'Colombia', 'Nacional': 'Colombia', 'Junior': 'Colombia',
