@@ -40,74 +40,133 @@ interface TransferRecord {
 
 // Comprehensive transfer data
 const ALL_TRANSFERS: TransferRecord[] = [
-  // 2024 Season
+  // ============ 2025 Season ============
+  // Austin FC 2025
+  { playerName: 'Myrto Uzuni', age: 29, position: 'ST', sourceCountry: 'Spain', sourceClub: 'Granada CF', mlsTeam: 'Austin FC', fee: 6000000, transferType: 'permanent', year: 2025 },
+  { playerName: 'Brandon Vazquez', age: 26, position: 'ST', sourceCountry: 'Mexico', sourceClub: 'CF Monterrey', mlsTeam: 'Austin FC', fee: 4000000, transferType: 'permanent', year: 2025 },
+  { playerName: 'Joseph Rosales', age: 25, position: 'LB', sourceCountry: 'United States', sourceClub: 'Minnesota United', mlsTeam: 'Austin FC', fee: 1500000, transferType: 'permanent', year: 2025 },
+  { playerName: 'Jayden Nelson', age: 22, position: 'RW', sourceCountry: 'Canada', sourceClub: 'Vancouver Whitecaps', mlsTeam: 'Austin FC', fee: 1250000, transferType: 'permanent', year: 2025 },
+  { playerName: 'Jon Bell', age: 26, position: 'CB', sourceCountry: 'United States', sourceClub: 'Seattle Sounders', mlsTeam: 'Austin FC', fee: 0, transferType: 'free', year: 2025 },
+  
+  // ============ 2024 Season ============
+  // Atlanta United
   { playerName: 'Emmanuel Latte Lath', age: 26, position: 'CF', sourceCountry: 'England', sourceClub: 'Middlesbrough', mlsTeam: 'Atlanta United', fee: 21250000, transferType: 'permanent', year: 2024 },
   { playerName: 'Aleksey Miranchuk', age: 28, position: 'AM', sourceCountry: 'Italy', sourceClub: 'Atalanta', mlsTeam: 'Atlanta United', fee: 11800000, transferType: 'permanent', year: 2024 },
   { playerName: 'Miguel Almirón', age: 30, position: 'RW', sourceCountry: 'England', sourceClub: 'Newcastle', mlsTeam: 'Atlanta United', fee: 9550000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Caleb Wiley', age: 19, position: 'LB', sourceCountry: 'England', sourceClub: 'Chelsea', mlsTeam: 'Atlanta United', fee: 10100000, transferType: 'permanent', year: 2024 },
+  // Chicago Fire
   { playerName: "Djé D'Avilla", age: 21, position: 'DM', sourceCountry: 'Portugal', sourceClub: 'UD Leiria', mlsTeam: 'Chicago Fire', fee: 4000000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Jonathan Bamba', age: 28, position: 'LW', sourceCountry: 'Spain', sourceClub: 'Celta Vigo', mlsTeam: 'Chicago Fire', fee: 3500000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Leonardo Barroso', age: 19, position: 'RB', sourceCountry: 'Portugal', sourceClub: 'Sporting B', mlsTeam: 'Chicago Fire', fee: 1400000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Philip Zinckernagel', age: 30, position: 'RW', sourceCountry: 'Belgium', sourceClub: 'Club Brugge', mlsTeam: 'Chicago Fire', fee: 850000, transferType: 'permanent', year: 2024 },
   { playerName: 'Xherdan Shaqiri', age: 32, position: 'AM', sourceCountry: 'Switzerland', sourceClub: 'Basel', mlsTeam: 'Chicago Fire', fee: 0, transferType: 'free', year: 2024 },
+  // LA Galaxy  
   { playerName: 'Marco Reus', age: 35, position: 'AM', sourceCountry: 'Germany', sourceClub: 'Dortmund', mlsTeam: 'LA Galaxy', fee: 0, transferType: 'free', year: 2024 },
   { playerName: 'Gabriel Pec', age: 23, position: 'RW', sourceCountry: 'Brazil', sourceClub: 'Vasco', mlsTeam: 'LA Galaxy', fee: 10000000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Son Heung-min', age: 32, position: 'LW', sourceCountry: 'England', sourceClub: 'Tottenham', mlsTeam: 'LAFC', fee: 15000000, transferType: 'permanent', year: 2024 },
+  // LAFC
   { playerName: 'Olivier Giroud', age: 37, position: 'CF', sourceCountry: 'Italy', sourceClub: 'AC Milan', mlsTeam: 'LAFC', fee: 0, transferType: 'free', year: 2024 },
+  // San Diego FC
   { playerName: 'Hirving Lozano', age: 28, position: 'RW', sourceCountry: 'Netherlands', sourceClub: 'PSV', mlsTeam: 'San Diego FC', fee: 12000000, transferType: 'permanent', year: 2024 },
+  // NY Red Bulls
   { playerName: 'Emil Forsberg', age: 32, position: 'AM', sourceCountry: 'Germany', sourceClub: 'RB Leipzig', mlsTeam: 'NY Red Bulls', fee: 0, transferType: 'free', year: 2024 },
+  // Seattle
   { playerName: 'Pedro de la Vega', age: 23, position: 'LW', sourceCountry: 'Argentina', sourceClub: 'Lanús', mlsTeam: 'Seattle Sounders', fee: 9000000, transferType: 'permanent', year: 2024 },
+  // Cincinnati
   { playerName: 'Kévin Denkey', age: 23, position: 'CF', sourceCountry: 'Belgium', sourceClub: 'Cercle Brugge', mlsTeam: 'Cincinnati', fee: 15300000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Myrto Uzuni', age: 29, position: 'CF', sourceCountry: 'Spain', sourceClub: 'Granada', mlsTeam: 'Austin FC', fee: 12000000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Brandon Vazquez', age: 25, position: 'CF', sourceCountry: 'Mexico', sourceClub: 'Monterrey', mlsTeam: 'Austin FC', fee: 9600000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Osman Bukari', age: 25, position: 'RW', sourceCountry: 'Serbia', sourceClub: 'Red Star', mlsTeam: 'Austin FC', fee: 7000000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Anders Dreyer', age: 25, position: 'RW', sourceCountry: 'Belgium', sourceClub: 'Anderlecht', mlsTeam: 'Austin FC', fee: 5500000, transferType: 'permanent', year: 2024 },
+  // Austin FC 2024
+  { playerName: 'Mateja Djordjević', age: 21, position: 'CB', sourceCountry: 'Serbia', sourceClub: 'FK Radnički Niš', mlsTeam: 'Austin FC', fee: 800000, transferType: 'permanent', year: 2024 },
+  { playerName: 'Guilherme Biro', age: 22, position: 'LB', sourceCountry: 'Brazil', sourceClub: 'Corinthians', mlsTeam: 'Austin FC', fee: 1500000, transferType: 'permanent', year: 2024 },
+  { playerName: 'Nicolás Dubersarsky', age: 22, position: 'CM', sourceCountry: 'Argentina', sourceClub: 'Racing Club', mlsTeam: 'Austin FC', fee: 1200000, transferType: 'permanent', year: 2024 },
   
-  // 2023 Season
+  // ============ 2023 Season ============
+  // Inter Miami
   { playerName: 'Lionel Messi', age: 36, position: 'RW', sourceCountry: 'France', sourceClub: 'PSG', mlsTeam: 'Inter Miami', fee: 0, transferType: 'free', year: 2023 },
   { playerName: 'Sergio Busquets', age: 35, position: 'DM', sourceCountry: 'Spain', sourceClub: 'Barcelona', mlsTeam: 'Inter Miami', fee: 0, transferType: 'free', year: 2023 },
   { playerName: 'Jordi Alba', age: 34, position: 'LB', sourceCountry: 'Spain', sourceClub: 'Barcelona', mlsTeam: 'Inter Miami', fee: 0, transferType: 'free', year: 2023 },
   { playerName: 'Luis Suárez', age: 36, position: 'CF', sourceCountry: 'Brazil', sourceClub: 'Grêmio', mlsTeam: 'Inter Miami', fee: 0, transferType: 'free', year: 2023 },
+  // LAFC
   { playerName: 'Hugo Lloris', age: 36, position: 'GK', sourceCountry: 'England', sourceClub: 'Tottenham', mlsTeam: 'LAFC', fee: 0, transferType: 'free', year: 2023 },
   { playerName: 'Denis Bouanga', age: 28, position: 'LW', sourceCountry: 'France', sourceClub: 'Saint-Étienne', mlsTeam: 'LAFC', fee: 5000000, transferType: 'permanent', year: 2023 },
+  // Atlanta United
   { playerName: 'Giorgos Giakoumakis', age: 28, position: 'CF', sourceCountry: 'Scotland', sourceClub: 'Celtic', mlsTeam: 'Atlanta United', fee: 5000000, transferType: 'permanent', year: 2023 },
+  // NY Red Bulls
   { playerName: 'Dante Vanzeir', age: 25, position: 'CF', sourceCountry: 'Belgium', sourceClub: 'Union SG', mlsTeam: 'NY Red Bulls', fee: 8000000, transferType: 'permanent', year: 2023 },
+  // Orlando City
   { playerName: 'Martín Ojeda', age: 26, position: 'AM', sourceCountry: 'Argentina', sourceClub: 'Godoy Cruz', mlsTeam: 'Orlando City', fee: 6500000, transferType: 'permanent', year: 2023 },
+  // Columbus Crew
   { playerName: 'Diego Rossi', age: 25, position: 'LW', sourceCountry: 'Turkey', sourceClub: 'Fenerbahçe', mlsTeam: 'Columbus Crew', fee: 6000000, transferType: 'permanent', year: 2023 },
+  // Colorado Rapids
   { playerName: 'Moïse Bombito', age: 23, position: 'CB', sourceCountry: 'France', sourceClub: 'Nice', mlsTeam: 'Colorado Rapids', fee: 7000000, transferType: 'permanent', year: 2023 },
+  // NYCFC
   { playerName: 'Santiago Rodríguez', age: 23, position: 'AM', sourceCountry: 'Brazil', sourceClub: 'Botafogo', mlsTeam: 'NYCFC', fee: 14300000, transferType: 'permanent', year: 2023 },
+  // Austin FC 2023
+  { playerName: 'Owen Wolff', age: 19, position: 'CAM', sourceCountry: 'United States', sourceClub: 'Austin FC Academy', mlsTeam: 'Austin FC', fee: 0, transferType: 'free', year: 2023 },
+  { playerName: 'Jáder Obrian', age: 28, position: 'RW', sourceCountry: 'Colombia', sourceClub: 'FC Dallas', mlsTeam: 'Austin FC', fee: 500000, transferType: 'permanent', year: 2023 },
   
-  // 2022 Season
+  // ============ 2022 Season ============
+  // Atlanta United
   { playerName: 'Thiago Almada', age: 21, position: 'AM', sourceCountry: 'Argentina', sourceClub: 'Vélez', mlsTeam: 'Atlanta United', fee: 16000000, transferType: 'permanent', year: 2022 },
+  // LA Galaxy
   { playerName: 'Riqui Puig', age: 23, position: 'CM', sourceCountry: 'Spain', sourceClub: 'Barcelona', mlsTeam: 'LA Galaxy', fee: 0, transferType: 'free', year: 2022 },
+  // Toronto FC
   { playerName: 'Federico Bernardeschi', age: 28, position: 'AM', sourceCountry: 'Italy', sourceClub: 'Juventus', mlsTeam: 'Toronto FC', fee: 0, transferType: 'free', year: 2022 },
   { playerName: 'Lorenzo Insigne', age: 31, position: 'LW', sourceCountry: 'Italy', sourceClub: 'Napoli', mlsTeam: 'Toronto FC', fee: 0, transferType: 'free', year: 2022 },
+  // Columbus Crew
   { playerName: 'Cucho Hernández', age: 23, position: 'CF', sourceCountry: 'England', sourceClub: 'Watford', mlsTeam: 'Columbus Crew', fee: 9500000, transferType: 'permanent', year: 2022 },
+  // Cincinnati
   { playerName: 'Luciano Acosta', age: 28, position: 'AM', sourceCountry: 'Mexico', sourceClub: 'Atlas', mlsTeam: 'Cincinnati', fee: 5000000, transferType: 'permanent', year: 2022 },
+  // Orlando City
   { playerName: 'Facundo Torres', age: 22, position: 'LW', sourceCountry: 'Uruguay', sourceClub: 'Peñarol', mlsTeam: 'Orlando City', fee: 8500000, transferType: 'permanent', year: 2022 },
+  // LAFC
   { playerName: 'Gareth Bale', age: 32, position: 'RW', sourceCountry: 'Spain', sourceClub: 'Real Madrid', mlsTeam: 'LAFC', fee: 0, transferType: 'free', year: 2022 },
+  // Houston Dynamo
   { playerName: 'Héctor Herrera', age: 32, position: 'CM', sourceCountry: 'Spain', sourceClub: 'Atlético Madrid', mlsTeam: 'Houston Dynamo', fee: 0, transferType: 'free', year: 2022 },
+  // Real Salt Lake
   { playerName: 'Chicho Arango', age: 27, position: 'CF', sourceCountry: 'Colombia', sourceClub: 'Millonarios', mlsTeam: 'Real Salt Lake', fee: 2500000, transferType: 'permanent', year: 2022 },
+  // St. Louis City
   { playerName: 'João Klauss', age: 26, position: 'CF', sourceCountry: 'Belgium', sourceClub: 'Standard Liège', mlsTeam: 'St. Louis City', fee: 2500000, transferType: 'permanent', year: 2022 },
   { playerName: 'Roman Bürki', age: 32, position: 'GK', sourceCountry: 'Germany', sourceClub: 'Dortmund', mlsTeam: 'St. Louis City', fee: 0, transferType: 'free', year: 2022 },
+  // DC United
   { playerName: 'Christian Benteke', age: 32, position: 'CF', sourceCountry: 'England', sourceClub: 'Crystal Palace', mlsTeam: 'DC United', fee: 0, transferType: 'free', year: 2022 },
+  // Charlotte FC
   { playerName: 'Karol Świderski', age: 24, position: 'CF', sourceCountry: 'Greece', sourceClub: 'PAOK', mlsTeam: 'Charlotte FC', fee: 5000000, transferType: 'permanent', year: 2022 },
+  // Austin FC 2022
+  { playerName: 'Dani Pereira', age: 26, position: 'CM', sourceCountry: 'Venezuela', sourceClub: 'DC United', mlsTeam: 'Austin FC', fee: 0, transferType: 'free', year: 2022 },
+  { playerName: 'Oleksandr Svatok', age: 25, position: 'CB', sourceCountry: 'Ukraine', sourceClub: 'FC Metalist', mlsTeam: 'Austin FC', fee: 0, transferType: 'free', year: 2022 },
   
-  // 2021 Season
+  // ============ 2021 Season (Austin FC Founding Year) ============
+  // Atlanta United
   { playerName: 'Luiz Araújo', age: 25, position: 'RW', sourceCountry: 'France', sourceClub: 'Lille', mlsTeam: 'Atlanta United', fee: 11500000, transferType: 'permanent', year: 2021 },
-  { playerName: 'Sebastián Driussi', age: 25, position: 'AM', sourceCountry: 'Russia', sourceClub: 'Zenit', mlsTeam: 'Austin FC', fee: 5500000, transferType: 'permanent', year: 2021 },
+  // Philadelphia Union
   { playerName: 'Dániel Gazdag', age: 25, position: 'AM', sourceCountry: 'Hungary', sourceClub: 'Honvéd', mlsTeam: 'Philadelphia Union', fee: 2000000, transferType: 'permanent', year: 2021 },
+  // FC Dallas
   { playerName: 'Alan Velasco', age: 19, position: 'LW', sourceCountry: 'Argentina', sourceClub: 'Independiente', mlsTeam: 'FC Dallas', fee: 7000000, transferType: 'permanent', year: 2021 },
+  // NYCFC
   { playerName: 'Talles Magno', age: 19, position: 'LW', sourceCountry: 'Brazil', sourceClub: 'Vasco', mlsTeam: 'NYCFC', fee: 8000000, transferType: 'permanent', year: 2021 },
+  // Vancouver Whitecaps
   { playerName: 'Ryan Gauld', age: 25, position: 'AM', sourceCountry: 'Portugal', sourceClub: 'Farense', mlsTeam: 'Vancouver Whitecaps', fee: 0, transferType: 'free', year: 2021 },
+  // New England
   { playerName: 'Giacomo Vrioni', age: 23, position: 'CF', sourceCountry: 'Italy', sourceClub: 'Juventus', mlsTeam: 'New England', fee: 3000000, transferType: 'permanent', year: 2021 },
+  // Austin FC 2021 (Expansion Draft + International Signings)
+  { playerName: 'Sebastián Driussi', age: 25, position: 'AM', sourceCountry: 'Russia', sourceClub: 'Zenit St. Petersburg', mlsTeam: 'Austin FC', fee: 5500000, transferType: 'permanent', year: 2021 },
+  { playerName: 'Tomás Pochettino', age: 25, position: 'CM', sourceCountry: 'Argentina', sourceClub: 'Boca Juniors', mlsTeam: 'Austin FC', fee: 2500000, transferType: 'permanent', year: 2021 },
+  { playerName: 'Cecilio Domínguez', age: 26, position: 'LW', sourceCountry: 'Paraguay', sourceClub: 'Club América', mlsTeam: 'Austin FC', fee: 4000000, transferType: 'permanent', year: 2021 },
+  { playerName: 'Žan Kolmanič', age: 22, position: 'LB', sourceCountry: 'Slovenia', sourceClub: 'NK Maribor', mlsTeam: 'Austin FC', fee: 500000, transferType: 'permanent', year: 2021 },
+  { playerName: 'Mikkel Desler', age: 26, position: 'RB', sourceCountry: 'Denmark', sourceClub: 'Toulouse FC', mlsTeam: 'Austin FC', fee: 0, transferType: 'free', year: 2021 },
+  { playerName: 'Ilie Sánchez', age: 31, position: 'CDM', sourceCountry: 'Spain', sourceClub: 'Sporting Kansas City', mlsTeam: 'Austin FC', fee: 0, transferType: 'free', year: 2021 },
+  { playerName: 'Robert Taylor', age: 26, position: 'LW', sourceCountry: 'Finland', sourceClub: 'HJK Helsinki', mlsTeam: 'Austin FC', fee: 300000, transferType: 'permanent', year: 2021 },
+  { playerName: 'Besard Sabovic', age: 25, position: 'CM', sourceCountry: 'Sweden', sourceClub: 'AIK', mlsTeam: 'Austin FC', fee: 200000, transferType: 'permanent', year: 2021 },
+  { playerName: 'Jon Gallagher', age: 26, position: 'CB', sourceCountry: 'Ireland', sourceClub: 'Aberdeen FC', mlsTeam: 'Austin FC', fee: 0, transferType: 'free', year: 2021 },
+  { playerName: 'Brad Stuver', age: 30, position: 'GK', sourceCountry: 'United States', sourceClub: 'Columbus Crew', mlsTeam: 'Austin FC', fee: 0, transferType: 'free', year: 2021 },
+  { playerName: 'Brendan Hines-Ike', age: 24, position: 'CB', sourceCountry: 'United States', sourceClub: 'Kortrijk', mlsTeam: 'Austin FC', fee: 0, transferType: 'free', year: 2021 },
   
-  // 2020 Season
+  // ============ 2020 Season ============
+  // Inter Miami
   { playerName: 'Gonzalo Higuaín', age: 32, position: 'CF', sourceCountry: 'Italy', sourceClub: 'Juventus', mlsTeam: 'Inter Miami', fee: 0, transferType: 'free', year: 2020 },
   { playerName: 'Blaise Matuidi', age: 33, position: 'CM', sourceCountry: 'Italy', sourceClub: 'Juventus', mlsTeam: 'Inter Miami', fee: 0, transferType: 'free', year: 2020 },
+  // Columbus Crew
   { playerName: 'Lucas Zelarayán', age: 27, position: 'AM', sourceCountry: 'Mexico', sourceClub: 'Tigres', mlsTeam: 'Columbus Crew', fee: 7000000, transferType: 'permanent', year: 2020 },
+  // Minnesota United
   { playerName: 'Emanuel Reynoso', age: 24, position: 'AM', sourceCountry: 'Argentina', sourceClub: 'Boca Juniors', mlsTeam: 'Minnesota United', fee: 5000000, transferType: 'permanent', year: 2020 },
+  // Nashville SC
   { playerName: 'Hany Mukhtar', age: 25, position: 'AM', sourceCountry: 'Denmark', sourceClub: 'Brøndby', mlsTeam: 'Nashville SC', fee: 1500000, transferType: 'permanent', year: 2020 },
+  // Portland Timbers
   { playerName: 'Yimmi Chará', age: 29, position: 'RW', sourceCountry: 'Brazil', sourceClub: 'Atlético Mineiro', mlsTeam: 'Portland Timbers', fee: 2800000, transferType: 'permanent', year: 2020 },
 ];
 
@@ -145,7 +204,7 @@ const MLS_TEAMS = [
 ];
 
 // Years available
-const YEARS = [2024, 2023, 2022, 2021, 2020];
+const YEARS = [2025, 2024, 2023, 2022, 2021, 2020];
 
 // Colors for charts
 const COLORS = [
@@ -359,7 +418,7 @@ export default function TransferSourcesPage() {
             </div>
             <p className="text-3xl font-bold text-white">{summaryStats.totalTransfers}</p>
             <p className="text-xs text-white/50">
-              {selectedYear === 'all' ? '2020-2024' : selectedYear}
+              {selectedYear === 'all' ? '2020-2025' : selectedYear}
               {selectedTeam !== 'All Teams' && ` • ${selectedTeam}`}
             </p>
           </div>
@@ -399,7 +458,7 @@ export default function TransferSourcesPage() {
         {/* Yearly Trend Chart */}
         <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-6 mb-8">
           <h2 className="text-xl font-bold text-white mb-4">
-            Transfer Trend (2020-2024)
+            Transfer Trend (2020-2025)
             {selectedTeam !== 'All Teams' && <span className="text-[var(--verde)] ml-2">• {selectedTeam}</span>}
           </h2>
           <div className="h-[280px]">
