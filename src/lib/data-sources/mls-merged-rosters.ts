@@ -21,19 +21,14 @@ import {
   scrapeAllMLSRosters,
   MLS_TEAMS 
 } from './mls-rosters';
+import { MLSPA_SALARIES_2025, MLSPASalaryEntry as ImportedMLSPASalaryEntry } from '@/data/mlspa-salaries-2025';
 
 // ============================================================================
 // MLSPA SALARY DATA TYPES
 // ============================================================================
 
-export interface MLSPASalaryEntry {
-  club: string; // Team abbreviation (ATX, LAG, etc.)
-  firstName: string;
-  lastName: string;
-  position: string;
-  baseSalary: number;
-  guaranteedCompensation: number;
-  releaseDate: string; // e.g., "2025-10-01" for October 2025 MLSPA release
+export interface MLSPASalaryEntry extends ImportedMLSPASalaryEntry {
+  releaseDate?: string; // e.g., "2025-10-01" for October 2025 MLSPA release
 }
 
 // ============================================================================
@@ -97,180 +92,13 @@ export interface MergedLeagueRosters {
 // ============================================================================
 // MLSPA SALARY DATA
 // 
-// This is populated from MLSPA Salary Guide releases.
+// Comprehensive salary data imported from @/data/mlspa-salaries-2025.ts
 // Source: https://mlsplayers.org/resources/salary-guide
-// 
-// Note: This data needs to be updated when new MLSPA releases come out.
-// The MLSPA typically releases salary data twice per year.
+// Release Date: October 2025
 // ============================================================================
 
-const MLSPA_SALARIES: MLSPASalaryEntry[] = [
-  // =========================================================================
-  // AUSTIN FC (ATX) - October 2025 MLSPA Release + North End Podcast updates
-  // =========================================================================
-  { club: 'ATX', firstName: 'Sebastián', lastName: 'Driussi', position: 'M', baseSalary: 3200000, guaranteedCompensation: 3551778, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Emiliano', lastName: 'Rigoni', position: 'M-F', baseSalary: 1520000, guaranteedCompensation: 2225000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Myrto', lastName: 'Uzuni', position: 'F', baseSalary: 600000, guaranteedCompensation: 600000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Brandon', lastName: 'Vázquez', position: 'F', baseSalary: 495000, guaranteedCompensation: 505401, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Dani', lastName: 'Pereira', position: 'M', baseSalary: 575000, guaranteedCompensation: 633333, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Julio', lastName: 'Cascante', position: 'D', baseSalary: 375000, guaranteedCompensation: 375000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Jader', lastName: 'Obrian', position: 'F', baseSalary: 550000, guaranteedCompensation: 550000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Brad', lastName: 'Stuver', position: 'GK', baseSalary: 484500, guaranteedCompensation: 507313, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Leo', lastName: 'Väisänen', position: 'D', baseSalary: 360000, guaranteedCompensation: 414000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Hector', lastName: 'Jimenez', position: 'D', baseSalary: 325000, guaranteedCompensation: 325000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Owen', lastName: 'Wolff', position: 'M', baseSalary: 275000, guaranteedCompensation: 297986, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Guilherme', lastName: 'Biro', position: 'D', baseSalary: 550000, guaranteedCompensation: 550000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Damian', lastName: 'Las', position: 'GK', baseSalary: 113400, guaranteedCompensation: 115000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Osman', lastName: 'Bukari', position: 'F', baseSalary: 500000, guaranteedCompensation: 505000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Matt', lastName: 'Bersano', position: 'GK', baseSalary: 125000, guaranteedCompensation: 125000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Kipp', lastName: 'Keller', position: 'D', baseSalary: 350000, guaranteedCompensation: 350000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Diego', lastName: 'Rubio', position: 'F', baseSalary: 337500, guaranteedCompensation: 347500, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Mikkel', lastName: 'Desler', position: 'D', baseSalary: 275000, guaranteedCompensation: 275000, releaseDate: '2025-10-01' },
-  { club: 'ATX', firstName: 'Milos', lastName: 'Djordjevic', position: 'M', baseSalary: 475000, guaranteedCompensation: 514375, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // INTER MIAMI (MIA) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'MIA', firstName: 'Lionel', lastName: 'Messi', position: 'F', baseSalary: 20446667, guaranteedCompensation: 20446667, releaseDate: '2025-10-01' },
-  { club: 'MIA', firstName: 'Luis', lastName: 'Suárez', position: 'F', baseSalary: 3500000, guaranteedCompensation: 4250000, releaseDate: '2025-10-01' },
-  { club: 'MIA', firstName: 'Jordi', lastName: 'Alba', position: 'D', baseSalary: 4500000, guaranteedCompensation: 5300000, releaseDate: '2025-10-01' },
-  { club: 'MIA', firstName: 'Sergio', lastName: 'Busquets', position: 'M', baseSalary: 4500000, guaranteedCompensation: 5200000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // LA GALAXY (LAG) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'LAG', firstName: 'Riqui', lastName: 'Puig', position: 'M', baseSalary: 3200000, guaranteedCompensation: 3850000, releaseDate: '2025-10-01' },
-  { club: 'LAG', firstName: 'Marco', lastName: 'Reus', position: 'M', baseSalary: 2800000, guaranteedCompensation: 3300000, releaseDate: '2025-10-01' },
-  { club: 'LAG', firstName: 'Maya', lastName: 'Yoshida', position: 'D', baseSalary: 1600000, guaranteedCompensation: 1850000, releaseDate: '2025-10-01' },
-  { club: 'LAG', firstName: 'Dejan', lastName: 'Joveljić', position: 'F', baseSalary: 1100000, guaranteedCompensation: 1350000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // ATLANTA UNITED (ATL) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'ATL', firstName: 'Miguel', lastName: 'Almirón', position: 'M', baseSalary: 4500000, guaranteedCompensation: 5200000, releaseDate: '2025-10-01' },
-  { club: 'ATL', firstName: 'Aleksey', lastName: 'Miranchuk', position: 'M', baseSalary: 2800000, guaranteedCompensation: 3200000, releaseDate: '2025-10-01' },
-  { club: 'ATL', firstName: 'Emmanuel', lastName: 'Latte Lath', position: 'F', baseSalary: 2200000, guaranteedCompensation: 2600000, releaseDate: '2025-10-01' },
-  { club: 'ATL', firstName: 'Saba', lastName: 'Lobjanidze', position: 'M', baseSalary: 1200000, guaranteedCompensation: 1450000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // SEATTLE SOUNDERS (SEA) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'SEA', firstName: 'Albert', lastName: 'Rusnák', position: 'M', baseSalary: 2600000, guaranteedCompensation: 3100000, releaseDate: '2025-10-01' },
-  { club: 'SEA', firstName: 'Jordan', lastName: 'Morris', position: 'F', baseSalary: 2200000, guaranteedCompensation: 2650000, releaseDate: '2025-10-01' },
-  { club: 'SEA', firstName: 'Pedro', lastName: 'de la Vega', position: 'M', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // FC CINCINNATI (CIN) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'CIN', firstName: 'Luciano', lastName: 'Acosta', position: 'M', baseSalary: 3000000, guaranteedCompensation: 3500000, releaseDate: '2025-10-01' },
-  { club: 'CIN', firstName: 'Brenner', lastName: 'Brenner', position: 'F', baseSalary: 2100000, guaranteedCompensation: 2450000, releaseDate: '2025-10-01' },
-  { club: 'CIN', firstName: 'Kevin', lastName: 'Denkey', position: 'F', baseSalary: 2000000, guaranteedCompensation: 2350000, releaseDate: '2025-10-01' },
-  { club: 'CIN', firstName: 'Evander', lastName: 'Evander', position: 'M', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // COLUMBUS CREW (CLB) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'CLB', firstName: 'Cucho', lastName: 'Hernández', position: 'F', baseSalary: 3000000, guaranteedCompensation: 3600000, releaseDate: '2025-10-01' },
-  { club: 'CLB', firstName: 'Diego', lastName: 'Rossi', position: 'F', baseSalary: 2500000, guaranteedCompensation: 2900000, releaseDate: '2025-10-01' },
-  { club: 'CLB', firstName: 'Daniel', lastName: 'Gazdag', position: 'M', baseSalary: 2200000, guaranteedCompensation: 2600000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // LAFC (LAFC) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'LAFC', firstName: 'Denis', lastName: 'Bouanga', position: 'F', baseSalary: 2800000, guaranteedCompensation: 3300000, releaseDate: '2025-10-01' },
-  { club: 'LAFC', firstName: 'Olivier', lastName: 'Giroud', position: 'F', baseSalary: 2500000, guaranteedCompensation: 3000000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // NASHVILLE SC (NSH) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'NSH', firstName: 'Hany', lastName: 'Mukhtar', position: 'M', baseSalary: 2800000, guaranteedCompensation: 3200000, releaseDate: '2025-10-01' },
-  { club: 'NSH', firstName: 'Sam', lastName: 'Surridge', position: 'F', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // ORLANDO CITY (ORL) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'ORL', firstName: 'Martín', lastName: 'Ojeda', position: 'M', baseSalary: 2200000, guaranteedCompensation: 2600000, releaseDate: '2025-10-01' },
-  { club: 'ORL', firstName: 'Luis', lastName: 'Muriel', position: 'F', baseSalary: 2000000, guaranteedCompensation: 2400000, releaseDate: '2025-10-01' },
-  { club: 'ORL', firstName: 'Mario', lastName: 'Pašalić', position: 'M', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // CHARLOTTE FC (CLT) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'CLT', firstName: 'Liel', lastName: 'Abada', position: 'F', baseSalary: 2000000, guaranteedCompensation: 2400000, releaseDate: '2025-10-01' },
-  { club: 'CLT', firstName: 'Wilfried', lastName: 'Zaha', position: 'F', baseSalary: 3500000, guaranteedCompensation: 4100000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // TORONTO FC (TOR) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'TOR', firstName: 'Djordje', lastName: 'Mihailovic', position: 'M', baseSalary: 2000000, guaranteedCompensation: 2350000, releaseDate: '2025-10-01' },
-  { club: 'TOR', firstName: 'Jonathan', lastName: 'Osorio', position: 'M', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // NEW ENGLAND REVOLUTION (NE) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'NE', firstName: 'Carles', lastName: 'Gil', position: 'M', baseSalary: 2800000, guaranteedCompensation: 3200000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // CHICAGO FIRE (CHI) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'CHI', firstName: 'Hugo', lastName: 'Cuypers', position: 'F', baseSalary: 2100000, guaranteedCompensation: 2500000, releaseDate: '2025-10-01' },
-  { club: 'CHI', firstName: 'Jhon', lastName: 'Bamba', position: 'F', baseSalary: 1600000, guaranteedCompensation: 1900000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // VANCOUVER WHITECAPS (VAN) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'VAN', firstName: 'Ryan', lastName: 'Gauld', position: 'M', baseSalary: 2400000, guaranteedCompensation: 2800000, releaseDate: '2025-10-01' },
-  { club: 'VAN', firstName: 'Andrés', lastName: 'Cubas', position: 'M', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // SPORTING KANSAS CITY (SKC) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'SKC', firstName: 'Erik', lastName: 'Thommy', position: 'M', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  { club: 'SKC', firstName: 'Daniel', lastName: 'Sallói', position: 'F', baseSalary: 1200000, guaranteedCompensation: 1450000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // ST. LOUIS CITY SC (STL) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'STL', firstName: 'Marcel', lastName: 'Hartel', position: 'M', baseSalary: 2200000, guaranteedCompensation: 2600000, releaseDate: '2025-10-01' },
-  { club: 'STL', firstName: 'João', lastName: 'Klauss', position: 'F', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  { club: 'STL', firstName: 'Eduard', lastName: 'Löwen', position: 'M', baseSalary: 1600000, guaranteedCompensation: 1900000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // REAL SALT LAKE (RSL) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'RSL', firstName: 'Roberto', lastName: 'Cruz', position: 'F', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // PORTLAND TIMBERS (POR) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'POR', firstName: 'James', lastName: 'Rodríguez', position: 'M', baseSalary: 2800000, guaranteedCompensation: 3200000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // CF MONTREAL (MTL) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'MTL', firstName: 'Iker', lastName: 'Jaime', position: 'M', baseSalary: 1600000, guaranteedCompensation: 1900000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // PHILADELPHIA UNION (PHI) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'PHI', firstName: 'Mikael', lastName: 'Uhre', position: 'F', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // COLORADO RAPIDS (COL) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'COL', firstName: 'Rafael', lastName: 'Navarro', position: 'F', baseSalary: 2400000, guaranteedCompensation: 2800000, releaseDate: '2025-10-01' },
-  { club: 'COL', firstName: 'Paxten', lastName: 'Aaronson', position: 'M', baseSalary: 1600000, guaranteedCompensation: 1900000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // FC DALLAS (DAL) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'DAL', firstName: 'Paul', lastName: 'Musa', position: 'F', baseSalary: 1800000, guaranteedCompensation: 2100000, releaseDate: '2025-10-01' },
-  
-  // =========================================================================
-  // SAN JOSE EARTHQUAKES (SJ) - Key Players (October 2025 MLSPA)
-  // =========================================================================
-  { club: 'SJ', firstName: 'Cristian', lastName: 'Arango', position: 'F', baseSalary: 2000000, guaranteedCompensation: 2400000, releaseDate: '2025-10-01' },
-];
+// Use the comprehensive imported salary data
+const MLSPA_SALARIES = MLSPA_SALARIES_2025;
 
 // ============================================================================
 // NAME MATCHING UTILITIES

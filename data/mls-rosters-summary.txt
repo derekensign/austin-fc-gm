@@ -1,8 +1,8 @@
 
 ==============================================================================
-MLS LEAGUE-WIDE ROSTERS (26 teams)
+MLS LEAGUE-WIDE ROSTERS (30 teams)
 Source: mlssoccer.com/clubs/{team}/roster/
-Last Updated: 2026-01-19T17:14:56.708Z
+Last Updated: 2026-01-19T17:37:37.791Z
 ==============================================================================
 
 NOTE: This data shows CURRENT rosters from mlssoccer.com. Salary data may be 
@@ -117,6 +117,15 @@ from an earlier MLSPA release and should be cross-referenced for accuracy.
 - Homegrown: E. Cerrillo, M. Cuevas, J. Marcinkowski, I. Parente
 
 
+**Los Angeles FC (LAFC)**
+- Roster Size: 46 players
+- Senior Roster: 24/20
+- DPs (4/3): D. Bouanga, S. Heung-Min, Denis Bouanga, Son H.M.
+- U22 Initiative (0): None
+- International (4/8): S. Palencia, Y. Yeboah, Sergi Palencia, Yaw Yeboah
+- Homegrown: T. Hasal, N. Ordaz, J. Shaffelburg, Thomas Hasal, David Ochoa, Adam Saldana, Nathan Ordaz
+
+
 **Inter Miami CF (MIA)**
 - Roster Size: 22 players
 - Senior Roster: 5/20
@@ -124,6 +133,15 @@ from an earlier MLSPA release and should be cross-referenced for accuracy.
 - U22 Initiative (3): T. Avilés, D. Ayala, M. Silvetti
 - International (4/8): T. Avilés, D. Ayala, L. Messi, L. Suárez
 - Homegrown: N. Allen, I. Boatwright, I. Fray, T. Hall, S. Morales
+
+
+**Minnesota United (MIN)**
+- Roster Size: 33 players
+- Senior Roster: 17/20
+- DPs (3/3): T. Chancalay, J. Pereyra, K. Yeboah
+- U22 Initiative (4): O. Gene, H. Jung, N. Romero, N. Triantis
+- International (13/8): T. Chancalay, J. Diaz, M. Dieng, M. Duggan, A. Fariña, D. Fitz, O. Gene, H. Jung, M. Kmeť, N. Romero, N. Triantis, K. Yeboah, A. Bran
+- Homegrown: D. Callender, D. Padelford, D. Randell, P. Stroud
 
 
 **CF Montréal (MTL)**
@@ -151,6 +169,24 @@ from an earlier MLSPA release and should be cross-referenced for accuracy.
 - U22 Initiative (2): I. Feingold, L. Langoni
 - International (0/8): None
 - Homegrown: M. Fry, K. Hughes, D. McIntosh, J. Panayotou, B. Raines, W. Sands, S. Suarez
+
+
+**New York Red Bulls (NYRB)**
+- Roster Size: 34 players
+- Senior Roster: 11/20
+- DPs (1/3): E. Forsberg
+- U22 Initiative (2): D. Gjengaar, R. Voloder
+- International (7/8): R. Donkor, N. Eile, E. Forsberg, D. Gjengaar, J. Mina, R. Voloder, Juan Mina
+- Homegrown: J. Hall, R. Mitchell, S. Ngoma, A. Stokes
+
+
+**New York City FC (NYCFC)**
+- Roster Size: 47 players
+- Senior Roster: 21/20
+- DPs (6/3): N. Fernández, T. Magno, T. Martins, Talles Magno, Thiago Martins, Nicolas Fernandez
+- U22 Initiative (2): J. Fernández, Julian Fernandez
+- International (9/8): J. Fernández, M. Ilenic, T. Martins, A. Martínez, M. Moralez, Julian Fernandez, Mitja Ilenic, Thiago Martins, Maxi Moralez
+- Homegrown: M. Carrizo, M. Freese, T. Gray, T. Romero, J. Sands, Tayvon Gray, James Sands, Tomas Romero, Matt Freese
 
 
 **Orlando City SC (ORL)**
