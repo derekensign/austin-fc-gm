@@ -218,6 +218,18 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 3px var(--verde-glow);
 }
 
+/* Hide number input spinners */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 /* Button styles */
 .btn-primary {
   background: linear-gradient(135deg, var(--verde) 0%, var(--verde-dark) 100%);
