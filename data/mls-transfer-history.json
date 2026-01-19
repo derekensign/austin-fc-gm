@@ -1,0 +1,39 @@
+{
+  "seasons": [
+    {
+      "season": "25/26",
+      "arrivals": [],
+      "departures": []
+    },
+    {
+      "season": "24/25",
+      "arrivals": [],
+      "departures": []
+    },
+    {
+      "season": "23/24",
+      "arrivals": [],
+      "departures": []
+    },
+    {
+      "season": "22/23",
+      "arrivals": [],
+      "departures": []
+    },
+    {
+      "season": "21/22",
+      "arrivals": [],
+      "departures": []
+    },
+    {
+      "season": "20/21",
+      "arrivals": [],
+      "departures": []
+    }
+  ],
+  "sourceLeagues": [],
+  "topSourceCountries": [],
+  "totalArrivals": 0,
+  "totalSpend": 0,
+  "scrapedAt": "2026-01-19T18:18:31.237Z"
+}

@@ -1,0 +1,1041 @@
+{
+  "season": "24/25",
+  "summary": {
+    "totalTransfers": 895,
+    "totalSpend": 574633000,
+    "paidTransfers": 256,
+    "freeTransfers": 276,
+    "loanTransfers": 219,
+    "avgFee": 2244660.15625
+  },
+  "byCountryCount": [
+    {
+      "country": "Other",
+      "transfers": 595,
+      "totalSpend": 234491000,
+      "notableSignings": [
+        "Emmanuel Latte Lath E. Latte Lath (€21.3M)",
+        "Miguel Almirón M. Almirón (€9.6M)",
+        "Caleb Wiley (€10.1M)",
+        "Facundo Torre (€11.5M)",
+        "Luciano Aco ta L. Aco ta (€5.7M)",
+        "Cucho Hernández C. Hernández (€13.0M)",
+        "Ezequiel Ponce (€9.0M)",
+        "André  Gómez A. Gómez (€10.0M)",
+        "David Da Co ta D. Da Co ta (€5.7M)"
+      ]
+    },
+    {
+      "country": "Argentina",
+      "transfers": 14,
+      "totalSpend": 34400000,
+      "notableSignings": [
+        "Luca Langoni (€6.2M)",
+        "Seba tián Driu i S. Driu i (€9.8M)",
+        "Alan Vela co A. Vela co (€9.6M)"
+      ]
+    },
+    {
+      "country": "Brazil",
+      "transfers": 12,
+      "totalSpend": 45400000,
+      "notableSignings": [
+        "Thiago Almada (€24.1M)",
+        "Santiago Rodríguez S. Rodríguez (€14.3M)"
+      ]
+    },
+    {
+      "country": "England",
+      "transfers": 11,
+      "totalSpend": 14500000,
+      "notableSignings": [
+        "Diego Gómez D. Gómez (€13.0M)"
+      ]
+    },
+    {
+      "country": "Belgium",
+      "transfers": 10,
+      "totalSpend": 29300000,
+      "notableSignings": [
+        "Kévin Denkey (€15.3M)",
+        "Ander  Dreyer (€5.5M)"
+      ]
+    },
+    {
+      "country": "Uruguay",
+      "transfers": 10,
+      "totalSpend": 11050000,
+      "notableSignings": []
+    },
+    {
+      "country": "Mexico",
+      "transfers": 10,
+      "totalSpend": 36880000,
+      "notableSignings": [
+        "Georgio  Giakoumaki (€9.3M)",
+        "Brandon Vazquez (€9.6M)",
+        "Mateu z Bogu z M. Bogu z (€8.5M)"
+      ]
+    },
+    {
+      "country": "Spain",
+      "transfers": 9,
+      "totalSpend": 15500000,
+      "notableSignings": [
+        "Myrto Uzuni (€12.0M)"
+      ]
+    },
+    {
+      "country": "Canada",
+      "transfers": 9,
+      "totalSpend": 1400000,
+      "notableSignings": []
+    },
+    {
+      "country": "Italy",
+      "transfers": 7,
+      "totalSpend": 14300000,
+      "notableSignings": [
+        "Alek ey Miranchuk (€11.8M)"
+      ]
+    },
+    {
+      "country": "Portugal",
+      "transfers": 6,
+      "totalSpend": 5400000,
+      "notableSignings": []
+    },
+    {
+      "country": "Serbia",
+      "transfers": 6,
+      "totalSpend": 7700000,
+      "notableSignings": [
+        "O man Bukari (€7.0M)"
+      ]
+    },
+    {
+      "country": "Germany",
+      "transfers": 5,
+      "totalSpend": 1500000,
+      "notableSignings": []
+    },
+    {
+      "country": "Sweden",
+      "transfers": 5,
+      "totalSpend": 1900000,
+      "notableSignings": []
+    },
+    {
+      "country": "France",
+      "transfers": 4,
+      "totalSpend": 9570000,
+      "notableSignings": [
+        "Moï e Bombito (€7.0M)"
+      ]
+    },
+    {
+      "country": "Denmark",
+      "transfers": 4,
+      "totalSpend": 3000000,
+      "notableSignings": []
+    },
+    {
+      "country": "Ukraine",
+      "transfers": 4,
+      "totalSpend": 7200000,
+      "notableSignings": [
+        "Kevin Kel y K. Kel y (€6.0M)"
+      ]
+    },
+    {
+      "country": "Switzerland",
+      "transfers": 3,
+      "totalSpend": 0,
+      "notableSignings": []
+    },
+    {
+      "country": "Poland",
+      "transfers": 3,
+      "totalSpend": 1500000,
+      "notableSignings": []
+    },
+    {
+      "country": "Netherlands",
+      "transfers": 3,
+      "totalSpend": 15000000,
+      "notableSignings": [
+        "Hirving Lozano (€12.0M)"
+      ]
+    },
+    {
+      "country": "Scotland",
+      "transfers": 3,
+      "totalSpend": 585000,
+      "notableSignings": []
+    },
+    {
+      "country": "Paraguay",
+      "transfers": 3,
+      "totalSpend": 0,
+      "notableSignings": []
+    },
+    {
+      "country": "Colombia",
+      "transfers": 3,
+      "totalSpend": 1620000,
+      "notableSignings": []
+    },
+    {
+      "country": "Russia",
+      "transfers": 2,
+      "totalSpend": 600000,
+      "notableSignings": []
+    },
+    {
+      "country": "Austria",
+      "transfers": 2,
+      "totalSpend": 1850000,
+      "notableSignings": []
+    },
+    {
+      "country": "South Korea",
+      "transfers": 2,
+      "totalSpend": 1475000,
+      "notableSignings": []
+    },
+    {
+      "country": "Israel",
+      "transfers": 2,
+      "totalSpend": 2691000,
+      "notableSignings": []
+    },
+    {
+      "country": "Australia",
+      "transfers": 2,
+      "totalSpend": 1245000,
+      "notableSignings": []
+    },
+    {
+      "country": "Croatia",
+      "transfers": 1,
+      "totalSpend": 4800000,
+      "notableSignings": []
+    },
+    {
+      "country": "Japan",
+      "transfers": 1,
+      "totalSpend": 490000,
+      "notableSignings": []
+    },
+    {
+      "country": "Norway",
+      "transfers": 1,
+      "totalSpend": 3000000,
+      "notableSignings": []
+    },
+    {
+      "country": "Chile",
+      "transfers": 1,
+      "totalSpend": 1950000,
+      "notableSignings": []
+    },
+    {
+      "country": "Ecuador",
+      "transfers": 1,
+      "totalSpend": 0,
+      "notableSignings": []
+    }
+  ],
+  "byCountrySpend": [
+    {
+      "country": "Other",
+      "transfers": 595,
+      "totalSpend": 234491000,
+      "notableSignings": [
+        "Emmanuel Latte Lath E. Latte Lath (€21.3M)",
+        "Miguel Almirón M. Almirón (€9.6M)",
+        "Caleb Wiley (€10.1M)",
+        "Facundo Torre (€11.5M)",
+        "Luciano Aco ta L. Aco ta (€5.7M)",
+        "Cucho Hernández C. Hernández (€13.0M)",
+        "Ezequiel Ponce (€9.0M)",
+        "André  Gómez A. Gómez (€10.0M)",
+        "David Da Co ta D. Da Co ta (€5.7M)"
+      ]
+    },
+    {
+      "country": "Brazil",
+      "transfers": 12,
+      "totalSpend": 45400000,
+      "notableSignings": [
+        "Thiago Almada (€24.1M)",
+        "Santiago Rodríguez S. Rodríguez (€14.3M)"
+      ]
+    },
+    {
+      "country": "Mexico",
+      "transfers": 10,
+      "totalSpend": 36880000,
+      "notableSignings": [
+        "Georgio  Giakoumaki (€9.3M)",
+        "Brandon Vazquez (€9.6M)",
+        "Mateu z Bogu z M. Bogu z (€8.5M)"
+      ]
+    },
+    {
+      "country": "Argentina",
+      "transfers": 14,
+      "totalSpend": 34400000,
+      "notableSignings": [
+        "Luca Langoni (€6.2M)",
+        "Seba tián Driu i S. Driu i (€9.8M)",
+        "Alan Vela co A. Vela co (€9.6M)"
+      ]
+    },
+    {
+      "country": "Belgium",
+      "transfers": 10,
+      "totalSpend": 29300000,
+      "notableSignings": [
+        "Kévin Denkey (€15.3M)",
+        "Ander  Dreyer (€5.5M)"
+      ]
+    },
+    {
+      "country": "Spain",
+      "transfers": 9,
+      "totalSpend": 15500000,
+      "notableSignings": [
+        "Myrto Uzuni (€12.0M)"
+      ]
+    },
+    {
+      "country": "Netherlands",
+      "transfers": 3,
+      "totalSpend": 15000000,
+      "notableSignings": [
+        "Hirving Lozano (€12.0M)"
+      ]
+    },
+    {
+      "country": "England",
+      "transfers": 11,
+      "totalSpend": 14500000,
+      "notableSignings": [
+        "Diego Gómez D. Gómez (€13.0M)"
+      ]
+    },
+    {
+      "country": "Italy",
+      "transfers": 7,
+      "totalSpend": 14300000,
+      "notableSignings": [
+        "Alek ey Miranchuk (€11.8M)"
+      ]
+    },
+    {
+      "country": "Uruguay",
+      "transfers": 10,
+      "totalSpend": 11050000,
+      "notableSignings": []
+    },
+    {
+      "country": "France",
+      "transfers": 4,
+      "totalSpend": 9570000,
+      "notableSignings": [
+        "Moï e Bombito (€7.0M)"
+      ]
+    },
+    {
+      "country": "Serbia",
+      "transfers": 6,
+      "totalSpend": 7700000,
+      "notableSignings": [
+        "O man Bukari (€7.0M)"
+      ]
+    },
+    {
+      "country": "Ukraine",
+      "transfers": 4,
+      "totalSpend": 7200000,
+      "notableSignings": [
+        "Kevin Kel y K. Kel y (€6.0M)"
+      ]
+    },
+    {
+      "country": "Portugal",
+      "transfers": 6,
+      "totalSpend": 5400000,
+      "notableSignings": []
+    },
+    {
+      "country": "Croatia",
+      "transfers": 1,
+      "totalSpend": 4800000,
+      "notableSignings": []
+    },
+    {
+      "country": "Denmark",
+      "transfers": 4,
+      "totalSpend": 3000000,
+      "notableSignings": []
+    },
+    {
+      "country": "Norway",
+      "transfers": 1,
+      "totalSpend": 3000000,
+      "notableSignings": []
+    },
+    {
+      "country": "Israel",
+      "transfers": 2,
+      "totalSpend": 2691000,
+      "notableSignings": []
+    },
+    {
+      "country": "Chile",
+      "transfers": 1,
+      "totalSpend": 1950000,
+      "notableSignings": []
+    },
+    {
+      "country": "Sweden",
+      "transfers": 5,
+      "totalSpend": 1900000,
+      "notableSignings": []
+    },
+    {
+      "country": "Austria",
+      "transfers": 2,
+      "totalSpend": 1850000,
+      "notableSignings": []
+    },
+    {
+      "country": "Colombia",
+      "transfers": 3,
+      "totalSpend": 1620000,
+      "notableSignings": []
+    },
+    {
+      "country": "Germany",
+      "transfers": 5,
+      "totalSpend": 1500000,
+      "notableSignings": []
+    },
+    {
+      "country": "Poland",
+      "transfers": 3,
+      "totalSpend": 1500000,
+      "notableSignings": []
+    },
+    {
+      "country": "South Korea",
+      "transfers": 2,
+      "totalSpend": 1475000,
+      "notableSignings": []
+    },
+    {
+      "country": "Canada",
+      "transfers": 9,
+      "totalSpend": 1400000,
+      "notableSignings": []
+    },
+    {
+      "country": "Australia",
+      "transfers": 2,
+      "totalSpend": 1245000,
+      "notableSignings": []
+    },
+    {
+      "country": "Russia",
+      "transfers": 2,
+      "totalSpend": 600000,
+      "notableSignings": []
+    },
+    {
+      "country": "Scotland",
+      "transfers": 3,
+      "totalSpend": 585000,
+      "notableSignings": []
+    },
+    {
+      "country": "Japan",
+      "transfers": 1,
+      "totalSpend": 490000,
+      "notableSignings": []
+    },
+    {
+      "country": "Switzerland",
+      "transfers": 3,
+      "totalSpend": 0,
+      "notableSignings": []
+    },
+    {
+      "country": "Paraguay",
+      "transfers": 3,
+      "totalSpend": 0,
+      "notableSignings": []
+    },
+    {
+      "country": "Ecuador",
+      "transfers": 1,
+      "totalSpend": 0,
+      "notableSignings": []
+    }
+  ],
+  "sampleTransfers": [
+    {
+      "raw": "Djé D'Avilla D. D'Avilla 21 DM €500k Leiria €4.00m",
+      "playerName": "Djé D'Avilla",
+      "age": 21,
+      "position": "DM",
+      "marketValue": "€500k",
+      "sourceInfo": "Leiria",
+      "fee": "€4.00m",
+      "feeNumeric": 4000000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Jonathan Bamba J. Bamba 28 LW €4.00m Celta de Vigo €3.50m",
+      "playerName": "Jonathan Bamba",
+      "age": 28,
+      "position": "LW",
+      "marketValue": "€4.00m",
+      "sourceInfo": "Celta de Vigo",
+      "fee": "€3.50m",
+      "feeNumeric": 3500000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Leonardo Barro o L. Barro o 19 RB - Sporting B €1.40m",
+      "playerName": "Leonardo Barro o L. Barro o",
+      "age": 19,
+      "position": "RB",
+      "marketValue": "-",
+      "sourceInfo": "Sporting B",
+      "fee": "€1.40m",
+      "feeNumeric": 1400000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Philip Zinckernagel P. Zinckernagel 30 RW €2.80m Club Brugge €850k",
+      "playerName": "Philip Zinckernagel",
+      "age": 30,
+      "position": "RW",
+      "marketValue": "€2.80m",
+      "sourceInfo": "Club Brugge",
+      "fee": "€850k",
+      "feeNumeric": 850000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Sam Roger S. Roger 25 CB €400k Lille trøm €170k",
+      "playerName": "Sam Roger",
+      "age": 25,
+      "position": "CB",
+      "marketValue": "€400k",
+      "sourceInfo": "Lille trøm",
+      "fee": "€170k",
+      "feeNumeric": 170000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Ariel La iter A. La iter 29 LW €800k Montréal €68k",
+      "playerName": "Ariel La iter A. La iter",
+      "age": 29,
+      "position": "LW",
+      "marketValue": "€800k",
+      "sourceInfo": "Montréal",
+      "fee": "€68k",
+      "feeNumeric": 68000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Omar González O. González 36 CB €100k Dalla free tran fer",
+      "playerName": "Omar González O. González",
+      "age": 36,
+      "position": "CB",
+      "marketValue": "€100k",
+      "sourceInfo": "Dalla",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Jack Elliott J. Elliott 29 CB €3.00m Philadelphia free tran fer",
+      "playerName": "Jack Elliott",
+      "age": 29,
+      "position": "CB",
+      "marketValue": "€3.00m",
+      "sourceInfo": "Philadelphia",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Dylan Bor o D. Bor o 18 RW - Wake Fore t free tran fer",
+      "playerName": "Dylan Bor o D. Bor o",
+      "age": 18,
+      "position": "RW",
+      "marketValue": "-",
+      "sourceInfo": "Wake Fore t",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Dean Boltz D. Boltz 18 CF - Badger draft",
+      "playerName": "Dean Boltz",
+      "age": 18,
+      "position": "CF",
+      "marketValue": "-",
+      "sourceInfo": "Badger",
+      "fee": "draft",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Rominigue Kouamé R. Kouamé 28 CM €2.00m Cádiz CF loan tran fer",
+      "playerName": "Rominigue Kouamé R. Kouamé",
+      "age": 28,
+      "position": "CM",
+      "marketValue": "€2.00m",
+      "sourceInfo": "Cádiz CF",
+      "fee": "loan tran fer",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Bryan Dowd B. Dowd 22 GK €25k Hunt ville City End of loan Dec 31, 2024",
+      "playerName": "Bryan Dowd",
+      "age": 22,
+      "position": "GK",
+      "marketValue": "€25k",
+      "sourceInfo": "Hunt ville City End of",
+      "fee": "loan Dec 31, 2024",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Laurence Wootton L. Wootton 24 CM €75k Indy Eleven End of loan Nov 30, 2024",
+      "playerName": "Laurence Wootton",
+      "age": 24,
+      "position": "CM",
+      "marketValue": "€75k",
+      "sourceInfo": "Indy Eleven End of",
+      "fee": "loan Nov 30, 2024",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Victor Bezerra V. Bezerra 24 CF €200k Detroit City End of loan Nov 30, 2024",
+      "playerName": "Victor Bezerra",
+      "age": 24,
+      "position": "CF",
+      "marketValue": "€200k",
+      "sourceInfo": "Detroit City End of",
+      "fee": "loan Nov 30, 2024",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Bryan Dowd B. Dowd 23 GK €75k Tul a End of loan May 17, 2025",
+      "playerName": "Bryan Dowd",
+      "age": 23,
+      "position": "GK",
+      "marketValue": "€75k",
+      "sourceInfo": "Tul a End of",
+      "fee": "loan May 17, 2025",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Mi ael Rodríguez M. Rodríguez 21 CF €150k Union Omaha End of loan Nov 30, 2024",
+      "playerName": "Mi ael Rodríguez M. Rodríguez",
+      "age": 21,
+      "position": "CF",
+      "marketValue": "€150k",
+      "sourceInfo": "Union Omaha End of",
+      "fee": "loan Nov 30, 2024",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Ju tin Reynold J. Reynold 19 RB €100k FC Lugano End of loan Jun 30, 2024",
+      "playerName": "Ju tin Reynold",
+      "age": 19,
+      "position": "RB",
+      "marketValue": "€100k",
+      "sourceInfo": "FC Lugano End of",
+      "fee": "loan Jun 30, 2024",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Tobia  Salqui t T. Salqui t 29 CB €800k Nord jaelland €270k",
+      "playerName": "Tobia  Salqui t T. Salqui t",
+      "age": 29,
+      "position": "CB",
+      "marketValue": "€800k",
+      "sourceInfo": "Nord jaelland",
+      "fee": "€270k",
+      "feeNumeric": 270000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Xherdan Shaqiri X. Shaqiri 32 AM €2.00m Ba el free tran fer",
+      "playerName": "Xherdan Shaqiri",
+      "age": 32,
+      "position": "AM",
+      "marketValue": "€2.00m",
+      "sourceInfo": "Ba el",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Arnaud Souquet A. Souquet 33 RB €800k MLS Pool free tran fer",
+      "playerName": "Arnaud Souquet",
+      "age": 33,
+      "position": "RB",
+      "marketValue": "€800k",
+      "sourceInfo": "MLS Pool",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Fabian Herber F. Herber 31 RW €1.00m Montréal free tran fer",
+      "playerName": "Fabian Herber",
+      "age": 31,
+      "position": "RW",
+      "marketValue": "€1.00m",
+      "sourceInfo": "Montréal",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Wyatt Om berg W. Om berg 29 CB €200k New England free tran fer",
+      "playerName": "Wyatt Om berg W. Om berg",
+      "age": 29,
+      "position": "CB",
+      "marketValue": "€200k",
+      "sourceInfo": "New England",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Mi ael Rodríguez M. Rodríguez 21 CF €150k MLS Pool free tran fer",
+      "playerName": "Mi ael Rodríguez M. Rodríguez",
+      "age": 21,
+      "position": "CF",
+      "marketValue": "€150k",
+      "sourceInfo": "MLS Pool",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Ariel La iter A. La iter 30 LW €800k Portland free tran fer",
+      "playerName": "Ariel La iter A. La iter",
+      "age": 30,
+      "position": "LW",
+      "marketValue": "€800k",
+      "sourceInfo": "Portland",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Ga tón Giménez G. Giménez 33 DM €1.00m Cerro Porteño free tran fer",
+      "playerName": "Ga tón Giménez G. Giménez",
+      "age": 33,
+      "position": "DM",
+      "marketValue": "€1.00m",
+      "sourceInfo": "Cerro Porteño",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Georgio  Kout ia G. Kout ia 20 CF €2.00m FC Lugano loan tran fer",
+      "playerName": "Georgio  Kout ia G. Kout ia",
+      "age": 20,
+      "position": "CF",
+      "marketValue": "€2.00m",
+      "sourceInfo": "FC Lugano",
+      "fee": "loan tran fer",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Federico Navarro F. Navarro 24 DM €2.00m Ro ario Central ?",
+      "playerName": "Federico Navarro",
+      "age": 24,
+      "position": "DM",
+      "marketValue": "€2.00m",
+      "sourceInfo": "Ro ario Central",
+      "fee": "?",
+      "feeNumeric": 0,
+      "transferType": "unknown"
+    },
+    {
+      "raw": "Bryan Dowd B. Dowd 22 GK €25k Tul a loan tran fer",
+      "playerName": "Bryan Dowd",
+      "age": 22,
+      "position": "GK",
+      "marketValue": "€25k",
+      "sourceInfo": "Tul a",
+      "fee": "loan tran fer",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Laurence Wootton L. Wootton 24 CM €75k Without Club -",
+      "playerName": "Laurence Wootton",
+      "age": 24,
+      "position": "CM",
+      "marketValue": "€75k",
+      "sourceInfo": "Without Club",
+      "fee": "-",
+      "feeNumeric": 0,
+      "transferType": "unknown"
+    },
+    {
+      "raw": "Victor Bezerra V. Bezerra 24 CF €200k Without Club -",
+      "playerName": "Victor Bezerra",
+      "age": 24,
+      "position": "CF",
+      "marketValue": "€200k",
+      "sourceInfo": "Without Club",
+      "fee": "-",
+      "feeNumeric": 0,
+      "transferType": "unknown"
+    },
+    {
+      "raw": "Javier Ca a J. Ca a 21 CM €150k Without Club -",
+      "playerName": "Javier Ca a J. Ca a",
+      "age": 21,
+      "position": "CM",
+      "marketValue": "€150k",
+      "sourceInfo": "Without Club",
+      "fee": "-",
+      "feeNumeric": 0,
+      "transferType": "unknown"
+    },
+    {
+      "raw": "Rafael Czicho R. Czicho 34 CB €400k Without Club -",
+      "playerName": "Rafael Czicho",
+      "age": 34,
+      "position": "CB",
+      "marketValue": "€400k",
+      "sourceInfo": "Without Club",
+      "fee": "-",
+      "feeNumeric": 0,
+      "transferType": "unknown"
+    },
+    {
+      "raw": "Spencer Richey S. Richey 32 GK €200k Without Club -",
+      "playerName": "Spencer Richey",
+      "age": 32,
+      "position": "GK",
+      "marketValue": "€200k",
+      "sourceInfo": "Without Club",
+      "fee": "-",
+      "feeNumeric": 0,
+      "transferType": "unknown"
+    },
+    {
+      "raw": "Allan Arigoni A. Arigoni 26 RB €700k FC Lugano End of loan Dec 31, 2024",
+      "playerName": "Allan Arigoni",
+      "age": 26,
+      "position": "RB",
+      "marketValue": "€700k",
+      "sourceInfo": "FC Lugano End of",
+      "fee": "loan Dec 31, 2024",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Emmanuel Latte Lath E. Latte Lath 26 CF €10.00m Middle brough €21.25m",
+      "playerName": "Emmanuel Latte Lath E. Latte Lath",
+      "age": 26,
+      "position": "CF",
+      "marketValue": "€10.00m",
+      "sourceInfo": "Middle brough",
+      "fee": "€21.25m",
+      "feeNumeric": 21250000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Alek ey Miranchuk A. Miranchuk 28 AM €10.00m Atalanta €11.80m",
+      "playerName": "Alek ey Miranchuk",
+      "age": 28,
+      "position": "AM",
+      "marketValue": "€10.00m",
+      "sourceInfo": "Atalanta",
+      "fee": "€11.80m",
+      "feeNumeric": 11800000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Miguel Almirón M. Almirón 30 RW €16.00m Newca tle €9.55m",
+      "playerName": "Miguel Almirón M. Almirón",
+      "age": 30,
+      "position": "RW",
+      "marketValue": "€16.00m",
+      "sourceInfo": "Newca tle",
+      "fee": "€9.55m",
+      "feeNumeric": 9550000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Pedro Amador P. Amador 25 LB €700k Moreiren e free tran fer",
+      "playerName": "Pedro Amador",
+      "age": 25,
+      "position": "LB",
+      "marketValue": "€700k",
+      "sourceInfo": "Moreiren e",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Cayman Toga hi C. Toga hi 31 CF €350k Sagan To u free tran fer",
+      "playerName": "Cayman Toga hi C. Toga hi",
+      "age": 31,
+      "position": "CF",
+      "marketValue": "€350k",
+      "sourceInfo": "Sagan To u",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Will Reilly W. Reilly 22 CM - Stanford Card. free tran fer",
+      "playerName": "Will Reilly",
+      "age": 22,
+      "position": "CM",
+      "marketValue": "-",
+      "sourceInfo": "Stanford Card.",
+      "fee": "free tran fer",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Ronan Wynne R. Wynne 23 RB - Denver Pioneer draft",
+      "playerName": "Ronan Wynne",
+      "age": 23,
+      "position": "RB",
+      "marketValue": "-",
+      "sourceInfo": "Denver Pioneer",
+      "fee": "draft",
+      "feeNumeric": 0,
+      "transferType": "free"
+    },
+    {
+      "raw": "Mateu z Klich M. Klich 34 DM €1.00m D.C. United ?",
+      "playerName": "Mateu z Klich",
+      "age": 34,
+      "position": "DM",
+      "marketValue": "€1.00m",
+      "sourceInfo": "D.C. United",
+      "fee": "?",
+      "feeNumeric": 0,
+      "transferType": "unknown"
+    },
+    {
+      "raw": "Franco Ibarra F. Ibarra 23 DM €2.00m Ro ario Central End of loan Dec 31, 2024",
+      "playerName": "Franco Ibarra",
+      "age": 23,
+      "position": "DM",
+      "marketValue": "€2.00m",
+      "sourceInfo": "Ro ario Central End of",
+      "fee": "loan Dec 31, 2024",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Aiden McFadden A. McFadden 25 RB €175k Loui ville City End of loan Jul 19, 2024",
+      "playerName": "Aiden McFadden",
+      "age": 25,
+      "position": "RB",
+      "marketValue": "€175k",
+      "sourceInfo": "Loui ville City End of",
+      "fee": "loan Jul 19, 2024",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Santiago So a S. So a 25 CB €7.00m Racing Club End of loan Dec 31, 2024",
+      "playerName": "Santiago So a S. So a",
+      "age": 25,
+      "position": "CB",
+      "marketValue": "€7.00m",
+      "sourceInfo": "Racing Club End of",
+      "fee": "loan Dec 31, 2024",
+      "feeNumeric": 0,
+      "transferType": "loan"
+    },
+    {
+      "raw": "Thiago Almada T. Almada 23 LW €27.00m Botafogo €24.15m",
+      "playerName": "Thiago Almada",
+      "age": 23,
+      "position": "LW",
+      "marketValue": "€27.00m",
+      "sourceInfo": "Botafogo",
+      "fee": "€24.15m",
+      "feeNumeric": 24150000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Caleb Wiley C. Wiley 19 LB €5.00m Chel ea €10.10m",
+      "playerName": "Caleb Wiley",
+      "age": 19,
+      "position": "LB",
+      "marketValue": "€5.00m",
+      "sourceInfo": "Chel ea",
+      "fee": "€10.10m",
+      "feeNumeric": 10100000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Georgio  Giakoumaki G. Giakoumaki 29 CF €8.00m CD Cruz Azul €9.33m",
+      "playerName": "Georgio  Giakoumaki",
+      "age": 29,
+      "position": "CF",
+      "marketValue": "€8.00m",
+      "sourceInfo": "CD Cruz Azul",
+      "fee": "€9.33m",
+      "feeNumeric": 9330000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Santiago So a S. So a 25 CB €7.00m Racing Club €3.80m",
+      "playerName": "Santiago So a S. So a",
+      "age": 25,
+      "position": "CB",
+      "marketValue": "€7.00m",
+      "sourceInfo": "Racing Club",
+      "fee": "€3.80m",
+      "feeNumeric": 3800000,
+      "transferType": "permanent"
+    },
+    {
+      "raw": "Xande Silva X. Silva 28 LW €1.00m St. Loui  CITY €88k",
+      "playerName": "Xande Silva",
+      "age": 28,
+      "position": "LW",
+      "marketValue": "€1.00m",
+      "sourceInfo": "St. Loui CITY",
+      "fee": "€88k",
+      "feeNumeric": 88000,
+      "transferType": "permanent"
+    }
+  ],
+  "source": "Transfermarkt",
+  "parsedAt": "2026-01-19T18:27:40.882Z"
+}

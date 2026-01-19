@@ -21,6 +21,7 @@ import {
   Menu,
   X,
   ArrowLeftRight,
+  Globe,
 } from 'lucide-react';
 
 const navigation = [
@@ -31,6 +32,7 @@ const navigation = [
   // { name: 'Salary Cap', href: '/salary-cap', icon: TrendingUp }, // Hidden per user request
   { name: 'GAM/TAM Transactions', href: '/transactions', icon: ArrowLeftRight },
   { name: 'Transfer Calculator', href: '/rules', icon: Calculator },
+  { name: 'Transfer Sources', href: '/transfer-sources', icon: Globe },
 ];
 
 const secondaryNav = [

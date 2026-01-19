@@ -1,0 +1,828 @@
+{
+  "transfers": [
+    {
+      "playerName": "Djé D'Avilla",
+      "age": 21,
+      "position": "DM",
+      "marketValue": "€500k",
+      "sourceClub": "UD Leiria",
+      "sourceCountry": "Portugal",
+      "fee": "€4.00m",
+      "feeNumeric": 4000000,
+      "type": "permanent",
+      "mlsTeam": "Chicago Fire FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Jonathan Bamba",
+      "age": 28,
+      "position": "LW",
+      "marketValue": "€4.00m",
+      "sourceClub": "Celta de Vigo",
+      "sourceCountry": "Spain",
+      "fee": "€3.50m",
+      "feeNumeric": 3500000,
+      "type": "permanent",
+      "mlsTeam": "Chicago Fire FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Leonardo Barroso",
+      "age": 19,
+      "position": "RB",
+      "marketValue": "-",
+      "sourceClub": "Sporting B",
+      "sourceCountry": "Portugal",
+      "fee": "€1.40m",
+      "feeNumeric": 1400000,
+      "type": "permanent",
+      "mlsTeam": "Chicago Fire FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Philip Zinckernagel",
+      "age": 30,
+      "position": "RW",
+      "marketValue": "€2.80m",
+      "sourceClub": "Club Brugge",
+      "sourceCountry": "Belgium",
+      "fee": "€850k",
+      "feeNumeric": 850000,
+      "type": "permanent",
+      "mlsTeam": "Chicago Fire FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Xherdan Shaqiri",
+      "age": 32,
+      "position": "AM",
+      "marketValue": "€2.00m",
+      "sourceClub": "Basel",
+      "sourceCountry": "Switzerland",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Chicago Fire FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Fabian Herbers",
+      "age": 31,
+      "position": "RW",
+      "marketValue": "€1.00m",
+      "sourceClub": "CF Montréal",
+      "sourceCountry": "Canada",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Chicago Fire FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Gastón Giménez",
+      "age": 33,
+      "position": "DM",
+      "marketValue": "€1.00m",
+      "sourceClub": "Cerro Porteño",
+      "sourceCountry": "Paraguay",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Chicago Fire FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Federico Navarro",
+      "age": 24,
+      "position": "DM",
+      "marketValue": "€2.00m",
+      "sourceClub": "Rosario Central",
+      "sourceCountry": "Argentina",
+      "fee": "?",
+      "feeNumeric": 0,
+      "type": "unknown",
+      "mlsTeam": "Chicago Fire FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Emmanuel Latte Lath",
+      "age": 26,
+      "position": "CF",
+      "marketValue": "€10.00m",
+      "sourceClub": "Middlesbrough",
+      "sourceCountry": "England",
+      "fee": "€21.25m",
+      "feeNumeric": 21250000,
+      "type": "permanent",
+      "mlsTeam": "Atlanta United FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Aleksey Miranchuk",
+      "age": 28,
+      "position": "AM",
+      "marketValue": "€10.00m",
+      "sourceClub": "Atalanta",
+      "sourceCountry": "Italy",
+      "fee": "€11.80m",
+      "feeNumeric": 11800000,
+      "type": "permanent",
+      "mlsTeam": "Atlanta United FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Miguel Almirón",
+      "age": 30,
+      "position": "RW",
+      "marketValue": "€16.00m",
+      "sourceClub": "Newcastle United",
+      "sourceCountry": "England",
+      "fee": "€9.55m",
+      "feeNumeric": 9550000,
+      "type": "permanent",
+      "mlsTeam": "Atlanta United FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Mateusz Klich",
+      "age": 34,
+      "position": "DM",
+      "marketValue": "€1.00m",
+      "sourceClub": "D.C. United",
+      "sourceCountry": "United States",
+      "fee": "?",
+      "feeNumeric": 0,
+      "type": "unknown",
+      "mlsTeam": "Atlanta United FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Thiago Almada",
+      "age": 23,
+      "position": "LW",
+      "marketValue": "€27.00m",
+      "sourceClub": "Botafogo",
+      "sourceCountry": "Brazil",
+      "fee": "€24.15m",
+      "feeNumeric": 24150000,
+      "type": "permanent",
+      "mlsTeam": "Atlanta United FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Caleb Wiley",
+      "age": 19,
+      "position": "LB",
+      "marketValue": "€5.00m",
+      "sourceClub": "Chelsea",
+      "sourceCountry": "England",
+      "fee": "€10.10m",
+      "feeNumeric": 10100000,
+      "type": "permanent",
+      "mlsTeam": "Atlanta United FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Giorgos Giakoumakis",
+      "age": 29,
+      "position": "CF",
+      "marketValue": "€8.00m",
+      "sourceClub": "CD Cruz Azul",
+      "sourceCountry": "Mexico",
+      "fee": "€9.33m",
+      "feeNumeric": 9330000,
+      "type": "permanent",
+      "mlsTeam": "Atlanta United FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Marco Reus",
+      "age": 35,
+      "position": "AM",
+      "marketValue": "€4.00m",
+      "sourceClub": "Borussia Dortmund",
+      "sourceCountry": "Germany",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "LA Galaxy",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Gabriel Pec",
+      "age": 23,
+      "position": "RW",
+      "marketValue": "€6.00m",
+      "sourceClub": "Vasco da Gama",
+      "sourceCountry": "Brazil",
+      "fee": "€10.00m",
+      "feeNumeric": 10000000,
+      "type": "permanent",
+      "mlsTeam": "LA Galaxy",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Son Heung-min",
+      "age": 32,
+      "position": "LW",
+      "marketValue": "€45.00m",
+      "sourceClub": "Tottenham",
+      "sourceCountry": "England",
+      "fee": "€15.00m",
+      "feeNumeric": 15000000,
+      "type": "permanent",
+      "mlsTeam": "Los Angeles FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Olivier Giroud",
+      "age": 37,
+      "position": "CF",
+      "marketValue": "€2.00m",
+      "sourceClub": "AC Milan",
+      "sourceCountry": "Italy",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Los Angeles FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Luis Suárez",
+      "age": 37,
+      "position": "CF",
+      "marketValue": "€3.00m",
+      "sourceClub": "Grêmio",
+      "sourceCountry": "Brazil",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Inter Miami CF",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Sergio Busquets",
+      "age": 35,
+      "position": "DM",
+      "marketValue": "€5.00m",
+      "sourceClub": "Barcelona",
+      "sourceCountry": "Spain",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Inter Miami CF",
+      "season": "23/24"
+    },
+    {
+      "playerName": "Jordi Alba",
+      "age": 35,
+      "position": "LB",
+      "marketValue": "€3.00m",
+      "sourceClub": "Barcelona",
+      "sourceCountry": "Spain",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Inter Miami CF",
+      "season": "23/24"
+    },
+    {
+      "playerName": "Hirving Lozano",
+      "age": 28,
+      "position": "RW",
+      "marketValue": "€18.00m",
+      "sourceClub": "PSV",
+      "sourceCountry": "Netherlands",
+      "fee": "€12.00m",
+      "feeNumeric": 12000000,
+      "type": "permanent",
+      "mlsTeam": "San Diego FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Jonathan Pérez",
+      "age": 22,
+      "position": "LW",
+      "marketValue": "€250k",
+      "sourceClub": "Nashville SC",
+      "sourceCountry": "United States",
+      "fee": "€1.30m",
+      "feeNumeric": 1300000,
+      "type": "permanent",
+      "mlsTeam": "Austin FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Emil Forsberg",
+      "age": 32,
+      "position": "AM",
+      "marketValue": "€6.00m",
+      "sourceClub": "RB Leipzig",
+      "sourceCountry": "Germany",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "New York Red Bulls",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Federico Bernardeschi",
+      "age": 30,
+      "position": "AM",
+      "marketValue": "€6.00m",
+      "sourceClub": "Juventus",
+      "sourceCountry": "Italy",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Toronto FC",
+      "season": "22/23"
+    },
+    {
+      "playerName": "Lorenzo Insigne",
+      "age": 32,
+      "position": "LW",
+      "marketValue": "€12.00m",
+      "sourceClub": "Napoli",
+      "sourceCountry": "Italy",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Toronto FC",
+      "season": "22/23"
+    },
+    {
+      "playerName": "Pedro de la Vega",
+      "age": 23,
+      "position": "LW",
+      "marketValue": "€7.00m",
+      "sourceClub": "Lanús",
+      "sourceCountry": "Argentina",
+      "fee": "€9.00m",
+      "feeNumeric": 9000000,
+      "type": "permanent",
+      "mlsTeam": "Seattle Sounders FC",
+      "season": "24/25"
+    },
+    {
+      "playerName": "Riqui Puig",
+      "age": 24,
+      "position": "CM",
+      "marketValue": "€18.00m",
+      "sourceClub": "Barcelona",
+      "sourceCountry": "Spain",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "LA Galaxy",
+      "season": "22/23"
+    },
+    {
+      "playerName": "Lionel Messi",
+      "age": 36,
+      "position": "RW",
+      "marketValue": "€30.00m",
+      "sourceClub": "Paris SG",
+      "sourceCountry": "France",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Inter Miami CF",
+      "season": "23/24"
+    },
+    {
+      "playerName": "Hugo Lloris",
+      "age": 37,
+      "position": "GK",
+      "marketValue": "€3.00m",
+      "sourceClub": "Tottenham",
+      "sourceCountry": "England",
+      "fee": "free",
+      "feeNumeric": 0,
+      "type": "free",
+      "mlsTeam": "Los Angeles FC",
+      "season": "23/24"
+    },
+    {
+      "playerName": "Denis Bouanga",
+      "age": 28,
+      "position": "LW",
+      "marketValue": "€8.00m",
+      "sourceClub": "Saint-Étienne",
+      "sourceCountry": "France",
+      "fee": "€5.00m",
+      "feeNumeric": 5000000,
+      "type": "permanent",
+      "mlsTeam": "Los Angeles FC",
+      "season": "23/24"
+    },
+    {
+      "playerName": "Dante Vanzeir",
+      "age": 26,
+      "position": "CF",
+      "marketValue": "€7.00m",
+      "sourceClub": "Union SG",
+      "sourceCountry": "Belgium",
+      "fee": "€8.00m",
+      "feeNumeric": 8000000,
+      "type": "permanent",
+      "mlsTeam": "New York Red Bulls",
+      "season": "23/24"
+    },
+    {
+      "playerName": "Martin Ojeda",
+      "age": 27,
+      "position": "AM",
+      "marketValue": "€5.00m",
+      "sourceClub": "Godoy Cruz",
+      "sourceCountry": "Argentina",
+      "fee": "€6.50m",
+      "feeNumeric": 6500000,
+      "type": "permanent",
+      "mlsTeam": "Orlando City SC",
+      "season": "23/24"
+    },
+    {
+      "playerName": "Facundo Torres",
+      "age": 23,
+      "position": "LW",
+      "marketValue": "€9.00m",
+      "sourceClub": "Peñarol",
+      "sourceCountry": "Uruguay",
+      "fee": "€8.50m",
+      "feeNumeric": 8500000,
+      "type": "permanent",
+      "mlsTeam": "Orlando City SC",
+      "season": "22/23"
+    },
+    {
+      "playerName": "Cucho Hernández",
+      "age": 24,
+      "position": "CF",
+      "marketValue": "€8.00m",
+      "sourceClub": "Watford",
+      "sourceCountry": "England",
+      "fee": "€9.50m",
+      "feeNumeric": 9500000,
+      "type": "permanent",
+      "mlsTeam": "Columbus Crew",
+      "season": "22/23"
+    },
+    {
+      "playerName": "Luciano Acosta",
+      "age": 29,
+      "position": "AM",
+      "marketValue": "€5.00m",
+      "sourceClub": "Atlas",
+      "sourceCountry": "Mexico",
+      "fee": "€5.00m",
+      "feeNumeric": 5000000,
+      "type": "permanent",
+      "mlsTeam": "FC Cincinnati",
+      "season": "22/23"
+    },
+    {
+      "playerName": "Diego Rossi",
+      "age": 25,
+      "position": "LW",
+      "marketValue": "€8.00m",
+      "sourceClub": "Fenerbahçe",
+      "sourceCountry": "Turkey",
+      "fee": "€6.00m",
+      "feeNumeric": 6000000,
+      "type": "permanent",
+      "mlsTeam": "Columbus Crew",
+      "season": "23/24"
+    },
+    {
+      "playerName": "Aidan Morris",
+      "age": 22,
+      "position": "DM",
+      "marketValue": "€5.00m",
+      "sourceClub": "Middlesbrough",
+      "sourceCountry": "England",
+      "fee": "€4.00m",
+      "feeNumeric": 4000000,
+      "type": "permanent",
+      "mlsTeam": "Columbus Crew",
+      "season": "21/22"
+    }
+  ],
+  "byCountry": [
+    {
+      "country": "England",
+      "count": 7,
+      "totalSpend": 69400000,
+      "avgSpend": 9914285.714285715,
+      "players": [
+        "Emmanuel Latte Lath (€21.3M)",
+        "Miguel Almirón (€9.6M)",
+        "Caleb Wiley (€10.1M)",
+        "Son Heung-min (€15.0M)",
+        "Cucho Hernández (€9.5M)"
+      ]
+    },
+    {
+      "country": "Spain",
+      "count": 4,
+      "totalSpend": 3500000,
+      "avgSpend": 875000,
+      "players": [
+        "Jonathan Bamba (€3.5M)"
+      ]
+    },
+    {
+      "country": "Italy",
+      "count": 4,
+      "totalSpend": 11800000,
+      "avgSpend": 2950000,
+      "players": [
+        "Aleksey Miranchuk (€11.8M)"
+      ]
+    },
+    {
+      "country": "Argentina",
+      "count": 3,
+      "totalSpend": 15500000,
+      "avgSpend": 5166666.666666667,
+      "players": [
+        "Pedro de la Vega (€9.0M)",
+        "Martin Ojeda (€6.5M)"
+      ]
+    },
+    {
+      "country": "Brazil",
+      "count": 3,
+      "totalSpend": 34150000,
+      "avgSpend": 11383333.333333334,
+      "players": [
+        "Thiago Almada (€24.1M)",
+        "Gabriel Pec (€10.0M)"
+      ]
+    },
+    {
+      "country": "Portugal",
+      "count": 2,
+      "totalSpend": 5400000,
+      "avgSpend": 2700000,
+      "players": [
+        "Djé D'Avilla (€4.0M)",
+        "Leonardo Barroso (€1.4M)"
+      ]
+    },
+    {
+      "country": "Belgium",
+      "count": 2,
+      "totalSpend": 8850000,
+      "avgSpend": 4425000,
+      "players": [
+        "Dante Vanzeir (€8.0M)"
+      ]
+    },
+    {
+      "country": "Mexico",
+      "count": 2,
+      "totalSpend": 14330000,
+      "avgSpend": 7165000,
+      "players": [
+        "Giorgos Giakoumakis (€9.3M)",
+        "Luciano Acosta (€5.0M)"
+      ]
+    },
+    {
+      "country": "Germany",
+      "count": 2,
+      "totalSpend": 0,
+      "avgSpend": 0,
+      "players": []
+    },
+    {
+      "country": "France",
+      "count": 2,
+      "totalSpend": 5000000,
+      "avgSpend": 2500000,
+      "players": [
+        "Denis Bouanga (€5.0M)"
+      ]
+    },
+    {
+      "country": "Switzerland",
+      "count": 1,
+      "totalSpend": 0,
+      "avgSpend": 0,
+      "players": []
+    },
+    {
+      "country": "Canada",
+      "count": 1,
+      "totalSpend": 0,
+      "avgSpend": 0,
+      "players": []
+    },
+    {
+      "country": "Paraguay",
+      "count": 1,
+      "totalSpend": 0,
+      "avgSpend": 0,
+      "players": []
+    },
+    {
+      "country": "Netherlands",
+      "count": 1,
+      "totalSpend": 12000000,
+      "avgSpend": 12000000,
+      "players": [
+        "Hirving Lozano (€12.0M)"
+      ]
+    },
+    {
+      "country": "United States",
+      "count": 1,
+      "totalSpend": 1300000,
+      "avgSpend": 1300000,
+      "players": [
+        "Jonathan Pérez (€1.3M)"
+      ]
+    },
+    {
+      "country": "Uruguay",
+      "count": 1,
+      "totalSpend": 8500000,
+      "avgSpend": 8500000,
+      "players": [
+        "Facundo Torres (€8.5M)"
+      ]
+    },
+    {
+      "country": "Turkey",
+      "count": 1,
+      "totalSpend": 6000000,
+      "avgSpend": 6000000,
+      "players": [
+        "Diego Rossi (€6.0M)"
+      ]
+    }
+  ],
+  "byLeague": [
+    {
+      "country": "Premier League / EFL",
+      "count": 7,
+      "totalSpend": 69400000,
+      "avgSpend": 9914285.714285715,
+      "players": [
+        "Emmanuel Latte Lath (€21.3M)",
+        "Miguel Almirón (€9.6M)",
+        "Caleb Wiley (€10.1M)",
+        "Son Heung-min (€15.0M)",
+        "Cucho Hernández (€9.5M)"
+      ]
+    },
+    {
+      "country": "La Liga",
+      "count": 4,
+      "totalSpend": 3500000,
+      "avgSpend": 875000,
+      "players": [
+        "Jonathan Bamba (€3.5M)"
+      ]
+    },
+    {
+      "country": "Serie A",
+      "count": 4,
+      "totalSpend": 11800000,
+      "avgSpend": 2950000,
+      "players": [
+        "Aleksey Miranchuk (€11.8M)"
+      ]
+    },
+    {
+      "country": "Liga Profesional",
+      "count": 3,
+      "totalSpend": 15500000,
+      "avgSpend": 5166666.666666667,
+      "players": [
+        "Pedro de la Vega (€9.0M)",
+        "Martin Ojeda (€6.5M)"
+      ]
+    },
+    {
+      "country": "Brasileirão",
+      "count": 3,
+      "totalSpend": 34150000,
+      "avgSpend": 11383333.333333334,
+      "players": [
+        "Thiago Almada (€24.1M)",
+        "Gabriel Pec (€10.0M)"
+      ]
+    },
+    {
+      "country": "Primeira Liga",
+      "count": 2,
+      "totalSpend": 5400000,
+      "avgSpend": 2700000,
+      "players": [
+        "Djé D'Avilla (€4.0M)",
+        "Leonardo Barroso (€1.4M)"
+      ]
+    },
+    {
+      "country": "Pro League",
+      "count": 2,
+      "totalSpend": 8850000,
+      "avgSpend": 4425000,
+      "players": [
+        "Dante Vanzeir (€8.0M)"
+      ]
+    },
+    {
+      "country": "MLS/USL",
+      "count": 2,
+      "totalSpend": 1300000,
+      "avgSpend": 650000,
+      "players": [
+        "Jonathan Pérez (€1.3M)"
+      ]
+    },
+    {
+      "country": "Liga MX",
+      "count": 2,
+      "totalSpend": 14330000,
+      "avgSpend": 7165000,
+      "players": [
+        "Giorgos Giakoumakis (€9.3M)",
+        "Luciano Acosta (€5.0M)"
+      ]
+    },
+    {
+      "country": "Bundesliga",
+      "count": 2,
+      "totalSpend": 0,
+      "avgSpend": 0,
+      "players": []
+    },
+    {
+      "country": "Ligue 1",
+      "count": 2,
+      "totalSpend": 5000000,
+      "avgSpend": 2500000,
+      "players": [
+        "Denis Bouanga (€5.0M)"
+      ]
+    },
+    {
+      "country": "Super League (SUI)",
+      "count": 1,
+      "totalSpend": 0,
+      "avgSpend": 0,
+      "players": []
+    },
+    {
+      "country": "Canadian Premier League",
+      "count": 1,
+      "totalSpend": 0,
+      "avgSpend": 0,
+      "players": []
+    },
+    {
+      "country": "Primera División (PAR)",
+      "count": 1,
+      "totalSpend": 0,
+      "avgSpend": 0,
+      "players": []
+    },
+    {
+      "country": "Eredivisie",
+      "count": 1,
+      "totalSpend": 12000000,
+      "avgSpend": 12000000,
+      "players": [
+        "Hirving Lozano (€12.0M)"
+      ]
+    },
+    {
+      "country": "Primera División (URU)",
+      "count": 1,
+      "totalSpend": 8500000,
+      "avgSpend": 8500000,
+      "players": [
+        "Facundo Torres (€8.5M)"
+      ]
+    },
+    {
+      "country": "Süper Lig",
+      "count": 1,
+      "totalSpend": 6000000,
+      "avgSpend": 6000000,
+      "players": [
+        "Diego Rossi (€6.0M)"
+      ]
+    }
+  ],
+  "summary": {
+    "totalTransfers": 39,
+    "totalSpend": 195730000,
+    "avgFee": 8510000
+  },
+  "source": "Transfermarkt (https://www.transfermarkt.us/major-league-soccer/transfers/wettbewerb/MLS1)",
+  "analyzedAt": "2026-01-19T18:21:14.567Z"
+}
