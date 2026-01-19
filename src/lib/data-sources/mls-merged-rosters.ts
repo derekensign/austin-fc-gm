@@ -3,7 +3,7 @@
  * 
  * Combines two data sources:
  * 1. Current rosters from mlssoccer.com (scraped) - WHO is on each team
- * 2. MLSPA salary data - HOW MUCH each player makes
+ * 2. MLSPA salary data (scraped from mlsplayers.org) - HOW MUCH each player makes
  * 
  * Why merge?
  * - MLSPA salary data is the most accurate source for salaries
@@ -21,7 +21,54 @@ import {
   scrapeAllMLSRosters,
   MLS_TEAMS 
 } from './mls-rosters';
-import { MLSPA_SALARIES_2025, MLSPASalaryEntry as ImportedMLSPASalaryEntry } from '@/data/mlspa-salaries-2025';
+import { MLSPA_SALARIES, MLSPASalaryEntry as ImportedMLSPASalaryEntry } from '@/data/mlspa-salaries-scraped';
+
+// ============================================================================
+// TEAM NAME TO ABBREVIATION MAPPING
+// ============================================================================
+
+const TEAM_NAME_TO_ABBREVIATION: Record<string, string> = {
+  'Atlanta United': 'ATL',
+  'Austin FC': 'ATX',
+  'Charlotte FC': 'CLT',
+  'Chicago Fire': 'CHI',
+  'FC Cincinnati': 'CIN',
+  'Colorado Rapids': 'COL',
+  'Columbus Crew': 'CLB',
+  'FC Dallas': 'DAL',
+  'DC United': 'DC',
+  'Houston Dynamo': 'HOU',
+  'Inter Miami': 'MIA',
+  'LA Galaxy': 'LAG',
+  'LAFC': 'LAFC',
+  'Minnesota United': 'MIN',
+  'Nashville SC': 'NSH',
+  'New England Revolution': 'NE',
+  'New York City FC': 'NYCFC',
+  'New York Red Bulls': 'NYRB',
+  'Orlando City SC': 'ORL',
+  'Philadelphia Union': 'PHI',
+  'Portland Timbers': 'POR',
+  'Real Salt Lake': 'RSL',
+  'San Jose Earthquakes': 'SJ',
+  'San Diego FC': 'SD',
+  'Seattle Sounders FC': 'SEA',
+  'Sporting Kansas City': 'SKC',
+  'St. Louis City SC': 'STL',
+  'Toronto FC': 'TOR',
+  'Vancouver Whitecaps': 'VAN',
+  'CF Montreal': 'MTL',
+  'MLS Pool': 'MLS_POOL',
+  'Retired': 'RETIRED',
+  'Without a Club': 'FREE',
+};
+
+/**
+ * Convert full team name to abbreviation
+ */
+function normalizeTeamToAbbreviation(teamName: string): string {
+  return TEAM_NAME_TO_ABBREVIATION[teamName] || teamName;
+}
 
 // ============================================================================
 // MLSPA SALARY DATA TYPES
@@ -97,8 +144,12 @@ export interface MergedLeagueRosters {
 // Release Date: October 2025
 // ============================================================================
 
-// Use the comprehensive imported salary data
-const MLSPA_SALARIES = MLSPA_SALARIES_2025;
+// Use the comprehensive scraped salary data (944 players from mlsplayers.org)
+// Note: The scraped data uses full team names, so we normalize them to abbreviations
+const MLSPA_SALARIES_NORMALIZED: MLSPASalaryEntry[] = MLSPA_SALARIES.map(s => ({
+  ...s,
+  club: normalizeTeamToAbbreviation(s.club),
+}));
 
 // ============================================================================
 // NAME MATCHING UTILITIES
@@ -259,9 +310,9 @@ export async function getMergedRosters(forceRefresh = false): Promise<MergedLeag
     return null;
   }
   
-  // Merge with MLSPA salary data
+  // Merge with MLSPA salary data (using normalized team abbreviations)
   const mergedTeams = rosters.teams.map(team => 
-    mergeTeamRoster(team, MLSPA_SALARIES)
+    mergeTeamRoster(team, MLSPA_SALARIES_NORMALIZED)
   );
   
   const result: MergedLeagueRosters = {
@@ -343,13 +394,20 @@ ${summaries.join('\n')}
  * Export the raw MLSPA salary data for direct access
  */
 export function getMLSPASalaries(): MLSPASalaryEntry[] {
-  return MLSPA_SALARIES;
+  return MLSPA_SALARIES_NORMALIZED;
 }
 
 /**
  * Get MLSPA salaries for a specific team
  */
 export function getTeamMLSPASalaries(abbreviation: string): MLSPASalaryEntry[] {
-  return MLSPA_SALARIES.filter(s => s.club === abbreviation);
+  return MLSPA_SALARIES_NORMALIZED.filter(s => s.club === abbreviation);
+}
+
+/**
+ * Get total players in MLSPA salary data
+ */
+export function getMLSPASalariesCount(): number {
+  return MLSPA_SALARIES_NORMALIZED.length;
 }
 

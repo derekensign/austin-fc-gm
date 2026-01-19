@@ -4,246 +4,246 @@ MLS MERGED ROSTERS (Current Rosters + MLSPA Salary Data)
 Sources: 
 - Current Rosters: mlssoccer.com/clubs/{team}/roster/
 - Salary Data: MLSPA Salary Guide (October 2025)
-Last Updated: 2026-01-19T17:42:04.407Z
+Last Updated: 2026-01-19T17:48:27.413Z
 ==============================================================================
 
 
-**San Jose Earthquakes (SJ)**
-- Roster: 36 players (36 with salary data)
-- Total Guaranteed Comp: $93.40M
-- DPs (1/3): C. Arango ($2.40M)
-- Top 5 Salaries: O. Bouda $2.60M, N. Buck $2.60M, V. Costa $2.60M, N. Crockford $2.60M, D. De Sousa Britto $2.60M
-- U22: 0, International: 5/8, Homegrown: 4
-
-
-**FC Cincinnati (CIN)**
-- Roster: 33 players (33 with salary data)
-- Total Guaranteed Comp: $80.85M
-- DPs (6/3): E. Da Silva Ferreira ($2.45M), K. Denkey ($2.45M), T. Hadebe ($2.45M), O. Nwobodo ($2.45M), Evander ($2.45M), Brenner ($2.45M)
-- Top 5 Salaries: B. Anunga $2.45M, P. Bucha $2.45M, R. Celentano $2.45M, S. Chirila $2.45M, A. Chávez $2.45M
-- U22: 0, International: 5/8, Homegrown: 3
-
-
-**Portland Timbers (POR)**
-- Roster: 25 players (25 with salary data)
-- Total Guaranteed Comp: $65.60M
-- DPs (1/3): J. Rodríguez ($3.20M)
-- Top 5 Salaries: J. Rodríguez $3.20M, A. Alves Santos $2.60M, A. Bonetig $2.60M, B. Bye $2.60M, D. Chará $2.60M
-- U22: 0, International: 2/8, Homegrown: 4
-
-
-**Inter Miami CF (MIA)**
-- Roster: 22 players (11 with salary data)
-- Total Guaranteed Comp: $29.76M
-- DPs (1/3): L. Messi ($20.45M)
-- Top 5 Salaries: L. Messi $20.45M, L. Suárez $4.25M, B. Rodríguez $3.20M, T. Avilés $460K, D. Ayala $400K
-- U22: 3, International: 4/8, Homegrown: 5
-
-
 **Los Angeles FC (LAFC)**
-- Roster: 46 players (19 with salary data)
-- Total Guaranteed Comp: $29.30M
-- DPs (4/3): D. Bouanga ($3.30M), S. Heung-Min ($9.50M), Denis Bouanga ($3.30M), Son H.M. (N/A)
-- Top 5 Salaries: S. Heung-Min $9.50M, D. Bouanga $3.30M, Denis Bouanga $3.30M, H. Lloris $1.80M, Y. Yeboah $1.65M
+- Roster: 46 players (41 with salary data)
+- Total Guaranteed Comp: $38.39M
+- DPs (4/3): D. Bouanga ($3.71M), S. Heung-Min (N/A), Denis Bouanga ($3.71M), Son H.M. ($11.15M)
+- Top 5 Salaries: Son H.M. $11.15M, D. Bouanga $3.71M, Denis Bouanga $3.71M, T. Boyd $1.10M, A. Long $1.05M
 - U22: 0, International: 4/8, Homegrown: 7
 
 
-**New York City FC (NYCFC)**
-- Roster: 47 players (20 with salary data)
-- Total Guaranteed Comp: $25.98M
-- DPs (6/3): N. Fernández ($2.10M), T. Magno ($2.35M), T. Martins ($1.90M), Talles Magno ($2.35M), Thiago Martins ($1.90M), Nicolas Fernandez ($2.10M)
-- Top 5 Salaries: A. Ojeda $2.60M, T. Magno $2.35M, Talles Magno $2.35M, N. Fernández $2.10M, J. Fernández $2.10M
-- U22: 2, International: 9/8, Homegrown: 9
+**Inter Miami CF (MIA)**
+- Roster: 22 players (21 with salary data)
+- Total Guaranteed Comp: $31.72M
+- DPs (1/3): L. Messi ($20.45M)
+- Top 5 Salaries: L. Messi $20.45M, R. De Paul $3.62M, L. Suárez $1.50M, G. Luján $818K, Ó. Ustari $744K
+- U22: 3, International: 4/8, Homegrown: 5
 
 
 **Atlanta United (ATL)**
-- Roster: 26 players (14 with salary data)
-- Total Guaranteed Comp: $19.66M
-- DPs (3/3): M. Almirón ($5.20M), E. Latte Lath ($2.60M), A. Miranchuk ($3.20M)
-- Top 5 Salaries: M. Almirón $5.20M, R. Hernández $3.60M, A. Miranchuk $3.20M, E. Latte Lath $2.60M, S. Lobjanidze $1.45M
+- Roster: 26 players (25 with salary data)
+- Total Guaranteed Comp: $27.78M
+- DPs (3/3): M. Almirón ($7.87M), E. Latte Lath ($4.03M), A. Miranchuk ($4.89M)
+- Top 5 Salaries: M. Almirón $7.87M, A. Miranchuk $4.89M, E. Latte Lath $4.03M, S. Alzate $1.44M, E. Mihaj $1.37M
 - U22: 1, International: 6/8, Homegrown: 4
 
 
+**FC Cincinnati (CIN)**
+- Roster: 33 players (31 with salary data)
+- Total Guaranteed Comp: $26.49M
+- DPs (6/3): E. Da Silva Ferreira ($4.74M), K. Denkey ($3.81M), T. Hadebe ($1.11M), O. Nwobodo ($1.24M), Evander ($4.74M), Brenner ($280K)
+- Top 5 Salaries: E. Da Silva Ferreira $4.74M, Evander $4.74M, K. Denkey $3.81M, M. Robinson $1.65M, Miles Robinson $1.65M
+- U22: 0, International: 5/8, Homegrown: 3
+
+
 **Vancouver Whitecaps FC (VAN)**
-- Roster: 35 players (20 with salary data)
-- Total Guaranteed Comp: $18.98M
-- DPs (4/3): A. Cubas ($2.10M), R. Gauld ($2.80M), Andres Cubas ($2.10M), Ryan Gauld ($2.80M)
-- Top 5 Salaries: R. Gauld $2.80M, Ryan Gauld $2.80M, A. Cubas $2.10M, Andres Cubas $2.10M, B. White $940K
+- Roster: 35 players (34 with salary data)
+- Total Guaranteed Comp: $26.21M
+- DPs (4/3): A. Cubas ($1.15M), R. Gauld ($3.67M), Andres Cubas ($1.15M), Ryan Gauld ($3.67M)
+- Top 5 Salaries: R. Gauld $3.67M, Ryan Gauld $3.67M, T. Müller $1.44M, A. Cubas $1.15M, Andres Cubas $1.15M
 - U22: 0, International: 12/8, Homegrown: 4
 
 
-**Seattle Sounders FC (SEA)**
-- Roster: 35 players (18 with salary data)
-- Total Guaranteed Comp: $17.10M
-- DPs (3/3): J. Morris ($2.65M), A. Rusnák ($3.10M), P. de la Vega ($2.10M)
-- Top 5 Salaries: A. Rusnák $3.10M, J. Morris $2.65M, P. de la Vega $2.10M, A. Roldan $1.05M, C. Roldan $1.05M
-- U22: 1, International: 3/8, Homegrown: 4
-
-
-**LA Galaxy (LAG)**
-- Roster: 27 players (13 with salary data)
-- Total Guaranteed Comp: $14.28M
-- DPs (1/3): R. Puig ($3.85M)
-- Top 5 Salaries: R. Puig $3.85M, M. Reus $3.30M, M. Yoshida $1.85M, J. Paintsil $1.45M, G. Pec $940K
-- U22: 1, International: 5/8, Homegrown: 4
-
-
-**Nashville SC (NSH)**
-- Roster: 28 players (12 with salary data)
-- Total Guaranteed Comp: $13.51M
-- DPs (3/3): C. Espinoza ($1.65M), H. Mukhtar ($3.20M), S. Surridge ($2.10M)
-- Top 5 Salaries: B. Acosta $3.50M, H. Mukhtar $3.20M, S. Surridge $2.10M, C. Espinoza $1.65M, J. Maher $580K
-- U22: 1, International: 3/8, Homegrown: 7
-
-
-**New England Revolution (NE)**
-- Roster: 29 players (12 with salary data)
-- Total Guaranteed Comp: $13.28M
-- DPs (2/3): C. Gil ($3.20M), Carles Gil ($3.20M)
-- Top 5 Salaries: S. Suarez $4.25M, C. Gil $3.20M, Carles Gil $3.20M, L. Langoni $940K, A. Bono $520K
-- U22: 2, International: 0/8, Homegrown: 7
-
-
-**St. Louis City SC (STL)**
-- Roster: 27 players (13 with salary data)
-- Total Guaranteed Comp: $12.38M
-- DPs (4/3): M. Hartel ($2.60M), J. Klauss ($2.10M), E. Löwen ($1.90M), João Klauss ($2.10M)
-- Top 5 Salaries: M. Hartel $2.60M, J. Klauss $2.10M, João Klauss $2.10M, E. Löwen $1.90M, R. Bürki $940K
-- U22: 2, International: 5/8, Homegrown: 7
-
-
-**Colorado Rapids (COL)**
-- Roster: 32 players (12 with salary data)
-- Total Guaranteed Comp: $11.32M
-- DPs (3/3): P. Aaronson ($1.90M), R. Navarro ($2.80M), Rafael Navarro ($2.80M)
-- Top 5 Salaries: R. Navarro $2.80M, Rafael Navarro $2.80M, P. Aaronson $1.90M, Z. Steffen $940K, A. Maxsø $700K
-- U22: 1, International: 4/8, Homegrown: 9
-
-
-**Chicago Fire FC (CHI)**
-- Roster: 29 players (12 with salary data)
-- Total Guaranteed Comp: $11.04M
-- DPs (2/3): J. Bamba ($1.90M), H. Cuypers ($2.50M)
-- Top 5 Salaries: K. Acosta $3.50M, H. Cuypers $2.50M, J. Bamba $1.90M, J. Elliott $580K, A. Gutman $460K
-- U22: 1, International: 3/8, Homegrown: 5
-
-
-**Orlando City SC (ORL)**
-- Roster: 27 players (9 with salary data)
-- Total Guaranteed Comp: $10.81M
-- DPs (3/3): M. Ojeda ($2.60M), M. Pašalić ($2.10M), L. Muriel ($2.40M)
-- Top 5 Salaries: M. Ojeda $2.60M, L. Muriel $2.40M, M. Pašalić $2.10M, P. Gallese $940K, I. Angulo $820K
-- U22: 0, International: 5/8, Homegrown: 4
-
-
-**Sporting Kansas City (SKC)**
-- Roster: 26 players (12 with salary data)
-- Total Guaranteed Comp: $10.57M
-- DPs (1/3): E. Thommy ($2.10M)
-- Top 5 Salaries: M. Rodríguez $3.20M, E. Thommy $2.10M, D. Sallói $1.45M, D. Joveljić $1.35M, T. Leibold $580K
-- U22: 2, International: 4/8, Homegrown: 8
-
-
-**Charlotte FC (CLT)**
-- Roster: 27 players (11 with salary data)
-- Total Guaranteed Comp: $10.04M
-- DPs (2/3): L. Abada ($2.40M), W. Zaha ($4.10M)
-- Top 5 Salaries: W. Zaha $4.10M, L. Abada $2.40M, P. Biel $720K, K. Kahlina $640K, D. Diani $520K
-- U22: 3, International: 8/8, Homegrown: 4
-
-
 **San Diego FC (SD)**
-- Roster: 36 players (11 with salary data)
-- Total Guaranteed Comp: $9.17M
+- Roster: 36 players (36 with salary data)
+- Total Guaranteed Comp: $24.31M
 - DPs (0/3): None
-- Top 5 Salaries: H. Lozano $4.80M, L. Morgan $700K, A. Pellegrino $580K, Amahl Pellegrino $580K, D. Vazquez $505K
+- Top 5 Salaries: H. Lozano $7.63M, A. Dreyer $2.43M, M. Ingvartsen $1.74M, L. Morgan $1.48M, A. Pellegrino $913K
 - U22: 2, International: 5/8, Homegrown: 2
 
 
+**Seattle Sounders FC (SEA)**
+- Roster: 35 players (33 with salary data)
+- Total Guaranteed Comp: $22.81M
+- DPs (3/3): J. Morris ($2.26M), A. Rusnák ($2.58M), P. de la Vega ($1.38M)
+- Top 5 Salaries: A. Rusnák $2.58M, J. Morris $2.26M, J. Ferreira $1.83M, A. Roldan $1.67M, C. Roldan $1.67M
+- U22: 1, International: 3/8, Homegrown: 4
+
+
+**New England Revolution (NE)**
+- Roster: 29 players (28 with salary data)
+- Total Guaranteed Comp: $21.91M
+- DPs (2/3): C. Gil ($4.70M), Carles Gil ($4.70M)
+- Top 5 Salaries: C. Gil $4.70M, Carles Gil $4.70M, M. Turner $1.94M, L. Campana $1.37M, J. Yueill $1.09M
+- U22: 2, International: 0/8, Homegrown: 7
+
+
+**New York City FC (NYCFC)**
+- Roster: 47 players (41 with salary data)
+- Total Guaranteed Comp: $20.47M
+- DPs (6/3): N. Fernández ($724K), T. Magno (N/A), T. Martins ($1.06M), Talles Magno ($1.06M), Thiago Martins ($1.06M), Nicolas Fernandez ($724K)
+- Top 5 Salaries: H. Wolf $1.51M, J. Sands $1.32M, James Sands $1.32M, T. Martins $1.06M, Talles Magno $1.06M
+- U22: 2, International: 9/8, Homegrown: 9
+
+
+**Chicago Fire FC (CHI)**
+- Roster: 29 players (26 with salary data)
+- Total Guaranteed Comp: $20.02M
+- DPs (2/3): J. Bamba ($5.58M), H. Cuypers ($3.53M)
+- Top 5 Salaries: J. Bamba $5.58M, H. Cuypers $3.53M, P. Zinckernagel $1.63M, K. Acosta $1.63M, J. Elliott $1.01M
+- U22: 1, International: 3/8, Homegrown: 5
+
+
+**Portland Timbers (POR)**
+- Roster: 25 players (23 with salary data)
+- Total Guaranteed Comp: $19.58M
+- DPs (1/3): J. Rodríguez ($3.63M)
+- Top 5 Salaries: J. Rodríguez $3.63M, D. Da Costa $3.42M, K. Velde $3.03M, F. Mora $1.47M, K. Miller $795K
+- U22: 0, International: 2/8, Homegrown: 4
+
+
+**New York Red Bulls (NYRB)**
+- Roster: 34 players (30 with salary data)
+- Total Guaranteed Comp: $19.58M
+- DPs (1/3): E. Forsberg ($6.04M)
+- Top 5 Salaries: E. Forsberg $6.04M, E. Choupo-Moting $3.53M, G. Berggren $1.11M, D. Nealis $626K, Dylan Nealis $626K
+- U22: 2, International: 7/8, Homegrown: 4
+
+
+**Charlotte FC (CLT)**
+- Roster: 27 players (27 with salary data)
+- Total Guaranteed Comp: $19.08M
+- DPs (2/3): L. Abada ($2.55M), W. Zaha ($2.75M)
+- Top 5 Salaries: W. Zaha $2.75M, L. Abada $2.55M, L. de la Torre $1.64M, P. Biel $1.54M, T. Ream $1.13M
+- U22: 3, International: 8/8, Homegrown: 4
+
+
+**Nashville SC (NSH)**
+- Roster: 28 players (26 with salary data)
+- Total Guaranteed Comp: $17.98M
+- DPs (3/3): C. Espinoza ($2.00M), H. Mukhtar ($5.31M), S. Surridge ($3.21M)
+- Top 5 Salaries: H. Mukhtar $5.31M, S. Surridge $3.21M, C. Espinoza $2.00M, J. Maher $895K, J. Willis $658K
+- U22: 1, International: 3/8, Homegrown: 7
+
+
 **Columbus Crew (CLB)**
-- Roster: 28 players (11 with salary data)
-- Total Guaranteed Comp: $8.53M
-- DPs (2/3): D. Gazdag ($2.60M), D. Rossi ($2.90M)
-- Top 5 Salaries: D. Rossi $2.90M, D. Gazdag $2.60M, R. Camacho $520K, Y. Cheberko $460K, M. Farsi $460K
+- Roster: 28 players (25 with salary data)
+- Total Guaranteed Comp: $17.70M
+- DPs (2/3): D. Gazdag ($2.60M), D. Rossi ($3.43M)
+- Top 5 Salaries: D. Rossi $3.43M, D. Gazdag $2.60M, W. Abou Ali $2.16M, P. Schulte $957K, S. Moreira $902K
 - U22: 1, International: 4/8, Homegrown: 6
 
 
-**Minnesota United (MIN)**
-- Roster: 33 players (8 with salary data)
-- Total Guaranteed Comp: $7.95M
-- DPs (3/3): T. Chancalay ($2.10M), J. Pereyra ($1.90M), K. Yeboah ($1.65M)
-- Top 5 Salaries: T. Chancalay $2.10M, J. Pereyra $1.90M, K. Yeboah $1.65M, M. Boxall $580K, B. Hlongwane $520K
-- U22: 4, International: 13/8, Homegrown: 4
+**Sporting Kansas City (SKC)**
+- Roster: 26 players (24 with salary data)
+- Total Guaranteed Comp: $15.66M
+- DPs (1/3): E. Thommy ($1.61M)
+- Top 5 Salaries: D. Joveljić $3.31M, M. García $2.33M, E. Thommy $1.61M, N. Radoja $1.39M, D. Sallói $1.30M
+- U22: 2, International: 4/8, Homegrown: 8
+
+
+**San Jose Earthquakes (SJ)**
+- Roster: 36 players (33 with salary data)
+- Total Guaranteed Comp: $15.09M
+- DPs (1/3): C. Arango ($2.22M)
+- Top 5 Salaries: C. Arango $2.22M, Josef Martínez $1.45M, B. Wilson $1.22M, D. Romney $938K, D. Jones $846K
+- U22: 0, International: 5/8, Homegrown: 4
+
+
+**Orlando City SC (ORL)**
+- Roster: 27 players (23 with salary data)
+- Total Guaranteed Comp: $14.79M
+- DPs (3/3): M. Ojeda ($1.03M), M. Pašalić ($1.65M), L. Muriel ($4.00M)
+- Top 5 Salaries: L. Muriel $4.00M, M. Pašalić $1.65M, P. Gallese $1.25M, M. Ojeda $1.03M, R. Jansson $997K
+- U22: 0, International: 5/8, Homegrown: 4
+
+
+**Colorado Rapids (COL)**
+- Roster: 32 players (28 with salary data)
+- Total Guaranteed Comp: $14.42M
+- DPs (3/3): P. Aaronson ($2.23M), R. Navarro (N/A), Rafael Navarro ($1.45M)
+- Top 5 Salaries: P. Aaronson $2.23M, Rafael Navarro $1.45M, A. Maxsø $1.39M, R. Holding $1.20M, Z. Steffen $1.00M
+- U22: 1, International: 4/8, Homegrown: 9
+
+
+**St. Louis City SC (STL)**
+- Roster: 27 players (23 with salary data)
+- Total Guaranteed Comp: $14.31M
+- DPs (4/3): M. Hartel ($2.18M), J. Klauss (N/A), E. Löwen ($1.39M), João Klauss ($1.37M)
+- Top 5 Salaries: M. Hartel $2.18M, R. Bürki $1.71M, E. Löwen $1.39M, João Klauss $1.37M, C. Teuchert $1.34M
+- U22: 2, International: 5/8, Homegrown: 7
+
+
+**Austin FC (ATX)**
+- Roster: 27 players (26 with salary data)
+- Total Guaranteed Comp: $13.92M
+- DPs (2/3): M. Uzuni ($2.23M), B. Vázquez ($3.55M)
+- Top 5 Salaries: B. Vázquez $3.55M, M. Uzuni $2.23M, R. Taylor $633K, I. Sánchez $600K, J. Rosales $580K
+- U22: 2, International: 8/8, Homegrown: 6
+
+
+**Real Salt Lake (RSL)**
+- Roster: 34 players (30 with salary data)
+- Total Guaranteed Comp: $13.49M
+- DPs (1/3): R. Cruz ($1.86M)
+- Top 5 Salaries: R. Cruz $1.86M, D. Gonçalves $1.80M, J. Glad $1.33M, D. Yedlin $949K, P. Ruiz $912K
+- U22: 1, International: 2/8, Homegrown: 5
+
+
+**LA Galaxy (LAG)**
+- Roster: 27 players (25 with salary data)
+- Total Guaranteed Comp: $13.28M
+- DPs (1/3): R. Puig (N/A)
+- Top 5 Salaries: J. Paintsil $4.18M, J. Glesnes $1.31M, M. Reus $1.14M, M. Yamane $845K, L. Sanabria $695K
+- U22: 1, International: 5/8, Homegrown: 4
 
 
 **Toronto FC (TOR)**
-- Roster: 27 players (10 with salary data)
-- Total Guaranteed Comp: $7.73M
-- DPs (2/3): D. Mihailovic ($2.35M), J. Osorio ($2.10M)
-- Top 5 Salaries: D. Mihailovic $2.35M, J. Osorio $2.10M, R. Laryea $700K, M. Pereira $633K, J. Cifuentes $580K
+- Roster: 27 players (26 with salary data)
+- Total Guaranteed Comp: $12.87M
+- DPs (2/3): D. Mihailovic ($2.28M), J. Osorio ($1.18M)
+- Top 5 Salaries: D. Mihailovic $2.28M, J. Cifuentes $1.41M, J. Osorio $1.18M, R. Laryea $1.17M, R. Petretta $855K
 - U22: 1, International: 6/8, Homegrown: 5
 
 
+**Minnesota United (MIN)**
+- Roster: 33 players (30 with salary data)
+- Total Guaranteed Comp: $12.81M
+- DPs (3/3): T. Chancalay ($1.06M), J. Pereyra ($844K), K. Yeboah ($1.48M)
+- Top 5 Salaries: K. Yeboah $1.48M, J. Gressel $1.15M, B. Hlongwane $1.14M, T. Chancalay $1.06M, D. Fitz $853K
+- U22: 4, International: 13/8, Homegrown: 4
+
+
 **Philadelphia Union (PHI)**
-- Roster: 30 players (12 with salary data)
-- Total Guaranteed Comp: $7.16M
-- DPs (1/3): M. Uhre ($2.10M)
-- Top 5 Salaries: M. Uhre $2.10M, A. Blake $1.20M, K. Wagner $940K, J. Bueno $820K, O. Makhanya $580K
+- Roster: 30 players (26 with salary data)
+- Total Guaranteed Comp: $11.70M
+- DPs (1/3): M. Uhre ($2.24M)
+- Top 5 Salaries: M. Uhre $2.24M, A. Blake $1.18M, K. Wagner $1.09M, E. Davis $1.04M, B. Damiani $727K
 - U22: 0, International: 3/8, Homegrown: 4
 
 
 **FC Dallas (DAL)**
-- Roster: 30 players (10 with salary data)
-- Total Guaranteed Comp: $6.75M
-- DPs (1/3): P. Musa ($2.10M)
-- Top 5 Salaries: P. Musa $2.10M, M. Paes $820K, Maarten $820K, G. Jesus $700K, K. Ferreira $580K
-- U22: 0, International: 2/8, Homegrown: 2
-
-
-**Austin FC (ATX)**
-- Roster: 27 players (17 with salary data)
-- Total Guaranteed Comp: $6.39M
-- DPs (2/3): M. Uzuni ($600K), B. Vázquez ($505K)
-- Top 5 Salaries: I. Sánchez $700K, D. Pereira $633K, M. Uzuni $600K, G. Biro $550K, J. Obrian $550K
-- U22: 2, International: 8/8, Homegrown: 6
-
-
-**New York Red Bulls (NYRB)**
-- Roster: 34 players (9 with salary data)
-- Total Guaranteed Comp: $6.20M
-- DPs (1/3): E. Forsberg ($2.60M)
-- Top 5 Salaries: E. Forsberg $2.60M, D. Nealis $700K, Dylan Nealis $700K, J. McCarthy $580K, Carlos Miguel Coronel $580K
-- U22: 2, International: 7/8, Homegrown: 4
-
-
-**D.C. United (DC)**
-- Roster: 28 players (11 with salary data)
-- Total Guaranteed Comp: $6.05M
-- DPs (0/3): None
-- Top 5 Salaries: G. Pirani $940K, Gabriel Pirani $940K, T. Baribo $820K, S. Nealis $700K, Sean Nealis $700K
-- U22: 2, International: 1/8, Homegrown: 3
-
-
-**Houston Dynamo FC (HOU)**
-- Roster: 21 players (5 with salary data)
-- Total Guaranteed Comp: $5.49M
-- DPs (0/3): None
-- Top 5 Salaries: S. Rodríguez $3.20M, N. Quiñones $820K, F. Andrade $700K, E. Sviatchenko $700K, J. McGlynn $70K
+- Roster: 30 players (24 with salary data)
+- Total Guaranteed Comp: $11.16M
+- DPs (1/3): P. Musa ($2.68M)
+- Top 5 Salaries: P. Musa $2.68M, P. Pomykal $1.16M, A. Julio $820K, S. Moore $770K, S. Ibeagha $739K
 - U22: 0, International: 2/8, Homegrown: 2
 
 
 **CF Montréal (MTL)**
-- Roster: 28 players (10 with salary data)
-- Total Guaranteed Comp: $5.17M
-- DPs (1/3): I. Jaime ($1.90M)
-- Top 5 Salaries: I. Jaime $1.90M, F. Herbers $580K, K. Opoku $580K, Mahala Opoku $580K, S. Ibrahim $460K
+- Roster: 28 players (26 with salary data)
+- Total Guaranteed Comp: $10.83M
+- DPs (1/3): I. Jaime ($1.99M)
+- Top 5 Salaries: I. Jaime $1.99M, P. Owusu $1.01M, J. Neal $681K, H. Synchuk $606K, K. Opoku $599K
 - U22: 1, International: 3/8, Homegrown: 5
 
 
-**Real Salt Lake (RSL)**
-- Roster: 34 players (9 with salary data)
-- Total Guaranteed Comp: $4.86M
-- DPs (1/3): R. Cruz ($2.10M)
-- Top 5 Salaries: R. Cruz $2.10M, J. Glad $700K, N. Palacio $580K, N. Caliskan $460K, D. Luna $460K
-- U22: 1, International: 2/8, Homegrown: 5
+**Houston Dynamo FC (HOU)**
+- Roster: 21 players (18 with salary data)
+- Total Guaranteed Comp: $10.79M
+- DPs (0/3): None
+- Top 5 Salaries: E. Ponce $2.85M, Artur $893K, O. Lingr $888K, F. Andrade $883K, E. Sviatchenko $825K
+- U22: 0, International: 2/8, Homegrown: 2
+
+
+**D.C. United (DC)**
+- Roster: 28 players (24 with salary data)
+- Total Guaranteed Comp: $10.31M
+- DPs (0/3): None
+- Top 5 Salaries: S. Johnson $1.06M, A. Herrera $920K, M. Peltola $826K, T. Baribo $810K, G. Pirani $792K
+- U22: 2, International: 1/8, Homegrown: 3
 
