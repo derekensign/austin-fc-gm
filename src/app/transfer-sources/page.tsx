@@ -24,11 +24,13 @@ import {
   Calendar,
   Building2,
 } from 'lucide-react';
-import { SCRAPED_TRANSFERS, type TransferRecord } from '@/data/mls-transfers-scraped';
+import { ALL_TRANSFERS, type TransferRecord, inferCountryFromClub, getMLSTeams } from '@/data/mls-transfers-all';
 
-// Historical transfers (2020-2023) - kept for context
-// 2024 data comes from SCRAPED_TRANSFERS (Transfermarkt scrape, converted to USD)
-const HISTORICAL_TRANSFERS: TransferRecord[] = [
+// Use comprehensive scraped data from Transfermarkt (2020-2024)
+// This includes 4,107 transfers across 5 seasons, converted to USD
+
+// Historical notable transfers that may have been missed in scraping
+const NOTABLE_HISTORICAL: TransferRecord[] = [
   // ============ 2023 Season ============
   // Inter Miami
   { playerName: 'Lionel Messi', age: 36, position: 'RW', sourceCountry: 'France', sourceClub: 'PSG', mlsTeam: 'Inter Miami', fee: 0, transferType: 'free', year: 2023 },
@@ -125,42 +127,21 @@ const HISTORICAL_TRANSFERS: TransferRecord[] = [
   { playerName: 'Yimmi Chará', age: 29, position: 'RW', sourceCountry: 'Brazil', sourceClub: 'Atlético Mineiro', mlsTeam: 'Portland Timbers', fee: 2800000, transferType: 'permanent', year: 2020 },
 ];
 
-// Combine scraped 2024 data with historical data
-// SCRAPED_TRANSFERS has accurate Transfermarkt fees converted to USD
-const ALL_TRANSFERS: TransferRecord[] = [...SCRAPED_TRANSFERS, ...HISTORICAL_TRANSFERS];
-
-// All MLS teams
-const MLS_TEAMS = [
-  'All Teams',
-  'Atlanta United',
-  'Austin FC',
-  'Charlotte FC',
-  'Chicago Fire',
-  'Cincinnati',
-  'Colorado Rapids',
-  'Columbus Crew',
-  'DC United',
-  'FC Dallas',
-  'Houston Dynamo',
-  'Inter Miami',
-  'LA Galaxy',
-  'LAFC',
-  'Minnesota United',
-  'Nashville SC',
-  'New England',
-  'NY Red Bulls',
-  'NYCFC',
-  'Orlando City',
-  'Philadelphia Union',
-  'Portland Timbers',
-  'Real Salt Lake',
-  'San Diego FC',
-  'Seattle Sounders',
-  'Sporting KC',
-  'St. Louis City',
-  'Toronto FC',
-  'Vancouver Whitecaps',
+// Combine comprehensive scraped data with notable historical transfers
+// ALL_TRANSFERS has 4,107 transfers from Transfermarkt (2020-2024), converted to USD
+const COMBINED_TRANSFERS: TransferRecord[] = [
+  ...ALL_TRANSFERS,
+  // Add any notable historical transfers not in scrape
+  ...NOTABLE_HISTORICAL.filter(h => 
+    !ALL_TRANSFERS.some(t => 
+      t.playerName.toLowerCase() === h.playerName.toLowerCase() && 
+      t.year === h.year
+    )
+  )
 ];
+
+// All MLS teams from the scraped data (dynamically generated)
+const MLS_TEAMS = ['All Teams', ...getMLSTeams()];
 
 // Years available
 const YEARS = [2025, 2024, 2023, 2022, 2021, 2020];
@@ -203,7 +184,7 @@ export default function TransferSourcesPage() {
 
   // Filter transfers based on selections
   const filteredTransfers = useMemo(() => {
-    return ALL_TRANSFERS.filter(t => {
+    return COMBINED_TRANSFERS.filter(t => {
       const yearMatch = selectedYear === 'all' || t.year === selectedYear;
       const teamMatch = selectedTeam === 'All Teams' || t.mlsTeam === selectedTeam;
       return yearMatch && teamMatch;
@@ -266,7 +247,7 @@ export default function TransferSourcesPage() {
 
   // Yearly trend data
   const yearlyTrend = useMemo(() => {
-    const teamFilter = selectedTeam === 'All Teams' ? ALL_TRANSFERS : ALL_TRANSFERS.filter(t => t.mlsTeam === selectedTeam);
+    const teamFilter = selectedTeam === 'All Teams' ? COMBINED_TRANSFERS : COMBINED_TRANSFERS.filter(t => t.mlsTeam === selectedTeam);
     
     return YEARS.map(year => {
       const yearTransfers = teamFilter.filter(t => t.year === year);
