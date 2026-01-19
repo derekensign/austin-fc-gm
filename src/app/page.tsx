@@ -142,19 +142,12 @@ export default function Dashboard() {
           <Info className="h-4 w-4 text-[var(--verde)]" />
           2026 ALLOCATION POSITION (Calculated)
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-          <div className="flex items-start gap-2">
-            <AlertCircle className="h-4 w-4 text-red-500 mt-0.5 shrink-0" />
-            <div>
-              <span className="text-white font-medium">Bukari GAM: $0</span>
-              <p className="text-white/50">Sold at loss (€5.5M vs €8M acquisition)</p>
-            </div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
           <div className="flex items-start gap-2">
             <TrendingUp className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
             <div>
-              <span className="text-white font-medium">2026 GAM: +$2.92M</span>
-              <p className="text-white/50">$3.28M annual + $0.25M dist - $0.6M deficit</p>
+              <span className="text-white font-medium">2026 GAM: +$3.53M</span>
+              <p className="text-white/50">$3.28M annual + $0.25M distribution</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
@@ -167,13 +160,13 @@ export default function Dashboard() {
           <div className="flex items-start gap-2">
             <AlertCircle className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
             <div>
-              <span className="text-white font-medium">Free GAM: ~$1.02M</span>
-              <p className="text-white/50">Very limited after cap buydowns!</p>
+              <span className="text-white font-medium">Free GAM: ~$2.23M</span>
+              <p className="text-white/50">After estimated cap buydowns</p>
             </div>
           </div>
         </div>
         <p className="text-[10px] text-white/40 mt-3">
-          Source: Matthew Doyle analysis + Austin FC press releases + MLS CBA rules. Bukari sale GAM estimated at €5.5M × tiered conversion.
+          Source: Matthew Doyle analysis + Austin FC press releases + MLS CBA rules.
         </p>
       </motion.div>
     </div>

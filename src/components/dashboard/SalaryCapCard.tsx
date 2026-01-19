@@ -134,17 +134,6 @@ export function SalaryCapCard() {
 
         {/* TAM/GAM Allocation - Updated with comprehensive position */}
         <div className="space-y-2">
-          {/* Rolled-Over GAM Warning */}
-          {allocPosition.gam.rolledOverDeficit < 0 && (
-            <div className="bg-amber-500/10 border border-amber-500/30 rounded p-2 flex items-start gap-2">
-              <AlertTriangle className="h-3.5 w-3.5 text-amber-400 mt-0.5 shrink-0" />
-              <p className="text-[10px] text-amber-300">
-                Rolled-over GAM deficit: {formatSalary(Math.abs(allocPosition.gam.rolledOverDeficit))}
-                <span className="text-amber-400/60 block">Due to Nelson & Rosales trades (2026 GAM sent out)</span>
-              </p>
-            </div>
-          )}
-          
           {/* TAM */}
           <div className="bg-[var(--obsidian)]/50 rounded p-2.5">
             <div className="flex items-center justify-between mb-1.5">
@@ -182,14 +171,12 @@ export function SalaryCapCard() {
                 <span className="text-white/50">Annual + Distributions</span>
                 <span className="text-green-400">+{formatSalary(allocPosition.gam.annualAllocation + allocPosition.gam.thirdDPDistribution)}</span>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-white/50">Bukari Sale GAM</span>
-                <span className="text-green-400">+{formatSalary(allocPosition.gam.bukariSaleGAM)}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-white/50">Rolled Over (deficit)</span>
-                <span className="text-red-400">{formatSalary(allocPosition.gam.rolledOverDeficit)}</span>
-              </div>
+              {allocPosition.gam.rolledOverDeficit !== 0 && (
+                <div className="flex items-center justify-between">
+                  <span className="text-white/50">Nelson/Rosales Trades</span>
+                  <span className="text-red-400">{formatSalary(allocPosition.gam.rolledOverDeficit)}</span>
+                </div>
+              )}
               <div className="flex items-center justify-between">
                 <span className="text-white/50">Est. Buydowns</span>
                 <span className="text-red-400">-{formatSalary(allocPosition.gam.estimatedBuydownsNeeded)}</span>

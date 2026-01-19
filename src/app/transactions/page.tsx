@@ -260,16 +260,12 @@ export default function TransactionsPage() {
                 <span className="text-white/50">Annual + Distributions</span>
                 <span className="text-green-400">+{formatSalary(allocPosition.gam.annualAllocation + allocPosition.gam.thirdDPDistribution)}</span>
               </div>
-              {allocPosition.gam.bukariSaleGAM > 0 && (
+              {allocPosition.gam.rolledOverDeficit !== 0 && (
                 <div className="flex justify-between">
-                  <span className="text-white/50">Bukari Sale GAM</span>
-                  <span className="text-green-400">+{formatSalary(allocPosition.gam.bukariSaleGAM)}</span>
+                  <span className="text-white/50">Nelson/Rosales Trades</span>
+                  <span className="text-red-400">{formatSalary(allocPosition.gam.rolledOverDeficit)}</span>
                 </div>
               )}
-              <div className="flex justify-between">
-                <span className="text-white/50">Rolled Over (deficit)</span>
-                <span className="text-red-400">{formatSalary(allocPosition.gam.rolledOverDeficit)}</span>
-              </div>
               <div className="flex justify-between">
                 <span className="text-white/50">Reserved for Cap</span>
                 <span className="text-amber-400">-{formatSalary(allocPosition.gam.estimatedBuydownsNeeded)}</span>
@@ -327,7 +323,7 @@ export default function TransactionsPage() {
         
         <p className="text-[10px] text-white/40 mt-3 flex items-center gap-1.5">
           <Info className="h-3 w-3" />
-          Source: Matthew Doyle analysis + Austin FC press releases + MLS CBA rules. Note: Bukari ($0 GAM - sold at loss) and Driussi ($0 GAM - DP not eligible for buydown) transfers did not generate GAM.
+          Source: Matthew Doyle analysis + Austin FC press releases + MLS CBA rules.
         </p>
       </motion.div>
 
