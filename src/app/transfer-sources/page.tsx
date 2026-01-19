@@ -24,56 +24,11 @@ import {
   Calendar,
   Building2,
 } from 'lucide-react';
+import { SCRAPED_TRANSFERS, type TransferRecord } from '@/data/mls-transfers-scraped';
 
-// Complete transfer data with MLS team and year
-interface TransferRecord {
-  playerName: string;
-  age: number;
-  position: string;
-  sourceCountry: string;
-  sourceClub: string;
-  mlsTeam: string;
-  fee: number;
-  transferType: 'permanent' | 'loan' | 'free';
-  year: number;
-}
-
-// Comprehensive transfer data
-const ALL_TRANSFERS: TransferRecord[] = [
-  // ============ 2025 Season ============
-  // Austin FC 2025
-  { playerName: 'Myrto Uzuni', age: 29, position: 'ST', sourceCountry: 'Spain', sourceClub: 'Granada CF', mlsTeam: 'Austin FC', fee: 6000000, transferType: 'permanent', year: 2025 },
-  { playerName: 'Brandon Vazquez', age: 26, position: 'ST', sourceCountry: 'Mexico', sourceClub: 'CF Monterrey', mlsTeam: 'Austin FC', fee: 4000000, transferType: 'permanent', year: 2025 },
-  { playerName: 'Joseph Rosales', age: 25, position: 'LB', sourceCountry: 'United States', sourceClub: 'Minnesota United', mlsTeam: 'Austin FC', fee: 1500000, transferType: 'permanent', year: 2025 },
-  { playerName: 'Jayden Nelson', age: 22, position: 'RW', sourceCountry: 'Canada', sourceClub: 'Vancouver Whitecaps', mlsTeam: 'Austin FC', fee: 1250000, transferType: 'permanent', year: 2025 },
-  { playerName: 'Jon Bell', age: 26, position: 'CB', sourceCountry: 'United States', sourceClub: 'Seattle Sounders', mlsTeam: 'Austin FC', fee: 0, transferType: 'free', year: 2025 },
-  
-  // ============ 2024 Season ============
-  // Atlanta United
-  { playerName: 'Emmanuel Latte Lath', age: 26, position: 'CF', sourceCountry: 'England', sourceClub: 'Middlesbrough', mlsTeam: 'Atlanta United', fee: 21250000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Aleksey Miranchuk', age: 28, position: 'AM', sourceCountry: 'Italy', sourceClub: 'Atalanta', mlsTeam: 'Atlanta United', fee: 11800000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Miguel Almirón', age: 30, position: 'RW', sourceCountry: 'England', sourceClub: 'Newcastle', mlsTeam: 'Atlanta United', fee: 9550000, transferType: 'permanent', year: 2024 },
-  // Chicago Fire
-  { playerName: "Djé D'Avilla", age: 21, position: 'DM', sourceCountry: 'Portugal', sourceClub: 'UD Leiria', mlsTeam: 'Chicago Fire', fee: 4000000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Xherdan Shaqiri', age: 32, position: 'AM', sourceCountry: 'Switzerland', sourceClub: 'Basel', mlsTeam: 'Chicago Fire', fee: 0, transferType: 'free', year: 2024 },
-  // LA Galaxy  
-  { playerName: 'Marco Reus', age: 35, position: 'AM', sourceCountry: 'Germany', sourceClub: 'Dortmund', mlsTeam: 'LA Galaxy', fee: 0, transferType: 'free', year: 2024 },
-  { playerName: 'Gabriel Pec', age: 23, position: 'RW', sourceCountry: 'Brazil', sourceClub: 'Vasco', mlsTeam: 'LA Galaxy', fee: 10000000, transferType: 'permanent', year: 2024 },
-  // LAFC
-  { playerName: 'Olivier Giroud', age: 37, position: 'CF', sourceCountry: 'Italy', sourceClub: 'AC Milan', mlsTeam: 'LAFC', fee: 0, transferType: 'free', year: 2024 },
-  // San Diego FC
-  { playerName: 'Hirving Lozano', age: 28, position: 'RW', sourceCountry: 'Netherlands', sourceClub: 'PSV', mlsTeam: 'San Diego FC', fee: 12000000, transferType: 'permanent', year: 2024 },
-  // NY Red Bulls
-  { playerName: 'Emil Forsberg', age: 32, position: 'AM', sourceCountry: 'Germany', sourceClub: 'RB Leipzig', mlsTeam: 'NY Red Bulls', fee: 0, transferType: 'free', year: 2024 },
-  // Seattle
-  { playerName: 'Pedro de la Vega', age: 23, position: 'LW', sourceCountry: 'Argentina', sourceClub: 'Lanús', mlsTeam: 'Seattle Sounders', fee: 9000000, transferType: 'permanent', year: 2024 },
-  // Cincinnati
-  { playerName: 'Kévin Denkey', age: 23, position: 'CF', sourceCountry: 'Belgium', sourceClub: 'Cercle Brugge', mlsTeam: 'Cincinnati', fee: 15300000, transferType: 'permanent', year: 2024 },
-  // Austin FC 2024
-  { playerName: 'Mateja Djordjević', age: 21, position: 'CB', sourceCountry: 'Serbia', sourceClub: 'FK Radnički Niš', mlsTeam: 'Austin FC', fee: 800000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Guilherme Biro', age: 22, position: 'LB', sourceCountry: 'Brazil', sourceClub: 'Corinthians', mlsTeam: 'Austin FC', fee: 1500000, transferType: 'permanent', year: 2024 },
-  { playerName: 'Nicolás Dubersarsky', age: 22, position: 'CM', sourceCountry: 'Argentina', sourceClub: 'Racing Club', mlsTeam: 'Austin FC', fee: 1200000, transferType: 'permanent', year: 2024 },
-  
+// Historical transfers (2020-2023) - kept for context
+// 2024 data comes from SCRAPED_TRANSFERS (Transfermarkt scrape, converted to USD)
+const HISTORICAL_TRANSFERS: TransferRecord[] = [
   // ============ 2023 Season ============
   // Inter Miami
   { playerName: 'Lionel Messi', age: 36, position: 'RW', sourceCountry: 'France', sourceClub: 'PSG', mlsTeam: 'Inter Miami', fee: 0, transferType: 'free', year: 2023 },
@@ -170,6 +125,10 @@ const ALL_TRANSFERS: TransferRecord[] = [
   { playerName: 'Yimmi Chará', age: 29, position: 'RW', sourceCountry: 'Brazil', sourceClub: 'Atlético Mineiro', mlsTeam: 'Portland Timbers', fee: 2800000, transferType: 'permanent', year: 2020 },
 ];
 
+// Combine scraped 2024 data with historical data
+// SCRAPED_TRANSFERS has accurate Transfermarkt fees converted to USD
+const ALL_TRANSFERS: TransferRecord[] = [...SCRAPED_TRANSFERS, ...HISTORICAL_TRANSFERS];
+
 // All MLS teams
 const MLS_TEAMS = [
   'All Teams',
@@ -234,12 +193,12 @@ export default function TransferSourcesPage() {
 
   const formatCurrency = (amount: number) => {
     if (amount >= 1_000_000) {
-      return `€${(amount / 1_000_000).toFixed(1)}M`;
+      return `$${(amount / 1_000_000).toFixed(1)}M`;
     }
     if (amount >= 1_000) {
-      return `€${(amount / 1_000).toFixed(0)}K`;
+      return `$${(amount / 1_000).toFixed(0)}K`;
     }
-    return amount > 0 ? `€${amount}` : 'Free';
+    return amount > 0 ? `$${amount.toLocaleString()}` : 'Free';
   };
 
   // Filter transfers based on selections
@@ -461,26 +420,65 @@ export default function TransferSourcesPage() {
             Transfer Trend (2020-2025)
             {selectedTeam !== 'All Teams' && <span className="text-[var(--verde)] ml-2">• {selectedTeam}</span>}
           </h2>
-          <div className="h-[280px]">
+          <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={yearlyTrend}>
+              <LineChart data={yearlyTrend} margin={{ top: 10, right: 30, left: 10, bottom: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" />
-                <YAxis yAxisId="left" stroke="rgba(255,255,255,0.5)" />
-                <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.5)" />
+                <XAxis 
+                  dataKey="year" 
+                  stroke="rgba(255,255,255,0.5)"
+                  tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}
+                />
+                <YAxis 
+                  yAxisId="left" 
+                  stroke="rgba(255,255,255,0.5)"
+                  tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}
+                  label={{ 
+                    value: '# of Transfers', 
+                    angle: -90, 
+                    position: 'insideLeft',
+                    style: { fill: 'var(--verde)', fontSize: 12, fontWeight: 600 }
+                  }}
+                  tickFormatter={(value) => value.toFixed(0)}
+                />
+                <YAxis 
+                  yAxisId="right" 
+                  orientation="right" 
+                  stroke="rgba(255,255,255,0.5)"
+                  tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}
+                  label={{ 
+                    value: 'Spend ($M)', 
+                    angle: 90, 
+                    position: 'insideRight',
+                    style: { fill: '#3b82f6', fontSize: 12, fontWeight: 600 }
+                  }}
+                  tickFormatter={(value) => `$${value.toFixed(0)}M`}
+                />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'var(--obsidian)', 
                     border: '1px solid var(--verde)',
                     borderRadius: '8px',
-                    color: 'white',
+                    padding: '12px 16px',
                   }}
-                  formatter={(value: number, name: string) => [
-                    name === 'spend' ? `€${value.toFixed(1)}M` : value,
-                    name === 'spend' ? 'Total Spend' : 'Transfers'
-                  ]}
+                  labelStyle={{ color: 'white', fontWeight: 'bold', marginBottom: '8px' }}
+                  itemStyle={{ color: 'white', padding: '2px 0' }}
+                  formatter={(value: number, name: string) => {
+                    if (name === 'Spend ($M)') {
+                      return [`$${value.toFixed(1)}M`, '💰 Total Spend'];
+                    }
+                    return [`${value} players`, '📊 Transfers'];
+                  }}
+                  labelFormatter={(label) => `📅 Season ${label}`}
                 />
-                <Legend />
+                <Legend 
+                  wrapperStyle={{ paddingTop: '10px' }}
+                  formatter={(value) => (
+                    <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '12px' }}>
+                      {value === 'Transfers' ? '📊 # of Transfers' : '💰 Total Spend'}
+                    </span>
+                  )}
+                />
                 <Line 
                   yAxisId="left" 
                   type="monotone" 
@@ -489,15 +487,17 @@ export default function TransferSourcesPage() {
                   stroke="var(--verde)" 
                   strokeWidth={3}
                   dot={{ fill: 'var(--verde)', strokeWidth: 2, r: 6 }}
+                  activeDot={{ r: 8, stroke: 'white', strokeWidth: 2 }}
                 />
                 <Line 
                   yAxisId="right" 
                   type="monotone" 
                   dataKey="spend" 
-                  name="Spend (€M)" 
+                  name="Spend ($M)" 
                   stroke="#3b82f6" 
                   strokeWidth={3}
                   dot={{ fill: '#3b82f6', strokeWidth: 2, r: 6 }}
+                  activeDot={{ r: 8, stroke: 'white', strokeWidth: 2 }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -537,10 +537,21 @@ export default function TransferSourcesPage() {
               <BarChart 
                 data={barChartData} 
                 layout="vertical"
-                margin={{ left: 100, right: 30 }}
+                margin={{ left: 100, right: 40, top: 10, bottom: 30 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis type="number" stroke="rgba(255,255,255,0.5)" />
+                <XAxis 
+                  type="number" 
+                  stroke="rgba(255,255,255,0.5)"
+                  tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}
+                  tickFormatter={(value) => sortKey === 'totalSpend' ? `$${value}M` : value.toString()}
+                  label={{ 
+                    value: sortKey === 'totalSpend' ? 'Total Spend ($ Millions)' : '# of Incoming Transfers', 
+                    position: 'bottom',
+                    offset: 10,
+                    style: { fill: 'var(--verde)', fontSize: 12, fontWeight: 600 }
+                  }}
+                />
                 <YAxis 
                   type="category" 
                   dataKey="name" 
@@ -553,12 +564,17 @@ export default function TransferSourcesPage() {
                     backgroundColor: 'var(--obsidian)', 
                     border: '1px solid var(--verde)',
                     borderRadius: '8px',
-                    color: 'white',
+                    padding: '12px 16px',
                   }}
-                  formatter={(value: number, name: string) => [
-                    name === 'spend' ? `€${value.toFixed(1)}M` : value,
-                    name === 'spend' ? 'Total Spend' : 'Transfers'
-                  ]}
+                  labelStyle={{ color: 'white', fontWeight: 'bold', marginBottom: '8px' }}
+                  cursor={{ fill: 'rgba(0, 177, 64, 0.1)' }}
+                  formatter={(value: number, name: string) => {
+                    if (name === 'spend') {
+                      return [`$${value.toFixed(1)}M`, '💰 Total Spend'];
+                    }
+                    return [`${value} players`, '📊 Transfers'];
+                  }}
+                  labelFormatter={(label) => `🌍 ${label}`}
                 />
                 <Bar 
                   dataKey={sortKey === 'totalSpend' ? 'spend' : 'transfers'} 
