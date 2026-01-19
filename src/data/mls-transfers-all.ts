@@ -1,6 +1,6 @@
 // Comprehensive MLS Transfer Data from Transfermarkt (2020-2024)
 // Scraped from all 5 seasons of transfer activity
-// Values are in EUR - convert to USD at display time
+// Values converted from EUR to USD
 
 import transferData from '../../data/mls-transfers-all-years.json';
 
@@ -18,330 +18,421 @@ export interface TransferRecord {
   transferType: 'permanent' | 'loan' | 'free';
   season: string;
   year: number;
-  sourceCountry?: string;
+  sourceCountry: string;
 }
 
 // EUR to USD conversion rate
 const EUR_TO_USD = 1.10;
 
-// Infer source country from club name - MUST be defined before ALL_TRANSFERS
-export function inferCountryFromClub(club: string): string {
-  if (!club || club.trim() === '') return 'Free Agent';
+// Infer country from club name
+function inferCountryFromClub(club: string): string {
+  if (!club || club.trim() === '') return 'Unknown';
   
-  const clubLower = club.toLowerCase();
+  // Remove common suffixes before matching
+  let c = club.toLowerCase()
+    .replace(/\s*(free\s*)?tran\s*fer$/i, '')  // "free transfer" or "tran fer" with encoding issues
+    .replace(/\s*loan\s*(tran\s*fer)?$/i, '')  // "loan" or "loan transfer"
+    .replace(/\s*end\s*of\s*loan.*$/i, '')     // "end of loan..."
+    .replace(/\s*draft$/i, '')                  // "draft"
+    .replace(/\s*-\s*$/g, '')                  // trailing " -"
+    .trim();
+
+  // Handle "Without Club" and "Retired" - these are free agents
+  if (c.includes('without club') || c.includes('retired') || c === '') return 'Free Agent';
   
-  // Handle special domestic cases FIRST
-  if (clubLower.includes('without club') || clubLower.includes('retired') || 
-      clubLower.includes('free agent') || clubLower.includes('unattached')) {
-    return 'Free Agent';
-  }
-  
-  if (clubLower.includes('mls pool') || clubLower.includes('superdraft') ||
-      clubLower.includes('homegrown') || clubLower.includes('generation adidas')) {
-    return 'USA (Draft/Pool)';
-  }
-  
-  // MLS Next Pro teams (all USA-based development teams, including encoded versions)
-  const mlsNextProTeams = [
-    'switchback', 'lv light', 'las vegas', 'san antonio fc', 'phoenix rising', 'phoenix ri ing',
-    'orange county', 'loudoun united', 'loudoun', 'north texas', 'north texa', 'revolution ii', 
-    'san diego loyal', 'tacoma defiance', 'tacoma', 'huntsville city', 'carolina core',
-    'crown legacy', 'atlanta united 2', 'atl utd 2', 'atl utd', 'chicago fire ii', 'fc cincinnati 2',
-    'columbus crew 2', 'colorado rapids 2', 'fc dallas 2', 'houston dynamo 2',
-    'inter miami ii', 'lafc 2', 'la galaxy ii', 'minnesota united 2',
-    'nashville sc ii', 'new england revolution ii', 'new york city fc ii',
-    'new york red bulls ii', 'ny red bull ii', 'ny red bulls ii', 'rbny ii',
-    'orlando city b', 'philadelphia union ii',
-    'portland timbers 2', 'real monarchs', 'real monarch', 'real salt lake 2', 
-    'san jose earthquakes ii', 'sj earthquake',
-    'seattle sounders 2', 'sporting kc ii', 'st louis city 2', 'toronto fc ii',
-    'vancouver whitecaps 2', 'austin fc ii', 'nycfc ii'
+  // MLS teams (including partial names and encoding issues)
+  const mlsTeams = [
+    'atlanta united', 'austin', 'charlotte fc', 'chicago fire', 'fc cincinnati',
+    'colorado rapids', 'columbus crew', 'columbu', 'd.c. united', 'fc dallas',
+    'houston dynamo', 'houston', 'inter miami', 'la galaxy', 'los angeles fc', 
+    'lafc', 'los angeles galaxy', 'minnesota united', 'minne ota', 'cf montréal', 
+    'montréal', 'nashville sc', 'nashville', 'new england revolution', 'new england',
+    'new york red bulls', 'new york city fc', 'nycfc', 'orlando city', 'philadelphia union',
+    'portland timbers', 'portland', 'real salt lake', 'salt lake', 'san jose earthquakes', 
+    'sj earthquake', 'san jose', 'san diego fc', 'seattle sounders', 'seattle',
+    'sporting kansas city', 'sporting kc', 'kansas city', 'st. louis city', 'st. loui',
+    'toronto fc', 'toronto', 'vancouver whitecaps', 'vancouver', 'atlanta', 'charlotte',
+    'chicago', 'cincinnati', 'colorado', 'miami', 'orlando', 'philadelphia',
+    'revolution', 'timbers', 'sounders', 'galaxy', 'rapids', 'crew', 'dynamo', 
+    'fire', 'union', 'red bulls', 'whitecaps', 'dallas', 'dalla'
   ];
-  
-  for (const team of mlsNextProTeams) {
-    if (clubLower.includes(team)) {
-      return 'USA (MLS Next Pro)';
-    }
-  }
-  
-  // USL Championship teams (including encoded versions with missing 's')
+  if (mlsTeams.some(t => c.includes(t) || c === t)) return 'USA';
+
+  // MLS Next Pro / Academy
+  const mlsNextPro = [
+    'ii', ' 2', 'tacoma', 'north texas', 'galaxy ii', 'la galaxy 2', 'lafc 2',
+    'huntsville', 'crown legacy', 'rochester', 'st louis 2', 'atlanta united 2',
+    'orlando city b', 'inter miami ii', 'portland t2', 'real monarchs', 'austin fc ii',
+    'nycfc ii', 'chicago fire ii', 'fc cincinnati 2', 'columbus crew 2', 'colorado rapids 2',
+    'fc dallas 2', 'houston dynamo 2', 'minnesota united 2', 'nashville sc ii',
+    'new england revolution ii', 'new york city fc ii', 'new york red bulls ii',
+    'philadelphia union ii', 'portland timbers 2', 'real salt lake 2',
+    'san jose earthquakes ii', 'seattle sounders 2', 'sporting kc ii', 'toronto fc ii',
+    'vancouver whitecaps 2', 'academy', 'homegrown'
+  ];
+  if (mlsNextPro.some(t => c.includes(t))) return 'USA';
+
+  // USL teams
   const uslTeams = [
-    'birmingham legion', 'legion fc', 'charleston battery', 'charle ton', 'colorado springs', 
-    'detroit city', 'el paso', 'el pa o', 'fc tulsa', 'tul a', 'tulsa', 'hartford athletic', 'hartford',
-    'indy eleven', 'las vegas lights', 'louisville city', 'loui ville', 'memphis 901', 'memphi',
-    'miami fc', 'monterey bay', 'new mexico united', 'oakland roots', 'pittsburgh', 'pitt burgh',
-    'rio grande valley', 'rgv', 'sacramento republic', 'tampa bay rowdies', 'tb rowdie',
-    'tulsa roughnecks', 'birmingham', 'the town fc'
+    'birmingham legion', 'charleston battery', 'colorado springs', 'detroit city',
+    'el paso locomotive', 'fc tulsa', 'hartford athletic', 'indy eleven', 'las vegas lights',
+    'louisville city', 'memphis 901', 'miami fc', 'monterey bay', 'new mexico united',
+    'oakland roots', 'pittsburgh riverhounds', 'rio grande valley', 'sacramento republic',
+    'tampa bay rowdies', 'phoenix rising', 'orange county', 'loudoun united', 'san antonio fc',
+    'switchbacks', 'lv lights', 'legion fc', 'rowdies', 'tormenta', 'forward madison',
+    'union omaha', 'ventura county', 'san diego loyal', 'rhode island', 'reno fc',
+    'carolina core', 'lexington', 'tulsa', 'birmingham', 'charleston', 'pittsburgh',
+    'louisville', 'memphis', 'el paso', 'phoenix', 'loudoun', 'sacramento'
   ];
-  
-  for (const team of uslTeams) {
-    if (clubLower.includes(team)) {
-      return 'USA (USL)';
-    }
-  }
-  
-  // Canadian Premier League
-  const cplTeams = [
-    'valour fc', 'valour', 'forge fc', 'forge', 'cavalry fc', 'cavalry',
-    'pacific fc', 'york united', 'atletico ottawa', 'atl. ottawa', 'atl ottawa',
-    'hfx wanderers', 'halifax', 'fc edmonton', 'edmonton'
+  if (uslTeams.some(t => c.includes(t))) return 'USA';
+
+  // US Colleges
+  const usColleges = [
+    'duke', 'wake forest', 'georgetown', 'penn state', 'stanford', 'ucla', 'virginia',
+    'maryland', 'akron', 'indiana', 'clemson', 'north carolina', 'kentucky', 'syracuse',
+    'blue devils', 'tar heels', 'hoosiers', 'cardinals', 'demon deacons', 'cavaliers',
+    'nittany lions', 'buckeyes', 'zips', 'wildcats', 'tigers', 'seminoles', 'hokies',
+    'huskies', 'bruins', 'trojans', 'rams', 'aggies', 'bulldogs', 'gators', 'hurricanes'
   ];
-  
-  for (const team of cplTeams) {
-    if (clubLower.includes(team)) {
-      return 'Canada (CPL)';
-    }
-  }
-  
-  // Check for MLS internal transfers (partial team names)
-  // These show up as just "New York", "Colorado", "Miami", etc.
-  // Including encoded versions with missing 's' characters
-  const mlsPartialNames = [
-    'lafc', 'la galaxy', 'galaxy', 'inter miami', 'miami', 'atlanta united', 'atl utd', 'atlanta',
-    'seattle', 'portland', 'austin', 'nashville', 'na hville', 'cincinnati', 'columbus', 'columbu',
-    'new york city', 'nyc', 'nycfc', 'red bull', 'rbny', 'orlando', 'orlando city',
-    'philadelphia', 'union', 'new england', 'revolution', 'chicago', 'fire',
-    'minnesota', 'minne ota', 'loon', 'houston', 'hou ton', 'dynamo', 'dallas', 'dalla', 'fc dallas',
-    'colorado', 'rapid', 'salt lake', 'real salt', 'rsl', 'san jose', 'earthquake', 'sj earthquake',
-    'vancouver', 'whitecap', 'charlotte', 'st. louis', 'st louis', 'st. loui', 
-    'stl city', 'san diego fc', 'd.c.', 'dc united', 'sporting k', 'kansas city', 'skc',
-    'toronto', 'tfc', 'montreal', 'montréal', 'cf montreal'
+  if (usColleges.some(t => c.includes(t))) return 'USA';
+
+  // Draft / MLS Pool / Free Agent
+  if (c.includes('draft') || c.includes('mls pool') || c.includes('superdraft') ||
+      c.includes('free agent') || c.includes('generation adidas') ||
+      c.includes('homegrown signing') || c === 'new' || c === 'ne' || c === '') return 'USA';
+
+  // Canadian teams
+  const canadianTeams = [
+    'toronto', 'vancouver', 'montreal', 'montréal', 'cf montréal', 'valour', 'forge',
+    'cavalry', 'pacific fc', 'york united', 'atletico ottawa', 'hfx wanderers',
+    'fc edmonton', 'vancouver whitecaps'
   ];
-  
-  for (const team of mlsPartialNames) {
-    if (clubLower.includes(team)) {
-      return 'USA (MLS)';
-    }
-  }
-  
-  // Check for "draft" or specific MLS acquisition types
-  if (clubLower.includes('draft') || clubLower.includes('?')) {
-    return 'USA (MLS)';
-  }
-  
-  const clubToCountry: Record<string, string> = {
-    // Major European leagues - England
-    'Middlesbrough': 'England', 'Newcastle': 'England', 'Chelsea': 'England',
-    'Watford': 'England', 'Crystal Palace': 'England', 'Bournemouth': 'England',
-    'Brighton': 'England', 'Tottenham': 'England', 'Sheffield': 'England',
-    'Manchester': 'England', 'Liverpool': 'England', 'Arsenal': 'England',
-    'Fulham': 'England', 'Everton': 'England', 'West Ham': 'England',
-    'Leeds': 'England', 'Southampton': 'England', 'Leicester': 'England',
-    'Wolverhampton': 'England', 'Nottingham': 'England', 'Brentford': 'England',
-    'Reading': 'England', 'Ipswich': 'England', 'QPR': 'England',
-    'Aston Villa': 'England', 'Luton': 'England', 'Burnley': 'England',
-    'Sunderland': 'England', 'Stoke': 'England', 'Derby': 'England',
-    
-    // Spain
-    'Granada': 'Spain', 'Celta': 'Spain', 'Valladolid': 'Spain',
-    'Betis': 'Spain', 'Barcelona': 'Spain', 'Real Madrid': 'Spain',
-    'Atlético': 'Spain', 'Sevilla': 'Spain', 'Valencia': 'Spain',
-    'Villarreal': 'Spain', 'Athletic': 'Spain', 'Sociedad': 'Spain',
-    'Almería': 'Spain', 'Cádiz': 'Spain', 'Getafe': 'Spain',
-    'Girona': 'Spain', 'Las Palmas': 'Spain', 'Osasuna': 'Spain',
-    'Mallorca': 'Spain', 'Leganés': 'Spain', 'Rayo': 'Spain',
-    'Espanyol': 'Spain', 'Elche': 'Spain',
-    
-    // Italy
-    'Atalanta': 'Italy', 'Genoa': 'Italy', 'Milan': 'Italy',
-    'Juventus': 'Italy', 'Napoli': 'Italy', 'Roma': 'Italy',
-    'Inter': 'Italy', 'Lazio': 'Italy', 'Fiorentina': 'Italy',
-    'Torino': 'Italy', 'Bologna': 'Italy', 'Sassuolo': 'Italy',
-    'Udinese': 'Italy', 'Empoli': 'Italy', 'Lecce': 'Italy',
-    'Monza': 'Italy', 'Verona': 'Italy', 'Salernitana': 'Italy',
-    'Sampdoria': 'Italy', 'Venezia': 'Italy', 'Cagliari': 'Italy',
-    
-    // Germany
-    'Dortmund': 'Germany', 'Leipzig': 'Germany', 'Bayern': 'Germany',
-    'Wolfsburg': 'Germany', 'Leverkusen': 'Germany', 'Frankfurt': 'Germany',
-    'Hoffenheim': 'Germany', 'Freiburg': 'Germany', 'Köln': 'Germany',
-    'Gladbach': 'Germany', 'Bremen': 'Germany', 'Schalke': 'Germany',
-    'Hamburg': 'Germany', 'Stuttgart': 'Germany', 'Union Berlin': 'Germany',
-    'Augsburg': 'Germany', 'Mainz': 'Germany', 'Bochum': 'Germany',
-    'Hertha': 'Germany', 'Düsseldorf': 'Germany', 'Nürnberg': 'Germany',
-    'Hannover': 'Germany', 'Greuther': 'Germany', 'St. Pauli': 'Germany',
-    
-    // France
-    'PSG': 'France', 'Nice': 'France', 'Saint-Étienne': 'France',
-    'Lens': 'France', 'Amiens': 'France', 'Metz': 'France',
-    'Le Havre': 'France', 'Rennes': 'France', 'Lyon': 'France',
-    'Monaco': 'France', 'Marseille': 'France', 'Lille': 'France',
-    'Montpellier': 'France', 'Nantes': 'France', 'Toulouse': 'France',
-    'Reims': 'France', 'Strasbourg': 'France', 'Brest': 'France',
-    'Lorient': 'France', 'Angers': 'France', 'Auxerre': 'France',
-    'Bordeaux': 'France', 'Clermont': 'France', 'Troyes': 'France',
-    
-    // Belgium
-    'Club Brugge': 'Belgium', 'Cercle Brugge': 'Belgium', 'Standard': 'Belgium',
-    'Union': 'Belgium', 'Gent': 'Belgium', 'Antwerp': 'Belgium',
-    'Anderlecht': 'Belgium', 'Genk': 'Belgium', 'Mechelen': 'Belgium',
-    'Charleroi': 'Belgium', 'Westerlo': 'Belgium', 'Kortrijk': 'Belgium',
-    
-    // Netherlands
-    'PSV': 'Netherlands', 'Ajax': 'Netherlands', 'Feyenoord': 'Netherlands',
-    'Twente': 'Netherlands', 'Utrecht': 'Netherlands', 'Vitesse': 'Netherlands',
-    'AZ': 'Netherlands', 'Groningen': 'Netherlands', 'Heerenveen': 'Netherlands',
-    
-    // Portugal
-    'Sporting': 'Portugal', 'Benfica': 'Portugal', 'Porto': 'Portugal',
-    'Braga': 'Portugal', 'Famalicão': 'Portugal', 'Vitória': 'Portugal',
-    'Gil Vicente': 'Portugal', 'Guimarães': 'Portugal', 'Leiria': 'Portugal',
-    
-    // South America - Brazil (including encoded versions)
-    'Botafogo': 'Brazil', 'Vasco': 'Brazil', 'Palmeiras': 'Brazil', 'Palmeira': 'Brazil',
-    'Corinthians': 'Brazil', 'Corinthian': 'Brazil', 'Bahia': 'Brazil', 'Fortaleza': 'Brazil',
-    'Grêmio': 'Brazil', 'Gremio': 'Brazil', 'Atlético Mineiro': 'Brazil', 'Flamengo': 'Brazil',
-    'Santos': 'Brazil', 'Internacional': 'Brazil', 'Fluminense': 'Brazil', 'Fluminen e': 'Brazil',
-    'São Paulo': 'Brazil', 'Sao Paulo': 'Brazil', 'Cruzeiro': 'Brazil', 'Cuiabá': 'Brazil',
-    'Red Bull Bragantino': 'Brazil', 'Bragantino': 'Brazil', 'Athletico': 'Brazil', 
-    'Goiás': 'Brazil', 'Goia': 'Brazil', 'Ceará': 'Brazil', 'Coritiba': 'Brazil',
-    'America MG': 'Brazil', 'Sport Recife': 'Brazil', 'Vitória': 'Brazil',
-    
-    // Argentina (including encoded versions)
-    'Racing': 'Argentina', 'Racing Club': 'Argentina', 'Boca': 'Argentina', 'River': 'Argentina',
-    'Vélez': 'Argentina', 'Velez': 'Argentina', 'Independiente': 'Argentina', 'Godoy Cruz': 'Argentina',
-    'Estudiantes': 'Argentina', 'E tudiante': 'Argentina', 'San Lorenzo': 'Argentina', 
-    'Lanús': 'Argentina', 'Lanu': 'Argentina', 'Tucumán': 'Argentina', 'Instituto': 'Argentina', 
-    'Talleres': 'Argentina', 'Tallere': 'Argentina', 'Newell': 'Argentina', 'Rosario': 'Argentina', 
-    'Colón': 'Argentina', 'Platense': 'Argentina', 'Platen e': 'Argentina', 
-    'Argentinos': 'Argentina', 'Argentino': 'Argentina', 'Gimnasia': 'Argentina', 'Gimna ia': 'Argentina',
-    'Huracán': 'Argentina', 'Huracan': 'Argentina', 'Defensa': 'Argentina', 'Defen a': 'Argentina', 
-    'Tigre': 'Argentina', 'Banfield': 'Argentina', 'Central Córdoba': 'Argentina',
-    'Unión': 'Argentina', 'Union Santa Fe': 'Argentina', 'Belgrano': 'Argentina',
-    
-    // Mexico (including encoded versions)
-    'Monterrey': 'Mexico', 'Cruz Azul': 'Mexico', 'Tigres': 'Mexico', 'Tigre UANL': 'Mexico',
-    'Atlas': 'Mexico', 'Chivas': 'Mexico', 'Chiva': 'Mexico', 'Guadalajara': 'Mexico',
-    'Pumas': 'Mexico', 'Puma': 'Mexico', 'UNAM': 'Mexico',
-    'Toluca': 'Mexico', 'América': 'Mexico', 'America': 'Mexico', 'Club America': 'Mexico',
-    'Pachuca': 'Mexico', 'Santos Laguna': 'Mexico', 'Santo Laguna': 'Mexico',
-    'León': 'Mexico', 'Leon': 'Mexico', 'Querétaro': 'Mexico', 'Queretaro': 'Mexico',
-    'Necaxa': 'Mexico', 'Tijuana': 'Mexico', 'Xolo': 'Mexico', 'Mazatlán': 'Mexico', 'Mazatlan': 'Mexico',
-    'San Luis': 'Mexico', 'Puebla': 'Mexico', 'Juárez': 'Mexico', 'Juarez': 'Mexico',
-    
-    // Colombia
-    'Millonarios': 'Colombia', 'Nacional': 'Colombia', 'Junior': 'Colombia',
-    'Medellín': 'Colombia', 'América de Cali': 'Colombia', 'Cali': 'Colombia',
-    'Deportivo Cali': 'Colombia', 'Santa Fe': 'Colombia', 'Once Caldas': 'Colombia',
-    'Envigado': 'Colombia', 'Bucaramanga': 'Colombia', 'Tolima': 'Colombia',
-    
-    // Other South America
-    'Peñarol': 'Uruguay', 'Nacional Montevideo': 'Uruguay', 'Defensor': 'Uruguay',
-    'Colo-Colo': 'Chile', 'Universidad': 'Chile', 'Católica': 'Chile',
-    'Olimpia': 'Paraguay', 'Libertad': 'Paraguay', 'Cerro Porteño': 'Paraguay',
-    'Guaraní': 'Paraguay', 'Nacional Asunción': 'Paraguay',
-    'Bolívar': 'Bolivia', 'The Strongest': 'Bolivia',
-    'Alianza Lima': 'Peru', 'Sporting Cristal': 'Peru', 'Universitario': 'Peru',
-    'Caracas': 'Venezuela', 'Deportivo Táchira': 'Venezuela',
-    'Barcelona SC': 'Ecuador', 'LDU Quito': 'Ecuador', 'Emelec': 'Ecuador',
-    
-    // Eastern Europe
-    'Red Star': 'Serbia', 'Partizan': 'Serbia', 'Čukarički': 'Serbia',
-    'Dnipro': 'Ukraine', 'Dynamo Kyiv': 'Ukraine', 'Shakhtar': 'Ukraine',
-    'Polissya': 'Ukraine', 'Metalist': 'Ukraine', 'Zorya': 'Ukraine',
-    'Zenit': 'Russia', 'CSKA Moscow': 'Russia', 'Spartak Moscow': 'Russia',
-    'Lokomotiv': 'Russia', 'Krasnodar': 'Russia',
-    'Dinamo Zagreb': 'Croatia', 'Hajduk': 'Croatia', 'Rijeka': 'Croatia',
-    'Slovan': 'Slovakia', 'Ferencváros': 'Hungary', 'Ludogorets': 'Bulgaria',
-    'CSKA Sofia': 'Bulgaria', 'Steaua': 'Romania', 'CFR Cluj': 'Romania',
-    
-    // Scandinavia
-    'Copenhagen': 'Denmark', 'Nordsjaelland': 'Denmark', 'Brøndby': 'Denmark',
-    'Randers': 'Denmark', 'Midtjylland': 'Denmark', 'Silkeborg': 'Denmark',
-    'Häcken': 'Sweden', 'AIK': 'Sweden', 'Malmö': 'Sweden',
-    'Djurgården': 'Sweden', 'Elfsborg': 'Sweden', 'Gothenburg': 'Sweden',
-    'Hammarby': 'Sweden', 'Norrköping': 'Sweden',
-    'Lillestrom': 'Norway', 'Rosenborg': 'Norway', 'Viking': 'Norway',
-    'Molde': 'Norway', 'Bodø': 'Norway', 'Brann': 'Norway',
-    'HJK': 'Finland', 'KuPS': 'Finland',
-    
-    // Other European
-    'Celtic': 'Scotland', 'Rangers': 'Scotland', 'Hearts': 'Scotland',
-    'Aberdeen': 'Scotland', 'Hibernian': 'Scotland',
-    'Fenerbahçe': 'Turkey', 'Galatasaray': 'Turkey', 'Besiktas': 'Turkey',
-    'Trabzonspor': 'Turkey', 'Basaksehir': 'Turkey',
-    'PAOK': 'Greece', 'Panathinaikos': 'Greece', 'AEK': 'Greece', 'Olympiacos': 'Greece',
-    'Slavia': 'Czech Republic', 'Sparta': 'Czech Republic', 'Viktoria': 'Czech Republic',
-    'Legia': 'Poland', 'Lech': 'Poland', 'Jagiellonia': 'Poland',
-    'Cracovia': 'Poland', 'Raków': 'Poland',
-    'Salzburg': 'Austria', 'Sturm Graz': 'Austria', 'Rapid Wien': 'Austria',
-    'Basel': 'Switzerland', 'Young Boys': 'Switzerland', 'Servette': 'Switzerland',
-    'Maccabi': 'Israel', 'Hapoel': 'Israel',
-    'Dinamo Tbilisi': 'Georgia', 'Shakhter Karagandy': 'Kazakhstan',
-    'Sheriff': 'Moldova',
-    
-    // Asia
-    'Al-Hilal': 'Saudi Arabia', 'Al-Nassr': 'Saudi Arabia', 'Al-Ittihad': 'Saudi Arabia',
-    'Al-Ahli': 'Saudi Arabia',
-    'Kashima': 'Japan', 'Urawa': 'Japan', 'Kawasaki': 'Japan',
-    'Vissel': 'Japan', 'Yokohama': 'Japan', 'FC Tokyo': 'Japan',
-    'Jeonbuk': 'South Korea', 'Ulsan': 'South Korea', 'Seoul': 'South Korea',
-    'Guangzhou': 'China', 'Shanghai': 'China', 'Beijing': 'China',
-    'Melbourne': 'Australia', 'Sydney': 'Australia', 'Western United': 'Australia',
-    
-    // Central America & Caribbean
-    'Saprissa': 'Costa Rica', 'Alajuelense': 'Costa Rica',
-    'Comunicaciones': 'Guatemala', 'Motagua': 'Honduras', 'Olimpia Honduras': 'Honduras',
-    'FAS': 'El Salvador', 'Alianza FC': 'El Salvador',
-    'Portmore': 'Jamaica', 'Arnett Gardens': 'Jamaica',
-    
-    // MLS teams (for internal transfers)
-    'Los Angeles FC': 'USA (MLS)', 'Los Angeles Galaxy': 'USA (MLS)', 
-    'Inter Miami': 'USA (MLS)', 'Atlanta United': 'USA (MLS)',
-    'Seattle Sounders': 'USA (MLS)', 'Portland Timbers': 'USA (MLS)',
-    'Austin FC': 'USA (MLS)', 'Nashville': 'USA (MLS)',
-    'Cincinnati': 'USA (MLS)', 'Columbus': 'USA (MLS)',
-    'Toronto': 'Canada (MLS)', 'Montréal': 'Canada (MLS)',
-    'New York': 'USA (MLS)', 'Philadelphia': 'USA (MLS)',
-    'New England': 'USA (MLS)', 'Chicago': 'USA (MLS)',
-    'Minnesota': 'USA (MLS)', 'Houston': 'USA (MLS)',
-    'Dallas': 'USA (MLS)', 'Colorado': 'USA (MLS)',
-    'Salt Lake': 'USA (MLS)', 'San Jose': 'USA (MLS)',
-    'Vancouver': 'Canada (MLS)', 'Charlotte': 'USA (MLS)',
-    'St. Louis': 'USA (MLS)', 'San Diego': 'USA (MLS)',
-    'D.C. United': 'USA (MLS)', 'Sporting Kansas': 'USA (MLS)',
-    'Orlando': 'USA (MLS)', 'LAFC': 'USA (MLS)', 'Galaxy': 'USA (MLS)',
-    'NYC': 'USA (MLS)', 'RBNY': 'USA (MLS)', 'NYCFC': 'USA (MLS)',
-    'Miami': 'USA (MLS)',
-  };
-  
-  // Check for partial matches (case-insensitive) using clubToCountry map
-  for (const [key, country] of Object.entries(clubToCountry)) {
-    if (clubLower.includes(key.toLowerCase())) {
-      return country;
-    }
-  }
-  
+  if (canadianTeams.some(t => c.includes(t))) return 'Canada';
+
+  // England
+  const englishClubs = [
+    'arsenal', 'chelsea', 'liverpool', 'manchester', 'tottenham', 'west ham', 'everton',
+    'newcastle', 'aston villa', 'leicester', 'brighton', 'crystal palace', 'wolves',
+    'wolverhampton', 'burnley', 'norwich', 'watford', 'southampton', 'leeds', 'fulham',
+    'brentford', 'nottingham', 'bournemouth', 'sheffield', 'luton', 'ipswich',
+    'championship', 'premier league', 'england', 'blackburn', 'blackpool', 'bolton',
+    'bristol', 'cardiff', 'charlton', 'coventry', 'derby', 'huddersfield', 'hull',
+    'middlesbrough', 'millwall', 'plymouth', 'portsmouth', 'qpr', 'reading', 'rotherham',
+    'stoke', 'sunderland', 'swansea', 'west brom', 'wigan', 'birmingham city', 'oxford'
+  ];
+  if (englishClubs.some(t => c.includes(t))) return 'England';
+
+  // Germany
+  const germanClubs = [
+    'bayern', 'dortmund', 'leipzig', 'leverkusen', 'frankfurt', 'wolfsburg', 'gladbach',
+    'hoffenheim', 'freiburg', 'stuttgart', 'mainz', 'augsburg', 'hertha', 'schalke',
+    'köln', 'union berlin', 'werder', 'hamburg', 'hannover', 'nürnberg', 'bundesliga',
+    'germany', 'dusseldorf', 'düsseldorf', 'kaiserslautern', 'st. pauli', 'greuther fürth'
+  ];
+  if (germanClubs.some(t => c.includes(t))) return 'Germany';
+
+  // Spain
+  const spanishClubs = [
+    'barcelona', 'real madrid', 'atletico madrid', 'sevilla', 'valencia', 'villarreal',
+    'athletic bilbao', 'real sociedad', 'betis', 'celta vigo', 'espanyol', 'getafe',
+    'granada', 'levante', 'mallorca', 'osasuna', 'rayo vallecano', 'alaves', 'cadiz',
+    'elche', 'girona', 'la liga', 'spain', 'almería', 'las palmas', 'valladolid',
+    'sporting gijon', 'tenerife', 'zaragoza', 'deportivo', 'malaga', 'huesca', 'leganes'
+  ];
+  if (spanishClubs.some(t => c.includes(t))) return 'Spain';
+
+  // Italy
+  const italianClubs = [
+    'juventus', 'inter milan', 'ac milan', 'roma', 'napoli', 'lazio', 'fiorentina',
+    'atalanta', 'torino', 'bologna', 'sassuolo', 'verona', 'udinese', 'sampdoria',
+    'genoa', 'spezia', 'empoli', 'salernitana', 'monza', 'lecce', 'cremonese', 'serie a',
+    'italy', 'parma', 'cagliari', 'palermo', 'bari', 'brescia', 'perugia', 'venezia',
+    'como', 'frosinone', 'cesena'
+  ];
+  if (italianClubs.some(t => c.includes(t))) return 'Italy';
+
+  // France
+  const frenchClubs = [
+    'psg', 'paris saint', 'marseille', 'lyon', 'monaco', 'lille', 'nice', 'rennes',
+    'lens', 'montpellier', 'nantes', 'strasbourg', 'toulouse', 'lorient', 'reims',
+    'angers', 'troyes', 'ajaccio', 'auxerre', 'brest', 'clermont', 'ligue 1', 'france',
+    'bordeaux', 'saint-etienne', 'metz', 'dijon', 'guingamp', 'amiens', 'caen', 'le havre'
+  ];
+  if (frenchClubs.some(t => c.includes(t))) return 'France';
+
+  // Netherlands
+  const dutchClubs = [
+    'ajax', 'psv', 'feyenoord', 'az alkmaar', 'twente', 'utrecht', 'vitesse', 'heerenveen',
+    'groningen', 'heracles', 'willem ii', 'sparta rotterdam', 'nec', 'cambuur', 'volendam',
+    'excelsior', 'rkc', 'fortuna sittard', 'go ahead eagles', 'emmen', 'almere',
+    'eredivisie', 'netherlands', 'holland', 'dutch'
+  ];
+  if (dutchClubs.some(t => c.includes(t))) return 'Netherlands';
+
+  // Belgium
+  const belgianClubs = [
+    'club brugge', 'anderlecht', 'genk', 'antwerp', 'standard liege', 'gent', 'union sg',
+    'mechelen', 'charleroi', 'cercle brugge', 'westerlo', 'oud-heverlee', 'oostende',
+    'kortrijk', 'sint-truiden', 'eupen', 'jupiler', 'belgium', 'belgian'
+  ];
+  if (belgianClubs.some(t => c.includes(t))) return 'Belgium';
+
+  // Portugal
+  const portugueseClubs = [
+    'benfica', 'porto', 'sporting cp', 'sporting lisbon', 'braga', 'vitoria guimaraes',
+    'boavista', 'maritimo', 'famalicao', 'pacos ferreira', 'gil vicente', 'estoril',
+    'rio ave', 'arouca', 'casa pia', 'chaves', 'farense', 'portimonense', 'santa clara',
+    'vizela', 'leiria', 'primeira liga', 'portugal', 'portuguese'
+  ];
+  if (portugueseClubs.some(t => c.includes(t))) return 'Portugal';
+
+  // Brazil
+  const brazilianClubs = [
+    'flamengo', 'palmeiras', 'corinthians', 'sao paulo', 'santos', 'gremio', 'internacional',
+    'atletico mineiro', 'fluminense', 'botafogo', 'cruzeiro', 'vasco', 'athletico paranaense',
+    'bahia', 'fortaleza', 'ceara', 'goias', 'coritiba', 'cuiaba', 'america mineiro',
+    'bragantino', 'serie a', 'brazil', 'brazilian', 'brasileirao'
+  ];
+  if (brazilianClubs.some(t => c.includes(t))) return 'Brazil';
+
+  // Argentina
+  const argentineClubs = [
+    'boca juniors', 'river plate', 'racing club', 'independiente', 'san lorenzo',
+    'estudiantes', 'velez sarsfield', 'lanus', 'talleres', 'defensa y justicia',
+    'banfield', 'argentinos juniors', 'colon', 'union santa fe', 'godoy cruz',
+    'central cordoba', 'patronato', 'sarmiento', 'platense', 'barracas', 'tigre',
+    'arsenal sarandi', 'newell', 'rosario central', 'belgrano', 'instituto',
+    'superliga', 'argentina', 'argentine'
+  ];
+  if (argentineClubs.some(t => c.includes(t))) return 'Argentina';
+
+  // Mexico
+  const mexicanClubs = [
+    'club america', 'guadalajara', 'chivas', 'cruz azul', 'pumas unam', 'tigres',
+    'monterrey', 'santos laguna', 'toluca', 'pachuca', 'leon', 'atlas', 'necaxa',
+    'queretaro', 'puebla', 'mazatlan', 'juarez', 'san luis', 'tijuana', 'liga mx',
+    'mexico', 'mexican'
+  ];
+  if (mexicanClubs.some(t => c.includes(t))) return 'Mexico';
+
+  // Colombia
+  const colombianClubs = [
+    'atletico nacional', 'millonarios', 'america de cali', 'independiente medellin',
+    'junior barranquilla', 'santa fe', 'deportivo cali', 'once caldas', 'tolima',
+    'envigado', 'pereira', 'bucaramanga', 'colombia', 'colombian'
+  ];
+  if (colombianClubs.some(t => c.includes(t))) return 'Colombia';
+
+  // Denmark
+  const danishClubs = [
+    'copenhagen', 'midtjylland', 'nordsjaelland', 'brondby', 'aarhus', 'aalborg',
+    'randers', 'odense', 'silkeborg', 'viborg', 'superliga', 'denmark', 'danish', 'lyngby'
+  ];
+  if (danishClubs.some(t => c.includes(t))) return 'Denmark';
+
+  // Sweden
+  const swedishClubs = [
+    'malmo', 'djurgarden', 'aik', 'hammarby', 'goteborg', 'elfsborg', 'norrkoping',
+    'hacken', 'kalmar', 'helsingborg', 'orebro', 'allsvenskan', 'sweden', 'swedish'
+  ];
+  if (swedishClubs.some(t => c.includes(t))) return 'Sweden';
+
+  // Norway
+  const norwegianClubs = [
+    'molde', 'rosenborg', 'bodo/glimt', 'brann', 'viking', 'lillestrom', 'valerenga',
+    'stromsgodset', 'sarpsborg', 'odd', 'eliteserien', 'norway', 'norwegian'
+  ];
+  if (norwegianClubs.some(t => c.includes(t))) return 'Norway';
+
+  // Scotland
+  const scottishClubs = [
+    'celtic', 'rangers', 'aberdeen', 'hearts', 'hibernian', 'dundee', 'motherwell',
+    'st mirren', 'livingston', 'ross county', 'kilmarnock', 'st johnstone',
+    'premiership', 'scotland', 'scottish'
+  ];
+  if (scottishClubs.some(t => c.includes(t))) return 'Scotland';
+
+  // Poland
+  const polishClubs = [
+    'legia warsaw', 'lech poznan', 'rakow', 'pogon szczecin', 'slask wroclaw',
+    'zaglebie', 'gornik zabrze', 'wisla krakow', 'jagiellonia', 'piast gliwice',
+    'cracovia', 'ekstraklasa', 'poland', 'polish'
+  ];
+  if (polishClubs.some(t => c.includes(t))) return 'Poland';
+
+  // Austria
+  const austrianClubs = [
+    'salzburg', 'rapid vienna', 'sturm graz', 'lask', 'austria vienna', 'wolfsberger',
+    'hartberg', 'ried', 'altach', 'tirol', 'bundesliga', 'austria', 'austrian'
+  ];
+  if (austrianClubs.some(t => c.includes(t))) return 'Austria';
+
+  // Switzerland
+  const swissClubs = [
+    'young boys', 'basel', 'zurich', 'servette', 'st gallen', 'lugano', 'grasshoppers',
+    'lausanne', 'sion', 'luzern', 'super league', 'switzerland', 'swiss'
+  ];
+  if (swissClubs.some(t => c.includes(t))) return 'Switzerland';
+
+  // Turkey
+  const turkishClubs = [
+    'galatasaray', 'fenerbahce', 'besiktas', 'trabzonspor', 'basaksehir', 'konyaspor',
+    'antalyaspor', 'kasimpasa', 'sivasspor', 'alanyaspor', 'gaziantep', 'hatayspor',
+    'kayserispor', 'adana demirspor', 'super lig', 'turkey', 'turkish', 'turkiye',
+    'bandirma'
+  ];
+  if (turkishClubs.some(t => c.includes(t))) return 'Türkiye';
+
+  // Greece
+  const greekClubs = [
+    'olympiacos', 'panathinaikos', 'aek athens', 'paok', 'aris', 'asteras tripolis',
+    'volos', 'ionikos', 'lamia', 'super league', 'greece', 'greek'
+  ];
+  if (greekClubs.some(t => c.includes(t))) return 'Greece';
+
+  // Czech Republic
+  const czechClubs = [
+    'sparta prague', 'slavia prague', 'plzen', 'viktoria plzen', 'bohemians',
+    'slovacko', 'jablonec', 'liberec', 'mlada boleslav', 'zlin', 'czech', 'czechoslovak'
+  ];
+  if (czechClubs.some(t => c.includes(t))) return 'Czech Republic';
+
+  // Croatia
+  const croatianClubs = [
+    'dinamo zagreb', 'hajduk split', 'rijeka', 'osijek', 'lokomotiva', 'gorica',
+    'croatia', 'croatian'
+  ];
+  if (croatianClubs.some(t => c.includes(t))) return 'Croatia';
+
+  // Serbia
+  const serbianClubs = [
+    'red star', 'partizan', 'vojvodina', 'cukaricki', 'tsc', 'serbia', 'serbian'
+  ];
+  if (serbianClubs.some(t => c.includes(t))) return 'Serbia';
+
+  // Ukraine
+  const ukrainianClubs = [
+    'shakhtar', 'dynamo kyiv', 'dnipro', 'zorya', 'kolos kovalivka', 'chornomorets',
+    'ukraine', 'ukrainian'
+  ];
+  if (ukrainianClubs.some(t => c.includes(t))) return 'Ukraine';
+
+  // Russia
+  const russianClubs = [
+    'zenit', 'spartak moscow', 'cska moscow', 'lokomotiv moscow', 'dynamo moscow',
+    'krasnodar', 'rostov', 'rubin kazan', 'sochi', 'russia', 'russian'
+  ];
+  if (russianClubs.some(t => c.includes(t))) return 'Russia';
+
+  // Japan
+  const japaneseClubs = [
+    'kawasaki', 'yokohama', 'vissel kobe', 'kashima', 'urawa', 'gamba osaka',
+    'cerezo osaka', 'fc tokyo', 'nagoya', 'j league', 'japan', 'japanese'
+  ];
+  if (japaneseClubs.some(t => c.includes(t))) return 'Japan';
+
+  // South Korea
+  const koreanClubs = [
+    'jeonbuk', 'ulsan', 'seoul', 'suwon', 'pohang', 'daegu', 'k league',
+    'korea', 'korean'
+  ];
+  if (koreanClubs.some(t => c.includes(t))) return 'South Korea';
+
+  // Ecuador
+  const ecuadorianClubs = [
+    'barcelona sc', 'emelec', 'liga de quito', 'independiente del valle', 'aucas',
+    'delfin', 'ecuador', 'ecuadorian'
+  ];
+  if (ecuadorianClubs.some(t => c.includes(t))) return 'Ecuador';
+
+  // Paraguay
+  const paraguayanClubs = [
+    'olimpia', 'cerro porteno', 'libertad', 'guarani', 'nacional asuncion',
+    'paraguay', 'paraguayan'
+  ];
+  if (paraguayanClubs.some(t => c.includes(t))) return 'Paraguay';
+
+  // Uruguay
+  const uruguayanClubs = [
+    'penarol', 'nacional', 'defensor sporting', 'liverpool montevideo', 'river plate',
+    'danubio', 'uruguay', 'uruguayan'
+  ];
+  if (uruguayanClubs.some(t => c.includes(t))) return 'Uruguay';
+
+  // Chile
+  const chileanClubs = [
+    'colo colo', 'universidad de chile', 'universidad catolica', 'union espanola',
+    'palestino', 'audax italiano', 'chile', 'chilean'
+  ];
+  if (chileanClubs.some(t => c.includes(t))) return 'Chile';
+
+  // Peru
+  const peruvianClubs = [
+    'alianza lima', 'universitario', 'sporting cristal', 'melgar', 'cienciano',
+    'peru', 'peruvian'
+  ];
+  if (peruvianClubs.some(t => c.includes(t))) return 'Peru';
+
+  // Venezuela
+  const venezuelanClubs = [
+    'deportivo tachira', 'caracas fc', 'zamora fc', 'venezuela', 'venezuelan'
+  ];
+  if (venezuelanClubs.some(t => c.includes(t))) return 'Venezuela';
+
+  // Costa Rica
+  const costaRicanClubs = [
+    'saprissa', 'alajuelense', 'herediano', 'san carlos', 'costa rica', 'costa rican'
+  ];
+  if (costaRicanClubs.some(t => c.includes(t))) return 'Costa Rica';
+
+  // Jamaica
+  if (c.includes('jamaica') || c.includes('jamaican') || c.includes('harbour view') || 
+      c.includes('portmore')) return 'Jamaica';
+
+  // Honduras
+  if (c.includes('honduras') || c.includes('honduran') || c.includes('motagua') || 
+      c.includes('olimpia') && c.includes('honduras')) return 'Honduras';
+
+  // Israel
+  const israeliClubs = [
+    'maccabi tel aviv', 'maccabi haifa', 'hapoel', 'beitar jerusalem', 'bnei sakhnin',
+    'israel', 'israeli'
+  ];
+  if (israeliClubs.some(t => c.includes(t))) return 'Israel';
+
+  // Australia
+  const australianClubs = [
+    'melbourne victory', 'sydney fc', 'melbourne city', 'western sydney', 'brisbane roar',
+    'central coast', 'wellington phoenix', 'a-league', 'australia', 'australian'
+  ];
+  if (australianClubs.some(t => c.includes(t))) return 'Australia';
+
+  // UAE
+  if (c.includes('al-') && (c.includes('wasl') || c.includes('ain') || c.includes('jazira') || 
+      c.includes('nasr') || c.includes('wahda'))) return 'UAE';
+  if (c.includes('uae') || c.includes('emirates')) return 'UAE';
+
+  // Saudi Arabia
+  if (c.includes('al-') && (c.includes('hilal') || c.includes('ahli') || c.includes('nassr') || 
+      c.includes('ittihad') || c.includes('shabab'))) return 'Saudi Arabia';
+  if (c.includes('saudi') || c.includes('arabia')) return 'Saudi Arabia';
+
+  // Qatar
+  if (c.includes('qatar') || c.includes('al duhail') || c.includes('al sadd') || 
+      c.includes('al rayyan') || c.includes('al gharafa')) return 'Qatar';
+
   return 'International';
 }
 
-// All transfers from the scraped data, with inferred source countries
-export const ALL_TRANSFERS: TransferRecord[] = (transferData.transfers as TransferRecord[]).map(t => ({
+// Convert EUR values to USD and add inferred country
+export const ALL_TRANSFERS: TransferRecord[] = (transferData as any).transfers.map((t: any) => ({
   ...t,
-  // Convert fee and marketValue to USD
-  fee: Math.round(t.fee * EUR_TO_USD),
-  marketValue: Math.round(t.marketValue * EUR_TO_USD),
-  // Fill in missing source countries based on club name
+  marketValue: Math.round((t.marketValue || 0) * EUR_TO_USD),
+  fee: Math.round((t.fee || 0) * EUR_TO_USD),
   sourceCountry: t.sourceCountry || inferCountryFromClub(t.sourceClub),
 }));
 
-// Get transfer stats
-export function getTransferStats() {
-  const arrivals = ALL_TRANSFERS.filter(t => t.direction === 'arrival');
-  const departures = ALL_TRANSFERS.filter(t => t.direction === 'departure');
-  
-  return {
-    totalTransfers: ALL_TRANSFERS.length,
-    arrivals: arrivals.length,
-    departures: departures.length,
-    totalSpend: arrivals.reduce((sum, t) => sum + t.fee, 0),
-    totalIncome: departures.reduce((sum, t) => sum + t.fee, 0),
-    paidTransfers: arrivals.filter(t => t.fee > 0).length,
-    freeTransfers: arrivals.filter(t => t.fee === 0).length,
-  };
-}
-
-// Get unique MLS teams from the data
+// Get unique list of MLS teams from the data
 export function getMLSTeams(): string[] {
   const teams = new Set<string>();
   ALL_TRANSFERS.forEach(t => teams.add(t.mlsTeam));
@@ -356,4 +447,40 @@ export function getTransfersByYear(year: number): TransferRecord[] {
 // Get transfers by team
 export function getTransfersByTeam(team: string): TransferRecord[] {
   return ALL_TRANSFERS.filter(t => t.mlsTeam === team);
+}
+
+// Get transfers by direction
+export function getTransfersByDirection(direction: 'arrival' | 'departure'): TransferRecord[] {
+  return ALL_TRANSFERS.filter(t => t.direction === direction);
+}
+
+// Get aggregate stats
+export function getTransferStats() {
+  const arrivals = ALL_TRANSFERS.filter(t => t.direction === 'arrival');
+  const departures = ALL_TRANSFERS.filter(t => t.direction === 'departure');
+  
+  const totalSpend = arrivals.reduce((sum, t) => sum + t.fee, 0);
+  const totalIncome = departures.reduce((sum, t) => sum + t.fee, 0);
+  
+  // Country breakdown (for arrivals - where players come from)
+  const countryStats: Record<string, { count: number; spend: number }> = {};
+  arrivals.forEach(t => {
+    const country = t.sourceCountry;
+    if (!countryStats[country]) {
+      countryStats[country] = { count: 0, spend: 0 };
+    }
+    countryStats[country].count++;
+    countryStats[country].spend += t.fee;
+  });
+  
+  return {
+    totalTransfers: ALL_TRANSFERS.length,
+    arrivals: arrivals.length,
+    departures: departures.length,
+    totalSpend,
+    totalIncome,
+    netSpend: totalSpend - totalIncome,
+    countryStats,
+    years: [2024, 2023, 2022, 2021, 2020],
+  };
 }
