@@ -2,6 +2,7 @@ import { anthropic } from '@ai-sdk/anthropic';
 import { streamText } from 'ai';
 import { getRulesContext, rosterConstructionModels, designatedPlayerRules, u22InitiativeRules, allocationMoney, internationalSlots, freeAgencyRules, homegrownRules, tradeRules } from '@/data/mls-rules-2025';
 import { austinFCRoster, MLS_2026_RULES, AUSTIN_FC_2026_TRANSACTIONS } from '@/data/austin-fc-roster';
+import { getMergedRosters, generateMergedRosterSummaryForAI, getMLSPASalariesCount } from '@/lib/data-sources/mls-merged-rosters';
 
 export const maxDuration = 60;
 
@@ -76,9 +77,9 @@ const systemPrompt = `You are the Austin FC GM Lab Assistant - an expert on Aust
 
 ⚠️ CRITICAL INSTRUCTIONS:
 - You have ACTUAL Austin FC roster data below. Use ONLY this data when discussing Austin FC players, salaries, and cap situation.
-- DO NOT make up or guess player salaries, designations, or other teams' rosters.
-- If asked about other MLS teams' rosters, explain that you only have verified Austin FC data.
-- For trade suggestions, focus on what Austin FC NEEDS based on their actual roster, not speculation about other teams.
+- You also have MLS-wide salary data from MLSPA (944 players across all 30 teams) - use this for comparing salaries and trade discussions.
+- DO NOT make up or guess player salaries that aren't in the data.
+- For trade suggestions, reference actual players and their real salaries from the MLS data below.
 
 PERSONALITY:
 - Enthusiastic about Austin FC (use 🌳⚽ occasionally)
@@ -120,18 +121,53 @@ INSTRUCTIONS FOR ANSWERING QUESTIONS
 1. For Austin FC questions: USE THE ACTUAL ROSTER DATA ABOVE. Cite specific players, salaries, and cap numbers.
 2. For MLS rules questions: Explain the rule clearly with examples.
 3. For signing feasibility: Calculate exact budget impact using Austin FC's actual cap space.
-4. For trade ideas: Focus on Austin FC's actual needs (gaps in roster) and available assets (GAM, slots, tradeable players).
-5. DO NOT speculate about other teams' rosters or player availability - we don't have that data.
-6. If asked about specific players on other teams, say "I don't have verified salary data for [team], but here's how it would work cap-wise..."
+4. For trade ideas: Reference the MLS-wide salary data below - you have real salaries for ~944 players across all 30 teams!
+5. When comparing players or suggesting trades, cite actual salary figures from the data.
+6. If a player isn't in our data (very recent signing), note that their salary isn't in the October 2025 MLSPA release.
 
-REMEMBER: You are a GM assistant with REAL Austin FC data. Be accurate, not creative with numbers.`;
+REMEMBER: You are a GM assistant with REAL Austin FC data and MLS-wide salary data. Be accurate, not creative with numbers.`;
+
+// Generate MLS-wide context (called per request to ensure fresh data)
+async function generateMLSContext(): Promise<string> {
+  try {
+    const mergedRosters = await getMergedRosters(false); // Use cached if available
+    if (mergedRosters) {
+      const summary = generateMergedRosterSummaryForAI(mergedRosters);
+      const totalPlayers = getMLSPASalariesCount();
+      return `
+==============================================================================
+MLS LEAGUE-WIDE ROSTER & SALARY DATA (SOURCE: MLSPA + mlssoccer.com)
+Total Players in Database: ${totalPlayers}
+Data Sources: 
+- Salaries: MLSPA Salary Guide (October 2025 release)
+- Rosters: mlssoccer.com (current as of January 2026)
+==============================================================================
+
+${summary}
+
+⚠️ NOTES ON MLS-WIDE DATA:
+- Salary data is from MLSPA October 2025 release - some transfers have occurred since
+- Use this data for general comparisons and trade value discussions
+- For Austin FC specifics, always defer to the Austin FC roster section above
+`;
+    }
+  } catch (error) {
+    console.error('Failed to load MLS context:', error);
+  }
+  return '';
+}
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
+  // Fetch MLS-wide context (async)
+  const mlsContext = await generateMLSContext();
+  
+  const fullSystemPrompt = systemPrompt + mlsContext;
+
   const result = streamText({
     model: anthropic('claude-sonnet-4-5'),
-    system: systemPrompt,
+    system: fullSystemPrompt,
     messages,
   });
 
