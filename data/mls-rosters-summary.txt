@@ -1,0 +1,244 @@
+
+==============================================================================
+MLS LEAGUE-WIDE ROSTERS (26 teams)
+Source: mlssoccer.com/clubs/{team}/roster/
+Last Updated: 2026-01-19T17:14:56.708Z
+==============================================================================
+
+NOTE: This data shows CURRENT rosters from mlssoccer.com. Salary data may be 
+from an earlier MLSPA release and should be cross-referenced for accuracy.
+
+
+**Atlanta United (ATL)**
+- Roster Size: 26 players
+- Senior Roster: 9/20
+- DPs (3/3): M. Almirón, E. Latte Lath, A. Miranchuk
+- U22 Initiative (1): E. Mosquera
+- International (6/8): M. Almirón, P. Amador, R. Hernández, E. Latte Lath, S. Lobjanidze, A. Miranchuk
+- Homegrown: L. Brennan, J. Fortune, W. Reilly, A. Torres
+
+
+**Austin FC (ATX)**
+- Roster Size: 27 players
+- Senior Roster: 17/20
+- DPs (2/3): M. Uzuni, B. Vázquez
+- U22 Initiative (2): M. Djordjevic, N. Dubersarsky
+- International (8/8): G. Biro, M. Desler, M. Djordjevic, N. Dubersarsky, J. Obrian, B. Sabovic, O. Svatok, M. Uzuni
+- Homegrown: M. Burton, D. Las, J. Nelson, E. Torres, O. Wolff, Jayden Nelson
+
+
+**Charlotte FC (CLT)**
+- Roster Size: 27 players
+- Senior Roster: 7/20
+- DPs (2/3): L. Abada, W. Zaha
+- U22 Initiative (3): B. Coulibaly, I. Toklomati, K. Vargas
+- International (8/8): L. Abada, P. Biel, B. Coulibaly, D. Diani, K. Kahlina, I. Toklomati, W. Zaha, A. Malanda
+- Homegrown: N. Berchimas, B. Cambridge, E. Williamson, J. Neeley
+
+
+**Chicago Fire FC (CHI)**
+- Roster Size: 29 players
+- Senior Roster: 9/20
+- DPs (2/3): J. Bamba, H. Cuypers
+- U22 Initiative (1): V. Radojević
+- International (3/8): H. Cuypers, M. Haile-Selassie, V. Radojević
+- Homegrown: C. Brady, C. Cupps, A. Gutman, S. Oregel, M. Pineda
+
+
+**FC Cincinnati (CIN)**
+- Roster Size: 33 players
+- Senior Roster: 17/20
+- DPs (6/3): E. Da Silva Ferreira, K. Denkey, T. Hadebe, O. Nwobodo, Evander, Brenner
+- U22 Initiative (0): None
+- International (5/8): E. Da Silva Ferreira, T. Hadebe, O. Nwobodo, Evander, Y. Kubo
+- Homegrown: S. Jimenez, F. Samson, G. Valenzuela
+
+
+**Colorado Rapids (COL)**
+- Roster Size: 32 players
+- Senior Roster: 10/20
+- DPs (3/3): P. Aaronson, R. Navarro, Rafael Navarro
+- U22 Initiative (1): S. Vines
+- International (4/8): R. Navarro, C. Ronan, A. Maxsø, Rafael Navarro
+- Homegrown: J. Atencio, C. Bassett, A. Beaudry, N. Cobb, T. Ku-Dipietro, D. Sealy, S. Vines, D. Yapi, M. Edwards
+
+
+**Columbus Crew (CLB)**
+- Roster Size: 28 players
+- Senior Roster: 15/20
+- DPs (2/3): D. Gazdag, D. Rossi
+- U22 Initiative (1): I. Aliyu
+- International (4/8): R. Camacho, D. Chambost, Y. Cheberko, M. Farsi
+- Homegrown: T. Brown, T. Habroune, S. Lapkes, C. Mrowka, J. Russell-Rowe, S. Zawadzki
+
+
+**FC Dallas (DAL)**
+- Roster Size: 30 players
+- Senior Roster: 8/20
+- DPs (1/3): P. Musa
+- U22 Initiative (0): None
+- International (2/8): G. Jesus, A. Julio
+- Homegrown: M. Collodi, N. Norris
+
+
+**D.C. United (DC)**
+- Roster Size: 28 players
+- Senior Roster: 10/20
+- DPs (0/3): None
+- U22 Initiative (2): G. Pirani, Gabriel Pirani
+- International (1/8): T. Baribo
+- Homegrown: A. Herrera, J. Hopkins, B. Servania
+
+
+**Houston Dynamo FC (HOU)**
+- Roster Size: 21 players
+- Senior Roster: 8/20
+- DPs (0/3): None
+- U22 Initiative (0): None
+- International (2/8): N. Quiñones, E. Sviatchenko
+- Homegrown: J. McGlynn, S. Rodríguez
+
+
+**Sporting Kansas City (SKC)**
+- Roster Size: 26 players
+- Senior Roster: 11/20
+- DPs (1/3): E. Thommy
+- U22 Initiative (2): D. Joveljić, L. Ndenbe
+- International (4/8): S. Afrifa, D. Joveljić, T. Leibold, N. Radoja
+- Homegrown: J. Davis, I. James, J. Kortkamp, J. Pulskamp, J. Reynolds, D. Sallói, M. Rodríguez, A. Brody
+
+
+**LA Galaxy (LAG)**
+- Roster Size: 27 players
+- Senior Roster: 8/20
+- DPs (1/3): R. Puig
+- U22 Initiative (1): J. Aude
+- International (5/8): J. Aude, N. Micovic, R. Puig, G. Vivi, M. Yoshida
+- Homegrown: E. Cerrillo, M. Cuevas, J. Marcinkowski, I. Parente
+
+
+**Inter Miami CF (MIA)**
+- Roster Size: 22 players
+- Senior Roster: 5/20
+- DPs (1/3): L. Messi
+- U22 Initiative (3): T. Avilés, D. Ayala, M. Silvetti
+- International (4/8): T. Avilés, D. Ayala, L. Messi, L. Suárez
+- Homegrown: N. Allen, I. Boatwright, I. Fray, T. Hall, S. Morales
+
+
+**CF Montréal (MTL)**
+- Roster Size: 28 players
+- Senior Roster: 7/20
+- DPs (1/3): I. Jaime
+- U22 Initiative (1): S. Ibrahim
+- International (3/8): S. Ibrahim, K. Opoku, Mahala Opoku
+- Homegrown: B. Hidalgo, J. Marshall-Rutty, E. Morales, L. Petrasso, J. Sirois
+
+
+**Nashville SC (NSH)**
+- Roster Size: 28 players
+- Senior Roster: 9/20
+- DPs (3/3): C. Espinoza, H. Mukhtar, S. Surridge
+- U22 Initiative (1): A. Qasem
+- International (3/8): S. Mohammed, A. Qasem, S. Surridge
+- Homegrown: C. Applewhite, A. Muyl, J. Pérez, A. Sipić, X. Valdez, T. Williams, Jonathan Pérez
+
+
+**New England Revolution (NE)**
+- Roster Size: 29 players
+- Senior Roster: 9/20
+- DPs (2/3): C. Gil, Carles Gil
+- U22 Initiative (2): I. Feingold, L. Langoni
+- International (0/8): None
+- Homegrown: M. Fry, K. Hughes, D. McIntosh, J. Panayotou, B. Raines, W. Sands, S. Suarez
+
+
+**Orlando City SC (ORL)**
+- Roster Size: 27 players
+- Senior Roster: 11/20
+- DPs (3/3): M. Ojeda, M. Pašalić, L. Muriel
+- U22 Initiative (0): None
+- International (5/8): I. Angulo, D. Brekalo, W. Cartagena, P. Gallese, L. Muriel
+- Homegrown: A. Freeman, J. Otero, T. Reid-Brown, F. Loyola
+
+
+**Philadelphia Union (PHI)**
+- Roster Size: 30 players
+- Senior Roster: 8/20
+- DPs (1/3): M. Uhre
+- U22 Initiative (0): None
+- International (3/8): J. Bueno, O. Makhanya, M. Uhre
+- Homegrown: N. Harriel, M. Iloski, J. Rafanello, Q. Sullivan
+
+
+**Portland Timbers (POR)**
+- Roster Size: 25 players
+- Senior Roster: 10/20
+- DPs (1/3): J. Rodríguez
+- U22 Initiative (0): None
+- International (2/8): A. Alves Santos, Antony
+- Homegrown: O. Fernández, T. Muse, J. Pantemis, H. Sulte
+
+
+**Real Salt Lake (RSL)**
+- Roster Size: 34 players
+- Senior Roster: 6/20
+- DPs (1/3): R. Cruz
+- U22 Initiative (1): N. Palacio
+- International (2/8): N. Caliskan, N. Palacio
+- Homegrown: J. Glad, D. Luna, L. Rivera, M. Stajduhar, T. Wolff
+
+
+**San Diego FC (SD)**
+- Roster Size: 36 players
+- Senior Roster: 12/20
+- DPs (0/3): None
+- U22 Initiative (2): A. Reyes, Andres Reyes
+- International (5/8): L. Morgan, A. Pellegrino, A. Reyes, Amahl Pellegrino, Andres Reyes
+- Homegrown: K. Sargeant, O. Verhoeven
+
+
+**San Jose Earthquakes (SJ)**
+- Roster Size: 36 players
+- Senior Roster: 14/20
+- DPs (1/3): C. Arango
+- U22 Initiative (0): None
+- International (5/8): C. Arango, D. De Sousa Britto, Daniel, Rodrigues, B. Wilson
+- Homegrown: N. Buck, C. Medina, E. Mendoza, N. Tsakiris
+
+
+**Seattle Sounders FC (SEA)**
+- Roster Size: 35 players
+- Senior Roster: 14/20
+- DPs (3/3): J. Morris, A. Rusnák, P. de la Vega
+- U22 Initiative (1): N. Petković
+- International (3/8): Y. Gómez Andrade, N. Petković, Yeimar
+- Homegrown: C. Baker, R. Baker-Whiting, S. Hawkins, O. Vargas
+
+
+**St. Louis City SC (STL)**
+- Roster Size: 27 players
+- Senior Roster: 8/20
+- DPs (4/3): M. Hartel, J. Klauss, E. Löwen, João Klauss
+- U22 Initiative (2): C. Durkin, J. Sang-bin
+- International (5/8): M. Hartel, J. Klauss, E. Löwen, T. Ostrak, João Klauss
+- Homegrown: C. Durkin, D. Edelman, C. Glover, M. Joyner, J. Orozco, M. Perez, J. Reid
+
+
+**Toronto FC (TOR)**
+- Roster Size: 27 players
+- Senior Roster: 6/20
+- DPs (2/3): D. Mihailovic, J. Osorio
+- U22 Initiative (1): J. Cifuentes
+- International (6/8): J. Cifuentes, A. Coello, K. Franklin, J. Vilsaint, R. Petretta, S. Rosted
+- Homegrown: K. Franklin, D. Kerr, D. Mihailovic, K. Thompson, H. Mbongue
+
+
+**Vancouver Whitecaps FC (VAN)**
+- Roster Size: 35 players
+- Senior Roster: 14/20
+- DPs (4/3): A. Cubas, R. Gauld, Andres Cubas, Ryan Gauld
+- U22 Initiative (0): None
+- International (12/8): A. Cubas, R. Gauld, M. Laborda, J. Ngando, Y. Takaoka, R. Veselinović, Andres Cubas, Ryan Gauld, Mathias Laborda, Yohei Takaoka, Ranko Veselinovic, J.C. Ngando
+- Homegrown: S. Berhalter, O. Larraz, N. Pierre, Sebastian Berhalter
+
