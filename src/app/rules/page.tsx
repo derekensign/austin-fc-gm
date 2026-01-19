@@ -138,7 +138,7 @@ export default function TransferCalculatorPage() {
                     type="number"
                     min="100000"
                     max="10000000"
-                    step="50000"
+                    step="10000"
                     value={signingCalc.salary}
                     onChange={(e) => setSigningCalc({ ...signingCalc, salary: parseInt(e.target.value) || 0 })}
                     className="w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-[var(--verde)] font-semibold"
@@ -148,7 +148,7 @@ export default function TransferCalculatorPage() {
                   type="range"
                   min="100000"
                   max="10000000"
-                  step="100000"
+                  step="10000"
                   value={signingCalc.salary}
                   onChange={(e) => setSigningCalc({ ...signingCalc, salary: parseInt(e.target.value) })}
                   className="flex-1 accent-[var(--verde)]"
@@ -165,7 +165,7 @@ export default function TransferCalculatorPage() {
                     type="number"
                     min="0"
                     max="50000000"
-                    step="100000"
+                    step="10000"
                     value={signingCalc.transferFee}
                     onChange={(e) => setSigningCalc({ ...signingCalc, transferFee: parseInt(e.target.value) || 0 })}
                     className="w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold"
@@ -175,7 +175,7 @@ export default function TransferCalculatorPage() {
                   type="range"
                   min="0"
                   max="20000000"
-                  step="500000"
+                  step="10000"
                   value={signingCalc.transferFee}
                   onChange={(e) => setSigningCalc({ ...signingCalc, transferFee: parseInt(e.target.value) })}
                   className="flex-1 accent-amber-400"
@@ -348,7 +348,7 @@ export default function TransferCalculatorPage() {
                     type="number"
                     min="0"
                     max="50000000"
-                    step="100000"
+                    step="10000"
                     value={saleCalc.saleFee}
                     onChange={(e) => setSaleCalc({ ...saleCalc, saleFee: parseInt(e.target.value) || 0 })}
                     className="w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-purple-400 font-semibold"
@@ -358,7 +358,7 @@ export default function TransferCalculatorPage() {
                   type="range"
                   min="0"
                   max="20000000"
-                  step="500000"
+                  step="10000"
                   value={saleCalc.saleFee}
                   onChange={(e) => setSaleCalc({ ...saleCalc, saleFee: parseInt(e.target.value) })}
                   className="flex-1 accent-purple-400"
@@ -375,7 +375,7 @@ export default function TransferCalculatorPage() {
                     type="number"
                     min="0"
                     max="50000000"
-                    step="100000"
+                    step="10000"
                     value={saleCalc.acquisitionCost}
                     onChange={(e) => setSaleCalc({ ...saleCalc, acquisitionCost: parseInt(e.target.value) || 0 })}
                     className="w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold"
@@ -385,7 +385,7 @@ export default function TransferCalculatorPage() {
                   type="range"
                   min="0"
                   max="20000000"
-                  step="500000"
+                  step="10000"
                   value={saleCalc.acquisitionCost}
                   onChange={(e) => setSaleCalc({ ...saleCalc, acquisitionCost: parseInt(e.target.value) })}
                   className="flex-1 accent-amber-400"
@@ -431,7 +431,7 @@ export default function TransferCalculatorPage() {
                       type="number"
                       min="500000"
                       max="10000000"
-                      step="50000"
+                      step="10000"
                       value={saleCalc.playerSalary}
                       onChange={(e) => setSaleCalc({ ...saleCalc, playerSalary: parseInt(e.target.value) || 500000 })}
                       className="w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold"
@@ -441,7 +441,7 @@ export default function TransferCalculatorPage() {
                     type="range"
                     min="500000"
                     max="5000000"
-                    step="100000"
+                    step="10000"
                     value={saleCalc.playerSalary}
                     onChange={(e) => setSaleCalc({ ...saleCalc, playerSalary: parseInt(e.target.value) })}
                     className="flex-1 accent-amber-400"
