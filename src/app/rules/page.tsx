@@ -131,30 +131,52 @@ export default function TransferCalculatorPage() {
           <div className="space-y-4">
             <div>
               <label className="text-sm text-white/60 block mb-2">Annual Salary</label>
-              <input
-                type="range"
-                min="100000"
-                max="10000000"
-                step="100000"
-                value={signingCalc.salary}
-                onChange={(e) => setSigningCalc({ ...signingCalc, salary: parseInt(e.target.value) })}
-                className="w-full accent-[var(--verde)]"
-              />
-              <p className="text-right font-semibold text-[var(--verde)]">{formatBudget(signingCalc.salary)}</p>
+              <div className="flex items-center gap-3">
+                <span className="text-white/40">$</span>
+                <input
+                  type="number"
+                  min="100000"
+                  max="10000000"
+                  step="50000"
+                  value={signingCalc.salary}
+                  onChange={(e) => setSigningCalc({ ...signingCalc, salary: parseInt(e.target.value) || 0 })}
+                  className="w-32 px-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-[var(--verde)] font-semibold text-right"
+                />
+                <input
+                  type="range"
+                  min="100000"
+                  max="10000000"
+                  step="100000"
+                  value={signingCalc.salary}
+                  onChange={(e) => setSigningCalc({ ...signingCalc, salary: parseInt(e.target.value) })}
+                  className="flex-1 accent-[var(--verde)]"
+                />
+              </div>
             </div>
 
             <div>
               <label className="text-sm text-white/60 block mb-2">Transfer Fee (if applicable)</label>
-              <input
-                type="range"
-                min="0"
-                max="20000000"
-                step="500000"
-                value={signingCalc.transferFee}
-                onChange={(e) => setSigningCalc({ ...signingCalc, transferFee: parseInt(e.target.value) })}
-                className="w-full accent-amber-400"
-              />
-              <p className="text-right font-semibold text-amber-400">{formatBudget(signingCalc.transferFee)}</p>
+              <div className="flex items-center gap-3">
+                <span className="text-white/40">$</span>
+                <input
+                  type="number"
+                  min="0"
+                  max="50000000"
+                  step="100000"
+                  value={signingCalc.transferFee}
+                  onChange={(e) => setSigningCalc({ ...signingCalc, transferFee: parseInt(e.target.value) || 0 })}
+                  className="w-32 px-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold text-right"
+                />
+                <input
+                  type="range"
+                  min="0"
+                  max="20000000"
+                  step="500000"
+                  value={signingCalc.transferFee}
+                  onChange={(e) => setSigningCalc({ ...signingCalc, transferFee: parseInt(e.target.value) })}
+                  className="flex-1 accent-amber-400"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -315,30 +337,52 @@ export default function TransferCalculatorPage() {
           <div className="space-y-4">
             <div>
               <label className="text-sm text-white/60 block mb-2">Sale/Transfer Fee</label>
-              <input
-                type="range"
-                min="0"
-                max="20000000"
-                step="500000"
-                value={saleCalc.saleFee}
-                onChange={(e) => setSaleCalc({ ...saleCalc, saleFee: parseInt(e.target.value) })}
-                className="w-full accent-purple-400"
-              />
-              <p className="text-right font-semibold text-purple-400">{formatBudget(saleCalc.saleFee)}</p>
+              <div className="flex items-center gap-3">
+                <span className="text-white/40">$</span>
+                <input
+                  type="number"
+                  min="0"
+                  max="50000000"
+                  step="100000"
+                  value={saleCalc.saleFee}
+                  onChange={(e) => setSaleCalc({ ...saleCalc, saleFee: parseInt(e.target.value) || 0 })}
+                  className="w-32 px-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-purple-400 font-semibold text-right"
+                />
+                <input
+                  type="range"
+                  min="0"
+                  max="20000000"
+                  step="500000"
+                  value={saleCalc.saleFee}
+                  onChange={(e) => setSaleCalc({ ...saleCalc, saleFee: parseInt(e.target.value) })}
+                  className="flex-1 accent-purple-400"
+                />
+              </div>
             </div>
 
             <div>
               <label className="text-sm text-white/60 block mb-2">Original Acquisition Cost</label>
-              <input
-                type="range"
-                min="0"
-                max="20000000"
-                step="500000"
-                value={saleCalc.acquisitionCost}
-                onChange={(e) => setSaleCalc({ ...saleCalc, acquisitionCost: parseInt(e.target.value) })}
-                className="w-full accent-amber-400"
-              />
-              <p className="text-right font-semibold text-amber-400">{formatBudget(saleCalc.acquisitionCost)}</p>
+              <div className="flex items-center gap-3">
+                <span className="text-white/40">$</span>
+                <input
+                  type="number"
+                  min="0"
+                  max="50000000"
+                  step="100000"
+                  value={saleCalc.acquisitionCost}
+                  onChange={(e) => setSaleCalc({ ...saleCalc, acquisitionCost: parseInt(e.target.value) || 0 })}
+                  className="w-32 px-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold text-right"
+                />
+                <input
+                  type="range"
+                  min="0"
+                  max="20000000"
+                  step="500000"
+                  value={saleCalc.acquisitionCost}
+                  onChange={(e) => setSaleCalc({ ...saleCalc, acquisitionCost: parseInt(e.target.value) })}
+                  className="flex-1 accent-amber-400"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
@@ -372,20 +416,31 @@ export default function TransferCalculatorPage() {
             {saleCalc.playerDesignation === 'DP' && (
               <div>
                 <label className="text-sm text-white/60 block mb-2">DP Salary (for buydown eligibility)</label>
-                <input
-                  type="range"
-                  min="500000"
-                  max="5000000"
-                  step="100000"
-                  value={saleCalc.playerSalary}
-                  onChange={(e) => setSaleCalc({ ...saleCalc, playerSalary: parseInt(e.target.value) })}
-                  className="w-full accent-amber-400"
-                />
+                <div className="flex items-center gap-3">
+                  <span className="text-white/40">$</span>
+                  <input
+                    type="number"
+                    min="500000"
+                    max="10000000"
+                    step="50000"
+                    value={saleCalc.playerSalary}
+                    onChange={(e) => setSaleCalc({ ...saleCalc, playerSalary: parseInt(e.target.value) || 500000 })}
+                    className="w-32 px-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold text-right"
+                  />
+                  <input
+                    type="range"
+                    min="500000"
+                    max="5000000"
+                    step="100000"
+                    value={saleCalc.playerSalary}
+                    onChange={(e) => setSaleCalc({ ...saleCalc, playerSalary: parseInt(e.target.value) })}
+                    className="flex-1 accent-amber-400"
+                  />
+                </div>
                 <div className="flex justify-between text-xs mt-1">
                   <span className="text-white/40">TAM ceiling: {formatBudget(1_612_500)}</span>
                   <span className={`font-semibold ${saleCalc.playerSalary <= 1_612_500 ? 'text-[var(--verde)]' : 'text-red-400'}`}>
-                    {formatBudget(saleCalc.playerSalary)}
-                    {saleCalc.playerSalary <= 1_612_500 ? ' ✓ Buydown eligible' : ' ✗ Not buydown eligible'}
+                    {saleCalc.playerSalary <= 1_612_500 ? '✓ Buydown eligible' : '✗ Not buydown eligible'}
                   </span>
                 </div>
               </div>
