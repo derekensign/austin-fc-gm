@@ -26,7 +26,95 @@ const EUR_TO_USD = 1.10;
 
 // Infer source country from club name - MUST be defined before ALL_TRANSFERS
 export function inferCountryFromClub(club: string): string {
-  if (!club) return 'International';
+  if (!club || club.trim() === '') return 'Free Agent';
+  
+  const clubLower = club.toLowerCase();
+  
+  // Handle special domestic cases FIRST
+  if (clubLower.includes('without club') || clubLower.includes('retired') || 
+      clubLower.includes('free agent') || clubLower.includes('unattached')) {
+    return 'Free Agent';
+  }
+  
+  if (clubLower.includes('mls pool') || clubLower.includes('superdraft') ||
+      clubLower.includes('homegrown') || clubLower.includes('generation adidas')) {
+    return 'USA (Draft/Pool)';
+  }
+  
+  // MLS Next Pro teams (all USA-based development teams)
+  const mlsNextProTeams = [
+    'switchback', 'lv light', 'las vegas', 'san antonio fc', 'phoenix rising',
+    'orange county', 'loudoun united', 'north texas', 'revolution ii', 
+    'san diego loyal', 'tacoma defiance', 'huntsville city', 'carolina core',
+    'crown legacy', 'atlanta united 2', 'chicago fire ii', 'fc cincinnati 2',
+    'columbus crew 2', 'colorado rapids 2', 'fc dallas 2', 'houston dynamo 2',
+    'inter miami ii', 'lafc 2', 'la galaxy ii', 'minnesota united 2',
+    'nashville sc ii', 'new england revolution ii', 'new york city fc ii',
+    'new york red bulls ii', 'orlando city b', 'philadelphia union ii',
+    'portland timbers 2', 'real monarchs', 'real salt lake 2', 'san jose earthquakes ii',
+    'seattle sounders 2', 'sporting kc ii', 'st louis city 2', 'toronto fc ii',
+    'vancouver whitecaps 2', 'austin fc ii', 'nycfc ii', 'rbny ii'
+  ];
+  
+  for (const team of mlsNextProTeams) {
+    if (clubLower.includes(team)) {
+      return 'USA (MLS Next Pro)';
+    }
+  }
+  
+  // USL Championship teams
+  const uslTeams = [
+    'birmingham legion', 'legion fc', 'charleston battery', 'charle ton', 'colorado springs', 
+    'detroit city', 'el paso', 'el pa o', 'fc tulsa', 'tul a', 'hartford athletic', 'indy eleven',
+    'las vegas lights', 'louisville city', 'loui ville', 'memphis 901', 'memphi', 'miami fc',
+    'monterey bay', 'new mexico united', 'oakland roots', 'pittsburgh riverhounds',
+    'rio grande valley', 'rgv', 'sacramento republic', 'tampa bay rowdies', 'tb rowdie',
+    'tulsa roughnecks', 'tulsa fc', 'birmingham'
+  ];
+  
+  for (const team of uslTeams) {
+    if (clubLower.includes(team)) {
+      return 'USA (USL)';
+    }
+  }
+  
+  // Canadian Premier League
+  const cplTeams = [
+    'valour fc', 'valour', 'forge fc', 'forge', 'cavalry fc', 'cavalry',
+    'pacific fc', 'york united', 'atletico ottawa', 'atl. ottawa', 'atl ottawa',
+    'hfx wanderers', 'halifax', 'fc edmonton', 'edmonton'
+  ];
+  
+  for (const team of cplTeams) {
+    if (clubLower.includes(team)) {
+      return 'Canada (CPL)';
+    }
+  }
+  
+  // Check for MLS internal transfers (partial team names)
+  // These show up as just "New York", "Colorado", "Miami", etc.
+  const mlsPartialNames = [
+    'lafc', 'la galaxy', 'galaxy', 'inter miami', 'atlanta united', 'atl utd',
+    'seattle', 'portland', 'austin', 'nashville', 'cincinnati', 'columbus',
+    'new york city', 'nyc', 'nycfc', 'red bull', 'rbny', 'orlando', 'orlando city',
+    'philadelphia', 'union', 'new england', 'revolution', 'chicago', 'fire',
+    'minnesota', 'loon', 'houston', 'dynamo', 'dallas', 'fc dallas',
+    'colorado', 'rapid', 'salt lake', 'real salt', 'rsl', 'san jose', 'earthquake',
+    'sj earthquake', 'vancouver', 'whitecap', 'charlotte', 'st. louis', 'st louis',
+    'stl city', 'san diego fc', 'd.c.', 'dc united', 'sporting k', 'skc',
+    'toronto', 'tfc', 'montreal', 'montréal', 'cf montreal'
+  ];
+  
+  for (const team of mlsPartialNames) {
+    if (clubLower.includes(team)) {
+      return 'USA (MLS)';
+    }
+  }
+  
+  // Check for "draft" or specific MLS acquisition types
+  if (clubLower.includes('draft') || clubLower.includes('?')) {
+    return 'USA (MLS)';
+  }
   
   const clubToCountry: Record<string, string> = {
     // Major European leagues - England
@@ -207,8 +295,7 @@ export function inferCountryFromClub(club: string): string {
     'Miami': 'USA (MLS)',
   };
   
-  // Check for partial matches (case-insensitive)
-  const clubLower = club.toLowerCase();
+  // Check for partial matches (case-insensitive) using clubToCountry map
   for (const [key, country] of Object.entries(clubToCountry)) {
     if (clubLower.includes(key.toLowerCase())) {
       return country;
