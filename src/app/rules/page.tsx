@@ -133,7 +133,7 @@ export default function TransferCalculatorPage() {
               <label className="text-sm text-white/60 block mb-2">Annual Salary</label>
               <div className="flex items-center gap-3">
                 <div className="relative w-36">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50">$</span>
                   <input
                     type="number"
                     min="100000"
@@ -141,7 +141,7 @@ export default function TransferCalculatorPage() {
                     step="50000"
                     value={signingCalc.salary}
                     onChange={(e) => setSigningCalc({ ...signingCalc, salary: parseInt(e.target.value) || 0 })}
-                    className="w-full pl-7 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-[var(--verde)] font-semibold"
+                    className="w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-[var(--verde)] font-semibold"
                   />
                 </div>
                 <input
@@ -160,7 +160,7 @@ export default function TransferCalculatorPage() {
               <label className="text-sm text-white/60 block mb-2">Transfer Fee (if applicable)</label>
               <div className="flex items-center gap-3">
                 <div className="relative w-36">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50">$</span>
                   <input
                     type="number"
                     min="0"
@@ -168,7 +168,7 @@ export default function TransferCalculatorPage() {
                     step="100000"
                     value={signingCalc.transferFee}
                     onChange={(e) => setSigningCalc({ ...signingCalc, transferFee: parseInt(e.target.value) || 0 })}
-                    className="w-full pl-7 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold"
+                    className="w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold"
                   />
                 </div>
                 <input
@@ -343,7 +343,7 @@ export default function TransferCalculatorPage() {
               <label className="text-sm text-white/60 block mb-2">Sale/Transfer Fee</label>
               <div className="flex items-center gap-3">
                 <div className="relative w-36">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50">$</span>
                   <input
                     type="number"
                     min="0"
@@ -351,7 +351,7 @@ export default function TransferCalculatorPage() {
                     step="100000"
                     value={saleCalc.saleFee}
                     onChange={(e) => setSaleCalc({ ...saleCalc, saleFee: parseInt(e.target.value) || 0 })}
-                    className="w-full pl-7 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-purple-400 font-semibold"
+                    className="w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-purple-400 font-semibold"
                   />
                 </div>
                 <input
@@ -370,7 +370,7 @@ export default function TransferCalculatorPage() {
               <label className="text-sm text-white/60 block mb-2">Original Acquisition Cost</label>
               <div className="flex items-center gap-3">
                 <div className="relative w-36">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50">$</span>
                   <input
                     type="number"
                     min="0"
@@ -378,7 +378,7 @@ export default function TransferCalculatorPage() {
                     step="100000"
                     value={saleCalc.acquisitionCost}
                     onChange={(e) => setSaleCalc({ ...saleCalc, acquisitionCost: parseInt(e.target.value) || 0 })}
-                    className="w-full pl-7 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold"
+                    className="w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold"
                   />
                 </div>
                 <input
@@ -434,7 +434,7 @@ export default function TransferCalculatorPage() {
                       step="50000"
                       value={saleCalc.playerSalary}
                       onChange={(e) => setSaleCalc({ ...saleCalc, playerSalary: parseInt(e.target.value) || 500000 })}
-                      className="w-full pl-7 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold"
+                      className="w-full pl-8 pr-3 py-2 rounded-lg bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] text-amber-400 font-semibold"
                     />
                   </div>
                   <input
