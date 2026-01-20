@@ -221,7 +221,7 @@ const NOTABLE_HISTORICAL: TransferRecord[] = NOTABLE_HISTORICAL_RAW.map(h => ({
 }));
 
 // Combine comprehensive scraped data with notable historical transfers
-// ALL_TRANSFERS has transfers from Transfermarkt (2020-2025), converted to USD
+// ALL_TRANSFERS has transfers from Transfermarkt (2021-2026 MLS seasons), converted to USD
 const COMBINED_TRANSFERS: TransferRecord[] = [
   ...ALL_TRANSFERS,
   // Add any notable historical transfers not in scrape
@@ -236,8 +236,8 @@ const COMBINED_TRANSFERS: TransferRecord[] = [
 // All MLS teams from the scraped data (dynamically generated)
 const MLS_TEAMS = ['All Teams', ...getMLSTeams()];
 
-// Years available
-const YEARS = [2025, 2024, 2023, 2022, 2021, 2020];
+// Years available (MLS Season years - "24/25" Transfermarkt = 2025 MLS Season)
+const YEARS = [2026, 2025, 2024, 2023, 2022, 2021];
 
 // Colors for charts
 const COLORS = [
@@ -456,7 +456,7 @@ export default function TransferSourcesPage() {
             </div>
             <p className="text-3xl font-bold text-white">{summaryStats.totalTransfers}</p>
             <p className="text-xs text-white/50">
-              {selectedYear === 'all' ? '2020-2025' : selectedYear}
+              {selectedYear === 'all' ? '2021-2026' : selectedYear}
               {selectedTeam !== 'All Teams' && ` • ${fixDisplay(selectedTeam)}`}
             </p>
           </div>
@@ -496,7 +496,7 @@ export default function TransferSourcesPage() {
         {/* Yearly Trend Chart */}
         <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-6 mb-8">
           <h2 className="text-xl font-bold text-white mb-4">
-            Transfer Trend (2020-2025)
+            Transfer Trend (2021-2026)
             {selectedTeam !== 'All Teams' && <span className="text-[var(--verde)] ml-2">• {fixDisplay(selectedTeam)}</span>}
           </h2>
           <div className="h-[300px]">

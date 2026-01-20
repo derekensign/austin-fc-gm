@@ -19,13 +19,15 @@ interface TransferRecord {
 }
 
 // Snapshot files for each season
+// Year represents the MLS SEASON year (e.g., "24/25" = 2025 MLS Season)
+// Transfermarkt "24/25" = Winter window (Dec 2024-Feb 2025) + Summer 2025 = 2025 MLS Season
 const SNAPSHOTS = [
-  { file: 'snapshot-2026-01-20T02-18-14-311Z.log', season: '25/26', year: 2025 },
-  { file: 'snapshot-2026-01-19T18-55-42-879Z.log', season: '24/25', year: 2024 },
-  { file: 'snapshot-2026-01-19T19-56-29-873Z.log', season: '23/24', year: 2023 },
-  { file: 'snapshot-2026-01-19T19-56-50-831Z.log', season: '22/23', year: 2022 },
-  { file: 'snapshot-2026-01-19T19-57-05-205Z.log', season: '21/22', year: 2021 },
-  { file: 'snapshot-2026-01-19T19-57-16-844Z.log', season: '20/21', year: 2020 },
+  { file: 'snapshot-2026-01-20T02-18-14-311Z.log', season: '25/26', year: 2026 },
+  { file: 'snapshot-2026-01-19T18-55-42-879Z.log', season: '24/25', year: 2025 },
+  { file: 'snapshot-2026-01-19T19-56-29-873Z.log', season: '23/24', year: 2024 },
+  { file: 'snapshot-2026-01-19T19-56-50-831Z.log', season: '22/23', year: 2023 },
+  { file: 'snapshot-2026-01-19T19-57-05-205Z.log', season: '21/22', year: 2022 },
+  { file: 'snapshot-2026-01-19T19-57-16-844Z.log', season: '20/21', year: 2021 },
 ];
 
 const BROWSER_LOGS_DIR = '/Users/derekensing/.cursor/browser-logs';

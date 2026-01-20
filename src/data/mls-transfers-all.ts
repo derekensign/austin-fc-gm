@@ -171,6 +171,6 @@ export function getTransferStats() {
     freeTransfers,
     avgFee,
     countryStats,
-    years: [2025, 2024, 2023, 2022, 2021, 2020],
+    years: [2026, 2025, 2024, 2023, 2022, 2021],
   };
 }
