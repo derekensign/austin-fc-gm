@@ -264,6 +264,7 @@ function PlayerRow({
                       </span>
                     </div>
                     <input
+                      id={`gam-slider-${player.id}`}
                       type="range"
                       min={0}
                       max={Math.min(
@@ -288,6 +289,7 @@ function PlayerRow({
                         </span>
                       </div>
                       <input
+                        id={`tam-slider-${player.id}`}
                         type="range"
                         min={0}
                         max={Math.min(

@@ -150,7 +150,7 @@ export function SalaryCapCard() {
             <div className="space-y-1 text-[11px]">
               <div className="flex items-center justify-between">
                 <span className="text-white/50">Annual Allocation</span>
-                <span className="text-green-400">+{formatSalary(dynamicAlloc.tam.total)}</span>
+                <span className="text-green-400">+{formatSalary(allocPosition.tam.annualAllocation)}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-white/50">Buydowns Applied</span>
@@ -172,10 +172,38 @@ export function SalaryCapCard() {
               <span className="text-[10px] text-green-400/50">tradeable</span>
             </div>
             <div className="space-y-1 text-[11px]">
+              {/* Annual Allocation */}
               <div className="flex items-center justify-between">
-                <span className="text-white/50">Available (after trades)</span>
-                <span className="text-green-400">+{formatSalary(dynamicAlloc.gam.total)}</span>
+                <span className="text-white/50">Annual Allocation</span>
+                <span className="text-green-400">+{formatSalary(allocPosition.gam.annualAllocation)}</span>
               </div>
+              {/* Third DP Distribution */}
+              {allocPosition.gam.thirdDPDistribution > 0 && (
+                <div className="flex items-center justify-between">
+                  <span className="text-white/50">3rd DP Distribution</span>
+                  <span className="text-green-400">+{formatSalary(allocPosition.gam.thirdDPDistribution)}</span>
+                </div>
+              )}
+              {/* Rolled Over from 2025 (includes Taylor trade deficit) */}
+              {allocPosition.gam.taylorTrade2026 !== 0 && (
+                <div className="flex items-center justify-between">
+                  <span className="text-white/50">Rolled Over (2025)</span>
+                  <span className="text-red-400">{formatSalary(allocPosition.gam.taylorTrade2026)}</span>
+                </div>
+              )}
+              {/* Nelson Trade (2026 commitment) */}
+              {allocPosition.gam.rolledOverDeficit !== 0 && (
+                <div className="flex items-center justify-between">
+                  <span className="text-white/50">Nelson Trade</span>
+                  <span className="text-red-400">{formatSalary(allocPosition.gam.rolledOverDeficit)}</span>
+                </div>
+              )}
+              {/* Subtotal - Available before buydowns */}
+              <div className="flex items-center justify-between pt-1 border-t border-white/5">
+                <span className="text-white/60">Available (pre-buydown)</span>
+                <span className="text-white/80">{formatSalary(dynamicAlloc.gam.total)}</span>
+              </div>
+              {/* Buydowns Applied */}
               <div className="flex items-center justify-between">
                 <span className="text-white/50">Buydowns Applied</span>
                 <span className="text-red-400">-{formatSalary(dynamicAlloc.gam.used)}</span>
