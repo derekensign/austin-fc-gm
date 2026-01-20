@@ -252,35 +252,33 @@ function PlayerRow({
                 </div>
               )}
               
-              {/* Allocation Controls - Manual Mode Only */}
-              {allocationMode === 'manual' && buydownNeeded > 0 && (
+              {/* Allocation Controls - Manual Mode: Show for ALL non-supplemental players */}
+              {allocationMode === 'manual' && player.rosterSlot !== 'Supplemental' && (
                 <div className="space-y-2 mt-2 pt-2 border-t border-white/5">
                   {/* GAM Slider - available to all non-supplemental */}
-                  {player.rosterSlot !== 'Supplemental' && (
-                    <div className="space-y-1">
-                      <div className="flex items-center justify-between text-[9px]">
-                        <span className="text-purple-400 font-medium">GAM</span>
-                        <span className="text-purple-400 font-mono">
-                          {formatSalary(gamApplied)}
-                        </span>
-                      </div>
-                      <input
-                        type="range"
-                        min={0}
-                        max={Math.min(
-                          trueCharge, // Can't buy down more than total charge
-                          gamRemaining + gamApplied // Available + what's already applied
-                        )}
-                        step={10000}
-                        value={gamApplied}
-                        onChange={(e) => onAllocationChange?.(player.id, 'gam', Number(e.target.value))}
-                        disabled={tamApplied > 0} // Can't mix
-                        className="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-purple-900/50 accent-purple-500 disabled:opacity-30 disabled:cursor-not-allowed"
-                      />
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-[9px]">
+                      <span className="text-purple-400 font-medium">GAM</span>
+                      <span className="text-purple-400 font-mono">
+                        {formatSalary(gamApplied)}
+                      </span>
                     </div>
-                  )}
+                    <input
+                      type="range"
+                      min={0}
+                      max={Math.min(
+                        trueCharge, // Can't buy down more than total charge
+                        gamRemaining + gamApplied // Available + what's already applied
+                      )}
+                      step={10000}
+                      value={gamApplied}
+                      onChange={(e) => onAllocationChange?.(player.id, 'gam', Number(e.target.value))}
+                      disabled={tamApplied > 0} // Can't mix TAM and GAM
+                      className="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-purple-900/50 accent-purple-500 disabled:opacity-30 disabled:cursor-not-allowed"
+                    />
+                  </div>
                   
-                  {/* TAM Slider - only for eligible players */}
+                  {/* TAM Slider - only for TAM-eligible players ($803K-$1.8M) */}
                   {tamEligible && (
                     <div className="space-y-1">
                       <div className="flex items-center justify-between text-[9px]">
@@ -300,7 +298,7 @@ function PlayerRow({
                         step={10000}
                         value={tamApplied}
                         onChange={(e) => onAllocationChange?.(player.id, 'tam', Number(e.target.value))}
-                        disabled={gamApplied > 0} // Can't mix
+                        disabled={gamApplied > 0} // Can't mix TAM and GAM
                         className="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-blue-900/50 accent-blue-500 disabled:opacity-30 disabled:cursor-not-allowed"
                       />
                     </div>
