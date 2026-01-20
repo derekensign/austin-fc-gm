@@ -107,12 +107,12 @@ function isTAMEligible(player: AustinFCPlayer): boolean {
     const amortizedFee = player.amortizedAnnualFee || 0;
     const totalToPayDown = salary + amortizedFee;
     // Max TAM per player is $1M, so if total > $1.803M, can't fully buy down
-    return totalToPayDown <= allocationMoney.TAM.maxCompensationCeiling;
+    return totalToPayDown <= allocationMoney.TAM.maxBudgetChargeCeiling;
   }
   
   // For non-DP/U22/Supplemental: TAM eligible if charge is in range
-  return trueCharge > allocationMoney.TAM.minSalaryToQualify && 
-         trueCharge <= allocationMoney.TAM.maxCompensationCeiling;
+  return trueCharge > allocationMoney.TAM.minBudgetChargeToQualify && 
+         trueCharge <= allocationMoney.TAM.maxBudgetChargeCeiling;
 }
 
 // Check if player needs buydown to get under max budget charge
