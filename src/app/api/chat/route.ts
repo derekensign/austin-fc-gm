@@ -3,6 +3,7 @@ import { streamText } from 'ai';
 import { getRulesContext, rosterConstructionModels, designatedPlayerRules, u22InitiativeRules, allocationMoney, internationalSlots, freeAgencyRules, homegrownRules, tradeRules } from '@/data/mls-rules-2025';
 import { austinFCRoster, MLS_2026_RULES, AUSTIN_FC_2026_TRANSACTIONS } from '@/data/austin-fc-roster';
 import { getMergedRosters, generateMergedRosterSummaryForAI, getMLSPASalariesCount } from '@/lib/data-sources/mls-merged-rosters';
+import { ALL_TRANSFERS, getTransferStats, getMLSTeams } from '@/data/mls-transfers-all';
 
 export const maxDuration = 60;
 
@@ -78,8 +79,10 @@ const systemPrompt = `You are the Austin FC GM Lab Assistant - an expert on Aust
 ⚠️ CRITICAL INSTRUCTIONS:
 - You have ACTUAL Austin FC roster data below. Use ONLY this data when discussing Austin FC players, salaries, and cap situation.
 - You also have MLS-wide salary data from MLSPA (944 players across all 30 teams) - use this for comparing salaries and trade discussions.
+- You have TRANSFER MARKET DATA from Transfermarkt (2020-2025) - use this for discussing transfer fees, source markets, and signing benchmarks.
 - DO NOT make up or guess player salaries that aren't in the data.
 - For trade suggestions, reference actual players and their real salaries from the MLS data below.
+- For transfer fee benchmarks, reference the Transfermarkt data to understand market values.
 
 PERSONALITY:
 - Enthusiastic about Austin FC (use 🌳⚽ occasionally)
@@ -123,9 +126,85 @@ INSTRUCTIONS FOR ANSWERING QUESTIONS
 3. For signing feasibility: Calculate exact budget impact using Austin FC's actual cap space.
 4. For trade ideas: Reference the MLS-wide salary data below - you have real salaries for ~944 players across all 30 teams!
 5. When comparing players or suggesting trades, cite actual salary figures from the data.
-6. If a player isn't in our data (very recent signing), note that their salary isn't in the October 2025 MLSPA release.
+6. For TRANSFER FEE questions: Use the Transfermarkt data to discuss market values, source leagues, and comparable signings.
+7. When discussing potential signings from abroad, reference similar transfers from the database for fee benchmarks.
+8. For market analysis: The transfer data shows where MLS clubs are buying from (England, Argentina, Brazil are top sources).
+9. If a player isn't in our data (very recent signing), note that their salary isn't in the October 2025 MLSPA release.
 
 REMEMBER: You are a GM assistant with REAL Austin FC data and MLS-wide salary data. Be accurate, not creative with numbers.`;
+
+// Generate MLS transfer market context
+function generateTransferContext(): string {
+  const stats = getTransferStats();
+  const teams = getMLSTeams();
+  
+  // Get top source countries
+  const countryData = new Map<string, { count: number; spend: number; topSignings: string[] }>();
+  ALL_TRANSFERS.forEach(t => {
+    const country = t.sourceCountry || 'Unknown';
+    const existing = countryData.get(country) || { count: 0, spend: 0, topSignings: [] };
+    existing.count++;
+    existing.spend += t.fee;
+    if (t.fee > 5000000 && existing.topSignings.length < 3) {
+      existing.topSignings.push(`${t.playerName} ($${(t.fee / 1000000).toFixed(1)}M from ${t.sourceClub})`);
+    }
+    countryData.set(country, existing);
+  });
+  
+  const topCountries = Array.from(countryData.entries())
+    .sort((a, b) => b[1].count - a[1].count)
+    .slice(0, 15)
+    .map(([country, data]) => 
+      `- ${country}: ${data.count} transfers, $${(data.spend / 1000000).toFixed(1)}M total spend` +
+      (data.topSignings.length > 0 ? ` (Notable: ${data.topSignings.slice(0, 2).join(', ')})` : '')
+    )
+    .join('\n');
+  
+  // Get Austin FC transfers
+  const austinTransfers = ALL_TRANSFERS
+    .filter(t => t.mlsTeam?.toLowerCase().includes('austin'))
+    .sort((a, b) => b.fee - a.fee)
+    .slice(0, 10)
+    .map(t => `- ${t.playerName}: $${(t.fee / 1000000).toFixed(1)}M from ${t.sourceClub} (${t.sourceCountry}, ${t.year})`)
+    .join('\n');
+  
+  // Get recent 2025 big signings
+  const recent2025 = ALL_TRANSFERS
+    .filter(t => t.year === 2025 && t.fee > 3000000)
+    .sort((a, b) => b.fee - a.fee)
+    .slice(0, 10)
+    .map(t => `- ${t.playerName} to ${t.mlsTeam}: $${(t.fee / 1000000).toFixed(1)}M from ${t.sourceClub} (${t.sourceCountry})`)
+    .join('\n');
+  
+  return `
+==============================================================================
+MLS TRANSFER MARKET DATA (SOURCE: Transfermarkt 2020-2025)
+Total Transfers in Database: ${stats.totalTransfers}
+Data Source: transfermarkt.us (incoming international transfers only)
+==============================================================================
+
+LEAGUE-WIDE SUMMARY (2020-2025):
+- Total Transfers: ${stats.totalTransfers}
+- Total Spend: $${(stats.totalSpend / 1000000).toFixed(1)}M
+- Paid Transfers: ${stats.paidTransfers} ($${(stats.avgFee / 1000000).toFixed(2)}M avg)
+- Free Transfers: ${stats.freeTransfers} (${((stats.freeTransfers / stats.totalTransfers) * 100).toFixed(0)}%)
+
+TOP SOURCE COUNTRIES/LEAGUES:
+${topCountries}
+
+AUSTIN FC TOP SIGNINGS (2021-2025):
+${austinTransfers}
+
+NOTABLE 2025 WINTER WINDOW SIGNINGS:
+${recent2025 || '- Window still in progress, data being updated'}
+
+⚠️ NOTES ON TRANSFER DATA:
+- All fees converted to USD at €1 = $1.10
+- Only includes incoming international transfers (excludes internal MLS moves)
+- Player nationality may differ from source league (e.g., American playing in Europe)
+- Use for market analysis, comparable signings, and transfer fee benchmarks
+`;
+}
 
 // Generate MLS-wide context (called per request to ensure fresh data)
 async function generateMLSContext(): Promise<string> {
@@ -163,7 +242,10 @@ export async function POST(req: Request) {
   // Fetch MLS-wide context (async)
   const mlsContext = await generateMLSContext();
   
-  const fullSystemPrompt = systemPrompt + mlsContext;
+  // Generate transfer market context
+  const transferContext = generateTransferContext();
+  
+  const fullSystemPrompt = systemPrompt + mlsContext + transferContext;
 
   const result = streamText({
     model: anthropic('claude-sonnet-4-5'),
