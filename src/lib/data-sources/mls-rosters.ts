@@ -131,7 +131,7 @@ function parsePlayerCategories(text: string) {
  * Scrape a single team's roster from mlssoccer.com
  */
 async function scrapeTeamRoster(
-  page: Awaited<ReturnType<typeof puppeteer.launch>>['newPage'] extends () => Promise<infer P> ? P : never,
+  page: Awaited<ReturnType<NonNullable<typeof puppeteer>['launch']>>['newPage'] extends () => Promise<infer P> ? P : never,
   teamSlug: string,
   teamName: string,
   teamAbbrev: string

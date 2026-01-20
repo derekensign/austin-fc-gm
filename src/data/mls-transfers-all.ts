@@ -144,6 +144,11 @@ export function getTransferStats() {
   const totalSpend = arrivals.reduce((sum, t) => sum + t.fee, 0);
   const totalIncome = departures.reduce((sum, t) => sum + t.fee, 0);
   
+  // Paid vs free transfers
+  const paidTransfers = arrivals.filter(t => t.fee > 0).length;
+  const freeTransfers = arrivals.filter(t => t.fee === 0).length;
+  const avgFee = paidTransfers > 0 ? totalSpend / paidTransfers : 0;
+  
   // Country breakdown (for arrivals - where players come from)
   const countryStats: Record<string, { count: number; spend: number }> = {};
   arrivals.forEach(t => {
@@ -162,7 +167,10 @@ export function getTransferStats() {
     totalSpend,
     totalIncome,
     netSpend: totalSpend - totalIncome,
+    paidTransfers,
+    freeTransfers,
+    avgFee,
     countryStats,
-    years: [2024, 2023, 2022, 2021, 2020],
+    years: [2025, 2024, 2023, 2022, 2021, 2020],
   };
 }

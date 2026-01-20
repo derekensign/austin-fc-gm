@@ -111,7 +111,8 @@ function fixDisplay(str: string): string {
 // This includes 4,107 transfers across 5 seasons, converted to USD
 
 // Historical notable transfers that may have been missed in scraping
-const NOTABLE_HISTORICAL: TransferRecord[] = [
+// We use Partial<TransferRecord> and fill in defaults
+const NOTABLE_HISTORICAL_RAW = [
   // ============ 2023 Season ============
   // Inter Miami
   { playerName: 'Lionel Messi', age: 36, position: 'RW', sourceCountry: 'France', sourceClub: 'PSG', mlsTeam: 'Inter Miami', fee: 0, transferType: 'free', year: 2023 },
@@ -208,8 +209,19 @@ const NOTABLE_HISTORICAL: TransferRecord[] = [
   { playerName: 'Yimmi Chará', age: 29, position: 'RW', sourceCountry: 'Brazil', sourceClub: 'Atlético Mineiro', mlsTeam: 'Portland Timbers', fee: 2800000, transferType: 'permanent', year: 2020 },
 ];
 
+// Map historical records to include all required TransferRecord fields
+const NOTABLE_HISTORICAL: TransferRecord[] = NOTABLE_HISTORICAL_RAW.map(h => ({
+  ...h,
+  transferType: h.transferType as 'permanent' | 'loan' | 'free',
+  marketValue: h.fee || 0,
+  destinationClub: h.mlsTeam,
+  feeDisplay: h.fee > 0 ? `$${(h.fee / 1000000).toFixed(1)}M` : 'Free',
+  direction: 'arrival' as const,
+  season: `${h.year % 100}/${(h.year + 1) % 100}`,
+}));
+
 // Combine comprehensive scraped data with notable historical transfers
-// ALL_TRANSFERS has 4,107 transfers from Transfermarkt (2020-2024), converted to USD
+// ALL_TRANSFERS has transfers from Transfermarkt (2020-2025), converted to USD
 const COMBINED_TRANSFERS: TransferRecord[] = [
   ...ALL_TRANSFERS,
   // Add any notable historical transfers not in scrape
@@ -530,9 +542,10 @@ export default function TransferSourcesPage() {
                   }}
                   labelStyle={{ color: 'white', fontWeight: 'bold', marginBottom: '8px' }}
                   itemStyle={{ color: 'white', padding: '2px 0' }}
-                  formatter={(value: number, name: string) => {
+                  formatter={(value, name) => {
+                    if (value === undefined) return ['', ''];
                     if (name === 'Spend ($M)') {
-                      return [`$${value.toFixed(1)}M`, '💰 Total Spend'];
+                      return [`$${Number(value).toFixed(1)}M`, '💰 Total Spend'];
                     }
                     return [`${value} players`, '📊 Transfers'];
                   }}
@@ -635,9 +648,10 @@ export default function TransferSourcesPage() {
                   }}
                   labelStyle={{ color: 'white', fontWeight: 'bold', marginBottom: '8px' }}
                   cursor={{ fill: 'rgba(0, 177, 64, 0.1)' }}
-                  formatter={(value: number, name: string) => {
+                  formatter={(value, name) => {
+                    if (value === undefined) return ['', ''];
                     if (name === 'spend') {
-                      return [`$${value.toFixed(1)}M`, '💰 Total Spend'];
+                      return [`$${Number(value).toFixed(1)}M`, '💰 Total Spend'];
                     }
                     return [`${value} players`, '📊 Transfers'];
                   }}

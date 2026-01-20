@@ -300,8 +300,8 @@ export function getSourceLeagueSummaries(): SourceLeagueSummary[] {
       countryCode: leagueInfo.code,
       players: 0,
       spend: 0,
-      byYear: new Map(),
-      notableSignings: [],
+      byYear: new Map<number, { players: number; spend: number }>(),
+      notableSignings: [] as { player: string; fee: number; year: number }[],
     };
     
     existing.players++;

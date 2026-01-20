@@ -246,7 +246,7 @@ export async function scrapeMLSPASalaryGuide(forceRefresh = false): Promise<MLSP
 /**
  * Auto-scroll the page to trigger lazy loading
  */
-async function autoScroll(page: Awaited<ReturnType<typeof puppeteer.launch>>['newPage'] extends () => Promise<infer P> ? P : never) {
+async function autoScroll(page: Awaited<ReturnType<NonNullable<typeof puppeteer>['launch']>>['newPage'] extends () => Promise<infer P> ? P : never) {
   await page.evaluate(async () => {
     await new Promise<void>((resolve) => {
       let totalHeight = 0;
