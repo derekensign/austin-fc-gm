@@ -35,6 +35,73 @@ const COUNTRIES = new Set([
 
 const BROWSER_LOGS_DIR = '/Users/derekensing/.cursor/browser-logs';
 
+// Fix encoding issues - the scraping replaced some characters with spaces
+// We need to be careful to ONLY fix known patterns, not all spaces
+function fixEncoding(str: string): string {
+  if (!str) return str;
+  
+  // MLS team name corrections (full names)
+  const mlsTeamFixes: Record<string, string> = {
+    'Atlanta United FC': 'Atlanta United FC',
+    'Au tin FC': 'Austin FC',
+    'CF Montréal': 'CF Montréal',
+    'Charlotte FC': 'Charlotte FC',
+    'Chicago Fire FC': 'Chicago Fire FC',
+    'Colorado Rapid ': 'Colorado Rapids',
+    'Columbu  Crew': 'Columbus Crew',
+    'D.C. United': 'D.C. United',
+    'FC Cincinnati': 'FC Cincinnati',
+    'FC Dalla ': 'FC Dallas',
+    'Hou ton Dynamo FC': 'Houston Dynamo FC',
+    'Inter Miami CF': 'Inter Miami CF',
+    'Lo  Angele  FC': 'Los Angeles FC',
+    'Lo  Angele  Galaxy': 'Los Angeles Galaxy',
+    'Minne ota United FC': 'Minnesota United FC',
+    'Na hville SC': 'Nashville SC',
+    'New England Revolution': 'New England Revolution',
+    'New York City FC': 'New York City FC',
+    'New York Red Bull ': 'New York Red Bulls',
+    'Orlando City SC': 'Orlando City SC',
+    'Philadelphia Union': 'Philadelphia Union',
+    'Portland Timber ': 'Portland Timbers',
+    'Real Salt Lake': 'Real Salt Lake',
+    'San Diego FC': 'San Diego FC',
+    'Seattle Sounder  FC': 'Seattle Sounders FC',
+    'Sporting Kan a  City': 'Sporting Kansas City',
+    'St. Loui  CITY SC': 'St. Louis CITY SC',
+    'Toronto FC': 'Toronto FC',
+    'Vancouver Whitecap  FC': 'Vancouver Whitecaps FC',
+  };
+  
+  // Check for exact MLS team matches first
+  for (const [bad, good] of Object.entries(mlsTeamFixes)) {
+    if (str === bad || str.includes(bad)) {
+      str = str.replace(bad, good);
+    }
+  }
+  
+  // Common club name pattern fixes (space where 's' should be)
+  return str
+    .replace(/A ton Villa/g, 'Aston Villa')
+    .replace(/Middle brough/g, 'Middlesbrough')
+    .replace(/Aug burg/g, 'Augsburg')
+    .replace(/Chel ea/g, 'Chelsea')
+    .replace(/New ca tle/g, 'Newcastle')
+    .replace(/Manche ter/g, 'Manchester')
+    .replace(/Leice ter/g, 'Leicester')
+    .replace(/Totten ham/g, 'Tottenham')
+    .replace(/South ampton/g, 'Southampton')
+    .replace(/We t Ham/g, 'West Ham')
+    .replace(/Cry tal Palace/g, 'Crystal Palace')
+    .replace(/Boru  ia/g, 'Borussia')
+    .replace(/Ca tellon/g, 'Castellon')
+    .replace(/Ca tellano /g, 'Castellanos')
+    .replace(/Taty Ca tellano/g, 'Taty Castellanos')
+    // Clean up - do NOT replace all spaces with 's'
+    .replace(/ {2,}/g, ' ')
+    .trim();
+}
+
 // Read existing transfers and enrich with countries
 async function main() {
   // Load the existing parsed data
@@ -131,6 +198,7 @@ async function main() {
       }
     }
     
+    // Just add the country - don't modify other fields
     if (sourceCountry) {
       enriched++;
       return { ...t, sourceCountry };

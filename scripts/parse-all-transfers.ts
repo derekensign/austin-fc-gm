@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import * as path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 interface TransferRecord {
   playerName: string;
@@ -170,25 +170,13 @@ function parseSnapshot(filePath: string, season: string, year: number): Transfer
   const transfers: TransferRecord[] = [];
   let currentTeam = '';
   let currentDirection: 'arrival' | 'departure' = 'arrival';
-  let inArrivals = false;
-  let inDepartures = false;
+  let tableCountForTeam = 0;  // Track which table we're in for current team
   
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     
-    // Detect section headers for Arrivals vs Departures
-    if (line.includes('Arrivals') && !line.includes('role:')) {
-      currentDirection = 'arrival';
-      inArrivals = true;
-      inDepartures = false;
-    }
-    if (line.includes('Departures') && !line.includes('role:')) {
-      currentDirection = 'departure';
-      inDepartures = true;
-      inArrivals = false;
-    }
-    
     // Look for headings that contain team names
+    // Each team header resets the table counter
     if (line.includes('role: heading')) {
       // Check next few lines for team name
       for (let j = i + 1; j < Math.min(i + 5, lines.length); j++) {
@@ -200,6 +188,8 @@ function parseSnapshot(filePath: string, season: string, year: number): Transfer
             // Check if it looks like an MLS team
             if (possibleTeam.match(/(?:FC|CF|SC|United|City|Sounders|Timbers|Galaxy|Revolution|Dynamo|Whitecaps|Rapids|Fire|Crew|Union|Real Salt Lake|Inter Miami|Austin|Nashville|Charlotte|Cincinnati|Montréal|Toronto|Seattle|Portland|Houston|Dallas|San Jose|San Diego|Minnesota|Los Angeles|New York|New England|Philadelphia|Atlanta|Orlando|Columbus|D\.?C\.?|Colorado|Sporting|Vancouver)/i)) {
               currentTeam = possibleTeam;
+              tableCountForTeam = 0;  // Reset table counter for new team
+              currentDirection = 'arrival';  // First table will be arrivals
             }
           }
           break;
@@ -207,20 +197,81 @@ function parseSnapshot(filePath: string, season: string, year: number): Transfer
       }
     }
     
-    // Look for row data
-    if (line.includes('role: row')) {
-      // Get the name attribute from next lines
-      for (let j = i + 1; j < Math.min(i + 3, lines.length); j++) {
-        const nameLine = lines[j];
-        if (nameLine.includes('name:') && nameLine.includes('€')) {
-          const match = nameLine.match(/name:\s*(.+?)(?:\s*$)/);
-          if (match && currentTeam) {
-            const transfer = parsePlayerRow(match[1], currentTeam, currentDirection, season, year);
-            if (transfer) {
-              transfers.push(transfer);
+    // Track when we enter a new table
+    // Each team section has 2 tables: 1st = Arrivals (In), 2nd = Departures (Out)
+    if (line.includes('role: table')) {
+      tableCountForTeam++;
+      if (tableCountForTeam === 1) {
+        currentDirection = 'arrival';  // First table = arrivals
+      } else if (tableCountForTeam === 2) {
+        currentDirection = 'departure';  // Second table = departures
+      }
+    }
+    
+    // Look for row data - ONLY process arrivals (first table)
+    if (line.includes('role: row') && currentDirection === 'arrival') {
+      // Get the name attribute and look for country flag
+      let rowName = '';
+      let sourceCountry = '';
+      
+      // Look through next ~50 lines for row content and country flag
+      for (let j = i + 1; j < Math.min(i + 50, lines.length); j++) {
+        const checkLine = lines[j];
+        
+        // Stop if we hit another row
+        if (checkLine.includes('role: row')) break;
+        
+        // Get main row name (contains player + fee data)
+        if (!rowName && checkLine.includes('name:') && checkLine.includes('€')) {
+          const match = checkLine.match(/name:\s*(.+?)(?:\s*$)/);
+          if (match) {
+            rowName = match[1];
+          }
+        }
+        
+        // Look for country flag image - appears as role: img with country name
+        // The country flag comes AFTER the club link, so we want the LAST flag we see
+        if (checkLine.includes('role: img')) {
+          // Check next line for country name
+          if (j + 1 < lines.length) {
+            const imgNameLine = lines[j + 1];
+            const imgMatch = imgNameLine.match(/name:\s*(.+?)(?:\s*$)/);
+            if (imgMatch) {
+              const possibleCountry = imgMatch[1].trim();
+              // List of valid countries (not team logos)
+              const validCountries = [
+                'Spain', 'England', 'Germany', 'France', 'Italy', 'Brazil', 'Argentina', 
+                'Mexico', 'Portugal', 'Belgium', 'Netherlands', 'Serbia', 'Ukraine', 
+                'Denmark', 'Sweden', 'Norway', 'Croatia', 'Greece', 'Poland', 'Albania',
+                'Czech Republic', 'Scotland', 'Turkey', 'Austria', 'Switzerland', 
+                'Colombia', 'Uruguay', 'Chile', 'Paraguay', 'Ecuador', 'Peru', 'Venezuela',
+                'Slovenia', 'Finland', 'Hungary', 'Israel', 'Bulgaria', 'South Korea', 
+                'Japan', 'Australia', 'New Zealand', 'Cyprus', 'Saudi Arabia', 'Canada',
+                'United States', 'USA', 'Russia', 'Ghana', 'Nigeria', 'Cameroon', 'Senegal',
+                'Ivory Coast', 'South Africa', 'Morocco', 'Egypt', 'Tunisia', 'Algeria',
+                'Jamaica', 'Honduras', 'Costa Rica', 'Panama', 'El Salvador', 'Guatemala',
+                'Romania', 'Slovakia', 'Ireland', 'Wales', 'Northern Ireland', 'Iceland',
+                'Bosnia-Herzegovina', 'Montenegro', 'North Macedonia', 'Kosovo', 'Georgia',
+                'Armenia', 'Azerbaijan', 'Belarus', 'Moldova', 'Lithuania', 'Latvia', 'Estonia',
+                'China', 'India', 'Thailand', 'Vietnam', 'Indonesia', 'Malaysia', 'Singapore',
+                'UAE', 'Qatar', 'Bahrain', 'Kuwait', 'Oman', 'Iran'
+              ];
+              if (validCountries.includes(possibleCountry)) {
+                sourceCountry = possibleCountry;
+              }
             }
           }
-          break;
+        }
+      }
+      
+      if (rowName && currentTeam) {
+        const transfer = parsePlayerRow(rowName, currentTeam, 'arrival', season, year);
+        if (transfer) {
+          // Use extracted country if we found one, otherwise keep what parsePlayerRow found
+          if (sourceCountry) {
+            transfer.sourceCountry = sourceCountry;
+          }
+          transfers.push(transfer);
         }
       }
     }

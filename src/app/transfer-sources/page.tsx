@@ -24,7 +24,88 @@ import {
   Calendar,
   Building2,
 } from 'lucide-react';
-import { ALL_TRANSFERS, type TransferRecord, inferCountryFromClub, getMLSTeams } from '@/data/mls-transfers-all';
+import { ALL_TRANSFERS, type TransferRecord, getMLSTeams } from '@/data/mls-transfers-all';
+
+// Fix display encoding issues (missing 's' characters from original scraping)
+// The scraper sometimes loses 's' characters, replacing them with spaces
+function fixDisplay(str: string): string {
+  if (!str) return str;
+  
+  // First, handle specific known patterns that regex won't catch well
+  let result = str
+    // Specific player names
+    .replace(/Cri tian/gi, 'Cristian')
+    .replace(/Ro  i\b/gi, 'Rossi')
+    .replace(/Ro i\b/gi, 'Rossi')
+    .replace(/Aco ta/gi, 'Acosta')
+    .replace(/Co ta\b/gi, 'Costa')
+    .replace(/Da Co ta/gi, 'Da Costa')
+    .replace(/Ca tellano /gi, 'Castellanos')
+    .replace(/Bu quet /gi, 'Busquets')
+    .replace(/Me  i\b/gi, 'Messi')
+    .replace(/Pa alić/gi, 'Pašalić')
+    .replace(/Pa alic/gi, 'Pasalic')
+    .replace(/Latte Lath/gi, 'Latte Lath')
+    .replace(/Driu  i/gi, 'Driussi')
+    .replace(/Driu i/gi, 'Driussi')
+    .replace(/Väi änen/gi, 'Väisänen')
+    .replace(/Salqui t/gi, 'Salquist')
+    .replace(/Duber ar ky/gi, 'Dubersarsky')
+    .replace(/Mar hall/gi, 'Marshall')
+    .replace(/William on/gi, 'Williamson')
+    .replace(/La iter/gi, 'Lasiter')
+    .replace(/Roger /gi, 'Rogers')
+    .replace(/do  Santo /gi, 'dos Santos')
+    .replace(/Ke  ler/gi, 'Kessler')
+    // MLS team names
+    .replace(/Au tin FC/gi, 'Austin FC')
+    .replace(/Au tin\b/gi, 'Austin')
+    .replace(/Lo  Angele /gi, 'Los Angeles')
+    .replace(/Minne ota/gi, 'Minnesota')
+    .replace(/Na hville/gi, 'Nashville')
+    .replace(/Kan a  City/gi, 'Kansas City')
+    .replace(/Kan a /gi, 'Kansas')
+    .replace(/Sounder /gi, 'Sounders')
+    .replace(/Whitecap /gi, 'Whitecaps')
+    .replace(/Rapid /gi, 'Rapids')
+    .replace(/Timber /gi, 'Timbers')
+    .replace(/Hou ton/gi, 'Houston')
+    .replace(/Columbu /gi, 'Columbus')
+    .replace(/St\. Loui /gi, 'St. Louis')
+    .replace(/FC Dalla\b/gi, 'FC Dallas')
+    .replace(/Red Bull /gi, 'Red Bulls')
+    // English clubs
+    .replace(/A ton Villa/gi, 'Aston Villa')
+    .replace(/Middle brough/gi, 'Middlesbrough')
+    .replace(/Newca tle/gi, 'Newcastle')
+    .replace(/Chel ea/gi, 'Chelsea')
+    .replace(/Leice ter/gi, 'Leicester')
+    .replace(/Manche ter/gi, 'Manchester')
+    .replace(/South ampton/gi, 'Southampton')
+    .replace(/We t Ham/gi, 'West Ham')
+    .replace(/Queen  Park/gi, 'Queens Park')
+    .replace(/Bri tol/gi, 'Bristol')
+    .replace(/Charle ton/gi, 'Charleston')
+    // German clubs
+    .replace(/Aug burg/gi, 'Augsburg')
+    .replace(/Boru  ia/gi, 'Borussia')
+    .replace(/Wolf burg/gi, 'Wolfsburg')
+    // Other clubs
+    .replace(/Elf borg/gi, 'Elfsborg')
+    .replace(/CA Tallere /gi, 'CA Talleres')
+    .replace(/In tituto/gi, 'Instituto')
+    // Transfer types
+    .replace(/free tran fer/gi, '')
+    .replace(/loan tran fer/gi, '(loan)')
+    .replace(/End of loan/gi, '')
+    .replace(/ draft$/gi, '')
+    .replace(/ \?$/gi, '');
+  
+  // Clean up double/triple spaces
+  result = result.replace(/ {2,}/g, ' ').trim();
+  
+  return result;
+}
 
 // Use comprehensive scraped data from Transfermarkt (2020-2024)
 // This includes 4,107 transfers across 5 seasons, converted to USD
@@ -208,7 +289,7 @@ export default function TransferSourcesPage() {
     };
   }, [filteredTransfers]);
 
-  // Aggregate by country
+  // Aggregate by country (filter out USA for international source analysis)
   const countryData = useMemo(() => {
     const countryMap = new Map<string, { 
       transfers: number; 
@@ -216,7 +297,12 @@ export default function TransferSourcesPage() {
       notableSignings: string[];
     }>();
     
-    filteredTransfers.forEach(t => {
+    // Filter out "United States" for international source analysis
+    const internationalTransfers = filteredTransfers.filter(t => 
+      t.sourceCountry !== 'United States' && t.sourceCountry !== 'USA'
+    );
+    
+    internationalTransfers.forEach(t => {
       const existing = countryMap.get(t.sourceCountry) || { 
         transfers: 0, 
         totalSpend: 0, 
@@ -327,7 +413,7 @@ export default function TransferSourcesPage() {
                 className="bg-[var(--obsidian)] border border-[var(--verde)]/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-[var(--verde)] min-w-[180px]"
               >
                 {MLS_TEAMS.map(team => (
-                  <option key={team} value={team}>{team}</option>
+                  <option key={team} value={team}>{fixDisplay(team)}</option>
                 ))}
               </select>
             </div>
@@ -359,7 +445,7 @@ export default function TransferSourcesPage() {
             <p className="text-3xl font-bold text-white">{summaryStats.totalTransfers}</p>
             <p className="text-xs text-white/50">
               {selectedYear === 'all' ? '2020-2025' : selectedYear}
-              {selectedTeam !== 'All Teams' && ` • ${selectedTeam}`}
+              {selectedTeam !== 'All Teams' && ` • ${fixDisplay(selectedTeam)}`}
             </p>
           </div>
 
@@ -399,7 +485,7 @@ export default function TransferSourcesPage() {
         <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-6 mb-8">
           <h2 className="text-xl font-bold text-white mb-4">
             Transfer Trend (2020-2025)
-            {selectedTeam !== 'All Teams' && <span className="text-[var(--verde)] ml-2">• {selectedTeam}</span>}
+            {selectedTeam !== 'All Teams' && <span className="text-[var(--verde)] ml-2">• {fixDisplay(selectedTeam)}</span>}
           </h2>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -511,7 +597,7 @@ export default function TransferSourcesPage() {
           <h2 className="text-xl font-bold text-white mb-4">
             Source Countries
             {selectedYear !== 'all' && <span className="text-[var(--verde)] ml-2">• {selectedYear}</span>}
-            {selectedTeam !== 'All Teams' && <span className="text-[var(--verde)] ml-2">• {selectedTeam}</span>}
+            {selectedTeam !== 'All Teams' && <span className="text-[var(--verde)] ml-2">• {fixDisplay(selectedTeam)}</span>}
           </h2>
           <div className="h-[500px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -624,7 +710,7 @@ export default function TransferSourcesPage() {
                         {index + 1}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="text-sm font-medium text-white">{row.country}</span>
+                        <span className="text-sm font-medium text-white">{fixDisplay(row.country)}</span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right">
                         <span className={`text-sm font-semibold ${sortKey === 'transfers' ? 'text-[var(--verde)]' : 'text-white'}`}>
@@ -643,7 +729,7 @@ export default function TransferSourcesPage() {
                       </td>
                       <td className="px-6 py-4 text-sm text-white/60 max-w-xs">
                         {row.notableSignings.length > 0 
-                          ? row.notableSignings.slice(0, 2).join(', ') 
+                          ? row.notableSignings.slice(0, 2).map(s => fixDisplay(s)).join(', ') 
                           : <span className="text-white/30">-</span>}
                       </td>
                     </tr>
@@ -683,15 +769,15 @@ export default function TransferSourcesPage() {
                     <tr key={`${t.playerName}-${i}`} className="hover:bg-[var(--obsidian)] transition-colors">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-white">{t.playerName}</span>
+                          <span className="text-sm font-medium text-white">{fixDisplay(t.playerName)}</span>
                           <span className="text-xs text-white/40">{t.position}</span>
                         </div>
                       </td>
                       <td className="px-4 py-3">
-                        <div className="text-sm text-white/70">{t.sourceClub}</div>
+                        <div className="text-sm text-white/70">{fixDisplay(t.sourceClub)}</div>
                         <div className="text-xs text-white/40">{t.sourceCountry}</div>
                       </td>
-                      <td className="px-4 py-3 text-sm text-white/70">{t.mlsTeam}</td>
+                      <td className="px-4 py-3 text-sm text-white/70">{fixDisplay(t.mlsTeam)}</td>
                       <td className="px-4 py-3 text-right">
                         <span className={`text-sm font-semibold ${t.fee > 0 ? 'text-[var(--verde)]' : 'text-white/50'}`}>
                           {formatCurrency(t.fee)}
