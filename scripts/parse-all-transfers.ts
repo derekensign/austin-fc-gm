@@ -214,8 +214,9 @@ function parseSnapshot(filePath: string, season: string, year: number): Transfer
       let rowName = '';
       let sourceCountry = '';
       
-      // Look through next ~50 lines for row content and country flag
-      for (let j = i + 1; j < Math.min(i + 50, lines.length); j++) {
+      // Look through next ~100 lines for row content and country flag
+      // The source club's country flag can be 60+ lines from the row start
+      for (let j = i + 1; j < Math.min(i + 100, lines.length); j++) {
         const checkLine = lines[j];
         
         // Stop if we hit another row
@@ -230,35 +231,47 @@ function parseSnapshot(filePath: string, season: string, year: number): Transfer
         }
         
         // Look for country flag image - appears as role: img with country name
-        // The country flag comes AFTER the club link, so we want the LAST flag we see
+        // The source club's country flag comes AFTER the club logo
+        // We want the LAST valid country flag (not player nationality which comes first)
         if (checkLine.includes('role: img')) {
-          // Check next line for country name
-          if (j + 1 < lines.length) {
-            const imgNameLine = lines[j + 1];
-            const imgMatch = imgNameLine.match(/name:\s*(.+?)(?:\s*$)/);
-            if (imgMatch) {
-              const possibleCountry = imgMatch[1].trim();
-              // List of valid countries (not team logos)
-              const validCountries = [
-                'Spain', 'England', 'Germany', 'France', 'Italy', 'Brazil', 'Argentina', 
-                'Mexico', 'Portugal', 'Belgium', 'Netherlands', 'Serbia', 'Ukraine', 
-                'Denmark', 'Sweden', 'Norway', 'Croatia', 'Greece', 'Poland', 'Albania',
-                'Czech Republic', 'Scotland', 'Turkey', 'Austria', 'Switzerland', 
-                'Colombia', 'Uruguay', 'Chile', 'Paraguay', 'Ecuador', 'Peru', 'Venezuela',
-                'Slovenia', 'Finland', 'Hungary', 'Israel', 'Bulgaria', 'South Korea', 
-                'Japan', 'Australia', 'New Zealand', 'Cyprus', 'Saudi Arabia', 'Canada',
-                'United States', 'USA', 'Russia', 'Ghana', 'Nigeria', 'Cameroon', 'Senegal',
-                'Ivory Coast', 'South Africa', 'Morocco', 'Egypt', 'Tunisia', 'Algeria',
-                'Jamaica', 'Honduras', 'Costa Rica', 'Panama', 'El Salvador', 'Guatemala',
-                'Romania', 'Slovakia', 'Ireland', 'Wales', 'Northern Ireland', 'Iceland',
-                'Bosnia-Herzegovina', 'Montenegro', 'North Macedonia', 'Kosovo', 'Georgia',
-                'Armenia', 'Azerbaijan', 'Belarus', 'Moldova', 'Lithuania', 'Latvia', 'Estonia',
-                'China', 'India', 'Thailand', 'Vietnam', 'Indonesia', 'Malaysia', 'Singapore',
-                'UAE', 'Qatar', 'Bahrain', 'Kuwait', 'Oman', 'Iran'
-              ];
-              if (validCountries.includes(possibleCountry)) {
-                sourceCountry = possibleCountry;
-              }
+          // Name can be on same line OR next line
+          let imgName = '';
+          
+          // Check same line first
+          const sameLineMatch = checkLine.match(/name:\s*(.+?)(?:\s*$)/);
+          if (sameLineMatch) {
+            imgName = sameLineMatch[1].trim();
+          } else if (j + 1 < lines.length) {
+            // Check next line
+            const nextLine = lines[j + 1];
+            const nextLineMatch = nextLine.match(/name:\s*(.+?)(?:\s*$)/);
+            if (nextLineMatch) {
+              imgName = nextLineMatch[1].trim();
+            }
+          }
+          
+          if (imgName) {
+            // List of valid countries (not team logos or player names)
+            const validCountries = [
+              'Spain', 'England', 'Germany', 'France', 'Italy', 'Brazil', 'Argentina', 
+              'Mexico', 'Portugal', 'Belgium', 'Netherlands', 'Serbia', 'Ukraine', 
+              'Denmark', 'Sweden', 'Norway', 'Croatia', 'Greece', 'Poland', 'Albania',
+              'Czech Republic', 'Scotland', 'Turkey', 'Austria', 'Switzerland', 
+              'Colombia', 'Uruguay', 'Chile', 'Paraguay', 'Ecuador', 'Peru', 'Venezuela',
+              'Slovenia', 'Finland', 'Hungary', 'Israel', 'Bulgaria', 'South Korea', 
+              'Japan', 'Australia', 'New Zealand', 'Cyprus', 'Saudi Arabia', 'Canada',
+              'United States', 'USA', 'Russia', 'Ghana', 'Nigeria', 'Cameroon', 'Senegal',
+              'Ivory Coast', 'South Africa', 'Morocco', 'Egypt', 'Tunisia', 'Algeria',
+              'Jamaica', 'Honduras', 'Costa Rica', 'Panama', 'El Salvador', 'Guatemala',
+              'Romania', 'Slovakia', 'Ireland', 'Wales', 'Northern Ireland', 'Iceland',
+              'Bosnia-Herzegovina', 'Montenegro', 'North Macedonia', 'Kosovo', 'Georgia',
+              'Armenia', 'Azerbaijan', 'Belarus', 'Moldova', 'Lithuania', 'Latvia', 'Estonia',
+              'China', 'India', 'Thailand', 'Vietnam', 'Indonesia', 'Malaysia', 'Singapore',
+              'UAE', 'Qatar', 'Bahrain', 'Kuwait', 'Oman', 'Iran'
+            ];
+            // Keep overwriting - we want the LAST country flag (source club country, not player nationality)
+            if (validCountries.includes(imgName)) {
+              sourceCountry = imgName;
             }
           }
         }
