@@ -15,6 +15,13 @@ import {
 } from '@/data/austin-fc-roster';
 import { AUSTIN_FC_2026_ALLOCATION_POSITION } from '@/data/austin-fc-allocation-money';
 import { allocationMoney } from '@/data/mls-rules-2025';
+import { 
+  calculateAutoAllocation, 
+  getTrueBudgetCharge, 
+  isTAMEligible,
+  type PlayerAllocation,
+  type AllocationState,
+} from '@/data/allocation-calculator';
 
 const positionGroups: { key: PositionGroup; label: string; borderColor: string; textColor: string }[] = [
   { key: 'GK', label: 'GK', borderColor: 'border-l-amber-400', textColor: 'text-amber-400' },
@@ -56,64 +63,8 @@ function playerMatchesFilter(player: AustinFCPlayer, filter: FilterType): boolea
 }
 
 // ============================================================================
-// GAM/TAM ALLOCATION LOGIC
+// GAM/TAM ALLOCATION HELPERS (imported from allocation-calculator.ts)
 // ============================================================================
-
-interface PlayerAllocation {
-  playerId: number;
-  tamApplied: number;
-  gamApplied: number;
-}
-
-interface AllocationState {
-  allocations: Map<number, PlayerAllocation>;
-  tamRemaining: number;
-  gamRemaining: number;
-}
-
-// Get the "true" budget charge for a player (salary + amortized fee if applicable)
-function getTrueBudgetCharge(player: AustinFCPlayer): number {
-  // DPs have fixed charge regardless of salary
-  if (player.isDP) return MLS_2026_RULES.dpBudgetCharge;
-  // U22s have fixed charge regardless of salary/fees
-  if (player.isU22) return MLS_2026_RULES.u22BudgetCharge;
-  // Supplemental don't count against cap
-  if (player.rosterSlot === 'Supplemental') return 0;
-  
-  // For senior roster: salary + amortized transfer fee
-  const salary = player.guaranteedCompensation;
-  const amortizedFee = player.amortizedAnnualFee || 0;
-  return salary + amortizedFee;
-}
-
-// Check if player is TAM-eligible
-// TAM can only be used on players with budget charges between $803K and $1.803M
-function isTAMEligible(player: AustinFCPlayer): boolean {
-  const trueCharge = getTrueBudgetCharge(player);
-  
-  // Supplemental players can't use TAM (they don't count against cap)
-  if (player.rosterSlot === 'Supplemental') return false;
-  
-  // U22s have fixed $200K charge, no TAM needed
-  if (player.isU22) return false;
-  
-  // DPs: TAM could help if it could buy them below DP threshold
-  // But their charge is already fixed at $803K, so TAM doesn't help cap
-  // UNLESS we're buying down their salary to remove DP status entirely
-  if (player.isDP) {
-    // DP can use TAM if their true salary could be bought down below DP threshold
-    // For a DP, we'd need to buy down salary + amortized fee to under $803K
-    const salary = player.guaranteedCompensation;
-    const amortizedFee = player.amortizedAnnualFee || 0;
-    const totalToPayDown = salary + amortizedFee;
-    // Max TAM per player is $1M, so if total > $1.803M, can't fully buy down
-    return totalToPayDown <= allocationMoney.TAM.maxBudgetChargeCeiling;
-  }
-  
-  // For non-DP/U22/Supplemental: TAM eligible if charge is in range
-  return trueCharge > allocationMoney.TAM.minBudgetChargeToQualify && 
-         trueCharge <= allocationMoney.TAM.maxBudgetChargeCeiling;
-}
 
 // Check if player needs buydown to get under max budget charge
 function needsBuydown(player: AustinFCPlayer): boolean {
@@ -129,92 +80,6 @@ function needsBuydown(player: AustinFCPlayer): boolean {
 function getBuydownNeeded(player: AustinFCPlayer): number {
   if (!needsBuydown(player)) return 0;
   return Math.max(0, getTrueBudgetCharge(player) - MLS_2026_RULES.maxBudgetCharge);
-}
-
-// Calculate automatic allocation (TAM first where eligible, then GAM)
-// This function buys down to achieve TEAM cap compliance, not just individual player compliance
-function calculateAutoAllocation(): AllocationState {
-  let tamRemaining = AUSTIN_FC_2026_ALLOCATION_POSITION.tam.annualAllocation;
-  let gamRemaining = AUSTIN_FC_2026_ALLOCATION_POSITION.gam.available2026;
-  
-  const allocations = new Map<number, PlayerAllocation>();
-  
-  // Initialize all allocations
-  austinFCRoster.forEach(player => {
-    allocations.set(player.id, { playerId: player.id, tamApplied: 0, gamApplied: 0 });
-  });
-  
-  // Calculate total budget charge before buydowns
-  const totalBudgetChargeBefore = austinFCRoster
-    .filter(p => p.rosterSlot !== 'Supplemental')
-    .reduce((sum, p) => sum + getTrueBudgetCharge(p), 0);
-  
-  // The salary cap/budget we need to fit under
-  const salaryBudget = MLS_2026_RULES.salaryBudget;
-  
-  // Calculate how much total buydown is needed for team compliance
-  const teamBuydownNeeded = Math.max(0, totalBudgetChargeBefore - salaryBudget);
-  
-  if (teamBuydownNeeded === 0) {
-    return { allocations, tamRemaining, gamRemaining };
-  }
-  
-  let remainingTeamBuydown = teamBuydownNeeded;
-  
-  // Get all non-supplemental players sorted by charge (highest first)
-  const buydownCandidates = austinFCRoster
-    .filter(p => p.rosterSlot !== 'Supplemental')
-    .sort((a, b) => getTrueBudgetCharge(b) - getTrueBudgetCharge(a));
-  
-  // PHASE 1: Apply TAM to TAM-eligible players first (use-it-or-lose-it)
-  for (const player of buydownCandidates) {
-    if (remainingTeamBuydown <= 0 || tamRemaining <= 0) break;
-    
-    if (isTAMEligible(player)) {
-      const trueCharge = getTrueBudgetCharge(player);
-      // Can apply TAM up to the amount that brings them to max budget charge
-      const maxTamForPlayer = Math.min(
-        trueCharge - MLS_2026_RULES.maxBudgetCharge, // Don't buy below max charge
-        allocationMoney.TAM.maxBuydownPerPlayer,
-        tamRemaining,
-        remainingTeamBuydown
-      );
-      
-      if (maxTamForPlayer > 0) {
-        const alloc = allocations.get(player.id)!;
-        alloc.tamApplied = Math.max(0, maxTamForPlayer);
-        tamRemaining -= alloc.tamApplied;
-        remainingTeamBuydown -= alloc.tamApplied;
-      }
-    }
-  }
-  
-  // PHASE 2: Apply GAM to remaining buydown needs (any non-supplemental player)
-  // Start with highest-charge players who haven't had TAM applied
-  for (const player of buydownCandidates) {
-    if (remainingTeamBuydown <= 0 || gamRemaining <= 0) break;
-    
-    const alloc = allocations.get(player.id)!;
-    
-    // Skip if already has TAM applied (no co-mingling)
-    if (alloc.tamApplied > 0) continue;
-    
-    const trueCharge = getTrueBudgetCharge(player);
-    // For GAM, we can buy down to $0 technically
-    const maxGamForPlayer = Math.min(
-      trueCharge, // Can buy down entire charge
-      gamRemaining,
-      remainingTeamBuydown
-    );
-    
-    if (maxGamForPlayer > 0) {
-      alloc.gamApplied = maxGamForPlayer;
-      gamRemaining -= alloc.gamApplied;
-      remainingTeamBuydown -= alloc.gamApplied;
-    }
-  }
-  
-  return { allocations, tamRemaining, gamRemaining };
 }
 
 // ============================================================================

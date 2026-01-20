@@ -1,15 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 import { DollarSign, TrendingUp, ArrowUp, ArrowDown, AlertTriangle, Info } from 'lucide-react';
 import { calculateRosterCapSummary, formatSalary, MLS_2026_RULES, AUSTIN_FC_2026_TRANSACTIONS } from '@/data/austin-fc-roster';
 import { AUSTIN_FC_2026_ALLOCATION_POSITION } from '@/data/austin-fc-allocation-money';
+import { getAllocationSummary } from '@/data/allocation-calculator';
 
 export function SalaryCapCard() {
   const cap = calculateRosterCapSummary();
   
   // Get 2026 GAM/TAM allocation position (comprehensive calculation)
   const allocPosition = AUSTIN_FC_2026_ALLOCATION_POSITION;
+  
+  // Get DYNAMIC allocation calculation (same as RosterOverview uses)
+  const dynamicAlloc = useMemo(() => getAllocationSummary(), []);
   
   const isOverCap = cap.capUsagePercent > 100;
   const capBarWidth = Math.min(cap.capUsagePercent, 100);
@@ -132,7 +137,7 @@ export function SalaryCapCard() {
           )}
         </div>
 
-        {/* TAM/GAM Allocation - Updated with comprehensive position */}
+        {/* TAM/GAM Allocation - Now using DYNAMIC calculation */}
         <div className="space-y-2">
           {/* TAM */}
           <div className="bg-[var(--obsidian)]/50 rounded p-2.5">
@@ -145,15 +150,15 @@ export function SalaryCapCard() {
             <div className="space-y-1 text-[11px]">
               <div className="flex items-center justify-between">
                 <span className="text-white/50">Annual Allocation</span>
-                <span className="text-green-400">+{formatSalary(allocPosition.tam.annualAllocation)}</span>
+                <span className="text-green-400">+{formatSalary(dynamicAlloc.tam.total)}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-white/50">Est. Buydowns</span>
-                <span className="text-red-400">-{formatSalary(allocPosition.tam.estimatedBuydownsUsed)}</span>
+                <span className="text-white/50">Buydowns Applied</span>
+                <span className="text-red-400">-{formatSalary(dynamicAlloc.tam.used)}</span>
               </div>
               <div className="flex items-center justify-between pt-1 border-t border-white/10">
                 <span className="text-white/70 font-medium">Available</span>
-                <span className="font-display text-base text-blue-400">{formatSalary(allocPosition.tam.available)}</span>
+                <span className="font-display text-base text-blue-400">{formatSalary(dynamicAlloc.tam.remaining)}</span>
               </div>
             </div>
           </div>
@@ -168,22 +173,16 @@ export function SalaryCapCard() {
             </div>
             <div className="space-y-1 text-[11px]">
               <div className="flex items-center justify-between">
-                <span className="text-white/50">Annual + Distributions</span>
-                <span className="text-green-400">+{formatSalary(allocPosition.gam.annualAllocation + allocPosition.gam.thirdDPDistribution)}</span>
+                <span className="text-white/50">Available (after trades)</span>
+                <span className="text-green-400">+{formatSalary(dynamicAlloc.gam.total)}</span>
               </div>
-              {allocPosition.gam.rolledOverDeficit !== 0 && (
-                <div className="flex items-center justify-between">
-                  <span className="text-white/50">Nelson/Rosales Trades</span>
-                  <span className="text-red-400">{formatSalary(allocPosition.gam.rolledOverDeficit)}</span>
-                </div>
-              )}
               <div className="flex items-center justify-between">
-                <span className="text-white/50">Est. Buydowns</span>
-                <span className="text-red-400">-{formatSalary(allocPosition.gam.estimatedBuydownsNeeded)}</span>
+                <span className="text-white/50">Buydowns Applied</span>
+                <span className="text-red-400">-{formatSalary(dynamicAlloc.gam.used)}</span>
               </div>
               <div className="flex items-center justify-between pt-1 border-t border-white/10">
                 <span className="text-white/70 font-medium">Free GAM</span>
-                <span className="font-display text-base text-purple-400">{formatSalary(allocPosition.gam.freeGAM)}</span>
+                <span className="font-display text-base text-purple-400">{formatSalary(dynamicAlloc.gam.remaining)}</span>
               </div>
             </div>
           </div>
@@ -194,10 +193,10 @@ export function SalaryCapCard() {
               <p className="text-[11px] text-white/70 flex items-center gap-1.5">
                 <Info className="h-3 w-3 text-purple-400" />Total Flexibility
               </p>
-              <p className="font-display text-base text-white">{formatSalary(allocPosition.combined.totalFlexibility)}</p>
+              <p className="font-display text-base text-white">{formatSalary(dynamicAlloc.tam.remaining + dynamicAlloc.gam.remaining)}</p>
             </div>
             <p className="text-[10px] text-white/40 mt-1">
-              After cap compliance: {formatSalary(allocPosition.gam.freeGAM)} GAM (tradeable) + {formatSalary(allocPosition.tam.available)} TAM
+              After cap compliance: {formatSalary(dynamicAlloc.gam.remaining)} GAM (tradeable) + {formatSalary(dynamicAlloc.tam.remaining)} TAM
             </p>
           </div>
         </div>
