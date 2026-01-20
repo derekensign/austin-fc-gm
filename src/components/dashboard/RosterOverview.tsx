@@ -132,45 +132,87 @@ function getBuydownNeeded(player: AustinFCPlayer): number {
 }
 
 // Calculate automatic allocation (TAM first where eligible, then GAM)
+// This function buys down to achieve TEAM cap compliance, not just individual player compliance
 function calculateAutoAllocation(): AllocationState {
-  const players = austinFCRoster
-    .filter(p => needsBuydown(p))
-    .sort((a, b) => getTrueBudgetCharge(b) - getTrueBudgetCharge(a)); // Highest charge first
-  
   let tamRemaining = AUSTIN_FC_2026_ALLOCATION_POSITION.tam.annualAllocation;
   let gamRemaining = AUSTIN_FC_2026_ALLOCATION_POSITION.gam.available2026;
   
   const allocations = new Map<number, PlayerAllocation>();
   
-  players.forEach(player => {
-    const buydownNeeded = getBuydownNeeded(player);
-    let tamApplied = 0;
-    let gamApplied = 0;
-    
-    if (buydownNeeded > 0) {
-      // Check if TAM-eligible - apply TAM first (use-it-or-lose-it)
-      if (isTAMEligible(player) && tamRemaining > 0) {
-        tamApplied = Math.min(buydownNeeded, tamRemaining);
-        tamRemaining -= tamApplied;
-      }
-      
-      // If still needs more buydown, use GAM
-      const stillNeeded = buydownNeeded - tamApplied;
-      if (stillNeeded > 0 && gamRemaining > 0) {
-        gamApplied = Math.min(stillNeeded, gamRemaining);
-        gamRemaining -= gamApplied;
-      }
-    }
-    
-    allocations.set(player.id, { playerId: player.id, tamApplied, gamApplied });
+  // Initialize all allocations
+  austinFCRoster.forEach(player => {
+    allocations.set(player.id, { playerId: player.id, tamApplied: 0, gamApplied: 0 });
   });
   
-  // Also initialize allocations for players that don't need buydown (for manual mode)
-  austinFCRoster.forEach(player => {
-    if (!allocations.has(player.id)) {
-      allocations.set(player.id, { playerId: player.id, tamApplied: 0, gamApplied: 0 });
+  // Calculate total budget charge before buydowns
+  const totalBudgetChargeBefore = austinFCRoster
+    .filter(p => p.rosterSlot !== 'Supplemental')
+    .reduce((sum, p) => sum + getTrueBudgetCharge(p), 0);
+  
+  // The salary cap/budget we need to fit under
+  const salaryBudget = MLS_2026_RULES.salaryBudget;
+  
+  // Calculate how much total buydown is needed for team compliance
+  const teamBuydownNeeded = Math.max(0, totalBudgetChargeBefore - salaryBudget);
+  
+  if (teamBuydownNeeded === 0) {
+    return { allocations, tamRemaining, gamRemaining };
+  }
+  
+  let remainingTeamBuydown = teamBuydownNeeded;
+  
+  // Get all non-supplemental players sorted by charge (highest first)
+  const buydownCandidates = austinFCRoster
+    .filter(p => p.rosterSlot !== 'Supplemental')
+    .sort((a, b) => getTrueBudgetCharge(b) - getTrueBudgetCharge(a));
+  
+  // PHASE 1: Apply TAM to TAM-eligible players first (use-it-or-lose-it)
+  for (const player of buydownCandidates) {
+    if (remainingTeamBuydown <= 0 || tamRemaining <= 0) break;
+    
+    if (isTAMEligible(player)) {
+      const trueCharge = getTrueBudgetCharge(player);
+      // Can apply TAM up to the amount that brings them to max budget charge
+      const maxTamForPlayer = Math.min(
+        trueCharge - MLS_2026_RULES.maxBudgetCharge, // Don't buy below max charge
+        allocationMoney.TAM.maxBuydownPerPlayer,
+        tamRemaining,
+        remainingTeamBuydown
+      );
+      
+      if (maxTamForPlayer > 0) {
+        const alloc = allocations.get(player.id)!;
+        alloc.tamApplied = Math.max(0, maxTamForPlayer);
+        tamRemaining -= alloc.tamApplied;
+        remainingTeamBuydown -= alloc.tamApplied;
+      }
     }
-  });
+  }
+  
+  // PHASE 2: Apply GAM to remaining buydown needs (any non-supplemental player)
+  // Start with highest-charge players who haven't had TAM applied
+  for (const player of buydownCandidates) {
+    if (remainingTeamBuydown <= 0 || gamRemaining <= 0) break;
+    
+    const alloc = allocations.get(player.id)!;
+    
+    // Skip if already has TAM applied (no co-mingling)
+    if (alloc.tamApplied > 0) continue;
+    
+    const trueCharge = getTrueBudgetCharge(player);
+    // For GAM, we can buy down to $0 technically
+    const maxGamForPlayer = Math.min(
+      trueCharge, // Can buy down entire charge
+      gamRemaining,
+      remainingTeamBuydown
+    );
+    
+    if (maxGamForPlayer > 0) {
+      alloc.gamApplied = maxGamForPlayer;
+      gamRemaining -= alloc.gamApplied;
+      remainingTeamBuydown -= alloc.gamApplied;
+    }
+  }
   
   return { allocations, tamRemaining, gamRemaining };
 }
@@ -297,15 +339,39 @@ function PlayerRow({
               )}
               
               {/* True Budget Charge */}
-              <div className="flex items-center justify-between text-[9px] mb-1.5">
+              <div className="flex items-center justify-between text-[9px] mb-1">
                 <span className="text-white/40">True Charge:</span>
                 <span className={`font-medium ${trueCharge > MLS_2026_RULES.maxBudgetCharge ? 'text-red-400' : 'text-white/70'}`}>
                   {formatSalary(trueCharge)}
                 </span>
               </div>
               
-              {/* Buydown needed indicator */}
-              {buydownNeeded > 0 && (
+              {/* Show applied allocations (both modes) */}
+              {gamApplied > 0 && (
+                <div className="flex items-center justify-between text-[9px] mb-1">
+                  <span className="text-purple-400">GAM Applied:</span>
+                  <span className="text-purple-400 font-medium">-{formatSalary(gamApplied)}</span>
+                </div>
+              )}
+              {tamApplied > 0 && (
+                <div className="flex items-center justify-between text-[9px] mb-1">
+                  <span className="text-blue-400">TAM Applied:</span>
+                  <span className="text-blue-400 font-medium">-{formatSalary(tamApplied)}</span>
+                </div>
+              )}
+              
+              {/* Effective charge after buydown */}
+              {totalApplied > 0 && (
+                <div className="flex items-center justify-between text-[9px] mb-1.5 pt-1 border-t border-white/5">
+                  <span className="text-white/50">Effective Charge:</span>
+                  <span className={`font-semibold ${effectiveCharge <= MLS_2026_RULES.maxBudgetCharge ? 'text-green-400' : 'text-red-400'}`}>
+                    {formatSalary(effectiveCharge)}
+                  </span>
+                </div>
+              )}
+              
+              {/* Buydown needed indicator (only if not fully bought down) */}
+              {buydownNeeded > 0 && !isFullyBoughtDown && (
                 <div className="flex items-center justify-between text-[9px] mb-1.5">
                   <span className="text-white/40">Needs Buydown:</span>
                   <span className="text-amber-400 font-medium">{formatSalary(buydownNeeded)}</span>
@@ -313,7 +379,7 @@ function PlayerRow({
               )}
               
               {/* TAM Eligibility Badge */}
-              {tamEligible && (
+              {tamEligible && buydownNeeded > 0 && (
                 <div className="mb-1.5">
                   <span className="text-[8px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-400 font-medium">
                     TAM ELIGIBLE ($803K-$1.8M)
@@ -321,13 +387,18 @@ function PlayerRow({
                 </div>
               )}
               
-              {/* Allocation Controls */}
-              {allocationMode === 'manual' ? (
-                <div className="space-y-1.5">
+              {/* Allocation Controls - Manual Mode Only */}
+              {allocationMode === 'manual' && buydownNeeded > 0 && (
+                <div className="space-y-2 mt-2 pt-2 border-t border-white/5">
                   {/* GAM Slider - available to all non-supplemental */}
                   {player.rosterSlot !== 'Supplemental' && (
-                    <div className="flex items-center gap-2">
-                      <span className="text-[8px] text-purple-400 w-7 shrink-0">GAM</span>
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between text-[9px]">
+                        <span className="text-purple-400 font-medium">GAM</span>
+                        <span className="text-purple-400 font-mono">
+                          {formatSalary(gamApplied)}
+                        </span>
+                      </div>
                       <input
                         type="range"
                         min={0}
@@ -339,18 +410,20 @@ function PlayerRow({
                         value={gamApplied}
                         onChange={(e) => onAllocationChange?.(player.id, 'gam', Number(e.target.value))}
                         disabled={tamApplied > 0} // Can't mix
-                        className="flex-1 h-1 accent-purple-500 disabled:opacity-30"
+                        className="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-purple-900/50 accent-purple-500 disabled:opacity-30 disabled:cursor-not-allowed"
                       />
-                      <span className="text-[9px] text-purple-400 w-12 text-right font-mono">
-                        {gamApplied > 0 ? formatSalary(gamApplied) : '—'}
-                      </span>
                     </div>
                   )}
                   
                   {/* TAM Slider - only for eligible players */}
                   {tamEligible && (
-                    <div className="flex items-center gap-2">
-                      <span className="text-[8px] text-blue-400 w-7 shrink-0">TAM</span>
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between text-[9px]">
+                        <span className="text-blue-400 font-medium">TAM</span>
+                        <span className="text-blue-400 font-mono">
+                          {formatSalary(tamApplied)}
+                        </span>
+                      </div>
                       <input
                         type="range"
                         min={0}
@@ -363,49 +436,30 @@ function PlayerRow({
                         value={tamApplied}
                         onChange={(e) => onAllocationChange?.(player.id, 'tam', Number(e.target.value))}
                         disabled={gamApplied > 0} // Can't mix
-                        className="flex-1 h-1 accent-blue-500 disabled:opacity-30"
+                        className="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-blue-900/50 accent-blue-500 disabled:opacity-30 disabled:cursor-not-allowed"
                       />
-                      <span className="text-[9px] text-blue-400 w-12 text-right font-mono">
-                        {tamApplied > 0 ? formatSalary(tamApplied) : '—'}
-                      </span>
                     </div>
-                  )}
-                  
-                  {player.rosterSlot === 'Supplemental' && (
-                    <span className="text-[8px] text-pink-400/50">Supplemental — no cap impact</span>
-                  )}
-                </div>
-              ) : (
-                /* Auto mode - show applied amounts */
-                <div className="flex items-center gap-2 flex-wrap">
-                  {tamApplied > 0 && (
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-400">
-                      TAM: {formatSalary(tamApplied)}
-                    </span>
-                  )}
-                  {gamApplied > 0 && (
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400">
-                      GAM: {formatSalary(gamApplied)}
-                    </span>
-                  )}
-                  {totalApplied > 0 && (
-                    <span className="text-[9px] text-white/40 ml-auto">
-                      → {formatSalary(effectiveCharge)}
-                    </span>
-                  )}
-                  {buydownNeeded > 0 && isFullyBoughtDown && (
-                    <CheckCircle2 className="w-3 h-3 text-green-400" />
-                  )}
-                  {buydownNeeded > 0 && !isFullyBoughtDown && (
-                    <span className="text-[9px] text-red-400">
-                      -{formatSalary(buydownNeeded - totalApplied)} short
-                    </span>
-                  )}
-                  {player.rosterSlot === 'Supplemental' && (
-                    <span className="text-[8px] text-pink-400/50">No cap impact</span>
                   )}
                 </div>
               )}
+              
+              {/* Status indicators */}
+              <div className="flex items-center gap-2 mt-1.5">
+                {buydownNeeded > 0 && isFullyBoughtDown && (
+                  <span className="text-[8px] px-1.5 py-0.5 rounded bg-green-500/20 text-green-400 flex items-center gap-1">
+                    <CheckCircle2 className="w-2.5 h-2.5" />
+                    Bought Down
+                  </span>
+                )}
+                {buydownNeeded > 0 && !isFullyBoughtDown && (
+                  <span className="text-[8px] px-1.5 py-0.5 rounded bg-red-500/20 text-red-400">
+                    -{formatSalary(buydownNeeded - totalApplied)} short
+                  </span>
+                )}
+                {player.rosterSlot === 'Supplemental' && (
+                  <span className="text-[8px] text-pink-400/50">Supplemental — no cap impact</span>
+                )}
+              </div>
             </div>
           )}
         </div>
@@ -504,6 +558,15 @@ export function RosterOverview() {
     setManualAllocations(calculateAutoAllocation());
   }, []);
   
+  // Handle mode change - reset manual to auto defaults when switching to manual
+  const handleModeChange = useCallback((newMode: 'auto' | 'manual') => {
+    if (newMode === 'manual' && allocationMode === 'auto') {
+      // Copy auto allocations to manual as starting point
+      setManualAllocations(calculateAutoAllocation());
+    }
+    setAllocationMode(newMode);
+  }, [allocationMode]);
+  
   // Get filtered players count
   const filteredPlayers = austinFCRoster.filter(p => playerMatchesFilter(p, activeFilter));
   const totalPlayers = austinFCRoster.length;
@@ -564,7 +627,7 @@ export function RosterOverview() {
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1 p-0.5 bg-[var(--obsidian)] rounded-md">
                 <button
-                  onClick={() => setAllocationMode('auto')}
+                  onClick={() => handleModeChange('auto')}
                   className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium transition-all ${
                     allocationMode === 'auto' 
                       ? 'bg-[var(--verde)] text-black' 
@@ -575,7 +638,7 @@ export function RosterOverview() {
                   Auto
                 </button>
                 <button
-                  onClick={() => setAllocationMode('manual')}
+                  onClick={() => handleModeChange('manual')}
                   className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium transition-all ${
                     allocationMode === 'manual' 
                       ? 'bg-[var(--verde)] text-black' 
