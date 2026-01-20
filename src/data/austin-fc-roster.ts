@@ -122,11 +122,16 @@ export interface AustinFCPlayer {
   previousClub?: string;
   
   // Transfer Fee / Acquisition Cost (CRITICAL for cap calculation!)
-  // For non-DP/non-U22 players, amortized fee ADDS to budget charge
+  // ⚠️ IMPORTANT DISTINCTION:
+  // - CASH transfer fees: Get amortized over contract, ADD to budget charge
+  // - GAM transfer fees: Do NOT affect budget charge (one-time GAM pool expenditure)
+  // 
+  // For non-DP/non-U22 players, amortized CASH fee ADDS to budget charge
   // Formula: Annual Acquisition Cost = transferFee / contractYearsGuaranteed
-  transferFee?: number;              // Total fee paid (cash, GAM, etc.)
-  contractYearsGuaranteed?: number;  // Years to amortize over
-  amortizedAnnualFee?: number;       // Calculated: transferFee / years (adds to cap for non-exempt)
+  transferFee?: number;              // CASH fee paid (gets amortized, adds to cap)
+  gamTransferFee?: number;           // GAM fee paid (does NOT affect budget charge!)
+  contractYearsGuaranteed?: number;  // Years to amortize CASH fee over
+  amortizedAnnualFee?: number;       // Calculated: CASH transferFee / years (adds to cap for non-exempt)
   
   // True budget charge before TAM/GAM buydowns (for analytics)
   trueBudgetCharge?: number;         // Salary + amortized fee (what it would cost without buydowns)
@@ -754,10 +759,13 @@ export const austinFCRoster: AustinFCPlayer[] = [
     marketValue: 1_500_000,
     acquisitionDate: 'Dec 18, 2025',
     previousClub: 'Vancouver Whitecaps FC',
-    // Transfer fee info - CRITICAL for true cap calculation
-    transferFee: 1_250_000,           // $700K 2026 GAM + $550K 2027 GAM
+    // Transfer fee info - PAID IN GAM, NOT CASH
+    // ⚠️ CRITICAL: GAM used as transfer fee does NOT count against budget charge!
+    // The $700K 2026 GAM + $550K 2027 GAM comes out of the GAM pool, not the cap
+    transferFee: 0,                   // $0 CASH fee - all paid in GAM
+    gamTransferFee: 1_250_000,        // $700K 2026 GAM + $550K 2027 GAM (already in GAM tracking)
     contractYearsGuaranteed: 3,       // Through Dec 2028 (3 full years)
-    amortizedAnnualFee: 416_667,      // ~$417K/year adds to cap charge (unless U22)
+    amortizedAnnualFee: 0,            // $0 - GAM fees don't get amortized to budget charge!
   },
 
   // ============ FORWARDS ============

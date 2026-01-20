@@ -301,6 +301,37 @@ export const allocationMoney = {
     description: 'TAM and GAM cannot be combined when buying down a single player budget charge',
     example: 'If a player earns $1.2M, you can use TAM to buy them down, but cannot add GAM on top',
   },
+  
+  /**
+   * GAM AS TRANSFER FEE vs GAM FOR BUYDOWNS
+   * 
+   * ⚠️ CRITICAL DISTINCTION:
+   * 
+   * 1. GAM USED AS TRANSFER FEE (to acquire a player):
+   *    - One-time expenditure from GAM pool
+   *    - Does NOT add to the player's budget charge
+   *    - Does NOT need to be amortized
+   *    - Does NOT need to be bought down
+   *    - Example: Trade $500K GAM to acquire Player X → Player X's budget charge = just salary
+   * 
+   * 2. GAM USED FOR BUYDOWNS (to reduce budget charge):
+   *    - Reduces a player's budget charge for cap compliance
+   *    - Applied against salary + amortized transfer fee
+   *    - Cannot be co-mingled with TAM on same player
+   * 
+   * 3. CASH TRANSFER FEE (actual money paid):
+   *    - Gets AMORTIZED over the contract length
+   *    - ADDS to the player's annual budget charge
+   *    - Must be bought down with GAM/TAM if over max budget charge
+   *    - Example: $5M cash fee over 5 years = $1M/year added to budget charge
+   */
+  gamTransferFeeRule: {
+    countsAgainstBudgetCharge: false,
+    needsAmortization: false,
+    needsBuydown: false,
+    description: 'GAM paid as a transfer fee to acquire a player does NOT affect budget charge',
+    example: 'Austin FC trades $700K GAM to Vancouver for Jayden Nelson. Nelson\'s budget charge = salary + amortized cash fee (if any), NOT including the GAM paid',
+  },
 };
 
 // ============================================================================
