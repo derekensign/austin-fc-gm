@@ -248,36 +248,58 @@ export const allocationMoney = {
    * TARGETED ALLOCATION MONEY (TAM)
    * Used to sign players who would otherwise be Designated Players
    * Can "buy down" a player's budget charge to keep them off DP slot
+   * 
+   * ⚠️ CRITICAL RULES:
+   * 1. TAM can ONLY be used on players with budget charges between $803K and $1.803M
+   * 2. TAM and GAM CANNOT be co-mingled when buying down a single player's charge
+   *    - Use TAM OR GAM, not both on same player
    */
   TAM: {
-    annualAllocation2025: 2_225_000, // Updated per North End data
+    annualAllocation2026: 2_225_000, // Per MLS 2026 roster rules
     /**
-     * TAM SALARY PARAMETERS (2025)
-     * Source: https://www.mlssoccer.com/about/roster-rules-and-regulations
-     * - Player must earn > $743,750 to qualify for TAM
-     * - Compensation ceiling for TAM-eligible players: $1,743,750
-     * - Cannot buy down below $150,000 using TAM
-     * - Max buydown per player = ceiling - max budget charge = $1,743,750 - $743,750 = $1,000,000
+     * TAM SALARY PARAMETERS (2026)
+     * Source: MLS Roster Rules & Regulations
+     * 
+     * TAM ELIGIBILITY RANGE: $803,000 - $1,803,000
+     * - Player budget charge must be > $803,000 (max senior salary) to use TAM
+     * - Player budget charge must be ≤ $1,803,000 (TAM ceiling) to use TAM
+     * - Players above $1,803,000 must be Designated Players
+     * 
+     * ⚠️ Cannot co-mingle TAM and GAM on the same player's buydown
      */
-    minSalaryToQualify: 743_750,
-    maxCompensationCeiling: 1_743_750,
+    minBudgetChargeToQualify: 803_000, // Max senior roster charge - TAM only for players ABOVE this
+    maxBudgetChargeCeiling: 1_803_000, // TAM ceiling - players above this must be DPs
     maxBuydownPerPlayer: 1_000_000, // Max TAM that can be applied to a single player
-    minBuydownFloor: 150_000,
-    canBuyDownDP: true,
+    cannotCoMingleWithGAM: true, // CRITICAL: Cannot use TAM + GAM on same player
+    canBuyDownDP: true, // Can use TAM to buy down a DP's charge
     tradeable: false, // TAM cannot be traded per official rules
-    description: 'Used to sign or retain players who earn above max budget charge without using DP slot',
+    description: 'Used to sign or retain players earning $803K-$1.803M without using DP slot',
   },
 
   /**
    * GENERAL ALLOCATION MONEY (GAM)
    * More flexible than TAM, can be used for various roster moves
    * Base allocation plus potential bonus from Model B choice
+   * 
+   * ⚠️ CRITICAL: GAM and TAM cannot be co-mingled on the same player's buydown
    */
   GAM: {
-    annualAllocation2025: 1_825_000,
+    annualAllocation2026: 1_825_000,
     additionalFromModelB: 2_000_000,
     tradeable: true,
+    cannotCoMingleWithTAM: true, // CRITICAL: Cannot use GAM + TAM on same player
     description: 'Flexible allocation money for roster building, trades, and salary buydowns',
+  },
+  
+  /**
+   * CO-MINGLING PROHIBITION
+   * When buying down a player's budget charge, you must use EITHER TAM or GAM
+   * You CANNOT combine both on the same player
+   */
+  coMinglingRule: {
+    prohibited: true,
+    description: 'TAM and GAM cannot be combined when buying down a single player budget charge',
+    example: 'If a player earns $1.2M, you can use TAM to buy them down, but cannot add GAM on top',
   },
 };
 

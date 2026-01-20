@@ -185,7 +185,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 507_313,
-    contractEnd: '2027',
+    contractEnd: 'Dec 2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false,
@@ -241,7 +241,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 0, // Supplemental
-    contractEnd: '2026',
+    contractEnd: 'Dec 2026',
     designation: 'Supplemental',
     rosterSlot: 'Supplemental',
     isInternational: false,
@@ -268,7 +268,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 550_000,
-    contractEnd: '2027',
+    contractEnd: 'Dec 2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false, // Green card
@@ -295,7 +295,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 325_000,
-    contractEnd: '2025',  // Option for 2026
+    contractEnd: 'Dec 2025',  // Option for 2026
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false,
@@ -322,7 +322,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 505_000,
-    contractEnd: '2027',
+    contractEnd: 'Dec 2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: true,
@@ -349,7 +349,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 375_000,
-    contractEnd: '2028',  // Extended Jan 2026
+    contractEnd: 'Dec 2028',  // Extended Jan 2026
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false, // Green card
@@ -376,7 +376,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 350_000,
-    contractEnd: '2026',
+    contractEnd: 'Dec 2026',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false, // Green card
@@ -403,7 +403,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 275_000,
-    contractEnd: '2027',
+    contractEnd: 'Dec 2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: true,
@@ -457,7 +457,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 175_000,
-    contractEnd: '2027',
+    contractEnd: 'Dec 2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false,
@@ -488,7 +488,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 600_000,
-    contractEnd: '2026',
+    contractEnd: 'Dec 2026',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false, // Green card
@@ -569,7 +569,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 633_333,
-    contractEnd: '2026',
+    contractEnd: 'Dec 2026',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false, // Green card
@@ -650,7 +650,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 200_000, // U22 fixed charge
-    contractEnd: '2028',
+    contractEnd: 'Dec 2028',
     designation: 'U22',
     rosterSlot: 'Senior',
     isInternational: false,
@@ -707,7 +707,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     gamApplied: 0,
     budgetCharge: 375_000, // After TAM buydown - salary only hits cap
     trueBudgetCharge: 803_000, // $375K salary + $428K amortized = $803K (at max!)
-    contractEnd: '2029',
+    contractEnd: 'Dec 2029',
     designation: 'Senior',  // Salary alone ($375K) is senior-level; TAM offsets acquisition cost only
     rosterSlot: 'Senior',
     isInternational: false, // Green card per official roster
@@ -778,7 +778,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 505_401,
-    contractEnd: '2026',
+    contractEnd: 'Dec 2026',
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: true,

@@ -326,13 +326,48 @@ export default function RosterPage() {
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <span className={`px-2 py-0.5 rounded text-xs font-bold border ${positionColors[player.position] || 'bg-white/10 text-white'}`}>
                         {player.position}
                       </span>
-                      {player.designation && (
+                      {/* Player designation (DP, U22, TAM, HG, GA) */}
+                      {player.designation && !['Senior', 'Supplemental'].includes(player.designation) && (
                         <span className={`px-1.5 py-0.5 rounded text-[10px] ${designationColors[player.designation]}`}>
                           {designationLabels[player.designation]}
+                        </span>
+                      )}
+                      {/* Roster slot designation - DPs and U22s are Senior Roster, HGs are Supplemental */}
+                      {(player.designation === 'DP' || player.designation === 'U22') && (
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] ${designationColors.Senior}`} title="Senior Roster slot">
+                          SR
+                        </span>
+                      )}
+                      {player.designation === 'HG' && (
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] ${designationColors.Supplemental}`} title="Supplemental slot">
+                          SUP
+                        </span>
+                      )}
+                      {/* TAM players are Senior Roster */}
+                      {player.designation === 'TAM' && (
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] ${designationColors.Senior}`} title="Senior Roster slot">
+                          SR
+                        </span>
+                      )}
+                      {/* GA players are Supplemental */}
+                      {player.designation === 'GA' && (
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] ${designationColors.Supplemental}`} title="Supplemental slot">
+                          SUP
+                        </span>
+                      )}
+                      {/* Regular Senior or Supplemental (no special designation) */}
+                      {player.designation === 'Senior' && (
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] ${designationColors.Senior}`}>
+                          SR
+                        </span>
+                      )}
+                      {player.designation === 'Supplemental' && (
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] ${designationColors.Supplemental}`}>
+                          SUP
                         </span>
                       )}
                     </div>
