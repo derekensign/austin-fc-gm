@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Users, DollarSign, TrendingUp, TrendingDown, Globe, Info, CheckCircle2, AlertCircle } from 'lucide-react';
 import { StatCard } from '@/components/ui';
-import { RosterOverview, SalaryCapCard, TeamStatsCard, AllocationSimulator } from '@/components/dashboard';
+import { RosterOverview, SalaryCapCard, TeamStatsCard } from '@/components/dashboard';
 import { 
   austinFCRoster, 
   calculateRosterCapSummary, 
@@ -127,7 +127,6 @@ export default function Dashboard() {
         {/* Right Sidebar - 1 column */}
         <div className="space-y-3">
           <SalaryCapCard />
-          <AllocationSimulator />
           <TeamStatsCard />
         </div>
       </div>
