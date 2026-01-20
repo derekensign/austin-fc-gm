@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { X, Sliders, Zap, Hand, Info, CheckCircle2, AlertTriangle } from 'lucide-react';
 import { 
   austinFCRoster, 
@@ -115,19 +115,16 @@ interface PlayerRowProps {
   showAllocation: boolean;
   allocationMode: 'auto' | 'manual';
   allocation?: PlayerAllocation;
-  tamRemaining: number;
-  gamRemaining: number;
   onAllocationChange?: (playerId: number, type: 'tam' | 'gam', value: number) => void;
 }
 
-function PlayerRow({ 
+// Memoize PlayerRow to prevent re-renders when other players' allocations change
+const PlayerRow = React.memo(function PlayerRow({ 
   player, 
   showValues, 
   showAllocation,
   allocationMode,
   allocation,
-  tamRemaining,
-  gamRemaining,
   onAllocationChange,
 }: PlayerRowProps) {
   const designation = getDesignationBadge(player);
@@ -267,10 +264,7 @@ function PlayerRow({
                       id={`gam-slider-${player.id}`}
                       type="range"
                       min={0}
-                      max={Math.min(
-                        trueCharge, // Can't buy down more than total charge
-                        gamRemaining + gamApplied // Available + what's already applied
-                      )}
+                      max={trueCharge} // Fixed max based on player's charge only
                       step={10000}
                       value={gamApplied}
                       onChange={(e) => onAllocationChange?.(player.id, 'gam', Number(e.target.value))}
@@ -292,11 +286,7 @@ function PlayerRow({
                         id={`tam-slider-${player.id}`}
                         type="range"
                         min={0}
-                        max={Math.min(
-                          allocationMoney.TAM.maxBuydownPerPlayer, // Max $1M per player
-                          trueCharge, // Can't buy down more than total charge
-                          tamRemaining + tamApplied // Available + what's already applied
-                        )}
+                        max={Math.min(allocationMoney.TAM.maxBuydownPerPlayer, trueCharge)} // Fixed max
                         step={10000}
                         value={tamApplied}
                         onChange={(e) => onAllocationChange?.(player.id, 'tam', Number(e.target.value))}
@@ -331,7 +321,7 @@ function PlayerRow({
       </div>
     </div>
   );
-}
+});
 
 export function RosterOverview() {
   const [showValues, setShowValues] = useState(false);
@@ -682,8 +672,6 @@ export function RosterOverview() {
                         showAllocation={showAllocation}
                         allocationMode={allocationMode}
                         allocation={currentAllocation.allocations.get(player.id)}
-                        tamRemaining={currentAllocation.tamRemaining}
-                        gamRemaining={currentAllocation.gamRemaining}
                         onAllocationChange={handleAllocationChange}
                       />
                     ))
