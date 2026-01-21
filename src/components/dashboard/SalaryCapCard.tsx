@@ -98,31 +98,31 @@ export function SalaryCapCard() {
             if (buydownsNeeded > 0) {
               return (
                 <>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[11px] text-white/50">Pre-Buydown Charge</span>
-                    <span className="text-[11px] text-amber-400">{formatSalary(preBuydownCharge)}</span>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[10px] text-white/50">Pre-Buydown</span>
+                    <span className="text-[10px] text-amber-400">{formatSalary(preBuydownCharge)}</span>
+                  </div>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[10px] text-white/50">Needed</span>
+                    <span className="text-[10px] text-amber-400">-{formatSalary(buydownsNeeded)}</span>
                   </div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[11px] text-white/50">Buydowns Needed</span>
-                    <span className="text-[11px] text-amber-400">-{formatSalary(buydownsNeeded)}</span>
-                  </div>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className={`text-[11px] ${isCompliant ? 'text-green-400' : 'text-blue-400'}`}>
-                      Buydowns Applied (TAM+GAM)
+                    <span className={`text-[10px] ${isCompliant ? 'text-green-400' : 'text-blue-400'}`}>
+                      Applied
                     </span>
-                    <span className={`text-[11px] ${isCompliant ? 'text-green-400' : 'text-blue-400'}`}>
+                    <span className={`text-[10px] font-medium ${isCompliant ? 'text-green-400' : 'text-blue-400'}`}>
                       -{formatSalary(buydownsApplied)}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between border-t border-white/10 pt-2 mb-2">
-                    <span className="text-[11px] text-white/70 font-medium">Final Budget Charge</span>
-                    <span className={`font-display text-base font-bold ${isCompliant ? 'text-[var(--verde)]' : 'text-red-400'}`}>
+                  <div className="flex items-center justify-between border-t border-white/10 pt-1.5 mb-2">
+                    <span className="text-[11px] text-white/70 font-medium">Final Charge</span>
+                    <span className={`font-display text-lg font-bold ${isCompliant ? 'text-[var(--verde)]' : 'text-red-400'}`}>
                       {formatSalary(finalBudgetCharge)}
                     </span>
                   </div>
                   
-                  {/* Compliance bar - shows progress toward cap */}
-                  <div className="h-2.5 bg-[var(--obsidian)] rounded-full overflow-hidden">
+                  {/* Compliance bar */}
+                  <div className="h-2 bg-[var(--obsidian)] rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${compliancePercent}%` }}
@@ -133,15 +133,11 @@ export function SalaryCapCard() {
                     />
                   </div>
                   
-                  <div className="flex items-center justify-between mt-2">
+                  <div className="flex items-center justify-between mt-1.5">
                     {isCompliant ? (
-                      <p className="text-[11px] text-[var(--verde)] flex items-center gap-1">
-                        ✓ COMPLIANT
-                      </p>
+                      <p className="text-[10px] text-[var(--verde)] font-medium">✓ COMPLIANT</p>
                     ) : (
-                      <p className="text-[11px] text-red-400 flex items-center gap-1">
-                        ✗ OVER CAP by {formatSalary(shortfall)}
-                      </p>
+                      <p className="text-[10px] text-red-400 font-medium">✗ {formatSalary(shortfall)} over</p>
                     )}
                     <p className="text-[11px] text-white/40">
                       Budget: {formatSalary(MLS_2026_RULES.salaryBudget)}

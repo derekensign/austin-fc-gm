@@ -117,7 +117,6 @@ const PlayerRow = React.memo(function PlayerRow({
   const trueCharge = getTrueBudgetCharge(player);
   const buydownNeeded = getBuydownNeeded(player);
   const tamEligible = isTAMEligible(player);
-  const amortizedFee = player.amortizedAnnualFee || 0;
   
   const tamApplied = allocation?.tamApplied || 0;
   const gamApplied = allocation?.gamApplied || 0;
@@ -171,132 +170,77 @@ const PlayerRow = React.memo(function PlayerRow({
             </span>
           </div>
           
-          {/* Allocation Mode: Show additional info */}
+          {/* Allocation Mode: Compact info display */}
           {showAllocation && (
-            <div className="mt-2 pt-2 border-t border-white/5">
-              {/* Amortized Fee (if any) */}
-              {amortizedFee > 0 && (
-                <div className="flex items-center justify-between text-[9px] mb-1">
-                  <span className="text-white/40">+ Amortized Fee:</span>
-                  <span className="text-amber-400 font-medium">{formatSalary(amortizedFee)}/yr</span>
-                </div>
-              )}
-              
-              {/* True Budget Charge */}
-              <div className="flex items-center justify-between text-[9px] mb-1">
-                <span className="text-white/40">True Charge:</span>
-                <span className={`font-medium ${trueCharge > MLS_2026_RULES.maxBudgetCharge ? 'text-red-400' : 'text-white/70'}`}>
-                  {formatSalary(trueCharge)}
-                </span>
-              </div>
-              
-              {/* Show applied allocations (both modes) */}
-              {gamApplied > 0 && (
-                <div className="flex items-center justify-between text-[9px] mb-1">
-                  <span className="text-purple-400">GAM Applied:</span>
-                  <span className="text-purple-400 font-medium">-{formatSalary(gamApplied)}</span>
-                </div>
-              )}
-              {tamApplied > 0 && (
-                <div className="flex items-center justify-between text-[9px] mb-1">
-                  <span className="text-blue-400">TAM Applied:</span>
-                  <span className="text-blue-400 font-medium">-{formatSalary(tamApplied)}</span>
-                </div>
-              )}
-              
-              {/* Effective charge after buydown */}
-              {totalApplied > 0 && (
-                <div className="flex items-center justify-between text-[9px] mb-1.5 pt-1 border-t border-white/5">
-                  <span className="text-white/50">Effective Charge:</span>
-                  <span className={`font-semibold ${effectiveCharge <= MLS_2026_RULES.maxBudgetCharge ? 'text-green-400' : 'text-red-400'}`}>
-                    {formatSalary(effectiveCharge)}
-                  </span>
-                </div>
-              )}
-              
-              {/* Buydown needed indicator (only if not fully bought down) */}
-              {buydownNeeded > 0 && !isFullyBoughtDown && (
-                <div className="flex items-center justify-between text-[9px] mb-1.5">
-                  <span className="text-white/40">Needs Buydown:</span>
-                  <span className="text-amber-400 font-medium">{formatSalary(buydownNeeded)}</span>
-                </div>
-              )}
-              
-              {/* TAM Eligibility Badge */}
-              {tamEligible && buydownNeeded > 0 && (
-                <div className="mb-1.5">
-                  <span className="text-[8px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-400 font-medium">
-                    TAM ELIGIBLE ($803K-$1.8M)
-                  </span>
-                </div>
-              )}
-              
-              {/* Allocation Controls - Manual Mode: Show for ALL non-supplemental players */}
-              {allocationMode === 'manual' && player.rosterSlot !== 'Supplemental' && (
-                <div className="space-y-2 mt-2 pt-2 border-t border-white/5">
-                  {/* GAM Slider - available to all non-supplemental */}
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between text-[9px]">
-                      <span className="text-purple-400 font-medium">GAM</span>
-                      <span className="text-purple-400 font-mono">
-                        {formatSalary(gamApplied)}
-                      </span>
+            <div className="mt-1.5 pt-1.5 border-t border-white/5 text-[9px]">
+              {player.rosterSlot === 'Supplemental' ? (
+                <span className="text-pink-400/60 italic">Supplemental — no cap impact</span>
+              ) : (
+                <>
+                  {/* Charge summary - single line when no buydown applied */}
+                  {totalApplied === 0 ? (
+                    <div className="flex items-center justify-between text-white/50">
+                      <span>True Charge:</span>
+                      <span className="font-medium text-white/70">{formatSalary(trueCharge)}</span>
                     </div>
-                    <input
-                      id={`gam-slider-${player.id}`}
-                      type="range"
-                      min={0}
-                      max={trueCharge} // Fixed max based on player's charge only
-                      step={10000}
-                      value={gamApplied}
-                      onChange={(e) => onAllocationChange?.(player.id, 'gam', Number(e.target.value))}
-                      disabled={tamApplied > 0} // Can't mix TAM and GAM
-                      className="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-purple-900/50 accent-purple-500 disabled:opacity-30 disabled:cursor-not-allowed"
-                    />
-                  </div>
-                  
-                  {/* TAM Slider - only for TAM-eligible players ($803K-$1.8M) */}
-                  {tamEligible && (
-                    <div className="space-y-1">
-                      <div className="flex items-center justify-between text-[9px]">
-                        <span className="text-blue-400 font-medium">TAM</span>
-                        <span className="text-blue-400 font-mono">
-                          {formatSalary(tamApplied)}
+                  ) : (
+                    /* When buydown is applied, show the math */
+                    <div className="space-y-0.5">
+                      <div className="flex items-center justify-between text-white/40">
+                        <span>{formatSalary(trueCharge)}</span>
+                        <span className={totalApplied > 0 ? 'text-purple-400' : ''}>
+                          {totalApplied > 0 && `- ${formatSalary(totalApplied)}`}
+                        </span>
+                        <span className="text-white/30">=</span>
+                        <span className={`font-semibold ${effectiveCharge <= MLS_2026_RULES.maxBudgetCharge ? 'text-green-400' : 'text-amber-400'}`}>
+                          {formatSalary(effectiveCharge)}
                         </span>
                       </div>
-                      <input
-                        id={`tam-slider-${player.id}`}
-                        type="range"
-                        min={0}
-                        max={Math.min(allocationMoney.TAM.maxBuydownPerPlayer, trueCharge)} // Fixed max
-                        step={10000}
-                        value={tamApplied}
-                        onChange={(e) => onAllocationChange?.(player.id, 'tam', Number(e.target.value))}
-                        disabled={gamApplied > 0} // Can't mix TAM and GAM
-                        className="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-blue-900/50 accent-blue-500 disabled:opacity-30 disabled:cursor-not-allowed"
-                      />
                     </div>
                   )}
-                </div>
+                  
+                  {/* Manual Mode: GAM/TAM Sliders */}
+                  {allocationMode === 'manual' && (
+                    <div className="mt-2 space-y-1.5">
+                      {/* GAM Slider */}
+                      <div className="flex items-center gap-2">
+                        <span className="text-purple-400 w-8 shrink-0">GAM</span>
+                        <input
+                          id={`gam-slider-${player.id}`}
+                          type="range"
+                          min={0}
+                          max={trueCharge}
+                          step={10000}
+                          value={gamApplied}
+                          onChange={(e) => onAllocationChange?.(player.id, 'gam', Number(e.target.value))}
+                          disabled={tamApplied > 0}
+                          className="flex-1 h-1.5 rounded-full appearance-none cursor-pointer bg-purple-900/30 accent-purple-500 disabled:opacity-30"
+                        />
+                        <span className="text-purple-400 font-mono w-12 text-right">{formatSalary(gamApplied)}</span>
+                      </div>
+                      
+                      {/* TAM Slider - only for eligible players */}
+                      {tamEligible && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-blue-400 w-8 shrink-0">TAM</span>
+                          <input
+                            id={`tam-slider-${player.id}`}
+                            type="range"
+                            min={0}
+                            max={Math.min(allocationMoney.TAM.maxBuydownPerPlayer, trueCharge)}
+                            step={10000}
+                            value={tamApplied}
+                            onChange={(e) => onAllocationChange?.(player.id, 'tam', Number(e.target.value))}
+                            disabled={gamApplied > 0}
+                            className="flex-1 h-1.5 rounded-full appearance-none cursor-pointer bg-blue-900/30 accent-blue-500 disabled:opacity-30"
+                          />
+                          <span className="text-blue-400 font-mono w-12 text-right">{formatSalary(tamApplied)}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </>
               )}
-              
-              {/* Status indicators */}
-              <div className="flex items-center gap-2 mt-1.5">
-                {buydownNeeded > 0 && isFullyBoughtDown && (
-                  <span className="text-[8px] px-1.5 py-0.5 rounded bg-green-500/20 text-green-400 flex items-center gap-1">
-                    <CheckCircle2 className="w-2.5 h-2.5" />
-                    Bought Down
-                  </span>
-                )}
-                {buydownNeeded > 0 && !isFullyBoughtDown && (
-                  <span className="text-[8px] px-1.5 py-0.5 rounded bg-red-500/20 text-red-400">
-                    -{formatSalary(buydownNeeded - totalApplied)} short
-                  </span>
-                )}
-                {player.rosterSlot === 'Supplemental' && (
-                  <span className="text-[8px] text-pink-400/50">Supplemental — no cap impact</span>
-                )}
-              </div>
             </div>
           )}
         </div>
