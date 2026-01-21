@@ -110,8 +110,8 @@ U22 INITIATIVE:
 - Max Salary: $${u22InitiativeRules.maxSalary.toLocaleString()}
 
 ALLOCATION MONEY (2026):
-- TAM Annual: $${allocationMoney.TAM.annualAllocation2025.toLocaleString()}
-- GAM Annual: $${allocationMoney.GAM.annualAllocation2025.toLocaleString()}
+- TAM Annual: $${allocationMoney.TAM.annualAllocation2026.toLocaleString()}
+- GAM Annual: $${allocationMoney.GAM.annualAllocation2026.toLocaleString()}
 - TAM Max Per Player: $${allocationMoney.TAM.maxBuydownPerPlayer.toLocaleString()}
 
 INTERNATIONAL SLOTS: 8 default per club (tradeable)
