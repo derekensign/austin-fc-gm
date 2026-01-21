@@ -1,11 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useMemo } from 'react';
 import { DollarSign, TrendingUp, ArrowUp, ArrowDown, AlertTriangle, Info } from 'lucide-react';
 import { calculateRosterCapSummary, formatSalary, MLS_2026_RULES, AUSTIN_FC_2026_TRANSACTIONS } from '@/data/austin-fc-roster';
 import { AUSTIN_FC_2026_ALLOCATION_POSITION } from '@/data/austin-fc-allocation-money';
-import { getAllocationSummary } from '@/data/allocation-calculator';
+import { useAllocation } from '@/context/AllocationContext';
 
 export function SalaryCapCard() {
   const cap = calculateRosterCapSummary();
@@ -13,8 +12,22 @@ export function SalaryCapCard() {
   // Get 2026 GAM/TAM allocation position (comprehensive calculation)
   const allocPosition = AUSTIN_FC_2026_ALLOCATION_POSITION;
   
-  // Get DYNAMIC allocation calculation (same as RosterOverview uses)
-  const dynamicAlloc = useMemo(() => getAllocationSummary(), []);
+  // Get LIVE allocation from shared context (updates when sliders change)
+  const { currentAllocation, allocationMode } = useAllocation();
+  
+  // Create dynamicAlloc structure from context
+  const dynamicAlloc = {
+    tam: {
+      total: allocPosition.tam.annualAllocation,
+      used: currentAllocation.tamUsed,
+      remaining: currentAllocation.tamRemaining,
+    },
+    gam: {
+      total: allocPosition.gam.available2026,
+      used: currentAllocation.gamUsed,
+      remaining: currentAllocation.gamRemaining,
+    },
+  };
   
   const isOverCap = cap.capUsagePercent > 100;
   const capBarWidth = Math.min(cap.capUsagePercent, 100);

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState } from 'react';
 import { X, Sliders, Zap, Hand, Info, CheckCircle2, AlertTriangle } from 'lucide-react';
 import { 
   austinFCRoster, 
@@ -16,12 +16,12 @@ import {
 import { AUSTIN_FC_2026_ALLOCATION_POSITION } from '@/data/austin-fc-allocation-money';
 import { allocationMoney } from '@/data/mls-rules-2025';
 import { 
-  calculateAutoAllocation, 
   getTrueBudgetCharge, 
   isTAMEligible,
+  getBuydownNeeded,
   type PlayerAllocation,
-  type AllocationState,
 } from '@/data/allocation-calculator';
+import { useAllocation } from '@/context/AllocationContext';
 
 const positionGroups: { key: PositionGroup; label: string; borderColor: string; textColor: string }[] = [
   { key: 'GK', label: 'GK', borderColor: 'border-l-amber-400', textColor: 'text-amber-400' },
@@ -60,26 +60,6 @@ function playerMatchesFilter(player: AustinFCPlayer, filter: FilterType): boolea
     case 'GA': return player.isGenerationAdidas;
     default: return true;
   }
-}
-
-// ============================================================================
-// GAM/TAM ALLOCATION HELPERS (imported from allocation-calculator.ts)
-// ============================================================================
-
-// Check if player needs buydown to get under max budget charge
-function needsBuydown(player: AustinFCPlayer): boolean {
-  // DPs and U22s have fixed charges, no buydown needed for cap compliance
-  if (player.isDP || player.isU22) return false;
-  // Supplemental don't count against cap
-  if (player.rosterSlot === 'Supplemental') return false;
-  // Senior roster players with charge above max need buydown
-  return getTrueBudgetCharge(player) > MLS_2026_RULES.maxBudgetCharge;
-}
-
-// Calculate how much buydown a player needs
-function getBuydownNeeded(player: AustinFCPlayer): number {
-  if (!needsBuydown(player)) return 0;
-  return Math.max(0, getTrueBudgetCharge(player) - MLS_2026_RULES.maxBudgetCharge);
 }
 
 // ============================================================================
@@ -148,43 +128,45 @@ const PlayerRow = React.memo(function PlayerRow({
   const effectiveCharge = Math.max(0, trueCharge - totalApplied);
   
   return (
-    <div className={`py-2 px-2.5 hover:bg-white/[0.03] border-b border-white/5 last:border-b-0 ${
+    <div className={`py-1.5 sm:py-2 px-1.5 sm:px-2.5 hover:bg-white/[0.03] border-b border-white/5 last:border-b-0 ${
       showAllocation && buydownNeeded > 0 && !isFullyBoughtDown ? 'bg-red-500/5' : ''
     }`}>
-      <div className="flex items-center gap-2.5">
-        {/* Number */}
-        <span className="w-5 text-[11px] text-white/30 font-mono text-center shrink-0">
+      <div className="flex items-center gap-1.5 sm:gap-2.5">
+        {/* Number - hidden on mobile */}
+        <span className="hidden sm:block w-5 text-[11px] text-white/30 font-mono text-center shrink-0">
           {player.number || '–'}
         </span>
         
-        {/* Photo */}
-        <PlayerAvatar player={player} />
+        {/* Photo - smaller on mobile */}
+        <div className="shrink-0">
+          <PlayerAvatar player={player} />
+        </div>
         
         {/* Player Info */}
         <div className="flex-1 min-w-0">
           {/* Line 1: Name */}
-          <span className="text-sm font-medium text-white block truncate">{player.name}</span>
+          <span className="text-xs sm:text-sm font-medium text-white block truncate">{player.name}</span>
           
           {/* Line 2: Flag + Position + Badges + Salary */}
-          <div className="flex items-center gap-1 mt-1">
-            <span className="text-sm shrink-0">{flag}</span>
-            <span className="text-[9px] px-1.5 py-0.5 rounded font-bold bg-white/10 text-white/60">
+          <div className="flex items-center gap-0.5 sm:gap-1 mt-0.5 sm:mt-1 flex-wrap">
+            <span className="text-xs sm:text-sm shrink-0">{flag}</span>
+            <span className="text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5 rounded font-bold bg-white/10 text-white/60">
               {player.position}
             </span>
-            <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold ${designation.bgColor} ${designation.color}`}>
+            <span className={`text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5 rounded font-bold ${designation.bgColor} ${designation.color}`}>
               {designation.label}
             </span>
             {isSupplementalWithOtherDesignation && (
-              <span className="text-[9px] px-1.5 py-0.5 rounded font-bold bg-pink-500/20 text-pink-400">
+              <span className="hidden sm:inline text-[9px] px-1.5 py-0.5 rounded font-bold bg-pink-500/20 text-pink-400">
                 SUP
               </span>
             )}
             {player.isInternational && (
-              <span className="text-[9px] px-1.5 py-0.5 rounded font-bold bg-orange-500/20 text-orange-400">
+              <span className="text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5 rounded font-bold bg-orange-500/20 text-orange-400">
                 INT
               </span>
             )}
-            <span className="text-[11px] font-semibold text-[var(--verde)] ml-auto">
+            <span className="text-[10px] sm:text-[11px] font-semibold text-[var(--verde)] ml-auto">
               {showValues ? formatSalary(player.marketValue) : formatSalary(player.guaranteedCompensation)}
             </span>
           </div>
@@ -327,100 +309,25 @@ export function RosterOverview() {
   const [showValues, setShowValues] = useState(false);
   const [activeFilter, setActiveFilter] = useState<FilterType>(null);
   const [showAllocation, setShowAllocation] = useState(false);
-  const [allocationMode, setAllocationMode] = useState<'auto' | 'manual'>('auto');
-  const [manualAllocations, setManualAllocations] = useState<AllocationState>(() => 
-    calculateAutoAllocation()
-  );
   
-  // Auto allocation (memoized)
-  const autoAllocation = useMemo(() => calculateAutoAllocation(), []);
+  // Use shared allocation context
+  const { 
+    allocationMode, 
+    setAllocationMode, 
+    currentAllocation, 
+    handleAllocationChange, 
+    resetToAuto 
+  } = useAllocation();
   
-  // Current allocation state based on mode
-  const currentAllocation = allocationMode === 'auto' ? autoAllocation : manualAllocations;
-  
-  // Calculate totals
+  // Calculate totals from context
   const totalTAM = AUSTIN_FC_2026_ALLOCATION_POSITION.tam.annualAllocation;
   const totalGAM = AUSTIN_FC_2026_ALLOCATION_POSITION.gam.available2026;
-  const tamUsed = totalTAM - currentAllocation.tamRemaining;
-  const gamUsed = totalGAM - currentAllocation.gamRemaining;
+  const tamUsed = currentAllocation.tamUsed;
+  const gamUsed = currentAllocation.gamUsed;
   
-  // Calculate compliance
-  const totalBuydownNeeded = austinFCRoster.reduce((sum, p) => sum + getBuydownNeeded(p), 0);
-  const totalBuydownApplied = Array.from(currentAllocation.allocations.values())
-    .reduce((sum, a) => sum + a.tamApplied + a.gamApplied, 0);
-  const isCompliant = totalBuydownApplied >= totalBuydownNeeded;
-  const shortfall = totalBuydownNeeded - totalBuydownApplied;
-  
-  // Handle manual allocation change
-  const handleAllocationChange = useCallback((
-    playerId: number, 
-    type: 'tam' | 'gam', 
-    value: number
-  ) => {
-    setManualAllocations(prev => {
-      const player = austinFCRoster.find(p => p.id === playerId);
-      if (!player) return prev;
-      
-      const existing = prev.allocations.get(playerId) || { playerId, tamApplied: 0, gamApplied: 0 };
-      const currentTam = existing.tamApplied;
-      const currentGam = existing.gamApplied;
-      
-      let newTam = currentTam;
-      let newGam = currentGam;
-      let newTamRemaining = prev.tamRemaining;
-      let newGamRemaining = prev.gamRemaining;
-      
-      if (type === 'tam') {
-        if (!isTAMEligible(player)) return prev;
-        const delta = value - currentTam;
-        if (delta > newTamRemaining) {
-          value = currentTam + newTamRemaining;
-        }
-        newTamRemaining = newTamRemaining - (value - currentTam);
-        newTam = value;
-        // Reset GAM if applying TAM (no co-mingling)
-        if (value > 0 && currentGam > 0) {
-          newGamRemaining += currentGam;
-          newGam = 0;
-        }
-      } else {
-        const delta = value - currentGam;
-        if (delta > newGamRemaining) {
-          value = currentGam + newGamRemaining;
-        }
-        newGamRemaining = newGamRemaining - (value - currentGam);
-        newGam = value;
-        // Reset TAM if applying GAM (no co-mingling)
-        if (value > 0 && currentTam > 0) {
-          newTamRemaining += currentTam;
-          newTam = 0;
-        }
-      }
-      
-      const newAllocations = new Map(prev.allocations);
-      newAllocations.set(playerId, { playerId, tamApplied: newTam, gamApplied: newGam });
-      
-      return {
-        allocations: newAllocations,
-        tamRemaining: newTamRemaining,
-        gamRemaining: newGamRemaining,
-      };
-    });
-  }, []);
-  
-  // Reset to auto
-  const resetToAuto = useCallback(() => {
-    setManualAllocations(calculateAutoAllocation());
-  }, []);
-  
-  // Handle mode change - reset manual to auto defaults when switching to manual
-  const handleModeChange = useCallback((newMode: 'auto' | 'manual') => {
-    if (newMode === 'manual' && allocationMode === 'auto') {
-      // Copy auto allocations to manual as starting point
-      setManualAllocations(calculateAutoAllocation());
-    }
-    setAllocationMode(newMode);
-  }, [allocationMode]);
+  // Get compliance from context
+  const isCompliant = currentAllocation.isCompliant;
+  const shortfall = currentAllocation.totalBuydownNeeded - currentAllocation.totalBuydownApplied;
   
   // Get filtered players count
   const filteredPlayers = austinFCRoster.filter(p => playerMatchesFilter(p, activeFilter));
@@ -433,10 +340,10 @@ export function RosterOverview() {
       transition={{ delay: 0.3 }}
       className="rounded-xl border border-[var(--obsidian-lighter)] bg-[var(--obsidian-light)] h-full flex flex-col"
     >
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--obsidian-lighter)]">
-        <div className="flex items-center gap-3">
-          <h2 className="font-display text-lg text-white tracking-wide">ROSTER OVERVIEW</h2>
+      {/* Header - responsive wrapping */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-3 sm:px-4 py-2 sm:py-3 border-b border-[var(--obsidian-lighter)]">
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <h2 className="font-display text-base sm:text-lg text-white tracking-wide">ROSTER</h2>
           <span className={`text-xs px-2 py-1 rounded font-bold ${
             activeFilter ? 'bg-[var(--verde)]/20 text-[var(--verde)]' : 'bg-[var(--verde)] text-black'
           }`}>
@@ -447,8 +354,8 @@ export function RosterOverview() {
             )}
           </span>
           {activeFilter && (
-            <span className="text-xs text-white/50">
-              showing <span className={filterTags.find(t => t.key === activeFilter)?.color}>{activeFilter}</span> players
+            <span className="text-xs text-white/50 hidden sm:inline">
+              showing <span className={filterTags.find(t => t.key === activeFilter)?.color}>{activeFilter}</span>
             </span>
           )}
         </div>
@@ -456,81 +363,85 @@ export function RosterOverview() {
           {/* GAM/TAM Distribution Toggle */}
           <button
             onClick={() => setShowAllocation(!showAllocation)}
-            className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md transition-colors ${
+            className={`flex items-center gap-1.5 text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-md transition-colors ${
               showAllocation 
                 ? 'bg-[var(--verde)] text-black font-semibold' 
                 : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
             }`}
           >
-            <Sliders className="w-3.5 h-3.5" />
-            {showAllocation ? 'Hide' : 'Show'} GAM/TAM
+            <Sliders className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            <span className="hidden sm:inline">{showAllocation ? 'Hide' : 'Show'} GAM/TAM</span>
+            <span className="sm:hidden">GAM/TAM</span>
           </button>
           <button
             onClick={() => setShowValues(!showValues)}
-            className="text-xs px-3 py-1.5 rounded-md bg-white/5 text-white/70 hover:bg-white/10 hover:text-white transition-colors"
+            className="text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-md bg-white/5 text-white/70 hover:bg-white/10 hover:text-white transition-colors"
           >
-            {showValues ? 'Show Salary' : 'Show Value'}
+            {showValues ? 'Salary' : 'Value'}
           </button>
         </div>
       </div>
 
-      {/* Allocation Mode Bar (when showAllocation is true) */}
+      {/* Allocation Mode Bar (when showAllocation is true) - responsive */}
       {showAllocation && (
-        <div className="px-4 py-2 border-b border-[var(--obsidian-lighter)] bg-[var(--obsidian)]/30">
-          <div className="flex items-center justify-between flex-wrap gap-2">
-            {/* Mode Toggle */}
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1 p-0.5 bg-[var(--obsidian)] rounded-md">
-                <button
-                  onClick={() => handleModeChange('auto')}
-                  className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium transition-all ${
-                    allocationMode === 'auto' 
-                      ? 'bg-[var(--verde)] text-black' 
-                      : 'text-white/50 hover:text-white/70'
-                  }`}
-                >
-                  <Zap className="w-3 h-3" />
-                  Auto
-                </button>
-                <button
-                  onClick={() => handleModeChange('manual')}
-                  className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-medium transition-all ${
-                    allocationMode === 'manual' 
-                      ? 'bg-[var(--verde)] text-black' 
-                      : 'text-white/50 hover:text-white/70'
-                  }`}
-                >
-                  <Hand className="w-3 h-3" />
-                  Manual
-                </button>
+        <div className="px-2 sm:px-4 py-2 border-b border-[var(--obsidian-lighter)] bg-[var(--obsidian)]/30">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            {/* Mode Toggle + Pool Status Row */}
+            <div className="flex items-center justify-between sm:justify-start gap-2 sm:gap-4 flex-wrap">
+              {/* Mode Toggle */}
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 bg-[var(--obsidian)] rounded-md">
+                  <button
+                    onClick={() => setAllocationMode('auto')}
+                    className={`flex items-center gap-1 px-1.5 sm:px-2 py-1 rounded text-[9px] sm:text-[10px] font-medium transition-all ${
+                      allocationMode === 'auto' 
+                        ? 'bg-[var(--verde)] text-black' 
+                        : 'text-white/50 hover:text-white/70'
+                    }`}
+                  >
+                    <Zap className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                    Auto
+                  </button>
+                  <button
+                    onClick={() => setAllocationMode('manual')}
+                    className={`flex items-center gap-1 px-1.5 sm:px-2 py-1 rounded text-[9px] sm:text-[10px] font-medium transition-all ${
+                      allocationMode === 'manual' 
+                        ? 'bg-[var(--verde)] text-black' 
+                        : 'text-white/50 hover:text-white/70'
+                    }`}
+                  >
+                    <Hand className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                    Manual
+                  </button>
+                </div>
+                
+                {allocationMode === 'manual' && (
+                  <button
+                    onClick={resetToAuto}
+                    className="text-[8px] sm:text-[9px] text-white/40 hover:text-white/60 underline"
+                  >
+                    Reset
+                  </button>
+                )}
               </div>
               
-              {allocationMode === 'manual' && (
-                <button
-                  onClick={resetToAuto}
-                  className="text-[9px] text-white/40 hover:text-white/60 underline"
-                >
-                  Reset
-                </button>
-              )}
-            </div>
-            
-            {/* Pool Status */}
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
-                <span className="text-[9px] text-blue-400">TAM:</span>
-                <span className="text-[10px] text-white font-mono">{formatSalary(tamUsed)}</span>
-                <span className="text-[9px] text-white/30">/ {formatSalary(totalTAM)}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-[9px] text-purple-400">GAM:</span>
-                <span className="text-[10px] text-white font-mono">{formatSalary(gamUsed)}</span>
-                <span className="text-[9px] text-white/30">/ {formatSalary(totalGAM)}</span>
+              {/* Pool Status - Compact on mobile */}
+              <div className="flex items-center gap-2 sm:gap-3 text-[8px] sm:text-[9px]">
+                <div className="flex items-center gap-1">
+                  <span className="text-blue-400">TAM:</span>
+                  <span className="text-white font-mono">{formatSalary(tamUsed)}</span>
+                  <span className="text-white/30 hidden sm:inline">/ {formatSalary(totalTAM)}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="text-purple-400">GAM:</span>
+                  <span className="text-white font-mono">{formatSalary(gamUsed)}</span>
+                  <span className="text-white/30 hidden sm:inline">/ {formatSalary(totalGAM)}</span>
+                </div>
               </div>
             </div>
             
             {/* Compliance Status */}
-            <div className={`flex items-center gap-1.5 px-2 py-1 rounded text-[10px] font-medium ${
+            <div className={`flex items-center gap-1.5 px-2 py-1 rounded text-[9px] sm:text-[10px] font-medium self-start sm:self-auto ${
               isCompliant 
                 ? 'bg-green-500/10 text-green-400' 
                 : 'bg-red-500/10 text-red-400'
@@ -538,7 +449,8 @@ export function RosterOverview() {
               {isCompliant ? (
                 <>
                   <CheckCircle2 className="w-3 h-3" />
-                  COMPLIANT
+                  <span className="hidden sm:inline">COMPLIANT</span>
+                  <span className="sm:hidden">OK</span>
                 </>
               ) : (
                 <>
@@ -549,8 +461,8 @@ export function RosterOverview() {
             </div>
           </div>
           
-          {/* Rule Reminder */}
-          <div className="flex items-center gap-1.5 mt-2 text-[9px] text-white/40">
+          {/* Rule Reminder - hidden on mobile */}
+          <div className="hidden sm:flex items-center gap-1.5 mt-2 text-[9px] text-white/40">
             <Info className="w-3 h-3 text-blue-400 shrink-0" />
             <span>
               <span className="text-blue-400">TAM</span> only for players $803K-$1.8M • 
@@ -561,9 +473,9 @@ export function RosterOverview() {
         </div>
       )}
 
-      {/* Legend + Data Source Info */}
-      <div className="flex items-center justify-between px-4 py-2 border-b border-[var(--obsidian-lighter)]/50 text-[9px] flex-wrap gap-2">
-        <div className="flex items-center gap-1.5 flex-wrap">
+      {/* Legend + Data Source Info - responsive */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 border-b border-[var(--obsidian-lighter)]/50 text-[8px] sm:text-[9px]">
+        <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap">
           {filterTags.map((tag) => {
             const isActive = activeFilter === tag.key;
             const count = austinFCRoster.filter(p => playerMatchesFilter(p, tag.key)).length;
@@ -571,30 +483,30 @@ export function RosterOverview() {
               <button
                 key={tag.key}
                 onClick={() => setActiveFilter(isActive ? null : tag.key)}
-                className={`px-1.5 py-0.5 rounded font-bold transition-all cursor-pointer hover:scale-105 ${tag.bgColor} ${tag.color} ${
+                className={`px-1 sm:px-1.5 py-0.5 rounded font-bold transition-all cursor-pointer hover:scale-105 ${tag.bgColor} ${tag.color} ${
                   isActive ? `ring-2 ${tag.activeRing} ring-offset-1 ring-offset-[var(--obsidian)]` : 'opacity-70 hover:opacity-100'
                 }`}
                 title={`${tag.label}: ${count} players`}
               >
                 {tag.label}
-                {isActive && <span className="ml-1 text-[8px]">({count})</span>}
+                {isActive && <span className="ml-0.5 sm:ml-1 text-[7px] sm:text-[8px]">({count})</span>}
               </button>
             );
           })}
           {activeFilter && (
             <button
               onClick={() => setActiveFilter(null)}
-              className="px-1.5 py-0.5 rounded font-bold bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors flex items-center gap-0.5"
+              className="px-1 sm:px-1.5 py-0.5 rounded font-bold bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors flex items-center gap-0.5"
               title="Clear filter"
             >
-              <X className="w-2.5 h-2.5" />
-              Clear
+              <X className="w-2 h-2 sm:w-2.5 sm:h-2.5" />
+              <span className="hidden sm:inline">Clear</span>
             </button>
           )}
         </div>
-        <div className="text-[8px] text-white/40">
+        <div className="text-[7px] sm:text-[8px] text-white/40">
           {showValues ? (
-            <span>📊 Market Value from{' '}
+            <span>📊{' '}
               <a 
                 href="https://www.transfermarkt.us/austin-fc/startseite/verein/72309" 
                 target="_blank" 
@@ -603,10 +515,10 @@ export function RosterOverview() {
               >
                 Transfermarkt
               </a>
-              {' '}(Est. Jan 2026)
+              <span className="hidden sm:inline"> (Est. Jan 2026)</span>
             </span>
           ) : (
-            <span>💰 Salary from{' '}
+            <span>💰{' '}
               <a 
                 href="https://mlsplayers.org/resources/salary-guide" 
                 target="_blank" 
@@ -615,15 +527,15 @@ export function RosterOverview() {
               >
                 MLSPA
               </a>
-              {' '}(Oct 2025)
+              <span className="hidden sm:inline"> (Oct 2025)</span>
             </span>
           )}
         </div>
       </div>
 
-      {/* Roster Columns */}
-      <div className="flex-1 overflow-y-auto p-2">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
+      {/* Roster Columns - responsive grid */}
+      <div className="flex-1 overflow-y-auto overflow-x-hidden p-1.5 sm:p-2">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2">
           {positionGroups.map((group, groupIndex) => {
             const allPlayers = getPlayersByPosition(group.key);
             const players = allPlayers.filter(p => playerMatchesFilter(p, activeFilter));

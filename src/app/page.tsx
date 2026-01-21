@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Users, DollarSign, TrendingUp, TrendingDown, Globe, Info, CheckCircle2, AlertCircle } from 'lucide-react';
 import { StatCard } from '@/components/ui';
 import { RosterOverview, SalaryCapCard, TeamStatsCard } from '@/components/dashboard';
+import { AllocationProvider } from '@/context/AllocationContext';
 import { 
   austinFCRoster, 
   calculateRosterCapSummary, 
@@ -118,18 +119,21 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content Grid - 3:1 ratio matching the stats row above */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 md:gap-3">
-        {/* Roster Overview - 3 columns */}
-        <div className="lg:col-span-3">
-          <RosterOverview />
-        </div>
+      {/* Wrap in AllocationProvider so RosterOverview and SalaryCapCard share state */}
+      <AllocationProvider>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 md:gap-3">
+          {/* Roster Overview - 3 columns */}
+          <div className="lg:col-span-3">
+            <RosterOverview />
+          </div>
 
-        {/* Right Sidebar - 1 column */}
-        <div className="space-y-3">
-          <SalaryCapCard />
-          <TeamStatsCard />
+          {/* Right Sidebar - 1 column */}
+          <div className="space-y-3">
+            <SalaryCapCard />
+            <TeamStatsCard />
+          </div>
         </div>
-      </div>
+      </AllocationProvider>
 
       {/* Key Assumptions & Rules */}
       <motion.div

@@ -72,6 +72,17 @@ export function isTAMEligible(player: AustinFCPlayer): boolean {
          trueCharge <= allocationMoney.TAM.maxBudgetChargeCeiling;
 }
 
+// Calculate how much buydown a player needs to get under max budget charge
+export function getBuydownNeeded(player: AustinFCPlayer): number {
+  // DPs and U22s have fixed charges, no buydown needed for cap compliance
+  if (player.isDP || player.isU22) return 0;
+  // Supplemental don't count against cap
+  if (player.rosterSlot === 'Supplemental') return 0;
+  // Senior roster players with charge above max need buydown
+  const trueCharge = getTrueBudgetCharge(player);
+  return Math.max(0, trueCharge - MLS_2026_RULES.maxBudgetCharge);
+}
+
 // ============================================================================
 // MAIN CALCULATION
 // ============================================================================
