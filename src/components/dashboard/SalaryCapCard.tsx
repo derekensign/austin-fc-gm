@@ -82,72 +82,106 @@ export function SalaryCapCard() {
           </div>
         </div>
 
-        {/* Budget Compliance - Show how TAM/GAM brings us to compliance */}
+        {/* Budget Compliance - DYNAMIC based on slider values */}
         <div>
-          {/* If over cap before buydowns, show the buydown needed */}
-          {cap.totalBudgetCharge > MLS_2026_RULES.salaryBudget ? (
-            <>
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[11px] text-white/50">Pre-Buydown Charge</span>
-                <span className="text-[11px] text-amber-400">{formatSalary(cap.totalBudgetCharge)}</span>
-              </div>
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[11px] text-blue-400">TAM/GAM Buydowns Needed</span>
-                <span className="text-[11px] text-blue-400">-{formatSalary(cap.totalBudgetCharge - MLS_2026_RULES.salaryBudget)}</span>
-              </div>
-              <div className="flex items-center justify-between border-t border-white/10 pt-2 mb-2">
-                <span className="text-[11px] text-white/70 font-medium">Final Budget Charge</span>
-                <span className="font-display text-base text-[var(--verde)] font-bold">{formatSalary(MLS_2026_RULES.salaryBudget)}</span>
-              </div>
-              
-              {/* Compliance bar - shows we're AT the cap after buydowns */}
-              <div className="h-2.5 bg-[var(--obsidian)] rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
-                  transition={{ delay: 0.6, duration: 0.8, ease: 'easeOut' }}
-                  className="h-full rounded-full bg-gradient-to-r from-[var(--verde)] to-[var(--verde-dark)]"
-                />
-              </div>
-              
-              <div className="flex items-center justify-between mt-2">
-                <p className="text-[11px] text-[var(--verde)] flex items-center gap-1">
-                  ✓ COMPLIANT (at cap)
-                </p>
-                <p className="text-[11px] text-white/40">
-                  Budget: {formatSalary(MLS_2026_RULES.salaryBudget)}
-                </p>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex items-end justify-between mb-2">
-                <div>
-                  <p className="text-[11px] text-white/50">Budget Cap</p>
-                  <p className="font-display text-xl text-white">{formatSalary(MLS_2026_RULES.salaryBudget)}</p>
+          {(() => {
+            // Calculate dynamic values based on slider state
+            const preBuydownCharge = cap.totalBudgetCharge;
+            const buydownsNeeded = Math.max(0, preBuydownCharge - MLS_2026_RULES.salaryBudget);
+            const buydownsApplied = dynamicAlloc.tam.used + dynamicAlloc.gam.used;
+            const finalBudgetCharge = Math.max(0, preBuydownCharge - buydownsApplied);
+            const isCompliant = finalBudgetCharge <= MLS_2026_RULES.salaryBudget;
+            const shortfall = buydownsNeeded - buydownsApplied;
+            const compliancePercent = Math.min(100, (finalBudgetCharge / MLS_2026_RULES.salaryBudget) * 100);
+            
+            // If we need buydowns (over cap before buydowns)
+            if (buydownsNeeded > 0) {
+              return (
+                <>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[11px] text-white/50">Pre-Buydown Charge</span>
+                    <span className="text-[11px] text-amber-400">{formatSalary(preBuydownCharge)}</span>
+                  </div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[11px] text-white/50">Buydowns Needed</span>
+                    <span className="text-[11px] text-amber-400">-{formatSalary(buydownsNeeded)}</span>
+                  </div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className={`text-[11px] ${isCompliant ? 'text-green-400' : 'text-blue-400'}`}>
+                      Buydowns Applied (TAM+GAM)
+                    </span>
+                    <span className={`text-[11px] ${isCompliant ? 'text-green-400' : 'text-blue-400'}`}>
+                      -{formatSalary(buydownsApplied)}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between border-t border-white/10 pt-2 mb-2">
+                    <span className="text-[11px] text-white/70 font-medium">Final Budget Charge</span>
+                    <span className={`font-display text-base font-bold ${isCompliant ? 'text-[var(--verde)]' : 'text-red-400'}`}>
+                      {formatSalary(finalBudgetCharge)}
+                    </span>
+                  </div>
+                  
+                  {/* Compliance bar - shows progress toward cap */}
+                  <div className="h-2.5 bg-[var(--obsidian)] rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${compliancePercent}%` }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
+                      className={`h-full rounded-full ${isCompliant 
+                        ? 'bg-gradient-to-r from-[var(--verde)] to-[var(--verde-dark)]' 
+                        : 'bg-gradient-to-r from-red-500 to-red-600'}`}
+                    />
+                  </div>
+                  
+                  <div className="flex items-center justify-between mt-2">
+                    {isCompliant ? (
+                      <p className="text-[11px] text-[var(--verde)] flex items-center gap-1">
+                        ✓ COMPLIANT
+                      </p>
+                    ) : (
+                      <p className="text-[11px] text-red-400 flex items-center gap-1">
+                        ✗ OVER CAP by {formatSalary(shortfall)}
+                      </p>
+                    )}
+                    <p className="text-[11px] text-white/40">
+                      Budget: {formatSalary(MLS_2026_RULES.salaryBudget)}
+                    </p>
+                  </div>
+                </>
+              );
+            }
+            
+            // Under cap even without buydowns
+            return (
+              <>
+                <div className="flex items-end justify-between mb-2">
+                  <div>
+                    <p className="text-[11px] text-white/50">Budget Cap</p>
+                    <p className="font-display text-xl text-white">{formatSalary(MLS_2026_RULES.salaryBudget)}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[11px] text-white/50">Remaining</p>
+                    <p className="font-display text-xl text-[var(--verde)]">
+                      {formatSalary(MLS_2026_RULES.salaryBudget - finalBudgetCharge)}
+                    </p>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-[11px] text-white/50">Remaining</p>
-                  <p className="font-display text-xl text-[var(--verde)]">
-                    {formatSalary(cap.capSpaceRemaining)}
-                  </p>
+                
+                <div className="h-2.5 bg-[var(--obsidian)] rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${compliancePercent}%` }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    className="h-full rounded-full bg-gradient-to-r from-[var(--verde)] to-[var(--verde-dark)]"
+                  />
                 </div>
-              </div>
-              
-              <div className="h-2.5 bg-[var(--obsidian)] rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${capBarWidth}%` }}
-                  transition={{ delay: 0.6, duration: 0.8, ease: 'easeOut' }}
-                  className="h-full rounded-full bg-gradient-to-r from-[var(--verde)] to-[var(--verde-dark)]"
-                />
-              </div>
-              
-              <p className="text-[11px] mt-1.5 text-right text-white/40">
-                {cap.capUsagePercent}% used
-              </p>
-            </>
-          )}
+                
+                <p className="text-[11px] mt-1.5 text-right text-white/40">
+                  {Math.round(compliancePercent)}% used
+                </p>
+              </>
+            );
+          })()}
         </div>
 
         {/* TAM/GAM Allocation - Now using DYNAMIC calculation */}
