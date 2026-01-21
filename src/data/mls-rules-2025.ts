@@ -28,49 +28,123 @@ export const rosterComposition = {
    * MAXIMUM ROSTER SIZE
    * Each MLS club may have up to 30 players on its active roster.
    * All 30 players are eligible for matchday selection in MLS regular season and playoffs.
+   * Source: https://www.mlssoccer.com/about/roster-rules-and-regulations
    */
   maxRosterSize: 30,
 
   /**
    * SENIOR ROSTER (Slots 1-20)
    * Players in slots 1-20 count against the Salary Budget.
+   * Clubs are NOT required to fill slots 19 and 20.
    * If a club has fewer than 18 senior roster players, minimum budget charges are imputed.
    */
   seniorRoster: {
     slots: [1, 20],
     maxPlayers: 20,
     minPlayers: 18, // Below this, minimum budget charges are imputed
+    optionalSlots: [19, 20], // Not required to fill
     countsAgainstBudget: true,
   },
 
   /**
-   * SUPPLEMENTAL ROSTER (Slots 21-30)
-   * Players in slots 21-30 do NOT count against the Salary Budget.
-   * Specific eligibility requirements apply for each slot range.
+   * SUPPLEMENTAL ROSTER (Slots 21-31)
+   * Players in slots 21-31 do NOT count against the Salary Budget.
+   * All Generation adidas players are Supplemental Roster players during
+   * the initial guaranteed term of their contract.
+   * 
+   * ⚠️ NOTE: As of 2025, there are 11 supplemental slots (21-31), not 10!
    */
   supplementalRoster: {
-    slots: [21, 30],
-    maxPlayers: 10,
+    slots: [21, 31],
+    maxPlayers: 11, // Updated from 10 to 11 for 2025
     countsAgainstBudget: false,
     slotRequirements: {
       /**
        * Slots 21-24: Senior Minimum Salary or higher
-       * Eligible: Homegrown Players, Generation adidas, draft-eligible players
+       * May be filled with:
+       * (i) Senior Minimum Salary Players ($104,000), including Homegrown Players
+       * (ii) Generation adidas Players
+       * (iii) Any specifically designated players eligible for the MLS SuperDraft
+       * (iv) Homegrown Players earning more than Senior Minimum subject to HG Subsidy
        */
       '21-24': {
-        minSalary: 'seniorMinimum',
-        eligibleCategories: ['Homegrown', 'Generation adidas', 'Draft-eligible'],
+        minSalary: 104_000, // Senior Minimum
+        eligibleCategories: [
+          'Senior Minimum Salary Players (including Homegrown)',
+          'Generation adidas Players',
+          'SuperDraft-eligible players',
+          'Homegrown Players (subject to HG Subsidy)',
+        ],
       },
       /**
        * Slots 25-30: Reserve Minimum Salary
-       * Must be 24 years old or younger during the League Year
-       * Eligible: Generation adidas, Homegrown Players
+       * May be filled with:
+       * (i) Reserve Minimum Salary Players ($80,622), including Homegrown Players
+       * (ii) Homegrown Players earning more than Reserve Minimum subject to HG Subsidy
+       * (iii) Generation adidas Players (at Reserve Minimum)
+       * 
+       * ⚠️ Must be 24 years or younger during the League Year
+       * ⚠️ Cannot be filled with Senior Minimum Salary Players (unless HG with Subsidy)
        */
       '25-30': {
-        minSalary: 'reserveMinimum',
-        maxAge: 24,
-        eligibleCategories: ['Generation adidas', 'Homegrown'],
+        minSalary: 80_622, // Reserve Minimum
+        maxAge: 24, // Age determined by year of birth, not date
+        eligibleCategories: [
+          'Reserve Minimum Salary Players (including Homegrown)',
+          'Homegrown Players (subject to HG Subsidy)',
+          'Generation adidas Players (at Reserve Minimum)',
+        ],
+        restrictions: [
+          'Cannot be filled with Senior Minimum Salary Players',
+          'Exception: Homegrown Players subject to HG Subsidy',
+        ],
       },
+      /**
+       * Slot 31: Season-Long Loan Slot (NEW for 2025)
+       * May be filled with a player on a season-long loan to a lower-division club 
+       * in the U.S. or Canada who:
+       * (i) is 24 years or younger during the League Year
+       * (ii) has Salary Budget Charge ≤ Senior Minimum Salary
+       * (iii) MLS club does NOT exercise recall right during the MLS Season
+       * 
+       * ⚠️ Player in Slot 31 is INELIGIBLE for MLS competition except as Short-Term Call Up
+       * ⚠️ Does NOT count against International Player limit
+       */
+      '31': {
+        description: 'Season-long loan to lower-division club (USL/MLS NEXT Pro)',
+        maxAge: 24,
+        maxSalaryBudgetCharge: 104_000, // Senior Minimum
+        mustBeLoanedOut: true,
+        cannotRecall: true, // During remainder of MLS season
+        ineligibleForMLS: true, // Except Short-Term Call Up
+        countsAsInternational: false,
+      },
+    },
+  },
+
+  /**
+   * HOMEGROWN PLAYER SUBSIDY
+   * Source: MLS Roster Rules 2025
+   */
+  homegrownPlayerSubsidy: {
+    /**
+     * Homegrown Players in Supplemental Roster slots 21-30 may earn in aggregate
+     * each year up to $125,000 above the applicable minimum salary.
+     */
+    maxAboveMinimum: 125_000, // In aggregate across all HG players in supplemental slots
+    applicableSlots: [21, 30],
+    
+    /**
+     * Clubs may use up to $200,000 of TAM or GAM to sign NEW Homegrown Players
+     * to their first MLS contract, subject to League approval.
+     * ⚠️ TAM cannot be used on a Homegrown Player PREVIOUSLY signed to MLS.
+     */
+    allocationMoneyForFirstContract: {
+      maxAmount: 200_000,
+      canUseTAM: true,
+      canUseGAM: true,
+      requiresLeagueApproval: true,
+      restriction: 'TAM cannot be used on Homegrown Player previously signed to MLS',
     },
   },
 };
@@ -79,89 +153,221 @@ export const rosterComposition = {
 // SALARY BUDGET & CHARGES (2025 FIGURES)
 // ============================================================================
 
+/**
+ * 2025 SALARY BUDGET INFORMATION
+ * Source: https://www.mlssoccer.com/about/roster-rules-and-regulations (Feb 5, 2025)
+ */
 export const salaryBudget2025 = {
   /**
-   * SALARY BUDGET
+   * CLUB SALARY BUDGET
    * The total amount clubs can spend on senior roster players (slots 1-20)
    * 2025: $5,950,000
-   * Source: https://www.mlssoccer.com/about/roster-rules-and-regulations
    */
   totalBudget: 5_950_000,
 
   /**
    * MAXIMUM SALARY BUDGET CHARGE
    * The highest amount any single player can count against the budget
-   * Players earning above this become Designated Players (DPs)
-   * 2025: $743,750
-   * 2026 (projected): $803,125
+   * Players earning above this become Designated Players or need TAM buydown
    */
   maxBudgetCharge: {
     2025: 743_750,
-    2026: 803_125,
+    2026: 803_125, // Projected
   },
 
   /**
-   * SENIOR MINIMUM SALARY
-   * Minimum salary for senior roster players (slots 1-24)
-   * 2025: $104,000 (updated from official MLS rules Feb 2025)
+   * MINIMUM SALARIES
    */
-  seniorMinimumSalary: 104_000,
+  seniorMinimumSalary: 104_000,  // For slots 1-24
+  reserveMinimumSalary: 80_622,  // For slots 25-30 (must be ≤24 years old)
 
   /**
-   * RESERVE MINIMUM SALARY
-   * Minimum salary for reserve/supplemental players (slots 25-30)
-   * Must be 24 years or younger during the League Year
-   * 2025: $80,622 (updated from official MLS rules Feb 2025)
+   * DESIGNATED PLAYER BUDGET CHARGES
    */
-  reserveMinimumSalary: 80_622,
+  designatedPlayerCharge: {
+    first: 743_750,
+    second: 743_750,
+    third: 743_750,
+    midSeason: 371_875, // Half charge for mid-season DP signing
+  },
+
+  /**
+   * YOUNG DESIGNATED PLAYER BUDGET CHARGES
+   * Reduced charges for young DPs based on age during League Year
+   */
+  youngDesignatedPlayerCharge: {
+    age20OrUnder: 150_000,
+    age21to23: 200_000,
+    midSeason23OrUnder: 150_000,
+  },
+
+  /**
+   * U22 INITIATIVE SLOT BUDGET CHARGES
+   * Fixed charges based on age during League Year
+   */
+  u22InitiativeCharge: {
+    age20OrUnder: 150_000,
+    age21to25: 200_000,
+  },
+
+  /**
+   * TARGETED ALLOCATION MONEY SALARY PARAMETERS
+   * TAM can only be used on players within this salary range
+   * 
+   * ⚠️ CRITICAL RULES:
+   * - Player must earn MORE than $743,750 to qualify for TAM
+   * - Maximum eligible compensation: $1,743,750
+   * - Cannot buy down below $150,000 using TAM
+   */
+  tamSalaryParameters: {
+    minimumToQualify: 743_750, // Must earn MORE than this
+    maximumEligible: 1_743_750, // TAM ceiling
+    minimumAfterBuydown: 150_000, // Cannot buy below this with TAM
+    tamNotTradeable: true,
+  },
 };
 
 // ============================================================================
 // ROSTER CONSTRUCTION MODELS (2025+)
+// Source: MLS Roster Rules - "Roster Construction Path"
 // ============================================================================
 
 export const rosterConstructionModels = {
   /**
-   * ROSTER CONSTRUCTION MODEL CHOICE
-   * Starting 2025, clubs must choose ONE of two models at the start of each season.
-   * The choice must be declared by the Roster Compliance Date (e.g., February 21, 2025).
-   * Clubs may adjust their choice mid-season (July 1 - August 21) under certain conditions.
+   * ROSTER CONSTRUCTION PATH (2025+)
+   * 
+   * MLS rosters feature SIX discretionary spending roster spots with flexibility
+   * to choose between two models, tailorable to a team's roster-building strategy.
+   * 
+   * Clubs must submit and announce their roster construction path by the
+   * Roster Compliance Date (Feb. 21 for 2025 season).
    */
+  overview: {
+    discretionarySpots: 6,
+    description: 'Six total discretionary slots: 3 DP + 3 U22 OR 2 DP + 4 U22',
+    announcementRequired: true,
+    mustDeclareBy: 'Roster Compliance Date',
+  },
   
   /**
-   * MODEL A: DESIGNATED PLAYER MODEL
-   * - Up to 3 Designated Players
+   * MODEL A: THREE DESIGNATED PLAYER MODEL
+   * - Up to 3 Designated Players AND
    * - Up to 3 U22 Initiative Players
    * Best for: Clubs wanting maximum star power
    */
   modelA: {
-    name: 'Designated Player Model',
+    name: 'Three Designated Player Model',
+    shortName: '3 DP Model',
     designatedPlayers: { max: 3 },
     u22Initiative: { max: 3 },
     additionalGAM: 0,
     bestFor: 'Clubs prioritizing marquee signings and star power',
+    totalDiscretionarySlots: 6, // 3 DP + 3 U22
   },
 
   /**
-   * MODEL B: U22 INITIATIVE MODEL
-   * - Up to 2 Designated Players
-   * - Up to 4 U22 Initiative Players
-   * - Additional $2,000,000 in General Allocation Money (GAM)
-   * Best for: Clubs focusing on young talent development
+   * MODEL B: U22 INITIATIVE PLAYER MODEL
+   * - Up to 2 Designated Players AND
+   * - Up to 4 U22 Initiative Players AND
+   * - Additional $2,000,000 of General Allocation Money
+   * 
+   * ⚠️ CRITICAL GAM RULES FOR MODEL B:
+   * - GAM received under Model B must be USED within the SAME league season
+   * - Must be used BY Roster Freeze Date
+   * - This GAM MAY be traded, but the receiving club must ALSO use it 
+   *   in the same league season by Roster Freeze Date
+   * - This is "use-it-or-lose-it" GAM, not rollover-eligible
+   * 
+   * Best for: Clubs focusing on young talent development and cap flexibility
    */
   modelB: {
-    name: 'U22 Initiative Model',
+    name: 'U22 Initiative Player Model',
+    shortName: '2 DP + 4 U22 Model',
     designatedPlayers: { max: 2 },
     u22Initiative: { max: 4 },
     additionalGAM: 2_000_000,
-    bestFor: 'Clubs prioritizing youth development and flexibility',
+    additionalGAMRules: {
+      mustUseWithinSeason: true,
+      deadline: 'Roster Freeze Date',
+      tradeable: true,
+      tradeCondition: 'Receiving club must also use within same season by Roster Freeze Date',
+      rolloverEligible: false,
+      description: 'Use-it-or-lose-it within the same league season',
+    },
+    bestFor: 'Clubs prioritizing youth development, flexibility, and additional cap space',
+    totalDiscretionarySlots: 6, // 2 DP + 4 U22
   },
 
   /**
-   * KEY DATES
+   * KEY DATES & DEADLINES
    */
-  declarationDeadline: 'Roster Compliance Date (typically late February)',
-  midseasonAdjustmentWindow: 'July 1 - Secondary Transfer Window close (typically August 21)',
+  keyDates: {
+    declarationDeadline: {
+      date2025: '2025-02-21',
+      description: 'Roster Compliance Date - must submit and announce chosen model',
+    },
+    midseasonAdjustmentWindow: {
+      start2025: '2025-07-01',
+      end2025: '2025-08-21', // Close of Secondary Transfer Window
+      description: 'Window to conditionally change roster construction model',
+    },
+    modelBGAMDeadline: {
+      date2025: '2025-09-12', // Roster Freeze Date
+      description: 'Model B additional GAM must be used by this date',
+    },
+  },
+
+  /**
+   * MID-SEASON MODEL CHANGE CONDITIONS
+   * Clubs may update their roster construction model at midseason between
+   * July 1 and close of Secondary Transfer Window (Aug. 21) under conditions.
+   * 
+   * Common conditions include:
+   * - Must comply with chosen model slot limits after change
+   * - Cannot retroactively reclaim already-used GAM
+   * - Must have roster room for new designations
+   */
+  midseasonChangeConditions: {
+    allowed: true,
+    window: 'July 1 - Close of Secondary Transfer Window (Aug. 21)',
+    conditions: [
+      'Must immediately comply with new model slot limits',
+      'Cannot retroactively reclaim used Model B GAM',
+      'Must have roster room for any designation changes',
+      'Subject to league approval',
+    ],
+    commonScenarios: [
+      'Model B → Model A: Want to sign 3rd DP mid-season (forfeit remaining Model B GAM)',
+      'Model A → Model B: Lost a DP, want extra GAM and 4th U22 slot',
+    ],
+  },
+
+  /**
+   * STRATEGIC CONSIDERATIONS
+   */
+  strategy: {
+    modelAAdvantages: [
+      '3 DP slots for maximum star power',
+      'Better for win-now mode with marquee signings',
+      'Simpler roster construction',
+    ],
+    modelADisadvantages: [
+      'No additional GAM',
+      'Only 3 U22 slots (vs 4)',
+      'DP salaries eat into cap flexibility',
+    ],
+    modelBAdvantages: [
+      '$2M additional GAM for flexibility',
+      '4 U22 slots (transfer fee exempt!)',
+      'Better for development-focused clubs',
+      'More total cap flexibility',
+    ],
+    modelBDisadvantages: [
+      'Only 2 DP slots',
+      'Model B GAM is use-it-or-lose-it',
+      'May struggle to land top-tier targets',
+    ],
+  },
 };
 
 // ============================================================================
@@ -246,34 +452,53 @@ export const u22InitiativeRules = {
 export const allocationMoney = {
   /**
    * TARGETED ALLOCATION MONEY (TAM)
-   * Used to sign players who would otherwise be Designated Players
-   * Can "buy down" a player's budget charge to keep them off DP slot
+   * Source: https://www.mlssoccer.com/about/roster-rules-and-regulations
    * 
-   * ⚠️ CRITICAL RULES:
-   * 1. TAM can ONLY be used on players with budget charges between $803K and $1.803M
-   * 2. TAM and GAM CANNOT be co-mingled when buying down a single player's charge
-   *    - Use TAM OR GAM, not both on same player
+   * Used to sign players who would otherwise be Designated Players.
+   * Can "buy down" a player's budget charge to keep them off DP slot.
+   * 
+   * ⚠️ TAM MAY NOT BE TRADED (per official MLS rules)
+   * 
+   * A club retains flexibility to convert a TAM player back to DP if they have
+   * a free DP slot available.
    */
   TAM: {
-    annualAllocation2026: 2_225_000, // Per MLS 2026 roster rules
+    annualAllocation2025: 2_317_500,
+    annualAllocation2026: 2_225_000,
+    
     /**
-     * TAM SALARY PARAMETERS (2026)
-     * Source: MLS Roster Rules & Regulations
+     * TAM SALARY PARAMETERS (2025)
+     * Source: MLS Roster Rules & Regulations (Feb 5, 2025)
      * 
-     * TAM ELIGIBILITY RANGE: $803,000 - $1,803,000
-     * - Player budget charge must be > $803,000 (max senior salary) to use TAM
-     * - Player budget charge must be ≤ $1,803,000 (TAM ceiling) to use TAM
-     * - Players above $1,803,000 must be Designated Players
-     * 
-     * ⚠️ Cannot co-mingle TAM and GAM on the same player's buydown
+     * TAM ELIGIBILITY RANGE: >$743,750 to $1,743,750
+     * - Player must earn MORE than $743,750 to qualify for TAM
+     * - Compensation ceiling for eligible players: $1,743,750
+     * - Cannot buy down below $150,000 using TAM
+     * - Players above $1,743,750 must be Designated Players
      */
-    minBudgetChargeToQualify: 803_000, // Max senior roster charge - TAM only for players ABOVE this
-    maxBudgetChargeCeiling: 1_803_000, // TAM ceiling - players above this must be DPs
-    maxBuydownPerPlayer: 1_000_000, // Max TAM that can be applied to a single player
-    cannotCoMingleWithGAM: true, // CRITICAL: Cannot use TAM + GAM on same player
-    canBuyDownDP: true, // Can use TAM to buy down a DP's charge
-    tradeable: false, // TAM cannot be traded per official rules
-    description: 'Used to sign or retain players earning $803K-$1.803M without using DP slot',
+    salaryParameters2025: {
+      minimumToQualify: 743_750, // Must earn MORE than this
+      maximumEligible: 1_743_750, // TAM ceiling
+      minimumAfterBuydown: 150_000, // Cannot buy below this with TAM
+    },
+    
+    /**
+     * TAM SALARY PARAMETERS (2026 - projected)
+     */
+    salaryParameters2026: {
+      minimumToQualify: 803_125, // Must earn MORE than this
+      maximumEligible: 1_803_125, // TAM ceiling (projected)
+      minimumAfterBuydown: 150_000, // Cannot buy below this with TAM
+    },
+    
+    // Legacy properties for backward compatibility
+    minBudgetChargeToQualify: 743_750,
+    maxBudgetChargeCeiling: 1_743_750,
+    maxBuydownPerPlayer: 1_000_000,
+    cannotCoMingleWithGAM: true,
+    canBuyDownDP: true,
+    tradeable: false, // ⚠️ TAM MAY NOT BE TRADED
+    description: 'Used to sign or retain players earning >$743K-$1.743M without using DP slot',
   },
 
   /**
@@ -494,37 +719,94 @@ export function calculateOutgoingTransferGAM(
 
 export const internationalSlots = {
   /**
-   * DEFAULT INTERNATIONAL SLOTS
-   * Each club starts with 8 international roster slots
-   * Slots are TRADEABLE between clubs
+   * INTERNATIONAL ROSTER SLOTS (2025)
+   * Source: https://www.mlssoccer.com/about/roster-rules-and-regulations
+   * 
+   * A total of 241 international roster slots are divided among 30 clubs.
+   * These slots are TRADEABLE in full season increments.
+   * With trades, there is NO limit on slots per club.
    */
-  defaultSlots: 8,
+  totalLeagueSlots2025: 241,
+  defaultSlotsPerClub: 8, // Starting allocation (241 ÷ 30 ≈ 8)
   tradeable: true,
+  tradeIncrement: 'Full season',
+  noMaxWithTrades: true,
 
   /**
-   * DOMESTIC PLAYER DEFINITION (US-based clubs)
-   * - U.S. citizens
-   * - Permanent residents (green card holders)
-   * - Refugees/asylees meeting requirements
-   * - Players qualifying under Homegrown International Rule
-   *   (academy players who arrived in US before age 18 and trained for required period)
+   * DOMESTIC PLAYER DEFINITION
    */
-  domesticDefinition: [
-    'U.S. citizen',
-    'Permanent resident (green card)',
-    'Refugee/asylee meeting requirements',
-    'Homegrown International Rule qualifier',
-  ],
+  domesticDefinition: {
+    /**
+     * U.S.-BASED CLUBS
+     * A domestic player is:
+     * - U.S. citizen
+     * - Permanent resident (Green Card holder)
+     * - Holder of certain special status (refugee/asylum)
+     * - Player qualifying under Homegrown International Rule
+     */
+    usClubs: [
+      'U.S. citizen',
+      'Permanent resident (Green Card)',
+      'Refugee/asylee meeting requirements',
+      'Homegrown International Rule qualifier',
+    ],
+    
+    /**
+     * CANADA-BASED CLUBS
+     * A domestic player is:
+     * - Canadian citizen
+     * - Holder of certain special status (refugee/asylum)
+     * - Homegrown International Rule qualifier
+     * - U.S. Domestic Player
+     * 
+     * ⚠️ Canadian clubs must have minimum 3 Canadian Domestic Players at all times
+     */
+    canadianClubs: [
+      'Canadian citizen',
+      'Refugee/asylee meeting requirements',
+      'Homegrown International Rule qualifier',
+      'U.S. Domestic Player',
+    ],
+    canadianMinimumDomestic: 3,
+  },
+
+  /**
+   * GREEN CARD TIMING RULE (U.S.-based clubs)
+   * A player who obtains U.S. permanent residency while employed by MLS
+   * will be considered domestic for the applicable season IF:
+   * - Residency is established, OR
+   * - Player has appeared for immigrant visa interview
+   * BY the opening of the Secondary Transfer Window (July 24, 2025)
+   */
+  greenCardTimingRule: {
+    deadline2025: '2025-07-24', // Opening of Secondary Transfer Window
+    description: 'Must establish residency or have visa interview by Secondary Transfer Window opening',
+  },
+
+  /**
+   * CANADIAN CLUB INTERNATIONAL EXCEPTION
+   * Each Canadian club may designate up to 3 International Players who:
+   * - Have been under MLS contract AND
+   * - Registered with one or more Canadian clubs for at least 1 year
+   * These players do NOT count toward International Roster Slots.
+   */
+  canadianInternationalException: {
+    maxPlayers: 3,
+    requirement: 'Under MLS contract and registered with Canadian club(s) for ≥1 year',
+    countsAsInternational: false,
+  },
 
   /**
    * HOMEGROWN INTERNATIONAL RULE
-   * A player can be considered domestic if:
-   * - Arrived in the U.S. before age 18
-   * - Trained in club's academy for required period (typically 2+ years)
+   * A player qualifies as domestic if they meet Homegrown requirements
+   * as a member of an MLS club academy (U.S. or Canada) or Canadian Approved Youth Club:
+   * - Joined academy no later than the year they turned 15
+   * - Signs first professional contract with MLS or MLS club's affiliate (MLS NEXT Pro)
    */
   homegrownInternationalRule: {
-    maxAgeAtArrival: 18,
-    minAcademyYears: 2,
+    maxAgeToJoinAcademy: 15, // By the year they turn 15
+    mustSignFirstContractWithMLS: true,
+    affiliateQualifies: true, // MLS NEXT Pro counts
   },
 };
 
@@ -901,48 +1183,132 @@ export const transferFeeRules = {
 
 // ============================================================================
 // TRANSFER WINDOWS (2025)
-// Source: https://www.mlssoccer.com/about/roster-rules-and-regulations
+// Source: https://www.mlssoccer.com/about/roster-rules-and-regulations (Feb 5, 2025)
 // ============================================================================
 
 export const transferWindows2025 = {
   /**
    * PRIMARY TRANSFER WINDOW
-   * Main window for international transfers and MLS trades
+   * The registration window between which MLS may request international transfer 
+   * certificates or trade players within MLS.
    */
   primary: {
-    start: '2025-01-31',
-    end: '2025-04-23',
+    start: '2025-01-31', // Friday, January 31
+    end: '2025-04-23',   // Wednesday, April 23
     description: 'Main window for international signings and MLS trades',
   },
 
   /**
    * SECONDARY TRANSFER WINDOW
-   * Mid-season window with limited activity
+   * Mid-season window for roster adjustments
    */
   secondary: {
-    start: '2025-07-24',
-    end: '2025-08-21',
+    start: '2025-07-24', // Thursday, July 24
+    end: '2025-08-21',   // Thursday, August 21
     description: 'Mid-season window for roster adjustments',
   },
 
   /**
    * ROSTER COMPLIANCE DATE
-   * Deadline for clubs to be budget and roster compliant
+   * Clubs must be roster and budget compliant heading into the season.
    */
   rosterComplianceDate: {
-    date: '2025-02-21',
+    date: '2025-02-21', // Friday, February 21
     time: '8:00 PM ET',
-    description: 'Clubs must be roster and budget compliant',
+    description: 'Clubs must be roster and budget compliant for season start',
   },
 
   /**
    * ROSTER FREEZE DATE
-   * Final roster submission deadline
+   * Final roster submission deadline.
+   * Rosters cannot be changed from this date through the day after MLS Cup,
+   * subject to Extreme Hardship exception.
    */
   rosterFreezeDate: {
-    date: '2025-09-12',
+    date: '2025-09-12', // Friday, September 12
     description: 'Final 30-man roster submitted, no changes until after MLS Cup',
+    exception: 'Extreme Hardship',
   },
+};
+
+// ============================================================================
+// PLAYER PROFESSIONAL DEVELOPMENT ROLE (2025+)
+// Source: https://www.mlssoccer.com/about/roster-rules-and-regulations
+// ============================================================================
+
+export const professionalDevelopmentRole = {
+  /**
+   * OVERVIEW
+   * A club may choose to designate, with prior League approval, one player per year
+   * in a professional development role. This allows veteran players to transition
+   * into coaching, scouting, or front office roles while still under contract.
+   */
+  maxPerClub: 1,
+  requiresLeagueApproval: true,
+  
+  /**
+   * ELIGIBILITY REQUIREMENTS
+   */
+  eligibility: {
+    minAge: 25, // Must turn or be older than 25 during the League Year
+    cannotBeLoanedOut: true, // May not be loaned out for extended period
+    approvalDeadline: 'Prior to Roster Compliance Date',
+    duration: 'Full season',
+  },
+
+  /**
+   * ROLE REQUIREMENTS
+   * The player must have responsibilities enabling development in different
+   * parts of the club's business.
+   */
+  allowedResponsibilities: [
+    'Coaching (affiliate and/or academy only)',
+    'Scouting',
+    'Front office duties',
+    'Diversity liaison',
+  ],
+
+  /**
+   * COACHING RESTRICTIONS
+   * If the role includes coaching responsibilities:
+   */
+  coachingRestrictions: {
+    firstTeamCoaching: false, // Cannot have first team coaching responsibilities
+    allowedTeams: ['Affiliate (MLS NEXT Pro)', 'Academy'],
+    loanRestriction: 'Cannot be loaned to affiliate if coaching that affiliate',
+  },
+
+  /**
+   * COMPENSATION LIMITS
+   */
+  compensation: {
+    mustBeCommensurate: true, // With similar roles accounting for hours
+    maxAmount: 75_000, // For roles entered into after 2022 season
+    maxPercentOfSalary: 0.50, // Cannot exceed 50% of Unadjusted Salary Budget Charge
+    description: 'Compensation must be commensurate with similar roles for expected hours',
+  },
+
+  /**
+   * MENTORSHIP REQUIREMENT
+   * The club must designate a mentor who will guide and monitor the player's
+   * development plan. League may request progress reports throughout the season.
+   */
+  mentorshipRequirement: {
+    required: true,
+    progressReportsRequired: true,
+    penaltyForNonCompliance: 'Loss of designation + 5-year ban from designating another',
+  },
+
+  /**
+   * REQUIRED INFORMATION FOR APPROVAL
+   */
+  requiredForApproval: [
+    'Detailed job description',
+    'If coaching: requirement for coaching certification (at least B license)',
+    'Job responsibilities',
+    'Time commitment required',
+    'Proposed compensation with comparisons to similar roles',
+  ],
 };
 
 // ============================================================================
@@ -2011,17 +2377,52 @@ export const cbaArticle15LoansTransfers = {
 // SUMMARY: AUSTIN FC 2025 RULES QUICK REFERENCE
 // ============================================================================
 
+/**
+ * AUSTIN FC 2025 RULES QUICK REFERENCE
+ * Source: https://www.mlssoccer.com/about/roster-rules-and-regulations (Feb 5, 2025)
+ */
 export const austinFC2025QuickReference = {
+  // Budget
   salaryBudget: '$5,950,000',
   maxBudgetCharge: '$743,750 (becomes DP above this)',
+  
+  // Roster Construction Models (choose one by Feb 21)
   dpSlots: '3 max (Model A) or 2 max (Model B)',
   u22Slots: '3 max (Model A) or 4 max (Model B)',
+  
+  // Roster Composition
   maxRoster: '30 players total',
-  seniorRoster: '20 players max (count against budget)',
-  supplementalRoster: '10 players max (do NOT count against budget)',
-  internationalSlots: '8 default (tradeable)',
-  TAM: '$2,317,500 annually',
-  GAM: '$1,825,000 base + $2M if Model B',
+  seniorRoster: '20 players max (slots 1-20, count against budget)',
+  supplementalRoster: '11 players max (slots 21-31, do NOT count against budget)',
+  
+  // International
+  internationalSlots: '8 default (tradeable, 241 total league-wide)',
+  
+  // Allocation Money
+  TAM: '$2,317,500 annually (NOT tradeable)',
+  GAM: '$1,825,000 base + $2M if Model B (tradeable)',
+  
+  // TAM Salary Parameters
+  tamMinToQualify: '>$743,750',
+  tamMaxEligible: '$1,743,750',
+  tamMinAfterBuydown: '$150,000',
+  
+  // Special Charges
+  dpCharge: '$743,750 (full season), $371,875 (mid-season)',
+  youngDpCharge: '$150,000 (20 or under), $200,000 (21-23)',
+  u22Charge: '$150,000 (20 or under), $200,000 (21-25)',
+  
+  // Minimums
+  seniorMinimum: '$104,000',
+  reserveMinimum: '$80,622',
+  
+  // Key Dates
+  rosterComplianceDate: 'Feb 21, 2025 8pm ET',
+  primaryWindow: 'Jan 31 - Apr 23, 2025',
+  secondaryWindow: 'Jul 24 - Aug 21, 2025',
+  rosterFreezeDate: 'Sep 12, 2025',
+  
+  // Free Agency
   freeAgency2026: '24 years old + 4 years service',
 };
 
@@ -2525,98 +2926,131 @@ export function calculateRosterCompliance(
 /**
  * Get all rules as a formatted string for AI context
  */
+/**
+ * Get all rules as a formatted string for AI context
+ * Source: https://www.mlssoccer.com/about/roster-rules-and-regulations (Feb 5, 2025)
+ */
 export function getRulesContext(): string {
   return `
-MLS ROSTER RULES (2025-2026 Season)
+MLS ROSTER RULES (2025 Season)
+Source: https://www.mlssoccer.com/about/roster-rules-and-regulations
 
-SALARY BUDGET: $5,950,000 (2025), $6,425,000 (2026)
-Maximum Budget Charge: $743,750 (2025), $803,125 (2026)
-Players earning above max charge = Designated Player
+═══════════════════════════════════════════════════════════════════
+SALARY BUDGET & CHARGES (2025)
+═══════════════════════════════════════════════════════════════════
+Club Salary Budget: $5,950,000
+Maximum Salary Budget Charge: $743,750 (players above this = DP or need TAM)
+Senior Minimum Salary: $104,000
+Reserve Minimum Salary: $80,622
 
-ROSTER COMPOSITION:
-- Maximum 30 players total
-- Senior Roster (slots 1-20): Count against salary budget
-- Supplemental Roster (slots 21-30): Do NOT count against budget
+DESIGNATED PLAYER CHARGES:
+- Full Season DP: $743,750
+- Mid-Season DP: $371,875
+- Young DP (20 or under): $150,000
+- Young DP (21-23): $200,000
 
-ROSTER CONSTRUCTION MODELS (choose one):
-Model A: 3 DPs + 3 U22 Initiative
-Model B: 2 DPs + 4 U22 Initiative + $2M extra GAM
+U22 INITIATIVE CHARGES:
+- Age 20 or under: $150,000
+- Age 21-25: $200,000
 
-DESIGNATED PLAYERS:
-- Salary exceeds max budget charge = DP
-- Count at max budget charge ($803,125 in 2026)
-- Young DP (≤23): Reduced charge ~$200,000
-- Max buyouts: 2 per year
+═══════════════════════════════════════════════════════════════════
+ROSTER COMPOSITION (2025)
+═══════════════════════════════════════════════════════════════════
+Maximum Roster: 30 players total
 
-U22 INITIATIVE:
-- Must be 22 or younger at signing
-- Can stay through age 25
-- Budget charge: $200,000 (fixed!)
-- Max salary: $612,500
-- Transfer fees EXEMPT from cap (huge benefit!)
+SENIOR ROSTER (Slots 1-20):
+- Count against $5,950,000 Salary Budget
+- Slots 19-20 are optional (don't need to fill)
+- Minimum 18 players (or imputed charges apply)
 
-ALLOCATION MONEY:
-TAM: $2,125,000 annually (2026) - buy down salaries
-GAM: $3,280,000 annually (2026) - flexible use
-GAM tradeable, TAM is NOT
+SUPPLEMENTAL ROSTER (Slots 21-31): ⚠️ 11 SLOTS, NOT 10!
+- Do NOT count against Salary Budget
+- Slots 21-24: Senior Minimum ($104,000) - HG, GA, Draft players
+- Slots 25-30: Reserve Minimum ($80,622) - Must be ≤24 years old
+- Slot 31: NEW! Season-long loan slot for ≤24y/o loaned to lower division
 
-INTERNATIONAL SLOTS:
-- 8 default per club
-- Tradeable between clubs
+═══════════════════════════════════════════════════════════════════
+ROSTER CONSTRUCTION PATH (choose by Feb 21)
+═══════════════════════════════════════════════════════════════════
+MODEL A - THREE DESIGNATED PLAYER MODEL:
+- Up to 3 DPs
+- Up to 3 U22 Initiative Players
 
-FREE AGENCY (2026+):
-- Age 24+ with 4+ years MLS service
-- (Changed from 5 years to 4 years in 2026)
+MODEL B - U22 INITIATIVE PLAYER MODEL:
+- Up to 2 DPs
+- Up to 4 U22 Initiative Players
+- Additional $2,000,000 GAM (⚠️ USE-IT-OR-LOSE-IT by Roster Freeze!)
 
-HOMEGROWN PLAYERS:
-- No international slot required
-- Off-roster homegrowns (≤21): Up to 6 league matches
-- Extended U22 Initiative eligibility
+Mid-season model change allowed: July 1 - Aug 21 (with conditions)
 
-⚠️ TRANSFER FEES (CRITICAL - Commonly Misunderstood!):
-- Transfer fees DO count against salary budget as AMORTIZED annual costs
-- Formula: Annual Budget Charge = Base Salary + (Transfer Fee ÷ Contract Years) + Bonuses
+═══════════════════════════════════════════════════════════════════
+TARGETED ALLOCATION MONEY (TAM)
+═══════════════════════════════════════════════════════════════════
+Annual Allocation: ~$2,317,500 (2025)
+
+⚠️ TAM SALARY PARAMETERS (CRITICAL!):
+- Player must earn MORE than $743,750 to qualify
+- Maximum eligible compensation: $1,743,750
+- Cannot buy down below $150,000 using TAM
+- TAM MAY NOT BE TRADED
+
+TAM can convert a DP to non-DP by buying down their charge.
+Club can convert TAM player back to DP if they have a free slot.
+
+═══════════════════════════════════════════════════════════════════
+GENERAL ALLOCATION MONEY (GAM)
+═══════════════════════════════════════════════════════════════════
+Annual Allocation: ~$1,825,000 base
+Model B Bonus: +$2,000,000 (must use same season by Roster Freeze!)
+GAM IS TRADEABLE
+
+═══════════════════════════════════════════════════════════════════
+INTERNATIONAL SLOTS
+═══════════════════════════════════════════════════════════════════
+Total League Slots (2025): 241 divided among 30 clubs
+Default per Club: ~8 slots
+Slots are TRADEABLE in full season increments
+No maximum with trades
+
+Green Card Rule: Player becomes domestic if residency established by Jul 24
+
+═══════════════════════════════════════════════════════════════════
+KEY DATES (2025)
+═══════════════════════════════════════════════════════════════════
+Roster Compliance Date: Feb 21, 2025 (8pm ET)
+Primary Transfer Window: Jan 31 - Apr 23, 2025
+Secondary Transfer Window: Jul 24 - Aug 21, 2025
+Roster Freeze Date: Sep 12, 2025 (no changes until after MLS Cup)
+
+═══════════════════════════════════════════════════════════════════
+⚠️ TRANSFER FEES (CRITICAL - Commonly Misunderstood!)
+═══════════════════════════════════════════════════════════════════
+Transfer fees DO count against salary budget as AMORTIZED annual costs!
+Formula: Annual Budget Charge = Base Salary + (Transfer Fee ÷ Contract Years)
 
 EXEMPTIONS (fees DON'T add to cap):
-- DPs: Budget charge capped at ~$803K regardless of any transfer fee
-- U22: Budget charge fixed at $200K regardless of any transfer fee
+- DPs: Charge capped at $743,750 regardless of fee
+- U22: Charge fixed at $150-200K regardless of fee
 
 NON-EXEMPT PLAYERS (fees DO add to cap!):
 - Senior roster players who are NOT DP and NOT U22
 - Amortized fee IS added to salary for budget charge
-- Must be ≤ max budget charge OR bought down with GAM/TAM
+- Must be ≤ max charge OR bought down with GAM/TAM
 
-LOAN RULES:
-- Intra-MLS: Up to 4 players at a time, 14+ days
-- To Affiliate: Unlimited, for development
-- International: FIFA rules apply, window required
-- Loan fees can be 100% bought down with GAM
+═══════════════════════════════════════════════════════════════════
+HOMEGROWN PLAYER SUBSIDY
+═══════════════════════════════════════════════════════════════════
+HG players in supplemental slots can earn up to $125,000 above minimum (in aggregate)
+Clubs can use up to $200K TAM/GAM for first HG contract (League approval required)
+⚠️ TAM cannot be used on HG player previously signed to MLS
 
-CONTRACT BUYOUTS (2025+):
-- Max 2 guaranteed contracts bought out per year
-- Includes DP contracts
-- Immediate cap relief
-
-RE-ENTRY DRAFT:
-- For out-of-contract players not FA eligible
-- Stage 1: Original club rights
-- Stage 2: Open selection (inverse standings)
-
-SHORT-TERM AGREEMENTS:
-- Up to 4 weeks for emergency coverage
-- Requires league approval
-- Common for injury/international duty gaps
-
-⚠️ MLSPA DATA WARNING:
-- MLSPA reports salary + guaranteed comp ONLY
-- Does NOT include: transfer fees, loan fees, signing bonus amortization
-- MLSPA data alone UNDERSTATES true budget charges!
-
-TRANSFER WINDOWS (2025):
-- Primary Window: Jan 31 - Apr 23, 2025
-- Secondary Window: Jul 24 - Aug 21, 2025
-- Roster Compliance Date: Feb 21, 2025 (8pm ET)
-- Roster Freeze Date: Sep 12, 2025
+═══════════════════════════════════════════════════════════════════
+OTHER KEY RULES
+═══════════════════════════════════════════════════════════════════
+CONTRACT BUYOUTS: Max 2 guaranteed contracts per year (including DPs)
+FREE AGENCY (2026+): Age 24+ with 4+ years MLS service
+SHORT-TERM AGREEMENTS: Up to 4 weeks for emergency coverage
+PROFESSIONAL DEVELOPMENT ROLE: 1 player per club can transition to coaching/FO role
 `.trim();
 }
 
