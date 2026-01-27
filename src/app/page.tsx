@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, DollarSign, TrendingUp, TrendingDown, Globe, Info, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Users, DollarSign, Globe } from 'lucide-react';
 import { StatCard } from '@/components/ui';
 import { RosterOverview, SalaryCapCard, TeamStatsCard } from '@/components/dashboard';
 import { AllocationProvider } from '@/context/AllocationContext';
@@ -134,45 +134,6 @@ export default function Dashboard() {
           </div>
         </div>
       </AllocationProvider>
-
-      {/* Key Assumptions & Rules */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="mt-4 bg-gradient-to-r from-[var(--verde)]/10 to-purple-500/10 border border-[var(--verde)]/30 rounded-xl p-4"
-      >
-        <h2 className="font-display text-sm text-white/70 mb-3 flex items-center gap-2">
-          <Info className="h-4 w-4 text-[var(--verde)]" />
-          2026 ALLOCATION POSITION (Calculated)
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-          <div className="flex items-start gap-2">
-            <TrendingUp className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
-            <div>
-              <span className="text-white font-medium">2026 GAM: +$3.53M</span>
-              <p className="text-white/50">$3.28M annual + $0.25M distribution</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-2">
-            <DollarSign className="h-4 w-4 text-blue-400 mt-0.5 shrink-0" />
-            <div>
-              <span className="text-white font-medium">TAM: $2.13M</span>
-              <p className="text-white/50">Use-it-or-lose-it, used first for buydowns</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-2">
-            <AlertCircle className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
-            <div>
-              <span className="text-white font-medium">Free GAM: ~$2.23M</span>
-              <p className="text-white/50">After estimated cap buydowns</p>
-            </div>
-          </div>
-        </div>
-        <p className="text-[10px] text-white/40 mt-3">
-          Source: Matthew Doyle analysis + Austin FC press releases + MLS CBA rules.
-        </p>
-      </motion.div>
     </div>
   );
 }
