@@ -3,17 +3,16 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { X, Sliders } from 'lucide-react';
-import { 
-  austinFCRoster, 
-  getPlayersByPosition, 
-  getFlag, 
+import {
+  austinFCRoster,
+  getPlayersByPosition,
+  getFlag,
   getDesignationBadge,
   formatSalary,
   MLS_2026_RULES,
   type PositionGroup,
-  type AustinFCPlayer 
+  type AustinFCPlayer
 } from '@/data/austin-fc-roster';
-import { AUSTIN_FC_2026_ALLOCATION_POSITION } from '@/data/austin-fc-allocation-money';
 import { allocationMoney } from '@/data/mls-rules-2025';
 import { 
   getTrueBudgetCharge, 
