@@ -782,15 +782,15 @@ export const austinFCRoster: AustinFCPlayer[] = [
     nationality: 'Uruguay',
     countryCode: 'UY',
     photo: '', // New acquisition - no ATX photo yet
-    baseSalary: 1_800_000,  // ESTIMATED - awaiting MLSPA Spring 2026 release
-    guaranteedCompensation: 1_900_000,  // ESTIMATED - not buy-downable per user
+    baseSalary: 2_000_000,  // ESTIMATE - actual salary TBD until MLSPA Spring 2026 release
+    guaranteedCompensation: 2_000_000,  // ESTIMATE - actual salary TBD until MLSPA Spring 2026 release
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 803_125, // 2026 DP max cap charge
     contractEnd: 'Dec 2030',  // Through 2029-30 season with 2030-31 option
     designation: 'DP',
     rosterSlot: 'Senior',
-    isInternational: true,
+    isInternational: false, // Green card - does not occupy international slot
     isHomegrown: false,
     isU22: false,
     isDP: true,
