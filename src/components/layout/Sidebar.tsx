@@ -183,44 +183,12 @@ export function Sidebar() {
         })}
       </nav>
 
-      {/* Season Info Card - only when expanded */}
-      {showFull && (
-        <div className="mx-2 mb-3 overflow-hidden">
-          <div className="rounded-xl bg-gradient-to-br from-[var(--verde)]/10 to-transparent border border-[var(--verde)]/20 p-3">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[var(--verde)]">
-                2026 Season
-              </span>
-              <ChevronDown className="h-4 w-4 text-[var(--verde)]" />
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-white/60">Roster</span>
-                <span className="font-semibold text-white">28/30</span>
-              </div>
-              <div className="progress-bar">
-                <div className="progress-bar-fill" style={{ width: '93%' }} />
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-white/60">Cap Space</span>
-                <span className="font-semibold text-[var(--verde)]">$1.2M</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* User */}
       <div className="border-t border-[var(--obsidian-lighter)] p-3">
         <div className={`flex items-center gap-3 ${!showFull ? 'justify-center' : ''}`}>
           <div className="h-9 w-9 rounded-full bg-gradient-to-br from-[var(--verde)] to-[var(--verde-dark)] flex items-center justify-center flex-shrink-0">
             <span className="text-sm font-bold text-black">DE</span>
           </div>
-          {showFull && (
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-white/50">Fan GM Mode</p>
-            </div>
-          )}
         </div>
       </div>
     </div>
