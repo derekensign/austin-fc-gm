@@ -104,7 +104,7 @@ export const AUSTIN_FC_GAM_JAN_2026 = {
     annualGAM2026: 3_280_000,           // Every team gets this
     rosterModelGAM: 0,                   // If 2/4/GAM build, could get up to $2M more
     playoffMissBonus: 0,                 // "You suck!" allocation (small)
-    thirdDPDistribution: 250_000,        // With only 2 DPs, get share of pool (estimated)
+    thirdDPDistribution: 0,              // $0 - using all 3 DP slots (Vazquez, Uzuni, Torres)
     bukariSaleGAM: 0,                   // $0! Sold at LOSS (€5.5M vs €8M acquisition) - no GAM generated
   },
   
@@ -123,15 +123,15 @@ export const AUSTIN_FC_GAM_JAN_2026 = {
     - Rosales trade: $0 (was CASH $1.5M, not GAM!)
     - Nelson trade (2026 GAM OUT): -$700,000
     = Pre-2026 position: -$605,364 (small deficit)
-    
+
     2026 Additions:
     - Annual GAM allocation: +$3,280,000
-    - Third DP distribution (~estimate): +$250,000
+    - Third DP distribution: $0 (using all 3 DP slots: Vazquez, Uzuni, Torres)
     - Bukari sale GAM: $0 (sold at loss, no GAM generated)
     - Driussi sale GAM: $0 (DP not eligible for buydown)
-    
+
     PROJECTED 2026 GAM AVAILABLE:
-    -$605K + $3.28M + $0.25M = ~$2.92M
+    -$605K + $3.28M + $0 = ~$2.67M
   `,
 };
 
@@ -147,10 +147,10 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
     // Starting position (rolled over from 2025 + trades)
     // $44,636 + $50K (Cleveland) - $700K (Nelson) = -$605,364
     rolledOverDeficit: -605_364,  // Small deficit due to Nelson trade
-    
+
     // 2026 Credits
     annualAllocation: 3_280_000,
-    thirdDPDistribution: 250_000,   // Estimated - only 2 DPs used
+    thirdDPDistribution: 0,         // $0 - using all 3 DP slots (Vazquez, Uzuni, Torres)
     bukariSaleGAM: 0,               // $0! Sold at LOSS (€5.5M vs €8M acquisition)
     
     // 2026 Debits (already committed)
@@ -159,7 +159,7 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
     // Current available GAM (2026)
     // Note: deficit includes Nelson ($700K), but Taylor ($250K) is separate
     taylorTrade2026: -250_000,
-    available2026: 3_280_000 + 250_000 + 0 - 605_364 - 250_000, // = $2,674,636
+    available2026: 3_280_000 + 0 + 0 - 605_364 - 250_000, // = $2,424,636
     
     // Reserved for cap compliance (GAM portion only - TAM covers $2.0M first)
     // Total buydowns needed: $2.44M (from $8.86M charge - $6.42M budget)
@@ -167,7 +167,7 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
     estimatedBuydownsNeeded: 440_000, // GAM portion after TAM exhausted
     
     // Free GAM after compliance
-    freeGAM: 3_280_000 + 250_000 + 0 - 605_364 - 250_000 - 440_000, // = $2,234,636
+    freeGAM: 3_280_000 + 0 + 0 - 605_364 - 250_000 - 440_000, // = $1,984,636
   },
   
   // =====================================================
@@ -190,13 +190,13 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
   // =====================================================
   combined: {
     // For new signings (after cap compliance)
-    // GAM: $3.28M + $0.25M - $0.6M deficit - $0.25M Taylor - $0.44M buydowns = $2.23M
-    freeGAM: 2_234_636,
+    // GAM: $3.28M + $0 - $0.6M deficit - $0.25M Taylor - $0.44M buydowns = $1.98M
+    freeGAM: 1_984_636,
     freeTAM: 125_000,
-    totalFlexibility: 2_234_636 + 125_000, // = $2,359,636
-    
+    totalFlexibility: 1_984_636 + 125_000, // = $2,109,636
+
     // For trades
-    tradeableGAM: 2_234_636,  // GAM is tradeable
+    tradeableGAM: 1_984_636,  // GAM is tradeable
     tradeableTAM: 0,          // TAM cannot be traded
   },
   
@@ -218,7 +218,7 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
     'Driussi sale: $0 GAM (DP not eligible to be bought down)',
     'TAM used first for buydowns before GAM',
     'Budget charge $8.86M needs ~$2.44M buydown to fit $6.42M budget',
-    'Third DP distribution estimated at $250K (varies by league)',
+    'Third DP distribution: $0 (using all 3 DP slots)',
     'Model A (3 DPs + 3 U22) assumed - no $2M U22 model bonus',
   ],
   
