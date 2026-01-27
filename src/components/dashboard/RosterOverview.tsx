@@ -227,7 +227,10 @@ const PlayerRow = React.memo(function PlayerRow({
                             id={`tam-slider-${player.id}`}
                             type="range"
                             min={0}
-                            max={Math.min(allocationMoney.TAM.maxBuydownPerPlayer, trueCharge)}
+                            max={Math.min(
+                              allocationMoney.TAM.maxBuydownPerPlayer,
+                              trueCharge - 150_000 // Can't buy below $150K (MLS TAM minimum)
+                            )}
                             step={10000}
                             value={tamApplied}
                             onChange={(e) => onAllocationChange?.(player.id, 'tam', Number(e.target.value))}

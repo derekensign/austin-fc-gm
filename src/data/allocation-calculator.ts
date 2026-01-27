@@ -134,19 +134,23 @@ export function calculateAutoAllocation(): AllocationState {
     .sort((a, b) => getTrueBudgetCharge(b) - getTrueBudgetCharge(a));
   
   // PHASE 1: Apply TAM to TAM-eligible players first (use-it-or-lose-it)
+  // Strategy: MAX OUT TAM on eligible players (buy down to $150K minimum)
+  const tamMinimum = 150_000; // MLS TAM minimum after buydown
+
   for (const player of buydownCandidates) {
     if (remainingTeamBuydown <= 0 || tamRemaining <= 0) break;
-    
+
     if (isTAMEligible(player)) {
       const trueCharge = getTrueBudgetCharge(player);
-      // Can apply TAM up to the amount that brings them to max budget charge
+
+      // MAX OUT TAM: Buy down to $150K minimum (not just to max budget charge)
       const maxTamForPlayer = Math.min(
-        trueCharge - MLS_2026_RULES.maxBudgetCharge, // Don't buy below max charge
+        trueCharge - tamMinimum, // Buy down to $150K minimum
         allocationMoney.TAM.maxBuydownPerPlayer,
         tamRemaining,
         remainingTeamBuydown
       );
-      
+
       if (maxTamForPlayer > 0) {
         const alloc = allocations.get(player.id)!;
         alloc.tamApplied = Math.max(0, maxTamForPlayer);

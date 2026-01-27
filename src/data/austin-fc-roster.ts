@@ -709,12 +709,13 @@ export const austinFCRoster: AustinFCPlayer[] = [
     guaranteedCompensation: 375_000,
     // ⚠️ CRITICAL: Cash trade fee IS amortized and added to budget charge per 2025 MLS rules!
     // $1.5M cash / 3.5 years guaranteed = ~$428K/year amortized
-    tamApplied: 428_000,  // TAM needed to buy down amortized acquisition cost
+    // TAM Strategy: MAX OUT to $150K minimum per MLS rules ($803K - $150K = $653K TAM)
+    tamApplied: 653_000,  // MAX TAM: Buy down to $150K minimum (was $428K, now maxed out)
     gamApplied: 0,
-    budgetCharge: 375_000, // After TAM buydown - salary only hits cap
-    trueBudgetCharge: 803_000, // $375K salary + $428K amortized = $803K (at max!)
+    budgetCharge: 150_000, // After MAX TAM buydown - minimal cap hit!
+    trueBudgetCharge: 803_000, // $375K salary + $428K amortized = $803K (at TAM threshold)
     contractEnd: 'Dec 2029',
-    designation: 'Senior',  // Salary alone ($375K) is senior-level; TAM offsets acquisition cost only
+    designation: 'TAM',  // TAM player - maxed out buydown to $150K
     rosterSlot: 'Senior',
     isInternational: false, // Green card per official roster
     isHomegrown: false,
@@ -728,7 +729,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     transferFee: 1_500_000,           // $1.5M cash per Austin FC press release
     contractYearsGuaranteed: 3.5,     // 3.5 years through June 2029
     amortizedAnnualFee: 428_000,      // $1.5M / 3.5 years = ~$428K/year adds to cap charge
-    // Note: Cash trade - fee amortized over contract, needs TAM buydown
+    // Note: Cash trade - fee amortized over contract, maxed out TAM buydown to $150K minimum
   },
   {
     id: 21,
