@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import { X, Sliders, Zap, Hand, Info, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { X, Sliders } from 'lucide-react';
 import { 
   austinFCRoster, 
   getPlayersByPosition, 
@@ -261,26 +261,14 @@ export function RosterOverview() {
   const [showValues, setShowValues] = useState(false);
   const [activeFilter, setActiveFilter] = useState<FilterType>(null);
   const [showAllocation, setShowAllocation] = useState(false);
-  
+
   // Use shared allocation context
-  const { 
-    allocationMode, 
-    setAllocationMode, 
-    currentAllocation, 
-    handleAllocationChange, 
-    resetToAuto 
+  const {
+    allocationMode,
+    currentAllocation,
+    handleAllocationChange,
   } = useAllocation();
-  
-  // Calculate totals from context
-  const totalTAM = AUSTIN_FC_2026_ALLOCATION_POSITION.tam.annualAllocation;
-  const totalGAM = AUSTIN_FC_2026_ALLOCATION_POSITION.gam.available2026;
-  const tamUsed = currentAllocation.tamUsed;
-  const gamUsed = currentAllocation.gamUsed;
-  
-  // Get compliance from context
-  const isCompliant = currentAllocation.isCompliant;
-  const shortfall = currentAllocation.totalBuydownNeeded - currentAllocation.totalBuydownApplied;
-  
+
   // Get filtered players count
   const filteredPlayers = austinFCRoster.filter(p => playerMatchesFilter(p, activeFilter));
   const totalPlayers = austinFCRoster.length;
@@ -333,97 +321,6 @@ export function RosterOverview() {
           </button>
         </div>
       </div>
-
-      {/* Allocation Mode Bar (when showAllocation is true) - responsive */}
-      {showAllocation && (
-        <div className="px-2 sm:px-4 py-2 border-b border-[var(--obsidian-lighter)] bg-[var(--obsidian)]/30">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            {/* Mode Toggle + Pool Status Row */}
-            <div className="flex items-center justify-between sm:justify-start gap-2 sm:gap-4 flex-wrap">
-              {/* Mode Toggle */}
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-0.5 sm:gap-1 p-0.5 bg-[var(--obsidian)] rounded-md">
-                  <button
-                    onClick={() => setAllocationMode('auto')}
-                    className={`flex items-center gap-1 px-1.5 sm:px-2 py-1 rounded text-[9px] sm:text-[10px] font-medium transition-all ${
-                      allocationMode === 'auto' 
-                        ? 'bg-[var(--verde)] text-black' 
-                        : 'text-white/50 hover:text-white/70'
-                    }`}
-                  >
-                    <Zap className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                    Auto
-                  </button>
-                  <button
-                    onClick={() => setAllocationMode('manual')}
-                    className={`flex items-center gap-1 px-1.5 sm:px-2 py-1 rounded text-[9px] sm:text-[10px] font-medium transition-all ${
-                      allocationMode === 'manual' 
-                        ? 'bg-[var(--verde)] text-black' 
-                        : 'text-white/50 hover:text-white/70'
-                    }`}
-                  >
-                    <Hand className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                    Manual
-                  </button>
-                </div>
-                
-                {allocationMode === 'manual' && (
-                  <button
-                    onClick={resetToAuto}
-                    className="text-[8px] sm:text-[9px] text-white/40 hover:text-white/60 underline"
-                  >
-                    Reset
-                  </button>
-                )}
-              </div>
-              
-              {/* Pool Status - Compact on mobile */}
-              <div className="flex items-center gap-2 sm:gap-3 text-[8px] sm:text-[9px]">
-                <div className="flex items-center gap-1">
-                  <span className="text-blue-400">TAM:</span>
-                  <span className="text-white font-mono">{formatSalary(tamUsed)}</span>
-                  <span className="text-white/30 hidden sm:inline">/ {formatSalary(totalTAM)}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="text-purple-400">GAM:</span>
-                  <span className="text-white font-mono">{formatSalary(gamUsed)}</span>
-                  <span className="text-white/30 hidden sm:inline">/ {formatSalary(totalGAM)}</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Compliance Status */}
-            <div className={`flex items-center gap-1.5 px-2 py-1 rounded text-[9px] sm:text-[10px] font-medium self-start sm:self-auto ${
-              isCompliant 
-                ? 'bg-green-500/10 text-green-400' 
-                : 'bg-red-500/10 text-red-400'
-            }`}>
-              {isCompliant ? (
-                <>
-                  <CheckCircle2 className="w-3 h-3" />
-                  <span className="hidden sm:inline">COMPLIANT</span>
-                  <span className="sm:hidden">OK</span>
-                </>
-              ) : (
-                <>
-                  <AlertTriangle className="w-3 h-3" />
-                  {formatSalary(shortfall)} SHORT
-                </>
-              )}
-            </div>
-          </div>
-          
-          {/* Rule Reminder - hidden on mobile */}
-          <div className="hidden sm:flex items-center gap-1.5 mt-2 text-[9px] text-white/40">
-            <Info className="w-3 h-3 text-blue-400 shrink-0" />
-            <span>
-              <span className="text-blue-400">TAM</span> only for players $803K-$1.8M • 
-              Cannot mix TAM & GAM on same player • 
-              TAM is use-it-or-lose-it
-            </span>
-          </div>
-        </div>
-      )}
 
       {/* Legend + Data Source Info - responsive */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 border-b border-[var(--obsidian-lighter)]/50 text-[8px] sm:text-[9px]">

@@ -215,60 +215,87 @@ export function SalaryCapCard() {
               <span className="text-[10px] text-green-400/50">tradeable</span>
             </div>
             <div className="space-y-1 text-[11px]">
-              {/* Annual Allocation */}
-              <div className="flex items-center justify-between">
-                <span className="text-white/50">Annual Allocation</span>
-                <span className="text-green-400">+{formatSalary(allocPosition.gam.annualAllocation)}</span>
-              </div>
-              {/* Third DP Distribution */}
-              {allocPosition.gam.thirdDPDistribution > 0 && (
-                <div className="flex items-center justify-between">
-                  <span className="text-white/50">3rd DP Distribution</span>
-                  <span className="text-green-400">+{formatSalary(allocPosition.gam.thirdDPDistribution)}</span>
-                </div>
-              )}
-              {/* Rolled Over from 2025 (includes Taylor trade deficit) */}
-              {allocPosition.gam.taylorTrade2026 !== 0 && (
-                <div className="flex items-center justify-between">
-                  <span className="text-white/50">Rolled Over (2025)</span>
-                  <span className="text-red-400">{formatSalary(allocPosition.gam.taylorTrade2026)}</span>
-                </div>
-              )}
-              {/* Nelson Trade (2026 commitment) */}
-              {allocPosition.gam.rolledOverDeficit !== 0 && (
-                <div className="flex items-center justify-between">
-                  <span className="text-white/50">Nelson Trade</span>
-                  <span className="text-red-400">{formatSalary(allocPosition.gam.rolledOverDeficit)}</span>
-                </div>
-              )}
-              {/* Subtotal - Available before buydowns */}
-              <div className="flex items-center justify-between pt-1 border-t border-white/5">
-                <span className="text-white/60">Available (pre-buydown)</span>
-                <span className="text-white/80">{formatSalary(dynamicAlloc.gam.total)}</span>
-              </div>
-              {/* Buydowns Applied */}
-              <div className="flex items-center justify-between">
-                <span className="text-white/50">Buydowns Applied</span>
-                <span className="text-red-400">-{formatSalary(dynamicAlloc.gam.used)}</span>
-              </div>
-              <div className="flex items-center justify-between pt-1 border-t border-white/10">
-                <span className="text-white/70 font-medium">Free GAM</span>
-                <span className="font-display text-base text-purple-400">{formatSalary(dynamicAlloc.gam.remaining)}</span>
-              </div>
+              {(() => {
+                // Calculate only GAM NEEDED for compliance (not max applied)
+                const preBuydownCharge = cap.totalBudgetCharge;
+                const totalBuydownNeeded = Math.max(0, preBuydownCharge - MLS_2026_RULES.salaryBudget);
+                const gamNeededForCompliance = Math.max(0, totalBuydownNeeded - dynamicAlloc.tam.used);
+                const freeGAM = dynamicAlloc.gam.total - gamNeededForCompliance;
+
+                return (
+                  <>
+                    {/* Annual Allocation */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/50">Annual Allocation</span>
+                      <span className="text-green-400">+{formatSalary(allocPosition.gam.annualAllocation)}</span>
+                    </div>
+                    {/* Third DP Distribution */}
+                    {allocPosition.gam.thirdDPDistribution > 0 && (
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/50">3rd DP Distribution</span>
+                        <span className="text-green-400">+{formatSalary(allocPosition.gam.thirdDPDistribution)}</span>
+                      </div>
+                    )}
+                    {/* Rolled Over from 2025 (includes Taylor trade deficit) */}
+                    {allocPosition.gam.taylorTrade2026 !== 0 && (
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/50">Rolled Over (2025)</span>
+                        <span className="text-red-400">{formatSalary(allocPosition.gam.taylorTrade2026)}</span>
+                      </div>
+                    )}
+                    {/* Nelson Trade (2026 commitment) */}
+                    {allocPosition.gam.rolledOverDeficit !== 0 && (
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/50">Nelson Trade</span>
+                        <span className="text-red-400">{formatSalary(allocPosition.gam.rolledOverDeficit)}</span>
+                      </div>
+                    )}
+                    {/* Subtotal - Available before buydowns */}
+                    <div className="flex items-center justify-between pt-1 border-t border-white/5">
+                      <span className="text-white/60">Available (pre-buydown)</span>
+                      <span className="text-white/80">{formatSalary(dynamicAlloc.gam.total)}</span>
+                    </div>
+                    {/* Buydowns Applied - ONLY what's needed for compliance */}
+                    {gamNeededForCompliance > 0 && (
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/50">Buydowns Applied</span>
+                        <span className="text-red-400">-{formatSalary(gamNeededForCompliance)}</span>
+                      </div>
+                    )}
+                    <div className="flex items-center justify-between pt-1 border-t border-white/10">
+                      <span className="text-white/70 font-medium">Free GAM</span>
+                      <span className="font-display text-base text-purple-400">{formatSalary(freeGAM)}</span>
+                    </div>
+                  </>
+                );
+              })()}
             </div>
           </div>
           
           {/* Combined Flexibility */}
           <div className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded p-2.5">
-            <div className="flex items-center justify-between">
-              <p className="text-[11px] text-white/70 flex items-center gap-1.5">
-                <Info className="h-3 w-3 text-purple-400" />Total Flexibility
-              </p>
-              <p className="font-display text-base text-white">{formatSalary(dynamicAlloc.tam.remaining + dynamicAlloc.gam.remaining)}</p>
-            </div>
-            <p className="text-[10px] text-white/40 mt-1">
-              After cap compliance: {formatSalary(dynamicAlloc.gam.remaining)} GAM (tradeable) + {formatSalary(dynamicAlloc.tam.remaining)} TAM
-            </p>
+            {(() => {
+              // Calculate free GAM (only needed for compliance)
+              const preBuydownCharge = cap.totalBudgetCharge;
+              const totalBuydownNeeded = Math.max(0, preBuydownCharge - MLS_2026_RULES.salaryBudget);
+              const gamNeededForCompliance = Math.max(0, totalBuydownNeeded - dynamicAlloc.tam.used);
+              const freeGAM = dynamicAlloc.gam.total - gamNeededForCompliance;
+              const totalFreeAllocation = dynamicAlloc.tam.remaining + freeGAM;
+
+              return (
+                <>
+                  <div className="flex items-center justify-between">
+                    <p className="text-[11px] text-white/70 flex items-center gap-1.5">
+                      <Info className="h-3 w-3 text-purple-400" />Total Flexibility
+                    </p>
+                    <p className="font-display text-base text-white">{formatSalary(totalFreeAllocation)}</p>
+                  </div>
+                  <p className="text-[10px] text-white/40 mt-1">
+                    After cap compliance: {formatSalary(freeGAM)} GAM (tradeable) + {formatSalary(dynamicAlloc.tam.remaining)} TAM
+                  </p>
+                </>
+              );
+            })()}
           </div>
         </div>
 
