@@ -19,8 +19,9 @@ export function TacticalOverlays({ tactics, enabled = true }: TacticalOverlaysPr
   const { defensiveLineHeight, teamWidth, pressingIntensity } = tactics;
 
   // Calculate defensive line position (0-100%)
-  // Base at 15%, range up to 50% (0 = 15%, 100 = 50%)
-  const defensiveLineY = 15 + (defensiveLineHeight * 0.35);
+  // With GK at bottom (y: 92), defensive line should be above GK
+  // Low line: y: 85, High line: y: 65
+  const defensiveLineY = 85 - (defensiveLineHeight * 0.20);
 
   return (
     <div className="absolute inset-0 pointer-events-none">
@@ -47,13 +48,13 @@ export function TacticalOverlays({ tactics, enabled = true }: TacticalOverlaysPr
         {/* Pressing Zones */}
         {pressingIntensity > 20 && (
           <>
-            {/* High press zone (opponent's half) */}
+            {/* High press zone (opponent's half - top of field) */}
             <motion.rect
               initial={{ opacity: 0 }}
               animate={{ opacity: pressingIntensity / 300 }}
               transition={{ duration: 0.3 }}
               x="10"
-              y="70"
+              y="5"
               width="80"
               height="25"
               className="fill-red-500"
@@ -66,7 +67,7 @@ export function TacticalOverlays({ tactics, enabled = true }: TacticalOverlaysPr
                 animate={{ opacity: (pressingIntensity - 50) / 400 }}
                 transition={{ duration: 0.3 }}
                 x="10"
-                y="50"
+                y="30"
                 width="80"
                 height="20"
                 className="fill-red-500"

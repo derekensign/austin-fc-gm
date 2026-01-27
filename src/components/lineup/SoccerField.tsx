@@ -94,40 +94,10 @@ export function SoccerField({
             className="fill-[var(--verde)]"
           />
 
-          {/* Bottom penalty box (goalkeeper's end) */}
+          {/* Top penalty box (attacking end - opponent's goal) */}
           <rect
             x={(width - penaltyBoxWidth) / 2}
-            y="1"
-            width={penaltyBoxWidth}
-            height={penaltyBoxDepth}
-          />
-
-          {/* Bottom goal box */}
-          <rect
-            x={(width - goalBoxWidth) / 2}
-            y="1"
-            width={goalBoxWidth}
-            height={goalBoxDepth}
-          />
-
-          {/* Bottom penalty spot */}
-          <circle
-            cx={width / 2}
-            cy={penaltySpotDistance}
-            r="0.4"
-            className="fill-[var(--verde)]"
-          />
-
-          {/* Bottom penalty arc */}
-          <path
-            d={`M ${(width - penaltyBoxWidth) / 2} ${penaltyBoxDepth}
-                A ${centerCircleRadius} ${centerCircleRadius} 0 0 1 ${(width + penaltyBoxWidth) / 2} ${penaltyBoxDepth}`}
-          />
-
-          {/* Top penalty box (attacking end) */}
-          <rect
-            x={(width - penaltyBoxWidth) / 2}
-            y={height - penaltyBoxDepth - 1}
+            y="2"
             width={penaltyBoxWidth}
             height={penaltyBoxDepth}
           />
@@ -135,7 +105,7 @@ export function SoccerField({
           {/* Top goal box */}
           <rect
             x={(width - goalBoxWidth) / 2}
-            y={height - goalBoxDepth - 1}
+            y="2"
             width={goalBoxWidth}
             height={goalBoxDepth}
           />
@@ -143,15 +113,45 @@ export function SoccerField({
           {/* Top penalty spot */}
           <circle
             cx={width / 2}
-            cy={height - penaltySpotDistance}
-            r="0.4"
+            cy={2 + penaltySpotDistance}
+            r="0.5"
             className="fill-[var(--verde)]"
           />
 
           {/* Top penalty arc */}
           <path
-            d={`M ${(width - penaltyBoxWidth) / 2} ${height - penaltyBoxDepth - 1}
-                A ${centerCircleRadius} ${centerCircleRadius} 0 0 0 ${(width + penaltyBoxWidth) / 2} ${height - penaltyBoxDepth - 1}`}
+            d={`M ${(width - penaltyBoxWidth) / 2} ${2 + penaltyBoxDepth}
+                A ${centerCircleRadius} ${centerCircleRadius} 0 0 0 ${(width + penaltyBoxWidth) / 2} ${2 + penaltyBoxDepth}`}
+          />
+
+          {/* Bottom penalty box (defensive end - our goal where GK is) */}
+          <rect
+            x={(width - penaltyBoxWidth) / 2}
+            y={height - penaltyBoxDepth - 2}
+            width={penaltyBoxWidth}
+            height={penaltyBoxDepth}
+          />
+
+          {/* Bottom goal box */}
+          <rect
+            x={(width - goalBoxWidth) / 2}
+            y={height - goalBoxDepth - 2}
+            width={goalBoxWidth}
+            height={goalBoxDepth}
+          />
+
+          {/* Bottom penalty spot */}
+          <circle
+            cx={width / 2}
+            cy={height - penaltySpotDistance - 2}
+            r="0.5"
+            className="fill-[var(--verde)]"
+          />
+
+          {/* Bottom penalty arc */}
+          <path
+            d={`M ${(width - penaltyBoxWidth) / 2} ${height - penaltyBoxDepth - 2}
+                A ${centerCircleRadius} ${centerCircleRadius} 0 0 1 ${(width + penaltyBoxWidth) / 2} ${height - penaltyBoxDepth - 2}`}
           />
 
           {/* Corner arcs */}
