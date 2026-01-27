@@ -145,14 +145,11 @@ const PlayerRow = React.memo(function PlayerRow({
           {/* Line 1: Name */}
           <span className="text-xs sm:text-sm font-medium text-white block truncate">{player.name}</span>
           
-          {/* Line 2: Flag + Position + Age + Badges + Salary */}
+          {/* Line 2: Flag + Position + Badges + Salary */}
           <div className="flex items-center gap-0.5 sm:gap-1 mt-0.5 sm:mt-1 flex-wrap">
             <span className="text-xs sm:text-sm shrink-0">{flag}</span>
             <span className="text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5 rounded font-bold bg-white/10 text-white/60">
               {player.position}
-            </span>
-            <span className="text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5 rounded font-bold bg-white/5 text-white/50">
-              {player.age}
             </span>
             <span className={`text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5 rounded font-bold ${designation.bgColor} ${designation.color}`}>
               {designation.label}
@@ -171,7 +168,14 @@ const PlayerRow = React.memo(function PlayerRow({
               {showValues ? formatSalary(player.marketValue) : formatSalary(player.guaranteedCompensation)}
             </span>
           </div>
-          
+
+          {/* Player Details Row (Age + Contract) */}
+          <div className="flex items-center gap-2 mt-0.5 text-[9px] text-white/40">
+            <span>Age: {player.age}</span>
+            <span>•</span>
+            <span>Contract: {player.contractEnd}</span>
+          </div>
+
           {/* Allocation Mode: Compact info display */}
           {showAllocation && (
             <div className="mt-1.5 pt-1.5 border-t border-white/5 text-[9px]">
