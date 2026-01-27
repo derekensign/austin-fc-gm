@@ -6,6 +6,20 @@ import { ChatWidget } from "@/components/chat";
 export const metadata: Metadata = {
   title: "Verde Manager | Austin FC Analytics & Roster Tools",
   description: "Advanced analytics and roster management tools for Austin FC fans. Research stats, analyze roster rules, and explore transfer possibilities.",
+  icons: {
+    icon: '/icon.svg',
+  },
+  openGraph: {
+    title: "Verde Manager | Austin FC Analytics & Roster Tools",
+    description: "Advanced analytics and roster management tools for Austin FC fans. Research stats, analyze roster rules, and explore transfer possibilities.",
+    type: 'website',
+    siteName: 'Verde Manager',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Verde Manager | Austin FC Analytics & Roster Tools",
+    description: "Advanced analytics and roster management tools for Austin FC fans.",
+  },
 };
 
 export default function RootLayout({
