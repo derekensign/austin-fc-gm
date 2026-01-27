@@ -23,15 +23,13 @@ export default async function Image() {
           flexDirection: 'column',
         }}
       >
-        {/* Tree Icon */}
+        {/* Oak Tree Icon */}
         <svg width="200" height="200" viewBox="0 0 32 32">
           <g fill="#00B140">
-            {/* Tree crown */}
-            <path d="M16 6 L22 14 L10 14 Z"/>
-            <path d="M16 11 L24 20 L8 20 Z"/>
-            <path d="M16 16 L26 26 L6 26 Z"/>
-            {/* Tree trunk */}
-            <rect x="14" y="24" width="4" height="6" rx="0.5"/>
+            {/* Oak crown - multiple rounded lobes */}
+            <path d="M16 4 C14 4 12 5 11 7 C10 6 8 6 7 8 C6 8 5 9 5 11 C4 12 4 14 5 15 C4 16 4 18 6 19 C6 20 7 21 8 21 C8 22 9 23 11 23 C12 24 14 24 16 23 C18 24 20 24 21 23 C23 23 24 22 24 21 C25 21 26 20 26 19 C28 18 28 16 27 15 C28 14 28 12 27 11 C27 9 26 8 25 8 C24 6 22 6 21 7 C20 5 18 4 16 4 Z"/>
+            {/* Oak trunk */}
+            <path d="M14 22 C14 22 13 23 13 24 L13 30 L19 30 L19 24 C19 23 18 22 18 22 L14 22 Z"/>
           </g>
         </svg>
 
