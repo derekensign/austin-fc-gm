@@ -26,13 +26,15 @@ export function SoccerField({
   const width = 100;
   const height = 100;
 
-  // Field markings dimensions (percentage-based for 0-100 coordinate system)
-  const penaltyBoxWidth = 40;  // Width of penalty box (centered)
-  const penaltyBoxDepth = 16; // Depth from goal line
-  const goalBoxWidth = 18;   // Width of goal box (centered)
-  const goalBoxDepth = 6;     // Depth from goal line
-  const centerCircleRadius = 9;
-  const penaltySpotDistance = 11; // Distance from goal line
+  // Field markings dimensions (percentage-based, realistic proportions)
+  // Based on standard 105m x 68m field scaled to 0-100
+  const penaltyBoxWidth = 59;  // 40.3m / 68m = 59%
+  const penaltyBoxDepth = 16.5; // 16.5m / 100 units depth
+  const goalBoxWidth = 27;   // 18.3m / 68m = 27%
+  const goalBoxDepth = 5.5;     // 5.5m / 100 units depth
+  const centerCircleRadius = 13.5;  // 9.15m / 68m width = 13.5%
+  const penaltySpotDistance = 10.5; // 11m from goal line
+  const goalWidth = 11; // 7.32m / 68m = 10.7%
 
   return (
     <div className={`relative w-full h-full ${className}`} id="lineup-field">
@@ -50,18 +52,18 @@ export function SoccerField({
           className="fill-green-800"
         />
 
-        {/* Grass Pattern (subtle stripes) */}
+        {/* Grass Pattern (horizontal stripes) */}
         <defs>
           <pattern
             id="grass-stripes"
             x="0"
             y="0"
-            width="10"
-            height={height}
+            width={width}
+            height="10"
             patternUnits="userSpaceOnUse"
           >
-            <rect x="0" y="0" width="5" height={height} className="fill-green-800" />
-            <rect x="5" y="0" width="5" height={height} className="fill-green-900" />
+            <rect x="0" y="0" width={width} height="5" className="fill-green-800" />
+            <rect x="0" y="5" width={width} height="5" className="fill-green-900" />
           </pattern>
         </defs>
         <rect x="0" y="0" width={width} height={height} fill="url(#grass-stripes)" opacity="0.3" />
@@ -71,12 +73,12 @@ export function SoccerField({
           {/* Outer boundary */}
           <rect x="1" y="1" width={width - 2} height={height - 2} />
 
-          {/* Halfway line */}
+          {/* Halfway line - horizontal across middle */}
           <line
-            x1={width / 2}
-            y1="1"
-            x2={width / 2}
-            y2={height - 1}
+            x1="1"
+            y1={height / 2}
+            x2={width - 1}
+            y2={height / 2}
           />
 
           {/* Center circle */}
@@ -154,32 +156,34 @@ export function SoccerField({
                 A ${centerCircleRadius} ${centerCircleRadius} 0 0 1 ${(width + penaltyBoxWidth) / 2} ${height - penaltyBoxDepth - 2}`}
           />
 
-          {/* Corner arcs */}
-          {/* Bottom-left */}
-          <path d="M 1 2 A 1 1 0 0 1 2 1" />
-          {/* Bottom-right */}
+          {/* Corner arcs (1 unit radius) */}
+          {/* Top-left corner */}
+          <path d="M 2 1 A 1 1 0 0 0 1 2" />
+          {/* Top-right corner */}
           <path d={`M ${width - 2} 1 A 1 1 0 0 1 ${width - 1} 2`} />
-          {/* Top-left */}
-          <path d={`M 1 ${height - 2} A 1 1 0 0 0 2 ${height - 1}`} />
-          {/* Top-right */}
+          {/* Bottom-left corner */}
+          <path d={`M 2 ${height - 1} A 1 1 0 0 1 1 ${height - 2}`} />
+          {/* Bottom-right corner */}
           <path d={`M ${width - 2} ${height - 1} A 1 1 0 0 0 ${width - 1} ${height - 2}`} />
         </g>
 
         {/* Goals */}
-        <g className="stroke-white" strokeWidth="0.4" fill="none">
-          {/* Bottom goal */}
+        <g className="stroke-white" strokeWidth="0.5" fill="none">
+          {/* Top goal (opponent's/attacking end) */}
           <rect
-            x={(width - 7.32) / 2}
-            y="-1.5"
-            width="7.32"
-            height="1.5"
+            x={(width - goalWidth) / 2}
+            y="0"
+            width={goalWidth}
+            height="1"
+            className="fill-white/10"
           />
-          {/* Top goal */}
+          {/* Bottom goal (our/defensive end where GK is) */}
           <rect
-            x={(width - 7.32) / 2}
-            y={height}
-            width="7.32"
-            height="1.5"
+            x={(width - goalWidth) / 2}
+            y={height - 1}
+            width={goalWidth}
+            height="1"
+            className="fill-white/10"
           />
         </g>
       </svg>
