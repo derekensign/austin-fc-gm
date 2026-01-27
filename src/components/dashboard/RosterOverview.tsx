@@ -191,8 +191,8 @@ const PlayerRow = React.memo(function PlayerRow({
                         <span className={tamApplied > 0 ? 'text-blue-400' : 'text-purple-400'}>
                           {totalApplied > 0 && (
                             <>
+                              - {formatSalary(totalApplied)}{' '}
                               <span className="text-[8px] opacity-60">{tamApplied > 0 ? 'TAM' : 'GAM'}</span>
-                              {' '}- {formatSalary(totalApplied)}
                             </>
                           )}
                         </span>
