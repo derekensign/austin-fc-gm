@@ -91,7 +91,7 @@ function LineupBuilderContent() {
         >
           {/* Soccer Field */}
           <div className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg p-4 overflow-hidden">
-            <div className="aspect-[3/4] md:aspect-[4/3] w-full">
+            <div className="aspect-[2/3] w-full max-w-2xl mx-auto">
               <SoccerField tactics={lineupState.tactics} showOverlays={true}>
                 {startingPlayers.map((player) => {
                   const position = lineupState.positions.get(player.id);

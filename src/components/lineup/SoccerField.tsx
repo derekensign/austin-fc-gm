@@ -22,16 +22,16 @@ export function SoccerField({
   tactics,
   showOverlays = true
 }: SoccerFieldProps) {
-  // SVG dimensions (105:68 aspect ratio)
-  const width = 105;
-  const height = 68;
+  // SVG dimensions - portrait orientation for lineup view (68 wide x 105 tall)
+  const width = 100;
+  const height = 100;
 
-  // Field markings dimensions
-  const penaltyBoxWidth = 44;  // Width of penalty box (centered)
-  const penaltyBoxDepth = 16.5; // Depth from goal line
-  const goalBoxWidth = 18.32;   // Width of goal box (centered)
-  const goalBoxDepth = 5.5;     // Depth from goal line
-  const centerCircleRadius = 9.15;
+  // Field markings dimensions (percentage-based for 0-100 coordinate system)
+  const penaltyBoxWidth = 40;  // Width of penalty box (centered)
+  const penaltyBoxDepth = 16; // Depth from goal line
+  const goalBoxWidth = 18;   // Width of goal box (centered)
+  const goalBoxDepth = 6;     // Depth from goal line
+  const centerCircleRadius = 9;
   const penaltySpotDistance = 11; // Distance from goal line
 
   return (

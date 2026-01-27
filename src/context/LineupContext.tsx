@@ -88,8 +88,27 @@ function autoFillStartingXI(formation: FormationPreset): { startingXI: number[],
     return score;
   };
 
-  // Fill each formation position
+  // ALWAYS fill goalkeeper first (critical position)
+  const gkPosition = formation.positions.find(p => p.suggestedPlayerPosition === 'GK');
+  if (gkPosition) {
+    const goalkeeper = availablePlayers.find(p => p.positionGroup === 'GK');
+    if (goalkeeper) {
+      startingXI.push(goalkeeper.id);
+      positions.set(goalkeeper.id, {
+        x: gkPosition.x,
+        y: gkPosition.y,
+        role: gkPosition.role,
+        depth: gkPosition.depth,
+      });
+      const gkIndex = availablePlayers.indexOf(goalkeeper);
+      availablePlayers.splice(gkIndex, 1);
+    }
+  }
+
+  // Fill each remaining formation position
   for (const formationPos of formation.positions) {
+    // Skip GK position (already filled)
+    if (formationPos.suggestedPlayerPosition === 'GK') continue;
     // Find best available player for this position
     let bestPlayer: AustinFCPlayer | null = null;
     let bestScore = -1;
