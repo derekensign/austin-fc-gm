@@ -22,11 +22,13 @@ import {
   X,
   ArrowLeftRight,
   Globe,
+  ClipboardList,
 } from 'lucide-react';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
   { name: 'Roster', href: '/roster', icon: Users },
+  { name: 'Lineup Builder', href: '/lineup', icon: ClipboardList },
   // { name: 'Player Stats', href: '/stats', icon: BarChart3 }, // Hidden per user request
   // { name: 'Valuations', href: '/valuations', icon: DollarSign }, // Hidden per user request
   // { name: 'Salary Cap', href: '/salary-cap', icon: TrendingUp }, // Hidden per user request
