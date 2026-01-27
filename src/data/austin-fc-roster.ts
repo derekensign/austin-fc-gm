@@ -157,12 +157,13 @@ export const MLS_2026_RULES = {
 
 // Austin FC 2026 Transaction Usage Tracking
 export const AUSTIN_FC_2026_TRANSACTIONS = {
-  buyoutsUsed: 0,                 // No buyouts used yet in 2026
-  buyoutsAvailable: 2,
+  buyoutsUsed: 1,                 // Jáder Obrian (Jan 27, 2026)
+  buyoutsAvailable: 1,
   cashTransfersUsed: 1,           // Rosales ($1.5M cash from Minnesota)
   cashTransfersAvailable: 1,
   notes: [
     'Joseph Rosales acquired via $1.5M cash transfer (Dec 2025)',
+    'Jáder Obrian contract buyout exercised (Jan 27, 2026)',
   ],
 };
 
@@ -771,30 +772,32 @@ export const austinFCRoster: AustinFCPlayer[] = [
   // ============ FORWARDS ============
   {
     id: 22,
-    name: 'Jáder Obrian',
-    firstName: 'Jáder',
-    lastName: 'Obrian',
-    number: 7,
+    name: 'Facundo Torres',
+    firstName: 'Facundo',
+    lastName: 'Torres',
+    number: null,  // TBD
     position: 'RW',
     positionGroup: 'FWD',
-    age: 29,
-    nationality: 'Colombia',
-    countryCode: 'CO',
-    photo: playerImg('wcrxs6k1dohrn07bcjyu'),
-    baseSalary: 495_000,  // MLSPA via North End
-    guaranteedCompensation: 505_401,  // MLSPA via North End
+    age: 25,
+    nationality: 'Uruguay',
+    countryCode: 'UY',
+    photo: '', // New acquisition - no ATX photo yet
+    baseSalary: 1_800_000,  // ESTIMATED - awaiting MLSPA Spring 2026 release
+    guaranteedCompensation: 1_900_000,  // ESTIMATED - not buy-downable per user
     tamApplied: 0,
     gamApplied: 0,
-    budgetCharge: 505_401,
-    contractEnd: 'Dec 2026',
-    designation: 'Senior',
+    budgetCharge: 803_125, // 2026 DP max cap charge
+    contractEnd: 'Dec 2030',  // Through 2029-30 season with 2030-31 option
+    designation: 'DP',
     rosterSlot: 'Senior',
     isInternational: true,
     isHomegrown: false,
     isU22: false,
-    isDP: false,
+    isDP: true,
     isGenerationAdidas: false,
-    marketValue: 900_000,
+    marketValue: 8_000_000,  // Estimated based on Palmeiras transfer
+    acquisitionDate: 'Jan 2026',
+    previousClub: 'Palmeiras (Brazil)',
   },
   {
     id: 23,
