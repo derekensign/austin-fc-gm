@@ -28,10 +28,10 @@ export function LineupExporter() {
 
       const dataUrl = await toPng(element, {
         quality: 1.0,
-        width: 1200,
-        height: 1600,
+        width: 2400,
+        height: 3200,
         backgroundColor: '#1a1a1a',
-        pixelRatio: 2,
+        pixelRatio: 3,
       });
 
       // Download
@@ -61,10 +61,10 @@ export function LineupExporter() {
 
       const dataUrl = await toPng(element, {
         quality: 1.0,
-        width: 1200,
-        height: 1600,
+        width: 2400,
+        height: 3200,
         backgroundColor: '#1a1a1a',
-        pixelRatio: 2,
+        pixelRatio: 3,
       });
 
       // Create PDF (A4 portrait)

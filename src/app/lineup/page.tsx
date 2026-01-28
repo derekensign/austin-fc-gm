@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Shield, Settings, Users, RotateCcw } from 'lucide-react';
-import { LineupProvider, useLineup } from '@/context/LineupContext';
+import { LineupProvider, useLineup, type PlayerPosition, type TacticsSettings } from '@/context/LineupContext';
 import { SoccerField } from '@/components/lineup/SoccerField';
 import { DraggablePlayer } from '@/components/lineup/DraggablePlayer';
 import { FormationSelector } from '@/components/lineup/FormationSelector';
@@ -10,6 +10,40 @@ import { PlayerBench } from '@/components/lineup/PlayerBench';
 import { TacticsPanel } from '@/components/lineup/TacticsPanel';
 import { LineupExporter } from '@/components/lineup/LineupExporter';
 import { austinFCRoster } from '@/data/austin-fc-roster';
+
+/**
+ * Apply tactical adjustments to player positions
+ * - Defensive line height: Moves defenders up/back
+ * - Team width: Spreads players in/out
+ */
+function applyTacticalAdjustments(
+  basePosition: PlayerPosition,
+  positionGroup: string,
+  tactics: TacticsSettings
+): PlayerPosition {
+  const adjusted = { ...basePosition };
+
+  // Apply defensive line height adjustment (only to defenders)
+  if (positionGroup === 'DEF' && basePosition.role !== 'GK') {
+    // Defensive line: 0 (low/deep) to 100 (high/press)
+    // Adjust Y position: Lower number = higher up the pitch
+    const lineAdjustment = (tactics.defensiveLineHeight - 50) * 0.15; // Scale the effect
+    adjusted.y = Math.max(5, Math.min(95, basePosition.y - lineAdjustment));
+  }
+
+  // Apply team width adjustment (all outfield players)
+  if (basePosition.role !== 'GK') {
+    // Team width: 0 (narrow) to 100 (wide)
+    // Adjust X position: Spread from center (50) based on width
+    const centerX = 50;
+    const distanceFromCenter = basePosition.x - centerX;
+    const widthMultiplier = 0.5 + (tactics.teamWidth / 100); // 0.5 to 1.5
+    adjusted.x = centerX + (distanceFromCenter * widthMultiplier);
+    adjusted.x = Math.max(15, Math.min(85, adjusted.x)); // Keep within bounds
+  }
+
+  return adjusted;
+}
 
 function LineupBuilderContent() {
   const { lineupState, setPlayerPosition, resetToDefault } = useLineup();
@@ -46,19 +80,9 @@ function LineupBuilderContent() {
         >
           {/* Formation Selector */}
           <div className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg p-4">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-[var(--verde)]" />
-                <h2 className="font-display text-lg text-white">Formation</h2>
-              </div>
-              <button
-                onClick={resetToDefault}
-                className="flex items-center gap-1 px-2 py-1 text-xs text-white/60 hover:text-[var(--verde)] transition-colors"
-                title="Reset to default 4-3-3"
-              >
-                <RotateCcw className="w-3 h-3" />
-                Reset
-              </button>
+            <div className="flex items-center gap-2 mb-3">
+              <Shield className="w-4 h-4 text-[var(--verde)]" />
+              <h2 className="font-display text-lg text-white">Formation</h2>
             </div>
             <FormationSelector />
           </div>
@@ -90,18 +114,34 @@ function LineupBuilderContent() {
           className="lg:col-span-8 space-y-4"
         >
           {/* Soccer Field */}
-          <div className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg p-4 overflow-hidden">
-            <div className="aspect-[2/3] w-full max-w-2xl mx-auto">
+          <div className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg p-4 overflow-hidden relative">
+            {/* Reset Button */}
+            <button
+              onClick={resetToDefault}
+              className="absolute top-4 right-4 z-10 flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors border border-white/20"
+              title="Reset positions to default for current formation"
+            >
+              <RotateCcw className="w-5 h-5" />
+              Reset Lineup
+            </button>
+            <div className="aspect-[2/3] w-full max-w-lg mx-auto">
               <SoccerField tactics={lineupState.tactics} showOverlays={true}>
                 {startingPlayers.map((player) => {
-                  const position = lineupState.positions.get(player.id);
-                  if (!position) return null;
+                  const basePosition = lineupState.positions.get(player.id);
+                  if (!basePosition) return null;
+
+                  // Apply tactical adjustments to position
+                  const adjustedPosition = applyTacticalAdjustments(
+                    basePosition,
+                    player.positionGroup,
+                    lineupState.tactics
+                  );
 
                   return (
                     <DraggablePlayer
                       key={player.id}
                       player={player}
-                      position={position}
+                      position={adjustedPosition}
                       onDragEnd={(newPosition) => setPlayerPosition(player.id, newPosition)}
                     />
                   );

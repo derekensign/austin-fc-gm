@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Plus, X } from 'lucide-react';
 import { austinFCRoster, type AustinFCPlayer } from '@/data/austin-fc-roster';
 import { useLineup } from '@/context/LineupContext';
 
@@ -135,7 +136,7 @@ export function PlayerBench({ onPlayerSelect }: PlayerBenchProps) {
                     player={player}
                     isOnField={false}
                     onClick={() => handlePlayerClick(player)}
-                    disabled={lineupState.startingXI.length >= 11}
+                    disabled={false}
                   />
                 ))}
               </div>
@@ -184,23 +185,33 @@ function PlayerRow({
     >
       {/* Player Photo */}
       <div className="relative flex-shrink-0">
-        <div className="w-8 h-8 rounded-full overflow-hidden bg-[var(--obsidian)] border border-white/20">
-          <img
-            src={player.photo}
-            alt={player.name}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-            }}
-          />
-          <div className="absolute inset-0 flex items-center justify-center text-white text-xs font-bold bg-gradient-to-br from-[var(--verde)]/20 to-[var(--verde)]/40">
+        <div className={`w-10 h-10 rounded-full overflow-hidden border-2 ${
+          isOnField
+            ? 'border-[var(--verde)] bg-[var(--obsidian-light)]'
+            : 'border-white/30 bg-[var(--obsidian-light)]'
+        }`}>
+          {player.photo ? (
+            <img
+              src={player.photo}
+              alt={player.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+              }}
+            />
+          ) : null}
+          {/* Fallback initials - only shown if image fails or missing */}
+          <div
+            className="absolute inset-0 flex items-center justify-center text-white text-xs font-bold bg-black/60"
+            style={{ display: player.photo ? 'none' : 'flex' }}
+          >
             {player.firstName[0]}{player.lastName[0]}
           </div>
         </div>
         {player.number && (
-          <div className="absolute -bottom-0.5 -right-0.5 bg-[var(--obsidian)] border border-[var(--verde)] rounded-full w-4 h-4 flex items-center justify-center">
-            <span className="text-[8px] font-bold text-[var(--verde)]">
+          <div className="absolute -top-0.5 -right-0.5 bg-[var(--obsidian)] border border-[var(--verde)] rounded-full w-5 h-5 flex items-center justify-center">
+            <span className="text-[9px] font-bold text-[var(--verde)]">
               {player.number}
             </span>
           </div>
@@ -231,6 +242,19 @@ function PlayerRow({
           {player.designation}
         </div>
       )}
+
+      {/* Add/Remove Icon */}
+      <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center ${
+        isOnField
+          ? 'bg-red-500/20 text-red-400'
+          : 'bg-[var(--verde)]/20 text-[var(--verde)]'
+      }`}>
+        {isOnField ? (
+          <X className="w-4 h-4" />
+        ) : (
+          <Plus className="w-4 h-4" />
+        )}
+      </div>
     </motion.button>
   );
 }

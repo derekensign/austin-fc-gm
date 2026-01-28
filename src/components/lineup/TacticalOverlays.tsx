@@ -16,7 +16,7 @@ interface TacticalOverlaysProps {
 export function TacticalOverlays({ tactics, enabled = true }: TacticalOverlaysProps) {
   if (!enabled) return null;
 
-  const { defensiveLineHeight, teamWidth, pressingIntensity } = tactics;
+  const { defensiveLineHeight, teamWidth } = tactics;
 
   // Calculate defensive line position (0-100%)
   // With GK at bottom (y: 92), defensive line should be above GK
@@ -43,37 +43,6 @@ export function TacticalOverlays({ tactics, enabled = true }: TacticalOverlaysPr
             strokeDasharray="2,2"
             opacity={0.6}
           />
-        )}
-
-        {/* Pressing Zones */}
-        {pressingIntensity > 20 && (
-          <>
-            {/* High press zone (opponent's half - top of field) */}
-            <motion.rect
-              initial={{ opacity: 0 }}
-              animate={{ opacity: pressingIntensity / 300 }}
-              transition={{ duration: 0.3 }}
-              x="10"
-              y="5"
-              width="80"
-              height="25"
-              className="fill-red-500"
-            />
-
-            {/* Mid press zone */}
-            {pressingIntensity > 50 && (
-              <motion.rect
-                initial={{ opacity: 0 }}
-                animate={{ opacity: (pressingIntensity - 50) / 400 }}
-                transition={{ duration: 0.3 }}
-                x="10"
-                y="30"
-                width="80"
-                height="20"
-                className="fill-red-500"
-              />
-            )}
-          </>
         )}
 
         {/* Team Width Indicators */}

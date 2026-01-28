@@ -35,8 +35,12 @@ export function FormationSelector() {
         className="w-full flex items-center justify-between p-3 bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] rounded-lg hover:border-[var(--verde)] transition-colors"
       >
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[var(--verde)]/10 border border-[var(--verde)]/30 rounded-lg flex items-center justify-center">
-            <span className="font-display text-lg text-[var(--verde)]">
+          <div
+            className="w-12 h-12 flex items-center justify-center rounded-lg border bg-[var(--verde)]/20 border-[var(--verde)]"
+          >
+            <span
+              className="font-display text-sm text-[var(--verde)]"
+            >
               {currentFormation.shortName}
             </span>
           </div>

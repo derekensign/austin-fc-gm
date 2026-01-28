@@ -36,16 +36,6 @@ export function TacticsPanel() {
         highLabel="Wide"
         color="green"
       />
-
-      {/* Pressing Intensity */}
-      <TacticsSlider
-        label="Pressing"
-        value={tactics.pressingIntensity}
-        onChange={(value) => handleSliderChange('pressingIntensity', value)}
-        lowLabel="Low"
-        highLabel="High"
-        color="red"
-      />
     </div>
   );
 }

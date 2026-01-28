@@ -71,18 +71,32 @@ function autoFillStartingXI(formation: FormationPreset): { startingXI: number[],
   const getPlayerScore = (player: AustinFCPlayer, suggestedPosition: string): number => {
     let score = 0;
 
+    // Preferred starters (highest priority)
+    const preferredStarters: Record<string, number[]> = {
+      'LB': [20],  // Rosales
+      'CB': [5],   // Hines-Ike for RCB
+      'CM': [16, 18],  // Dubersarsky, Wolff (prioritized over Sabovic)
+    };
+
+    if (preferredStarters[suggestedPosition]?.includes(player.id)) {
+      score += 50000; // Massive boost for preferred starters
+    }
+
     // Position match (highest priority)
     if (player.position === suggestedPosition) {
-      score += 1000;
+      score += 10000; // Exact position match is critical
     } else if (player.positionGroup === getPositionGroup(suggestedPosition)) {
-      score += 500;
+      score += 100; // Position group match is fallback
     }
 
     // Designation priority
-    if (player.designation === 'DP') score += 300;
-    else if (player.designation === 'U22') score += 200;
+    if (player.designation === 'DP') score += 50;
+    else if (player.designation === 'U22') score += 30;
 
-    // Market value / salary
+    // Salary indicates importance/quality
+    score += (player.baseSalary || 0) / 10000;
+
+    // Market value
     score += (player.marketValue || 0) / 10000;
 
     return score;
@@ -193,6 +207,12 @@ export function LineupProvider({ children }: { children: ReactNode }) {
       positions,
       startingXI,
       bench,
+      // Reset tactics to neutral when changing formations
+      tactics: {
+        defensiveLineHeight: 50,
+        teamWidth: 50,
+        pressingIntensity: 50,
+      },
     }));
   }, []);
 
@@ -304,9 +324,21 @@ export function LineupProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  // Reset to default 4-3-3
+  // Reset to default positions for current formation
   const resetToDefault = useCallback(() => {
-    setLineupState(createInitialLineup());
+    setLineupState(prev => {
+      const { startingXI, positions } = autoFillStartingXI(prev.formation);
+      const bench = austinFCRoster
+        .filter(p => !startingXI.includes(p.id))
+        .map(p => p.id);
+
+      return {
+        ...prev,
+        positions,
+        startingXI,
+        bench,
+      };
+    });
   }, []);
 
   const value = useMemo(() => ({
