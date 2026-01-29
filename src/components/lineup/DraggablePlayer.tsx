@@ -63,9 +63,20 @@ export function DraggablePlayer({
     const deltaXPercent = (info.offset.x / parentRect.width) * 100;
     const deltaYPercent = (info.offset.y / parentRect.height) * 100;
 
-    // Constrain to field boundaries (keep inside white lines with 6% margin)
-    const newX = Math.max(6, Math.min(94, position.x + deltaXPercent));
-    const newY = Math.max(6, Math.min(94, position.y + deltaYPercent));
+    const unconstrained = {
+      x: position.x + deltaXPercent,
+      y: position.y + deltaYPercent,
+    };
+
+    // Check if dragged outside field boundaries (remove from lineup)
+    if (unconstrained.x < 6 || unconstrained.x > 94 || unconstrained.y < 6 || unconstrained.y > 94) {
+      removeFromLineup(player.id);
+      return;
+    }
+
+    // Otherwise, update position (constrained to field boundaries)
+    const newX = Math.max(6, Math.min(94, unconstrained.x));
+    const newY = Math.max(6, Math.min(94, unconstrained.y));
 
     onDragEnd({
       ...position,
