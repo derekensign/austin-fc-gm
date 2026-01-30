@@ -37,7 +37,7 @@ export default function Dashboard() {
       </motion.div>
 
       {/* Quick Stats Row */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3 mb-4">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-2 md:gap-3 mb-4">
         <StatCard
           title="Roster Size"
           value={cap.totalPlayers}
@@ -79,7 +79,7 @@ export default function Dashboard() {
       </div>
 
       {/* Secondary Stats Row */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-4">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-2 mb-4">
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -121,9 +121,9 @@ export default function Dashboard() {
       {/* Main Content Grid - 3:1 ratio matching the stats row above */}
       {/* Wrap in AllocationProvider so RosterOverview and SalaryCapCard share state */}
       <AllocationProvider>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 md:gap-3">
+        <div className="grid grid-cols-1 xl:grid-cols-4 gap-2 md:gap-3">
           {/* Roster Overview - 3 columns */}
-          <div className="lg:col-span-3">
+          <div className="xl:col-span-3">
             <RosterOverview />
           </div>
 

@@ -390,7 +390,7 @@ export function RosterOverview() {
 
       {/* Roster Columns - responsive grid */}
       <div className="flex-1 overflow-y-auto overflow-x-hidden p-1.5 sm:p-2">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-1.5 sm:gap-2">
           {positionGroups.map((group, groupIndex) => {
             const allPlayers = getPlayersByPosition(group.key);
             const players = allPlayers.filter(p => playerMatchesFilter(p, activeFilter));
