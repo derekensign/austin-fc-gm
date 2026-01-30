@@ -75,14 +75,18 @@ function autoFillStartingXI(formation: FormationPreset): { startingXI: number[],
 
     // Preferred starters (highest priority)
     const preferredStarters: Record<string, number[]> = {
+      'GK': [1],   // Stuver
+      'RB': [4],   // Desler
+      'CB': [5, 6],   // Hines-Ike, Svatok
       'LB': [20],  // Rosales
-      'CB': [5],   // Hines-Ike for RCB
-      'CDM': [16, 12],  // Dubersarsky, Sánchez (defensive midfielders)
-      'CM': [13, 17, 14, 19],  // Pereira, Burton, Sabovic, Ervin Torres (central)
+      'CDM': [12],  // Sánchez (defensive midfielder)
+      'CM': [13, 18],  // Pereira, Wolff (central)
       'CAM': [18],  // Wolff (attacking midfielder)
-      'ST': [24, 23],  // Uzuni first (Vazquez injured), then Vazquez
+      'ST': [24],  // Uzuni
       'LW': [21],  // Nelson at left wing
+      'RW': [22],  // Facundo Torres at right wing
       'LM': [21],  // Nelson at left midfield
+      'RM': [22],  // Facundo Torres at right midfield
     };
 
     const preferredList = preferredStarters[suggestedPosition];
