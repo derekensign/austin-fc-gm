@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback, useMemo, type ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, useMemo, useEffect, type ReactNode } from 'react';
 import { austinFCRoster, type AustinFCPlayer } from '@/data/austin-fc-roster';
 import { getDefaultFormation, getFormationById, type FormationPreset } from '@/data/formations';
 
@@ -39,6 +39,7 @@ export interface LineupState {
   bench: number[];                        // Remaining players
   tactics: TacticsSettings;
   playerRoles: Map<number, PlayerRole>;
+  lastRemovedPosition: PlayerPosition | null; // Track last removed player position for smart substitution
 }
 
 /**
@@ -54,6 +55,7 @@ interface LineupContextType {
   updateTactics: (tactics: Partial<TacticsSettings>) => void;
   setPlayerRole: (playerId: number, role: PlayerRole) => void;
   resetToDefault: () => void;
+  getShareableUrl: () => string;
 }
 
 const LineupContext = createContext<LineupContextType | null>(null);
@@ -75,11 +77,22 @@ function autoFillStartingXI(formation: FormationPreset): { startingXI: number[],
     const preferredStarters: Record<string, number[]> = {
       'LB': [20],  // Rosales
       'CB': [5],   // Hines-Ike for RCB
-      'CM': [16, 18],  // Dubersarsky, Wolff (prioritized over Sabovic)
+      'CDM': [16, 12],  // Dubersarsky, Sánchez (defensive midfielders)
+      'CM': [13, 17, 14, 19],  // Pereira, Burton, Sabovic, Ervin Torres (central)
+      'CAM': [18],  // Wolff (attacking midfielder)
+      'ST': [24, 23],  // Uzuni first (Vazquez injured), then Vazquez
+      'LW': [21],  // Nelson at left wing
+      'LM': [21],  // Nelson at left midfield
     };
 
-    if (preferredStarters[suggestedPosition]?.includes(player.id)) {
-      score += 50000; // Massive boost for preferred starters
+    const preferredList = preferredStarters[suggestedPosition];
+    if (preferredList) {
+      const index = preferredList.indexOf(player.id);
+      if (index !== -1) {
+        // Give higher score to players earlier in the list
+        // First player gets 50000, second gets 49000, etc.
+        score += 50000 - (index * 1000);
+      }
     }
 
     // Position match (highest priority)
@@ -185,11 +198,74 @@ function createInitialLineup(): LineupState {
       pressingIntensity: 50,
     },
     playerRoles: new Map(),
+    lastRemovedPosition: null,
   };
 }
 
+/**
+ * Serialize lineup state to URL-safe string
+ */
+function serializeLineup(state: LineupState): string {
+  const data = {
+    f: state.formation.id, // formation
+    p: Array.from(state.startingXI), // players
+    t: state.tactics, // tactics
+    pos: Array.from(state.positions.entries()).map(([id, pos]) => ({
+      i: id,
+      x: Math.round(pos.x * 10) / 10,
+      y: Math.round(pos.y * 10) / 10,
+      r: pos.role,
+      d: pos.depth,
+    })),
+  };
+  return btoa(JSON.stringify(data));
+}
+
+/**
+ * Deserialize lineup state from URL-safe string
+ */
+function deserializeLineup(encoded: string): Partial<LineupState> | null {
+  try {
+    const data = JSON.parse(atob(encoded));
+    const formation = getFormationById(data.f);
+    if (!formation) return null;
+
+    const positions = new Map<number, PlayerPosition>(
+      data.pos.map((p: any) => [p.i, { x: p.x, y: p.y, role: p.r, depth: p.d }])
+    );
+
+    return {
+      formation,
+      startingXI: data.p,
+      bench: austinFCRoster.filter(p => !data.p.includes(p.id)).map(p => p.id),
+      tactics: data.t,
+      positions,
+    };
+  } catch (e) {
+    console.error('Failed to deserialize lineup:', e);
+    return null;
+  }
+}
+
 export function LineupProvider({ children }: { children: ReactNode }) {
-  const [lineupState, setLineupState] = useState<LineupState>(createInitialLineup);
+  const [lineupState, setLineupState] = useState<LineupState>(() => {
+    // Try to load from URL on initial mount
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const encoded = params.get('lineup');
+      if (encoded) {
+        const decoded = deserializeLineup(encoded);
+        if (decoded) {
+          return {
+            ...createInitialLineup(),
+            ...decoded,
+            lastRemovedPosition: null,
+          };
+        }
+      }
+    }
+    return createInitialLineup();
+  });
 
   // Set formation and auto-fill positions
   const setFormation = useCallback((formationId: string) => {
@@ -213,6 +289,7 @@ export function LineupProvider({ children }: { children: ReactNode }) {
         teamWidth: 50,
         pressingIntensity: 50,
       },
+      lastRemovedPosition: null, // Clear on formation change
     }));
   }, []);
 
@@ -259,9 +336,12 @@ export function LineupProvider({ children }: { children: ReactNode }) {
       const newBench = prev.bench.filter(id => id !== playerId);
       const newPositions = new Map(prev.positions);
 
-      // Use provided position or default to center field
+      // Use provided position, or lastRemovedPosition, or default to center field
       if (position) {
         newPositions.set(playerId, position);
+      } else if (prev.lastRemovedPosition) {
+        // Use the position of the last removed player (smart substitution)
+        newPositions.set(playerId, prev.lastRemovedPosition);
       } else {
         newPositions.set(playerId, {
           x: 50,
@@ -276,6 +356,7 @@ export function LineupProvider({ children }: { children: ReactNode }) {
         startingXI: newStartingXI,
         bench: newBench,
         positions: newPositions,
+        lastRemovedPosition: null, // Clear after using
       };
     });
   }, []);
@@ -287,6 +368,9 @@ export function LineupProvider({ children }: { children: ReactNode }) {
         return prev;
       }
 
+      // Save the position before removing
+      const removedPosition = prev.positions.get(playerId) || null;
+
       const newStartingXI = prev.startingXI.filter(id => id !== playerId);
       const newBench = [...prev.bench, playerId];
       const newPositions = new Map(prev.positions);
@@ -297,6 +381,7 @@ export function LineupProvider({ children }: { children: ReactNode }) {
         startingXI: newStartingXI,
         bench: newBench,
         positions: newPositions,
+        lastRemovedPosition: removedPosition,
       };
     });
   }, []);
@@ -337,9 +422,17 @@ export function LineupProvider({ children }: { children: ReactNode }) {
         positions,
         startingXI,
         bench,
+        lastRemovedPosition: null, // Clear on reset
       };
     });
   }, []);
+
+  // Generate shareable URL
+  const getShareableUrl = useCallback(() => {
+    const encoded = serializeLineup(lineupState);
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin + window.location.pathname : '';
+    return `${baseUrl}?lineup=${encoded}`;
+  }, [lineupState]);
 
   const value = useMemo(() => ({
     lineupState,
@@ -351,6 +444,7 @@ export function LineupProvider({ children }: { children: ReactNode }) {
     updateTactics,
     setPlayerRole,
     resetToDefault,
+    getShareableUrl,
   }), [
     lineupState,
     setFormation,
@@ -361,6 +455,7 @@ export function LineupProvider({ children }: { children: ReactNode }) {
     updateTactics,
     setPlayerRole,
     resetToDefault,
+    getShareableUrl,
   ]);
 
   return (

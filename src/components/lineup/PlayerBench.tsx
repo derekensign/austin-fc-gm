@@ -203,7 +203,7 @@ function PlayerRow({
           ) : null}
           {/* Fallback initials - only shown if image fails or missing */}
           <div
-            className="absolute inset-0 flex items-center justify-center text-white text-xs font-bold bg-black/60"
+            className="absolute inset-0 flex items-center justify-center text-white text-xs font-bold"
             style={{ display: player.photo ? 'none' : 'flex' }}
           >
             {player.firstName[0]}{player.lastName[0]}

@@ -1,7 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Settings, Users, RotateCcw } from 'lucide-react';
+import { Shield, Settings, Users, RotateCcw, Share2, Check } from 'lucide-react';
 import { LineupProvider, useLineup, type PlayerPosition, type TacticsSettings } from '@/context/LineupContext';
 import { SoccerField } from '@/components/lineup/SoccerField';
 import { DraggablePlayer } from '@/components/lineup/DraggablePlayer';
@@ -46,47 +47,143 @@ function applyTacticalAdjustments(
 }
 
 /**
- * Bench player icon component
+ * Draggable bench player component
  */
-function BenchPlayerIcon({ player, onClick }: { player: any; onClick: () => void }) {
+function DraggableBenchPlayer({
+  player,
+  onDragToField
+}: {
+  player: any;
+  onDragToField: (playerId: number, fieldX: number, fieldY: number) => void;
+}) {
+  const handleDragEnd = (_event: any, info: any) => {
+    // Get the field element
+    const fieldElement = document.querySelector('[data-field-container]');
+    if (!fieldElement) return;
+
+    const fieldRect = fieldElement.getBoundingClientRect();
+
+    // Use the pointer position from Framer Motion
+    const pointerX = info.point.x;
+    const pointerY = info.point.y;
+
+    // Check if dropped on field
+    if (
+      pointerX >= fieldRect.left &&
+      pointerX <= fieldRect.right &&
+      pointerY >= fieldRect.top &&
+      pointerY <= fieldRect.bottom
+    ) {
+      // Calculate percentage position within field
+      const fieldX = ((pointerX - fieldRect.left) / fieldRect.width) * 100;
+      const fieldY = ((pointerY - fieldRect.top) / fieldRect.height) * 100;
+
+      // Add player to field at this position
+      onDragToField(player.id, fieldX, fieldY);
+    }
+  };
+
   return (
-    <motion.button
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
-      onClick={onClick}
-      className="relative group"
+    <motion.div
+      drag
+      dragMomentum={false}
+      dragElastic={0}
+      dragSnapToOrigin={true}
+      onDragEnd={handleDragEnd}
+      whileHover={{ scale: 1.05 }}
+      whileDrag={{ scale: 1.1, zIndex: 1000 }}
+      className="relative cursor-grab active:cursor-grabbing"
       title={player.name}
     >
-      <div className="w-8 h-8 rounded-full overflow-hidden border border-white/30 bg-[var(--obsidian-light)]">
-        {player.photo ? (
-          <img
-            src={player.photo}
-            alt={player.name}
-            className="w-full h-full object-cover"
-            draggable={false}
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-white text-[10px] font-bold bg-black/60">
-            {player.firstName[0]}{player.lastName[0]}
+      <div className="flex flex-col items-center gap-0.5 pointer-events-none select-none">
+        {/* Avatar */}
+        <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/30 bg-[var(--obsidian-light)] flex items-center justify-center">
+          {player.photo ? (
+            <img
+              src={player.photo}
+              alt={player.name}
+              className="w-full h-full object-cover"
+              draggable={false}
+            />
+          ) : (
+            <div className="text-white text-xs font-bold">
+              {player.firstName[0]}{player.lastName[0]}
+            </div>
+          )}
+        </div>
+        {/* Jersey Number */}
+        {player.number && (
+          <div className="absolute top-0 right-0 bg-[var(--obsidian)] border border-[var(--verde)] rounded-full w-4 h-4 flex items-center justify-center">
+            <span className="text-[8px] font-bold text-[var(--verde)]">{player.number}</span>
           </div>
         )}
-      </div>
-      {player.number && (
-        <div className="absolute -top-0.5 -right-0.5 bg-[var(--obsidian)] border border-[var(--verde)] rounded-full w-3.5 h-3.5 flex items-center justify-center">
-          <span className="text-[8px] font-bold text-[var(--verde)]">{player.number}</span>
+        {/* Name */}
+        <div className="text-white text-[9px] font-semibold text-center truncate max-w-[60px]">
+          {player.lastName}
         </div>
-      )}
-    </motion.button>
+      </div>
+    </motion.div>
   );
 }
 
 function LineupBuilderContent() {
-  const { lineupState, setPlayerPosition, resetToDefault, addToLineup } = useLineup();
+  const { lineupState, setPlayerPosition, resetToDefault, addToLineup, getShareableUrl } = useLineup();
+  const [showFullLineupMessage, setShowFullLineupMessage] = useState(false);
+  const [showCopied, setShowCopied] = useState(false);
+
+  // Handle share button click
+  const handleShare = async () => {
+    const url = getShareableUrl();
+    try {
+      await navigator.clipboard.writeText(url);
+      setShowCopied(true);
+      setTimeout(() => setShowCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy URL:', err);
+    }
+  };
 
   // Get starting XI players
   const startingPlayers = austinFCRoster.filter(p =>
     lineupState.startingXI.includes(p.id)
   );
+
+  // Handle dragging bench player to field
+  const handleDragBenchToField = (playerId: number, fieldX: number, fieldY: number) => {
+    if (lineupState.startingXI.length >= 11) {
+      // Show notification that lineup is full
+      setShowFullLineupMessage(true);
+      setTimeout(() => setShowFullLineupMessage(false), 2000);
+      return;
+    }
+
+    // Constrain to field boundaries
+    const constrainedX = Math.max(6, Math.min(94, fieldX));
+    const constrainedY = Math.max(6, Math.min(94, fieldY));
+
+    // Find the closest formation position to determine the role
+    let closestPosition = lineupState.formation.positions[0];
+    let minDistance = Infinity;
+
+    for (const formationPos of lineupState.formation.positions) {
+      const dx = formationPos.x - constrainedX;
+      const dy = formationPos.y - constrainedY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestPosition = formationPos;
+      }
+    }
+
+    // Add player with the dropped position and the role from the closest formation position
+    addToLineup(playerId, {
+      x: constrainedX,
+      y: constrainedY,
+      role: closestPosition.role,
+      depth: closestPosition.depth,
+    });
+  };
 
   return (
     <div className="p-4 md:p-6 stripe-pattern min-h-screen w-full">
@@ -150,20 +247,94 @@ function LineupBuilderContent() {
         >
           {/* Soccer Field with Bench */}
           <div className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg p-4 overflow-hidden relative">
-            {/* Reset Button */}
-            <button
-              onClick={resetToDefault}
-              className="absolute top-4 right-4 z-10 flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors border border-white/20"
-              title="Reset positions to default for current formation"
-            >
-              <RotateCcw className="w-5 h-5" />
-              Reset Lineup
-            </button>
+            {/* Full Lineup Notification */}
+            {showFullLineupMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="absolute top-16 left-1/2 -translate-x-1/2 z-50 bg-red-500 text-white px-6 py-3 rounded-lg shadow-xl border border-red-400"
+              >
+                <p className="text-sm font-semibold whitespace-nowrap">
+                  Must remove player from field before subbing on a replacement.
+                </p>
+              </motion.div>
+            )}
 
-            {/* Field Container */}
-            <div className="w-full max-w-lg mx-auto space-y-3">
-              {/* Soccer Field */}
-              <div className="aspect-[2/3] w-full">
+            {/* Action Buttons */}
+            <div className="absolute top-4 right-4 z-10 flex gap-2">
+              {/* Share Button */}
+              <button
+                onClick={handleShare}
+                className="flex items-center gap-2 px-4 py-2 bg-[var(--verde)] hover:bg-[var(--verde)]/80 text-black font-semibold rounded-lg transition-colors"
+                title="Copy shareable URL to clipboard"
+              >
+                {showCopied ? (
+                  <>
+                    <Check className="w-5 h-5" />
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <Share2 className="w-5 h-5" />
+                    Share
+                  </>
+                )}
+              </button>
+
+              {/* Reset Button */}
+              <button
+                onClick={resetToDefault}
+                className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors border border-white/20"
+                title="Reset positions to default for current formation"
+              >
+                <RotateCcw className="w-5 h-5" />
+                Reset
+              </button>
+            </div>
+
+            {/* Field Container with Bench on Left */}
+            <div className="flex gap-4 items-stretch justify-center">
+              {/* Bench Area - Left Side (Portrait) */}
+              <div className="flex-shrink-0 w-48 flex" data-bench-container>
+                <div className="bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] rounded-lg p-2 flex flex-col w-full">
+                  <div className="flex items-center gap-1 mb-2 justify-center flex-shrink-0">
+                    <Users className="w-3 h-3 text-[var(--verde)]" />
+                    <h3 className="font-display text-xs text-white">Bench</h3>
+                  </div>
+
+                  {/* Bench Players by Position (Portrait) */}
+                  <div className="space-y-3 flex-1 overflow-y-auto">
+                    {['GK', 'DEF', 'MID', 'FWD'].map((posGroup) => {
+                      const groupPlayers = austinFCRoster.filter(p =>
+                        lineupState.bench.includes(p.id) && p.positionGroup === posGroup
+                      );
+
+                      if (groupPlayers.length === 0) return null;
+
+                      return (
+                        <div key={posGroup}>
+                          <div className="text-[9px] text-white/60 uppercase font-bold mb-1 text-center">
+                            {posGroup}
+                          </div>
+                          <div className="grid grid-cols-2 gap-2 justify-items-center">
+                            {groupPlayers.map((player) => (
+                              <DraggableBenchPlayer
+                                key={player.id}
+                                player={player}
+                                onDragToField={handleDragBenchToField}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Soccer Field - Right Side */}
+              <div className="aspect-[2/3] w-full max-w-md" data-field-container>
                 <SoccerField tactics={lineupState.tactics} showOverlays={true}>
                   {startingPlayers.map((player) => {
                     const basePosition = lineupState.positions.get(player.id);
@@ -186,45 +357,6 @@ function LineupBuilderContent() {
                     );
                   })}
                 </SoccerField>
-              </div>
-
-              {/* Bench Area */}
-              <div className="bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] rounded-lg p-3">
-                <div className="flex items-center gap-2 mb-2">
-                  <Users className="w-4 h-4 text-[var(--verde)]" />
-                  <h3 className="font-display text-sm text-white">Bench</h3>
-                  <span className="text-xs text-white/60">({lineupState.bench.length})</span>
-                </div>
-
-                {/* Bench Players Grid by Position */}
-                <div className="grid grid-cols-2 gap-2">
-                  {['GK', 'DEF', 'MID', 'FWD'].map((posGroup) => {
-                    const groupPlayers = austinFCRoster.filter(p =>
-                      lineupState.bench.includes(p.id) && p.positionGroup === posGroup
-                    );
-
-                    if (groupPlayers.length === 0) return null;
-
-                    return (
-                      <div key={posGroup} className="space-y-1">
-                        <div className="text-[10px] text-white/60 uppercase font-bold">{posGroup}</div>
-                        <div className="flex flex-wrap gap-1">
-                          {groupPlayers.slice(0, 5).map((player) => (
-                            <BenchPlayerIcon
-                              key={player.id}
-                              player={player}
-                              onClick={() => {
-                                if (lineupState.startingXI.length < 11) {
-                                  addToLineup(player.id);
-                                }
-                              }}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
               </div>
             </div>
           </div>

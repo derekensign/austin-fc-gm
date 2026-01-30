@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { type AustinFCPlayer } from '@/data/austin-fc-roster';
@@ -30,6 +30,12 @@ export function DraggablePlayer({
 }: DraggablePlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { removeFromLineup } = useLineup();
+  const [isFirstRender, setIsFirstRender] = useState(true);
+
+  // Skip animation on first render
+  useEffect(() => {
+    setIsFirstRender(false);
+  }, []);
 
   const handleRemove = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -68,6 +74,26 @@ export function DraggablePlayer({
       y: position.y + deltaYPercent,
     };
 
+    // Check if dropped on bench area
+    const draggedElement = _event.target as HTMLElement;
+    const draggedRect = draggedElement.getBoundingClientRect();
+    const dragCenterX = draggedRect.left + draggedRect.width / 2;
+    const dragCenterY = draggedRect.top + draggedRect.height / 2;
+
+    const benchElement = document.querySelector('[data-bench-container]');
+    if (benchElement) {
+      const benchRect = benchElement.getBoundingClientRect();
+      if (
+        dragCenterX >= benchRect.left &&
+        dragCenterX <= benchRect.right &&
+        dragCenterY >= benchRect.top &&
+        dragCenterY <= benchRect.bottom
+      ) {
+        removeFromLineup(player.id);
+        return;
+      }
+    }
+
     // Check if dragged outside field boundaries (remove from lineup)
     if (unconstrained.x < 6 || unconstrained.x > 94 || unconstrained.y < 6 || unconstrained.y > 94) {
       removeFromLineup(player.id);
@@ -105,11 +131,15 @@ export function DraggablePlayer({
       onDragEnd={handleDragEnd}
       whileHover={{ scale: 1.05 }}
       whileDrag={{ scale: 1.1, zIndex: 1000 }}
+      initial={{
+        left: `${position.x}%`,
+        top: `${position.y}%`,
+      }}
       animate={{
         left: `${position.x}%`,
         top: `${position.y}%`,
       }}
-      transition={{
+      transition={isFirstRender ? { duration: 0 } : {
         type: 'tween',
         duration: 0.3,
         ease: 'easeOut',
@@ -154,7 +184,7 @@ export function DraggablePlayer({
             ) : null}
             {/* Fallback initials - only shown if image fails or missing */}
             <div
-              className="absolute inset-0 items-center justify-center text-white font-bold text-lg bg-black/60"
+              className="absolute inset-0 items-center justify-center text-white font-bold text-lg"
               style={{ display: player.photo ? 'none' : 'flex' }}
             >
               {player.firstName[0]}{player.lastName[0]}
