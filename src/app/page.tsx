@@ -79,7 +79,7 @@ export default function Dashboard() {
       </div>
 
       {/* Secondary Stats Row */}
-      <div className="grid grid-cols-4 gap-2 mb-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-4">
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
