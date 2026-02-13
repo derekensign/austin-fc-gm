@@ -1,0 +1,10112 @@
+[
+  {
+    "playerName": "L. Messi",
+    "team": "MIA",
+    "gamesPlayed": 28,
+    "gamesStarted": 26,
+    "minutesPlayed": 2420,
+    "goals": 29,
+    "assists": 19,
+    "xG": 20.35
+  },
+  {
+    "playerName": "D. Bouanga",
+    "team": "LAFC",
+    "gamesPlayed": 31,
+    "gamesStarted": 29,
+    "minutesPlayed": 2657,
+    "goals": 24,
+    "assists": 9,
+    "xG": 21.92
+  },
+  {
+    "playerName": "S. Surridge",
+    "team": "NSH",
+    "gamesPlayed": 34,
+    "gamesStarted": 33,
+    "minutesPlayed": 2940,
+    "goals": 24,
+    "assists": 5,
+    "xG": 25.53
+  },
+  {
+    "playerName": "A. Dreyer",
+    "team": "SD",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 3022,
+    "goals": 19,
+    "assists": 19,
+    "xG": 17.6
+  },
+  {
+    "playerName": "E. Da Silva Ferreira",
+    "team": "CIN",
+    "gamesPlayed": 32,
+    "gamesStarted": 31,
+    "minutesPlayed": 2744,
+    "goals": 18,
+    "assists": 15,
+    "xG": 8.83
+  },
+  {
+    "playerName": "D. Joveljić",
+    "team": "SKC",
+    "gamesPlayed": 32,
+    "gamesStarted": 31,
+    "minutesPlayed": 2767,
+    "goals": 18,
+    "assists": 2,
+    "xG": 15.75
+  },
+  {
+    "playerName": "P. Musa",
+    "team": "DAL",
+    "gamesPlayed": 30,
+    "gamesStarted": 27,
+    "minutesPlayed": 2297,
+    "goals": 18,
+    "assists": 6,
+    "xG": 15.69
+  },
+  {
+    "playerName": "A. Martínez",
+    "team": "NYC",
+    "gamesPlayed": 30,
+    "gamesStarted": 29,
+    "minutesPlayed": 2503,
+    "goals": 17,
+    "assists": 2,
+    "xG": 23.03
+  },
+  {
+    "playerName": "E. Choupo-Moting",
+    "team": "RBNY",
+    "gamesPlayed": 33,
+    "gamesStarted": 31,
+    "minutesPlayed": 2758,
+    "goals": 17,
+    "assists": 5,
+    "xG": 14.14
+  },
+  {
+    "playerName": "H. Cuypers",
+    "team": "CHI",
+    "gamesPlayed": 33,
+    "gamesStarted": 33,
+    "minutesPlayed": 2810,
+    "goals": 17,
+    "assists": 3,
+    "xG": 21.17
+  },
+  {
+    "playerName": "B. White",
+    "team": "VAN",
+    "gamesPlayed": 21,
+    "gamesStarted": 18,
+    "minutesPlayed": 1672,
+    "goals": 16,
+    "assists": 1,
+    "xG": 18.39
+  },
+  {
+    "playerName": "H. Mukhtar",
+    "team": "NSH",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 3005,
+    "goals": 16,
+    "assists": 12,
+    "xG": 19.69
+  },
+  {
+    "playerName": "M. Ojeda",
+    "team": "ORL",
+    "gamesPlayed": 33,
+    "gamesStarted": 30,
+    "minutesPlayed": 2687,
+    "goals": 16,
+    "assists": 15,
+    "xG": 12.87
+  },
+  {
+    "playerName": "D. Rossi",
+    "team": "CLB",
+    "gamesPlayed": 29,
+    "gamesStarted": 29,
+    "minutesPlayed": 2504,
+    "goals": 16,
+    "assists": 4,
+    "xG": 14.31
+  },
+  {
+    "playerName": "T. Baribo",
+    "team": "PHI",
+    "gamesPlayed": 29,
+    "gamesStarted": 20,
+    "minutesPlayed": 1876,
+    "goals": 16,
+    "assists": 3,
+    "xG": 15.03
+  },
+  {
+    "playerName": "P. Zinckernagel",
+    "team": "CHI",
+    "gamesPlayed": 32,
+    "gamesStarted": 31,
+    "minutesPlayed": 2532,
+    "goals": 15,
+    "assists": 15,
+    "xG": 6.44
+  },
+  {
+    "playerName": "K. Denkey",
+    "team": "CIN",
+    "gamesPlayed": 29,
+    "gamesStarted": 26,
+    "minutesPlayed": 2282,
+    "goals": 15,
+    "assists": 2,
+    "xG": 13.4
+  },
+  {
+    "playerName": "D. Musovski",
+    "team": "SEA",
+    "gamesPlayed": 31,
+    "gamesStarted": 16,
+    "minutesPlayed": 1559,
+    "goals": 14,
+    "assists": 4,
+    "xG": 14.16
+  },
+  {
+    "playerName": "J. Martínez",
+    "team": "SJ",
+    "gamesPlayed": 30,
+    "gamesStarted": 21,
+    "minutesPlayed": 1874,
+    "goals": 14,
+    "assists": 2,
+    "xG": 14.64
+  },
+  {
+    "playerName": "C. Arango",
+    "team": "SJ",
+    "gamesPlayed": 30,
+    "gamesStarted": 30,
+    "minutesPlayed": 2562,
+    "goals": 13,
+    "assists": 7,
+    "xG": 15.94
+  },
+  {
+    "playerName": "P. Owusu",
+    "team": "MTL",
+    "gamesPlayed": 34,
+    "gamesStarted": 32,
+    "minutesPlayed": 2825,
+    "goals": 13,
+    "assists": 5,
+    "xG": 18.16
+  },
+  {
+    "playerName": "R. Navarro",
+    "team": "COL",
+    "gamesPlayed": 31,
+    "gamesStarted": 30,
+    "minutesPlayed": 2663,
+    "goals": 12,
+    "assists": 5,
+    "xG": 17.96
+  },
+  {
+    "playerName": "M. Pašalić",
+    "team": "ORL",
+    "gamesPlayed": 33,
+    "gamesStarted": 32,
+    "minutesPlayed": 2593,
+    "goals": 12,
+    "assists": 5,
+    "xG": 8.71
+  },
+  {
+    "playerName": "A. Rusnák",
+    "team": "SEA",
+    "gamesPlayed": 29,
+    "gamesStarted": 23,
+    "minutesPlayed": 2150,
+    "goals": 11,
+    "assists": 10,
+    "xG": 10.38
+  },
+  {
+    "playerName": "E. Forsberg",
+    "team": "RBNY",
+    "gamesPlayed": 33,
+    "gamesStarted": 33,
+    "minutesPlayed": 2875,
+    "goals": 11,
+    "assists": 11,
+    "xG": 9.93
+  },
+  {
+    "playerName": "H. Wolf",
+    "team": "NYC",
+    "gamesPlayed": 33,
+    "gamesStarted": 32,
+    "minutesPlayed": 2644,
+    "goals": 11,
+    "assists": 7,
+    "xG": 8.08
+  },
+  {
+    "playerName": "I. Toklomati",
+    "team": "CLT",
+    "gamesPlayed": 30,
+    "gamesStarted": 19,
+    "minutesPlayed": 1807,
+    "goals": 11,
+    "assists": 4,
+    "xG": 10.61
+  },
+  {
+    "playerName": "T. Allende",
+    "team": "MIA",
+    "gamesPlayed": 31,
+    "gamesStarted": 26,
+    "minutesPlayed": 2167,
+    "goals": 11,
+    "assists": 1,
+    "xG": 10.42
+  },
+  {
+    "playerName": "E. Ponce",
+    "team": "HOU",
+    "gamesPlayed": 32,
+    "gamesStarted": 32,
+    "minutesPlayed": 2681,
+    "goals": 10,
+    "assists": 1,
+    "xG": 14.61
+  },
+  {
+    "playerName": "J. Paintsil",
+    "team": "LA",
+    "gamesPlayed": 25,
+    "gamesStarted": 22,
+    "minutesPlayed": 1978,
+    "goals": 10,
+    "assists": 5,
+    "xG": 10.68
+  },
+  {
+    "playerName": "T. Oluwaseyi",
+    "team": "MIN",
+    "gamesPlayed": 24,
+    "gamesStarted": 21,
+    "minutesPlayed": 1861,
+    "goals": 10,
+    "assists": 8,
+    "xG": 11.29
+  },
+  {
+    "playerName": "C. Gil",
+    "team": "NE",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 3056,
+    "goals": 10,
+    "assists": 14,
+    "xG": 7.78
+  },
+  {
+    "playerName": "W. Zaha",
+    "team": "CLT",
+    "gamesPlayed": 31,
+    "gamesStarted": 31,
+    "minutesPlayed": 2740,
+    "goals": 10,
+    "assists": 10,
+    "xG": 7.83
+  },
+  {
+    "playerName": "P. Biel",
+    "team": "CLT",
+    "gamesPlayed": 26,
+    "gamesStarted": 24,
+    "minutesPlayed": 2018,
+    "goals": 10,
+    "assists": 12,
+    "xG": 7.34
+  },
+  {
+    "playerName": "J. Klauss",
+    "team": "STL",
+    "gamesPlayed": 33,
+    "gamesStarted": 29,
+    "minutesPlayed": 2423,
+    "goals": 10,
+    "assists": 3,
+    "xG": 11.62
+  },
+  {
+    "playerName": "M. Iloski",
+    "team": "SD",
+    "gamesPlayed": 14,
+    "gamesStarted": 3,
+    "minutesPlayed": 471,
+    "goals": 10,
+    "assists": 1,
+    "xG": 4.79
+  },
+  {
+    "playerName": "L. Suárez",
+    "team": "MIA",
+    "gamesPlayed": 28,
+    "gamesStarted": 27,
+    "minutesPlayed": 2291,
+    "goals": 10,
+    "assists": 10,
+    "xG": 12.95
+  },
+  {
+    "playerName": "B. Gutiérrez",
+    "team": "CHI",
+    "gamesPlayed": 29,
+    "gamesStarted": 24,
+    "minutesPlayed": 2050,
+    "goals": 9,
+    "assists": 6,
+    "xG": 7.39
+  },
+  {
+    "playerName": "D. Luna",
+    "team": "RSL",
+    "gamesPlayed": 27,
+    "gamesStarted": 27,
+    "minutesPlayed": 2277,
+    "goals": 9,
+    "assists": 7,
+    "xG": 7.11
+  },
+  {
+    "playerName": "H. Lozano",
+    "team": "SD",
+    "gamesPlayed": 27,
+    "gamesStarted": 22,
+    "minutesPlayed": 1833,
+    "goals": 9,
+    "assists": 10,
+    "xG": 10.27
+  },
+  {
+    "playerName": "S. Heung-Min",
+    "team": "LAFC",
+    "gamesPlayed": 10,
+    "gamesStarted": 9,
+    "minutesPlayed": 806,
+    "goals": 9,
+    "assists": 3,
+    "xG": 4.81
+  },
+  {
+    "playerName": "D. Sealy",
+    "team": "MTL",
+    "gamesPlayed": 30,
+    "gamesStarted": 28,
+    "minutesPlayed": 2426,
+    "goals": 9,
+    "assists": 2,
+    "xG": 6.14
+  },
+  {
+    "playerName": "C. Benteke",
+    "team": "DC",
+    "gamesPlayed": 25,
+    "gamesStarted": 23,
+    "minutesPlayed": 1883,
+    "goals": 9,
+    "assists": 3,
+    "xG": 14.84
+  },
+  {
+    "playerName": "A. Markanich",
+    "team": "MIN",
+    "gamesPlayed": 31,
+    "gamesStarted": 23,
+    "minutesPlayed": 1902,
+    "goals": 9,
+    "assists": 1,
+    "xG": 4.99
+  },
+  {
+    "playerName": "M. Hartel",
+    "team": "STL",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 3027,
+    "goals": 9,
+    "assists": 6,
+    "xG": 7.75
+  },
+  {
+    "playerName": "K. Yeboah",
+    "team": "MIN",
+    "gamesPlayed": 30,
+    "gamesStarted": 23,
+    "minutesPlayed": 2045,
+    "goals": 9,
+    "assists": 3,
+    "xG": 11.73
+  },
+  {
+    "playerName": "D. Mihailovic",
+    "team": "COL",
+    "gamesPlayed": 24,
+    "gamesStarted": 24,
+    "minutesPlayed": 2060,
+    "goals": 9,
+    "assists": 7,
+    "xG": 8.39
+  },
+  {
+    "playerName": "L. Muriel",
+    "team": "ORL",
+    "gamesPlayed": 33,
+    "gamesStarted": 25,
+    "minutesPlayed": 2114,
+    "goals": 9,
+    "assists": 9,
+    "xG": 8.51
+  },
+  {
+    "playerName": "R. Enrique",
+    "team": "ORL",
+    "gamesPlayed": 24,
+    "gamesStarted": 8,
+    "minutesPlayed": 931,
+    "goals": 8,
+    "assists": 2,
+    "xG": 8.43
+  },
+  {
+    "playerName": "D. Yapi",
+    "team": "COL",
+    "gamesPlayed": 29,
+    "gamesStarted": 17,
+    "minutesPlayed": 1433,
+    "goals": 8,
+    "assists": 2,
+    "xG": 4.97
+  },
+  {
+    "playerName": "T. Segovia",
+    "team": "MIA",
+    "gamesPlayed": 31,
+    "gamesStarted": 19,
+    "minutesPlayed": 1621,
+    "goals": 8,
+    "assists": 6,
+    "xG": 3.07
+  },
+  {
+    "playerName": "D. Sallói",
+    "team": "SKC",
+    "gamesPlayed": 33,
+    "gamesStarted": 24,
+    "minutesPlayed": 2183,
+    "goals": 7,
+    "assists": 4,
+    "xG": 7.67
+  },
+  {
+    "playerName": "J. Russell-Rowe",
+    "team": "CLB",
+    "gamesPlayed": 31,
+    "gamesStarted": 19,
+    "minutesPlayed": 1731,
+    "goals": 7,
+    "assists": 2,
+    "xG": 7.9
+  },
+  {
+    "playerName": "P. Judd",
+    "team": "SJ",
+    "gamesPlayed": 29,
+    "gamesStarted": 10,
+    "minutesPlayed": 1049,
+    "goals": 7,
+    "assists": 2,
+    "xG": 7.16
+  },
+  {
+    "playerName": "A. Alves Santos",
+    "team": "POR",
+    "gamesPlayed": 28,
+    "gamesStarted": 26,
+    "minutesPlayed": 2211,
+    "goals": 7,
+    "assists": 7,
+    "xG": 7.38
+  },
+  {
+    "playerName": "L. Campana",
+    "team": "NE",
+    "gamesPlayed": 24,
+    "gamesStarted": 20,
+    "minutesPlayed": 1647,
+    "goals": 7,
+    "assists": 1,
+    "xG": 9.68
+  },
+  {
+    "playerName": "E. Latte Lath",
+    "team": "ATL",
+    "gamesPlayed": 30,
+    "gamesStarted": 25,
+    "minutesPlayed": 2198,
+    "goals": 7,
+    "assists": 1,
+    "xG": 11.51
+  },
+  {
+    "playerName": "K. Kelsy",
+    "team": "POR",
+    "gamesPlayed": 33,
+    "gamesStarted": 17,
+    "minutesPlayed": 1602,
+    "goals": 7,
+    "assists": 2,
+    "xG": 6.82
+  },
+  {
+    "playerName": "T. Müller",
+    "team": "VAN",
+    "gamesPlayed": 7,
+    "gamesStarted": 6,
+    "minutesPlayed": 541,
+    "goals": 7,
+    "assists": 3,
+    "xG": 4.74
+  },
+  {
+    "playerName": "E. Sabbi",
+    "team": "VAN",
+    "gamesPlayed": 28,
+    "gamesStarted": 23,
+    "minutesPlayed": 1805,
+    "goals": 7,
+    "assists": 3,
+    "xG": 7.62
+  },
+  {
+    "playerName": "B. Damiani",
+    "team": "PHI",
+    "gamesPlayed": 33,
+    "gamesStarted": 23,
+    "minutesPlayed": 2040,
+    "goals": 7,
+    "assists": 2,
+    "xG": 13.68
+  },
+  {
+    "playerName": "G. Pirani",
+    "team": "DC",
+    "gamesPlayed": 28,
+    "gamesStarted": 22,
+    "minutesPlayed": 1901,
+    "goals": 7,
+    "assists": 4,
+    "xG": 4.87
+  },
+  {
+    "playerName": "O. Wolff",
+    "team": "ATX",
+    "gamesPlayed": 34,
+    "gamesStarted": 31,
+    "minutesPlayed": 2596,
+    "goals": 7,
+    "assists": 8,
+    "xG": 4.02
+  },
+  {
+    "playerName": "J. Pereyra",
+    "team": "MIN",
+    "gamesPlayed": 33,
+    "gamesStarted": 29,
+    "minutesPlayed": 2567,
+    "goals": 6,
+    "assists": 11,
+    "xG": 3.66
+  },
+  {
+    "playerName": "D. Fagúndez",
+    "team": "LA",
+    "gamesPlayed": 32,
+    "gamesStarted": 29,
+    "minutesPlayed": 2481,
+    "goals": 6,
+    "assists": 3,
+    "xG": 3.26
+  },
+  {
+    "playerName": "A. Freeman",
+    "team": "ORL",
+    "gamesPlayed": 29,
+    "gamesStarted": 26,
+    "minutesPlayed": 2451,
+    "goals": 6,
+    "assists": 3,
+    "xG": 5.44
+  },
+  {
+    "playerName": "G. Pec",
+    "team": "LA",
+    "gamesPlayed": 29,
+    "gamesStarted": 27,
+    "minutesPlayed": 2473,
+    "goals": 6,
+    "assists": 9,
+    "xG": 10.36
+  },
+  {
+    "playerName": "J. McGlynn",
+    "team": "HOU",
+    "gamesPlayed": 26,
+    "gamesStarted": 26,
+    "minutesPlayed": 2312,
+    "goals": 6,
+    "assists": 8,
+    "xG": 4.54
+  },
+  {
+    "playerName": "A. Julio",
+    "team": "DAL",
+    "gamesPlayed": 25,
+    "gamesStarted": 17,
+    "minutesPlayed": 1578,
+    "goals": 6,
+    "assists": 1,
+    "xG": 4.55
+  },
+  {
+    "playerName": "J. Alba",
+    "team": "MIA",
+    "gamesPlayed": 30,
+    "gamesStarted": 29,
+    "minutesPlayed": 2565,
+    "goals": 6,
+    "assists": 15,
+    "xG": 2.52
+  },
+  {
+    "playerName": "A. Miranchuk",
+    "team": "ATL",
+    "gamesPlayed": 33,
+    "gamesStarted": 31,
+    "minutesPlayed": 2752,
+    "goals": 6,
+    "assists": 4,
+    "xG": 6.82
+  },
+  {
+    "playerName": "M. Almirón",
+    "team": "ATL",
+    "gamesPlayed": 31,
+    "gamesStarted": 31,
+    "minutesPlayed": 2713,
+    "goals": 6,
+    "assists": 7,
+    "xG": 9.35
+  },
+  {
+    "playerName": "T. Corbeanu",
+    "team": "TOR",
+    "gamesPlayed": 32,
+    "gamesStarted": 26,
+    "minutesPlayed": 2306,
+    "goals": 6,
+    "assists": 2,
+    "xG": 4.73
+  },
+  {
+    "playerName": "P. Agyemang",
+    "team": "CLT",
+    "gamesPlayed": 16,
+    "gamesStarted": 15,
+    "minutesPlayed": 1236,
+    "goals": 6,
+    "assists": 1,
+    "xG": 5.95
+  },
+  {
+    "playerName": "M. Uzuni",
+    "team": "ATX",
+    "gamesPlayed": 27,
+    "gamesStarted": 23,
+    "minutesPlayed": 2066,
+    "goals": 6,
+    "assists": 3,
+    "xG": 8.9
+  },
+  {
+    "playerName": "E. Löwen",
+    "team": "STL",
+    "gamesPlayed": 19,
+    "gamesStarted": 16,
+    "minutesPlayed": 1403,
+    "goals": 6,
+    "assists": 3,
+    "xG": 4.78
+  },
+  {
+    "playerName": "K. Vargas",
+    "team": "CLT",
+    "gamesPlayed": 34,
+    "gamesStarted": 19,
+    "minutesPlayed": 1715,
+    "goals": 6,
+    "assists": 3,
+    "xG": 4.91
+  },
+  {
+    "playerName": "M. Uhre",
+    "team": "PHI",
+    "gamesPlayed": 29,
+    "gamesStarted": 16,
+    "minutesPlayed": 1325,
+    "goals": 6,
+    "assists": 6,
+    "xG": 5.86
+  },
+  {
+    "playerName": "F. Mora",
+    "team": "POR",
+    "gamesPlayed": 33,
+    "gamesStarted": 20,
+    "minutesPlayed": 1668,
+    "goals": 5,
+    "assists": 4,
+    "xG": 6.65
+  },
+  {
+    "playerName": "M. Reus",
+    "team": "LA",
+    "gamesPlayed": 21,
+    "gamesStarted": 17,
+    "minutesPlayed": 1487,
+    "goals": 5,
+    "assists": 9,
+    "xG": 4.59
+  },
+  {
+    "playerName": "C. Harris",
+    "team": "COL",
+    "gamesPlayed": 27,
+    "gamesStarted": 13,
+    "minutesPlayed": 1327,
+    "goals": 5,
+    "assists": 3,
+    "xG": 5.54
+  },
+  {
+    "playerName": "J. Thiaré",
+    "team": "ATL",
+    "gamesPlayed": 27,
+    "gamesStarted": 9,
+    "minutesPlayed": 998,
+    "goals": 5,
+    "assists": 0,
+    "xG": 7.24
+  },
+  {
+    "playerName": "L. Acosta",
+    "team": "DAL",
+    "gamesPlayed": 21,
+    "gamesStarted": 18,
+    "minutesPlayed": 1692,
+    "goals": 5,
+    "assists": 1,
+    "xG": 5.42
+  },
+  {
+    "playerName": "B. Vázquez",
+    "team": "ATX",
+    "gamesPlayed": 19,
+    "gamesStarted": 19,
+    "minutesPlayed": 1607,
+    "goals": 5,
+    "assists": 0,
+    "xG": 9.81
+  },
+  {
+    "playerName": "I. Vassilev",
+    "team": "PHI",
+    "gamesPlayed": 31,
+    "gamesStarted": 21,
+    "minutesPlayed": 1973,
+    "goals": 5,
+    "assists": 4,
+    "xG": 3.29
+  },
+  {
+    "playerName": "B. Leroux",
+    "team": "SJ",
+    "gamesPlayed": 33,
+    "gamesStarted": 25,
+    "minutesPlayed": 2115,
+    "goals": 5,
+    "assists": 4,
+    "xG": 3.08
+  },
+  {
+    "playerName": "M. Sofo",
+    "team": "RBNY",
+    "gamesPlayed": 25,
+    "gamesStarted": 19,
+    "minutesPlayed": 1587,
+    "goals": 5,
+    "assists": 0,
+    "xG": 4.42
+  },
+  {
+    "playerName": "L. de la Torre",
+    "team": "SD",
+    "gamesPlayed": 30,
+    "gamesStarted": 24,
+    "minutesPlayed": 2128,
+    "goals": 5,
+    "assists": 2,
+    "xG": 2.65
+  },
+  {
+    "playerName": "L. Abada",
+    "team": "CLT",
+    "gamesPlayed": 32,
+    "gamesStarted": 17,
+    "minutesPlayed": 1480,
+    "goals": 5,
+    "assists": 2,
+    "xG": 7.27
+  },
+  {
+    "playerName": "J. Morris",
+    "team": "SEA",
+    "gamesPlayed": 17,
+    "gamesStarted": 8,
+    "minutesPlayed": 752,
+    "goals": 5,
+    "assists": 2,
+    "xG": 4
+  },
+  {
+    "playerName": "G. Valenzuela",
+    "team": "CIN",
+    "gamesPlayed": 23,
+    "gamesStarted": 9,
+    "minutesPlayed": 828,
+    "goals": 5,
+    "assists": 1,
+    "xG": 3.71
+  },
+  {
+    "playerName": "N. Ordaz",
+    "team": "LAFC",
+    "gamesPlayed": 26,
+    "gamesStarted": 15,
+    "minutesPlayed": 1312,
+    "goals": 5,
+    "assists": 5,
+    "xG": 7.25
+  },
+  {
+    "playerName": "J. Bamba",
+    "team": "CHI",
+    "gamesPlayed": 34,
+    "gamesStarted": 32,
+    "minutesPlayed": 2467,
+    "goals": 5,
+    "assists": 10,
+    "xG": 6.33
+  },
+  {
+    "playerName": "R. Lod",
+    "team": "MIN",
+    "gamesPlayed": 33,
+    "gamesStarted": 28,
+    "minutesPlayed": 2462,
+    "goals": 5,
+    "assists": 6,
+    "xG": 3.85
+  },
+  {
+    "playerName": "M. Laborda",
+    "team": "VAN",
+    "gamesPlayed": 28,
+    "gamesStarted": 25,
+    "minutesPlayed": 2184,
+    "goals": 5,
+    "assists": 2,
+    "xG": 5.23
+  },
+  {
+    "playerName": "L. Farrington",
+    "team": "DAL",
+    "gamesPlayed": 32,
+    "gamesStarted": 18,
+    "minutesPlayed": 1575,
+    "goals": 5,
+    "assists": 4,
+    "xG": 4.21
+  },
+  {
+    "playerName": "D. Gonçalves",
+    "team": "RSL",
+    "gamesPlayed": 29,
+    "gamesStarted": 26,
+    "minutesPlayed": 2180,
+    "goals": 4,
+    "assists": 5,
+    "xG": 4.63
+  },
+  {
+    "playerName": "C. Ramírez",
+    "team": "LA",
+    "gamesPlayed": 25,
+    "gamesStarted": 10,
+    "minutesPlayed": 915,
+    "goals": 4,
+    "assists": 1,
+    "xG": 5.54
+  },
+  {
+    "playerName": "P. Rothrock",
+    "team": "SEA",
+    "gamesPlayed": 33,
+    "gamesStarted": 27,
+    "minutesPlayed": 2174,
+    "goals": 4,
+    "assists": 7,
+    "xG": 5.52
+  },
+  {
+    "playerName": "D. Mihailovic",
+    "team": "TOR",
+    "gamesPlayed": 10,
+    "gamesStarted": 10,
+    "minutesPlayed": 886,
+    "goals": 4,
+    "assists": 4,
+    "xG": 3.36
+  },
+  {
+    "playerName": "D. Kerr",
+    "team": "TOR",
+    "gamesPlayed": 20,
+    "gamesStarted": 8,
+    "minutesPlayed": 873,
+    "goals": 4,
+    "assists": 0,
+    "xG": 2.56
+  },
+  {
+    "playerName": "D. Gazdag",
+    "team": "CLB",
+    "gamesPlayed": 26,
+    "gamesStarted": 23,
+    "minutesPlayed": 2067,
+    "goals": 4,
+    "assists": 4,
+    "xG": 8.21
+  },
+  {
+    "playerName": "J. Osorio",
+    "team": "TOR",
+    "gamesPlayed": 24,
+    "gamesStarted": 21,
+    "minutesPlayed": 1919,
+    "goals": 4,
+    "assists": 3,
+    "xG": 2.2
+  },
+  {
+    "playerName": "Z. Gozo",
+    "team": "RSL",
+    "gamesPlayed": 25,
+    "gamesStarted": 21,
+    "minutesPlayed": 1815,
+    "goals": 4,
+    "assists": 3,
+    "xG": 5.44
+  },
+  {
+    "playerName": "S. Berhalter",
+    "team": "VAN",
+    "gamesPlayed": 29,
+    "gamesStarted": 25,
+    "minutesPlayed": 2296,
+    "goals": 4,
+    "assists": 11,
+    "xG": 2.67
+  },
+  {
+    "playerName": "D. Da Costa",
+    "team": "POR",
+    "gamesPlayed": 32,
+    "gamesStarted": 28,
+    "minutesPlayed": 2523,
+    "goals": 4,
+    "assists": 8,
+    "xG": 4.67
+  },
+  {
+    "playerName": "P. de la Vega",
+    "team": "SEA",
+    "gamesPlayed": 26,
+    "gamesStarted": 15,
+    "minutesPlayed": 1178,
+    "goals": 4,
+    "assists": 5,
+    "xG": 3.64
+  },
+  {
+    "playerName": "C. Espinoza",
+    "team": "SJ",
+    "gamesPlayed": 31,
+    "gamesStarted": 30,
+    "minutesPlayed": 2692,
+    "goals": 4,
+    "assists": 12,
+    "xG": 3.98
+  },
+  {
+    "playerName": "J. Ebobisse",
+    "team": "LAFC",
+    "gamesPlayed": 22,
+    "gamesStarted": 9,
+    "minutesPlayed": 873,
+    "goals": 4,
+    "assists": 1,
+    "xG": 3
+  },
+  {
+    "playerName": "E. Thommy",
+    "team": "SKC",
+    "gamesPlayed": 25,
+    "gamesStarted": 14,
+    "minutesPlayed": 1273,
+    "goals": 4,
+    "assists": 4,
+    "xG": 2.4
+  },
+  {
+    "playerName": "J. Ferreira",
+    "team": "SEA",
+    "gamesPlayed": 32,
+    "gamesStarted": 27,
+    "minutesPlayed": 2189,
+    "goals": 4,
+    "assists": 7,
+    "xG": 6.25
+  },
+  {
+    "playerName": "V. Olatunji",
+    "team": "RSL",
+    "gamesPlayed": 8,
+    "gamesStarted": 7,
+    "minutesPlayed": 644,
+    "goals": 4,
+    "assists": 1,
+    "xG": 3.05
+  },
+  {
+    "playerName": "M. Arfsten",
+    "team": "CLB",
+    "gamesPlayed": 29,
+    "gamesStarted": 29,
+    "minutesPlayed": 2566,
+    "goals": 4,
+    "assists": 8,
+    "xG": 5.73
+  },
+  {
+    "playerName": "M. Nascimento",
+    "team": "LA",
+    "gamesPlayed": 22,
+    "gamesStarted": 13,
+    "minutesPlayed": 1164,
+    "goals": 4,
+    "assists": 3,
+    "xG": 2.91
+  },
+  {
+    "playerName": "O. Valakari",
+    "team": "SD",
+    "gamesPlayed": 34,
+    "gamesStarted": 26,
+    "minutesPlayed": 2443,
+    "goals": 4,
+    "assists": 11,
+    "xG": 5.34
+  },
+  {
+    "playerName": "P. Vite",
+    "team": "VAN",
+    "gamesPlayed": 19,
+    "gamesStarted": 16,
+    "minutesPlayed": 1393,
+    "goals": 4,
+    "assists": 6,
+    "xG": 3.11
+  },
+  {
+    "playerName": "F. Picault",
+    "team": "MIA",
+    "gamesPlayed": 20,
+    "gamesStarted": 7,
+    "minutesPlayed": 752,
+    "goals": 4,
+    "assists": 1,
+    "xG": 3.96
+  },
+  {
+    "playerName": "S. Moreno",
+    "team": "POR",
+    "gamesPlayed": 22,
+    "gamesStarted": 20,
+    "minutesPlayed": 1705,
+    "goals": 4,
+    "assists": 5,
+    "xG": 3.97
+  },
+  {
+    "playerName": "J. Shaffelburg",
+    "team": "NSH",
+    "gamesPlayed": 23,
+    "gamesStarted": 12,
+    "minutesPlayed": 1117,
+    "goals": 4,
+    "assists": 2,
+    "xG": 4.36
+  },
+  {
+    "playerName": "F. Bernardeschi",
+    "team": "TOR",
+    "gamesPlayed": 15,
+    "gamesStarted": 15,
+    "minutesPlayed": 1301,
+    "goals": 4,
+    "assists": 4,
+    "xG": 4.13
+  },
+  {
+    "playerName": "A. Herrera",
+    "team": "CLB",
+    "gamesPlayed": 20,
+    "gamesStarted": 15,
+    "minutesPlayed": 1371,
+    "goals": 4,
+    "assists": 4,
+    "xG": 2.24
+  },
+  {
+    "playerName": "B. Souza",
+    "team": "CIN",
+    "gamesPlayed": 6,
+    "gamesStarted": 6,
+    "minutesPlayed": 517,
+    "goals": 4,
+    "assists": 1,
+    "xG": 3.18
+  },
+  {
+    "playerName": "F. Andrade",
+    "team": "HOU",
+    "gamesPlayed": 23,
+    "gamesStarted": 19,
+    "minutesPlayed": 1735,
+    "goals": 4,
+    "assists": 1,
+    "xG": 5.29
+  },
+  {
+    "playerName": "T. Chancalay",
+    "team": "NE",
+    "gamesPlayed": 26,
+    "gamesStarted": 12,
+    "minutesPlayed": 1168,
+    "goals": 4,
+    "assists": 2,
+    "xG": 6.51
+  },
+  {
+    "playerName": "J. Hopkins",
+    "team": "DC",
+    "gamesPlayed": 17,
+    "gamesStarted": 11,
+    "minutesPlayed": 843,
+    "goals": 3,
+    "assists": 0,
+    "xG": 0.67
+  },
+  {
+    "playerName": "A. Gutman",
+    "team": "CHI",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 2869,
+    "goals": 3,
+    "assists": 10,
+    "xG": 4.61
+  },
+  {
+    "playerName": "G. Biro",
+    "team": "ATX",
+    "gamesPlayed": 32,
+    "gamesStarted": 31,
+    "minutesPlayed": 2636,
+    "goals": 3,
+    "assists": 1,
+    "xG": 2.35
+  },
+  {
+    "playerName": "A. Perea",
+    "team": "NYC",
+    "gamesPlayed": 24,
+    "gamesStarted": 20,
+    "minutesPlayed": 1666,
+    "goals": 3,
+    "assists": 1,
+    "xG": 3.69
+  },
+  {
+    "playerName": "D. Jean Jacques",
+    "team": "PHI",
+    "gamesPlayed": 31,
+    "gamesStarted": 26,
+    "minutesPlayed": 2361,
+    "goals": 3,
+    "assists": 3,
+    "xG": 5.3
+  },
+  {
+    "playerName": "T. Ángel",
+    "team": "SD",
+    "gamesPlayed": 22,
+    "gamesStarted": 9,
+    "minutesPlayed": 712,
+    "goals": 3,
+    "assists": 2,
+    "xG": 1.94
+  },
+  {
+    "playerName": "C. Harper",
+    "team": "RBNY",
+    "gamesPlayed": 12,
+    "gamesStarted": 8,
+    "minutesPlayed": 667,
+    "goals": 3,
+    "assists": 2,
+    "xG": 3.19
+  },
+  {
+    "playerName": "T. Barlow",
+    "team": "CHI",
+    "gamesPlayed": 22,
+    "gamesStarted": 1,
+    "minutesPlayed": 359,
+    "goals": 3,
+    "assists": 0,
+    "xG": 0.87
+  },
+  {
+    "playerName": "R. Kouamé",
+    "team": "CHI",
+    "gamesPlayed": 18,
+    "gamesStarted": 6,
+    "minutesPlayed": 559,
+    "goals": 3,
+    "assists": 2,
+    "xG": 1.22
+  },
+  {
+    "playerName": "J. Peglow",
+    "team": "DC",
+    "gamesPlayed": 24,
+    "gamesStarted": 21,
+    "minutesPlayed": 1704,
+    "goals": 3,
+    "assists": 4,
+    "xG": 2.53
+  },
+  {
+    "playerName": "O. Bukari",
+    "team": "ATX",
+    "gamesPlayed": 33,
+    "gamesStarted": 27,
+    "minutesPlayed": 2329,
+    "goals": 3,
+    "assists": 7,
+    "xG": 4.24
+  },
+  {
+    "playerName": "O. Lingr",
+    "team": "HOU",
+    "gamesPlayed": 26,
+    "gamesStarted": 22,
+    "minutesPlayed": 1793,
+    "goals": 3,
+    "assists": 4,
+    "xG": 3.09
+  },
+  {
+    "playerName": "W. Abou Ali",
+    "team": "CLB",
+    "gamesPlayed": 5,
+    "gamesStarted": 4,
+    "minutesPlayed": 304,
+    "goals": 3,
+    "assists": 1,
+    "xG": 0.8
+  },
+  {
+    "playerName": "B. Rodríguez",
+    "team": "MIA",
+    "gamesPlayed": 14,
+    "gamesStarted": 6,
+    "minutesPlayed": 614,
+    "goals": 3,
+    "assists": 3,
+    "xG": 2.57
+  },
+  {
+    "playerName": "D. McGuire",
+    "team": "ORL",
+    "gamesPlayed": 18,
+    "gamesStarted": 6,
+    "minutesPlayed": 726,
+    "goals": 3,
+    "assists": 2,
+    "xG": 3.17
+  },
+  {
+    "playerName": "J. Elliott",
+    "team": "CHI",
+    "gamesPlayed": 33,
+    "gamesStarted": 33,
+    "minutesPlayed": 2939,
+    "goals": 3,
+    "assists": 3,
+    "xG": 3.58
+  },
+  {
+    "playerName": "M. Toye",
+    "team": "SKC",
+    "gamesPlayed": 21,
+    "gamesStarted": 4,
+    "minutesPlayed": 511,
+    "goals": 3,
+    "assists": 2,
+    "xG": 2.87
+  },
+  {
+    "playerName": "J. Fernández",
+    "team": "NYC",
+    "gamesPlayed": 32,
+    "gamesStarted": 14,
+    "minutesPlayed": 1408,
+    "goals": 3,
+    "assists": 5,
+    "xG": 3.09
+  },
+  {
+    "playerName": "D. Turgeman",
+    "team": "NE",
+    "gamesPlayed": 3,
+    "gamesStarted": 2,
+    "minutesPlayed": 214,
+    "goals": 3,
+    "assists": 1,
+    "xG": 0.83
+  },
+  {
+    "playerName": "G. Vrioni",
+    "team": "MTL",
+    "gamesPlayed": 9,
+    "gamesStarted": 6,
+    "minutesPlayed": 411,
+    "goals": 3,
+    "assists": 0,
+    "xG": 4.21
+  },
+  {
+    "playerName": "P. Bucha",
+    "team": "CIN",
+    "gamesPlayed": 33,
+    "gamesStarted": 32,
+    "minutesPlayed": 2884,
+    "goals": 3,
+    "assists": 7,
+    "xG": 2.23
+  },
+  {
+    "playerName": "D. Thorhallsson",
+    "team": "ORL",
+    "gamesPlayed": 31,
+    "gamesStarted": 11,
+    "minutesPlayed": 1104,
+    "goals": 3,
+    "assists": 0,
+    "xG": 1.68
+  },
+  {
+    "playerName": "C. Bassett",
+    "team": "COL",
+    "gamesPlayed": 28,
+    "gamesStarted": 25,
+    "minutesPlayed": 2206,
+    "goals": 3,
+    "assists": 4,
+    "xG": 5.27
+  },
+  {
+    "playerName": "O. Giroud",
+    "team": "LAFC",
+    "gamesPlayed": 11,
+    "gamesStarted": 6,
+    "minutesPlayed": 530,
+    "goals": 3,
+    "assists": 1,
+    "xG": 3.47
+  },
+  {
+    "playerName": "S. Moore",
+    "team": "DAL",
+    "gamesPlayed": 33,
+    "gamesStarted": 31,
+    "minutesPlayed": 2823,
+    "goals": 3,
+    "assists": 4,
+    "xG": 2.66
+  },
+  {
+    "playerName": "I. Ganago",
+    "team": "NE",
+    "gamesPlayed": 20,
+    "gamesStarted": 19,
+    "minutesPlayed": 1582,
+    "goals": 3,
+    "assists": 3,
+    "xG": 5.42
+  },
+  {
+    "playerName": "C. Teuchert",
+    "team": "STL",
+    "gamesPlayed": 22,
+    "gamesStarted": 17,
+    "minutesPlayed": 1248,
+    "goals": 3,
+    "assists": 1,
+    "xG": 3.44
+  },
+  {
+    "playerName": "N. Fernández",
+    "team": "NYC",
+    "gamesPlayed": 11,
+    "gamesStarted": 10,
+    "minutesPlayed": 885,
+    "goals": 3,
+    "assists": 1,
+    "xG": 1.79
+  },
+  {
+    "playerName": "O. Vargas",
+    "team": "SEA",
+    "gamesPlayed": 26,
+    "gamesStarted": 26,
+    "minutesPlayed": 2273,
+    "goals": 3,
+    "assists": 5,
+    "xG": 2.19
+  },
+  {
+    "playerName": "S. Muñóz",
+    "team": "SKC",
+    "gamesPlayed": 21,
+    "gamesStarted": 8,
+    "minutesPlayed": 866,
+    "goals": 3,
+    "assists": 2,
+    "xG": 3.46
+  },
+  {
+    "playerName": "O. Bouda",
+    "team": "SJ",
+    "gamesPlayed": 34,
+    "gamesStarted": 13,
+    "minutesPlayed": 1319,
+    "goals": 3,
+    "assists": 1,
+    "xG": 4.83
+  },
+  {
+    "playerName": "D. Ríos",
+    "team": "VAN",
+    "gamesPlayed": 31,
+    "gamesStarted": 16,
+    "minutesPlayed": 1413,
+    "goals": 3,
+    "assists": 3,
+    "xG": 7.07
+  },
+  {
+    "playerName": "I. Aliyu",
+    "team": "CLB",
+    "gamesPlayed": 23,
+    "gamesStarted": 12,
+    "minutesPlayed": 1200,
+    "goals": 3,
+    "assists": 2,
+    "xG": 3.19
+  },
+  {
+    "playerName": "M. Delgado",
+    "team": "LAFC",
+    "gamesPlayed": 34,
+    "gamesStarted": 30,
+    "minutesPlayed": 2583,
+    "goals": 3,
+    "assists": 9,
+    "xG": 2.43
+  },
+  {
+    "playerName": "K. Kossa-Rienzi",
+    "team": "SEA",
+    "gamesPlayed": 22,
+    "gamesStarted": 15,
+    "minutesPlayed": 1413,
+    "goals": 3,
+    "assists": 3,
+    "xG": 1.22
+  },
+  {
+    "playerName": "B. Hlongwane",
+    "team": "MIN",
+    "gamesPlayed": 34,
+    "gamesStarted": 27,
+    "minutesPlayed": 2387,
+    "goals": 3,
+    "assists": 2,
+    "xG": 4.21
+  },
+  {
+    "playerName": "A. Pellegrino",
+    "team": "SD",
+    "gamesPlayed": 7,
+    "gamesStarted": 4,
+    "minutesPlayed": 330,
+    "goals": 3,
+    "assists": 3,
+    "xG": 2.4
+  },
+  {
+    "playerName": "D. Martínez",
+    "team": "LAFC",
+    "gamesPlayed": 29,
+    "gamesStarted": 13,
+    "minutesPlayed": 1170,
+    "goals": 3,
+    "assists": 4,
+    "xG": 4.64
+  },
+  {
+    "playerName": "S. Becher",
+    "team": "STL",
+    "gamesPlayed": 32,
+    "gamesStarted": 11,
+    "minutesPlayed": 1239,
+    "goals": 3,
+    "assists": 2,
+    "xG": 7.6
+  },
+  {
+    "playerName": "I. Feingold",
+    "team": "NE",
+    "gamesPlayed": 29,
+    "gamesStarted": 26,
+    "minutesPlayed": 2253,
+    "goals": 3,
+    "assists": 4,
+    "xG": 1.51
+  },
+  {
+    "playerName": "K. Wagner",
+    "team": "PHI",
+    "gamesPlayed": 32,
+    "gamesStarted": 30,
+    "minutesPlayed": 2769,
+    "goals": 2,
+    "assists": 11,
+    "xG": 0.72
+  },
+  {
+    "playerName": "Q. Sullivan",
+    "team": "PHI",
+    "gamesPlayed": 28,
+    "gamesStarted": 24,
+    "minutesPlayed": 1967,
+    "goals": 2,
+    "assists": 9,
+    "xG": 4.32
+  },
+  {
+    "playerName": "A. Qasem",
+    "team": "NSH",
+    "gamesPlayed": 28,
+    "gamesStarted": 12,
+    "minutesPlayed": 1217,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.43
+  },
+  {
+    "playerName": "B. Bronico",
+    "team": "CLT",
+    "gamesPlayed": 31,
+    "gamesStarted": 28,
+    "minutesPlayed": 2339,
+    "goals": 2,
+    "assists": 4,
+    "xG": 3.16
+  },
+  {
+    "playerName": "N. Harriel",
+    "team": "PHI",
+    "gamesPlayed": 25,
+    "gamesStarted": 23,
+    "minutesPlayed": 2098,
+    "goals": 2,
+    "assists": 0,
+    "xG": 1.71
+  },
+  {
+    "playerName": "M. Yoshida",
+    "team": "LA",
+    "gamesPlayed": 28,
+    "gamesStarted": 26,
+    "minutesPlayed": 2345,
+    "goals": 2,
+    "assists": 0,
+    "xG": 3.58
+  },
+  {
+    "playerName": "M. Haile-Selassie",
+    "team": "CHI",
+    "gamesPlayed": 30,
+    "gamesStarted": 5,
+    "minutesPlayed": 916,
+    "goals": 2,
+    "assists": 8,
+    "xG": 3.6
+  },
+  {
+    "playerName": "M. Moralez",
+    "team": "NYC",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 2758,
+    "goals": 2,
+    "assists": 11,
+    "xG": 3.51
+  },
+  {
+    "playerName": "O. Brynhildsen",
+    "team": "TOR",
+    "gamesPlayed": 21,
+    "gamesStarted": 18,
+    "minutesPlayed": 1345,
+    "goals": 2,
+    "assists": 1,
+    "xG": 5.5
+  },
+  {
+    "playerName": "A. Jackson",
+    "team": "CLB",
+    "gamesPlayed": 18,
+    "gamesStarted": 7,
+    "minutesPlayed": 729,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.38
+  },
+  {
+    "playerName": "M. Bakrar",
+    "team": "NYC",
+    "gamesPlayed": 21,
+    "gamesStarted": 5,
+    "minutesPlayed": 592,
+    "goals": 2,
+    "assists": 0,
+    "xG": 2.05
+  },
+  {
+    "playerName": "D. Munie",
+    "team": "SJ",
+    "gamesPlayed": 24,
+    "gamesStarted": 22,
+    "minutesPlayed": 1990,
+    "goals": 2,
+    "assists": 3,
+    "xG": 2.33
+  },
+  {
+    "playerName": "S. Zawadzki",
+    "team": "CLB",
+    "gamesPlayed": 27,
+    "gamesStarted": 27,
+    "minutesPlayed": 2430,
+    "goals": 2,
+    "assists": 0,
+    "xG": 2.41
+  },
+  {
+    "playerName": "C. McVey",
+    "team": "SD",
+    "gamesPlayed": 32,
+    "gamesStarted": 32,
+    "minutesPlayed": 2854,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.36
+  },
+  {
+    "playerName": "L. Langoni",
+    "team": "NE",
+    "gamesPlayed": 27,
+    "gamesStarted": 19,
+    "minutesPlayed": 1641,
+    "goals": 2,
+    "assists": 2,
+    "xG": 2.7
+  },
+  {
+    "playerName": "J. Tverskov",
+    "team": "SD",
+    "gamesPlayed": 33,
+    "gamesStarted": 33,
+    "minutesPlayed": 2931,
+    "goals": 2,
+    "assists": 13,
+    "xG": 1.58
+  },
+  {
+    "playerName": "D. Ayala",
+    "team": "POR",
+    "gamesPlayed": 33,
+    "gamesStarted": 32,
+    "minutesPlayed": 2640,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.64
+  },
+  {
+    "playerName": "C. Harvey",
+    "team": "MIN",
+    "gamesPlayed": 25,
+    "gamesStarted": 16,
+    "minutesPlayed": 1522,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.02
+  },
+  {
+    "playerName": "E. Wynder",
+    "team": "LA",
+    "gamesPlayed": 18,
+    "gamesStarted": 11,
+    "minutesPlayed": 959,
+    "goals": 2,
+    "assists": 1,
+    "xG": 1.02
+  },
+  {
+    "playerName": "V. Loturi",
+    "team": "MTL",
+    "gamesPlayed": 34,
+    "gamesStarted": 27,
+    "minutesPlayed": 2503,
+    "goals": 2,
+    "assists": 2,
+    "xG": 1.62
+  },
+  {
+    "playerName": "P. Miller",
+    "team": "NE",
+    "gamesPlayed": 26,
+    "gamesStarted": 25,
+    "minutesPlayed": 2079,
+    "goals": 2,
+    "assists": 2,
+    "xG": 2.61
+  },
+  {
+    "playerName": "J. Ngando",
+    "team": "VAN",
+    "gamesPlayed": 25,
+    "gamesStarted": 13,
+    "minutesPlayed": 1252,
+    "goals": 2,
+    "assists": 6,
+    "xG": 1.75
+  },
+  {
+    "playerName": "M. Urruti",
+    "team": "NE",
+    "gamesPlayed": 20,
+    "gamesStarted": 5,
+    "minutesPlayed": 585,
+    "goals": 2,
+    "assists": 0,
+    "xG": 2.39
+  },
+  {
+    "playerName": "S. Suleymanov",
+    "team": "SKC",
+    "gamesPlayed": 32,
+    "gamesStarted": 26,
+    "minutesPlayed": 2034,
+    "goals": 2,
+    "assists": 4,
+    "xG": 2.76
+  },
+  {
+    "playerName": "G. Dorsey",
+    "team": "HOU",
+    "gamesPlayed": 33,
+    "gamesStarted": 29,
+    "minutesPlayed": 2666,
+    "goals": 2,
+    "assists": 6,
+    "xG": 3.86
+  },
+  {
+    "playerName": "K. Rosenberry",
+    "team": "COL",
+    "gamesPlayed": 16,
+    "gamesStarted": 10,
+    "minutesPlayed": 1047,
+    "goals": 2,
+    "assists": 2,
+    "xG": 0.44
+  },
+  {
+    "playerName": "J. Nelson",
+    "team": "VAN",
+    "gamesPlayed": 23,
+    "gamesStarted": 16,
+    "minutesPlayed": 1326,
+    "goals": 2,
+    "assists": 6,
+    "xG": 3.25
+  },
+  {
+    "playerName": "L. Petrasso",
+    "team": "MTL",
+    "gamesPlayed": 34,
+    "gamesStarted": 31,
+    "minutesPlayed": 2715,
+    "goals": 2,
+    "assists": 4,
+    "xG": 2
+  },
+  {
+    "playerName": "W. Agada",
+    "team": "RSL",
+    "gamesPlayed": 22,
+    "gamesStarted": 12,
+    "minutesPlayed": 1173,
+    "goals": 2,
+    "assists": 2,
+    "xG": 3.78
+  },
+  {
+    "playerName": "G. Segal",
+    "team": "HOU",
+    "gamesPlayed": 11,
+    "gamesStarted": 1,
+    "minutesPlayed": 146,
+    "goals": 2,
+    "assists": 0,
+    "xG": 2.62
+  },
+  {
+    "playerName": "M. Iloski",
+    "team": "PHI",
+    "gamesPlayed": 9,
+    "gamesStarted": 7,
+    "minutesPlayed": 600,
+    "goals": 2,
+    "assists": 5,
+    "xG": 1.77
+  },
+  {
+    "playerName": "M. Ingvartsen",
+    "team": "SD",
+    "gamesPlayed": 8,
+    "gamesStarted": 5,
+    "minutesPlayed": 403,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.43
+  },
+  {
+    "playerName": "T. Spicer",
+    "team": "TOR",
+    "gamesPlayed": 21,
+    "gamesStarted": 7,
+    "minutesPlayed": 860,
+    "goals": 2,
+    "assists": 0,
+    "xG": 1.42
+  },
+  {
+    "playerName": "O. Urhoghide",
+    "team": "DAL",
+    "gamesPlayed": 27,
+    "gamesStarted": 25,
+    "minutesPlayed": 2203,
+    "goals": 2,
+    "assists": 1,
+    "xG": 1.35
+  },
+  {
+    "playerName": "C. Ünder",
+    "team": "LAFC",
+    "gamesPlayed": 12,
+    "gamesStarted": 4,
+    "minutesPlayed": 442,
+    "goals": 2,
+    "assists": 2,
+    "xG": 1.84
+  },
+  {
+    "playerName": "A. Bassi",
+    "team": "HOU",
+    "gamesPlayed": 29,
+    "gamesStarted": 20,
+    "minutesPlayed": 1755,
+    "goals": 2,
+    "assists": 3,
+    "xG": 2.78
+  },
+  {
+    "playerName": "É. Ocampo",
+    "team": "VAN",
+    "gamesPlayed": 30,
+    "gamesStarted": 26,
+    "minutesPlayed": 2178,
+    "goals": 2,
+    "assists": 2,
+    "xG": 2.4
+  },
+  {
+    "playerName": "D. Lovitz",
+    "team": "NSH",
+    "gamesPlayed": 31,
+    "gamesStarted": 30,
+    "minutesPlayed": 2720,
+    "goals": 2,
+    "assists": 7,
+    "xG": 0.93
+  },
+  {
+    "playerName": "C. Paredes",
+    "team": "POR",
+    "gamesPlayed": 29,
+    "gamesStarted": 8,
+    "minutesPlayed": 1001,
+    "goals": 2,
+    "assists": 0,
+    "xG": 0.65
+  },
+  {
+    "playerName": "T. Blackmon",
+    "team": "VAN",
+    "gamesPlayed": 25,
+    "gamesStarted": 23,
+    "minutesPlayed": 2070,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.15
+  },
+  {
+    "playerName": "D. Flores",
+    "team": "TOR",
+    "gamesPlayed": 19,
+    "gamesStarted": 16,
+    "minutesPlayed": 1366,
+    "goals": 2,
+    "assists": 2,
+    "xG": 1.58
+  },
+  {
+    "playerName": "J. Russell",
+    "team": "RSL",
+    "gamesPlayed": 12,
+    "gamesStarted": 4,
+    "minutesPlayed": 344,
+    "goals": 2,
+    "assists": 0,
+    "xG": 1.58
+  },
+  {
+    "playerName": "M. Cuevas",
+    "team": "LA",
+    "gamesPlayed": 24,
+    "gamesStarted": 8,
+    "minutesPlayed": 786,
+    "goals": 2,
+    "assists": 6,
+    "xG": 0.41
+  },
+  {
+    "playerName": "D. Gjengaar",
+    "team": "RBNY",
+    "gamesPlayed": 21,
+    "gamesStarted": 8,
+    "minutesPlayed": 756,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.19
+  },
+  {
+    "playerName": "R. Elloumi",
+    "team": "VAN",
+    "gamesPlayed": 7,
+    "gamesStarted": 2,
+    "minutesPlayed": 200,
+    "goals": 2,
+    "assists": 0,
+    "xG": 1.37
+  },
+  {
+    "playerName": "M. García",
+    "team": "SKC",
+    "gamesPlayed": 27,
+    "gamesStarted": 23,
+    "minutesPlayed": 2096,
+    "goals": 2,
+    "assists": 9,
+    "xG": 1.47
+  },
+  {
+    "playerName": "D. Rubio",
+    "team": "ATX",
+    "gamesPlayed": 25,
+    "gamesStarted": 11,
+    "minutesPlayed": 937,
+    "goals": 2,
+    "assists": 3,
+    "xG": 2.62
+  },
+  {
+    "playerName": "B. Ojeda",
+    "team": "RSL",
+    "gamesPlayed": 30,
+    "gamesStarted": 25,
+    "minutesPlayed": 2111,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.05
+  },
+  {
+    "playerName": "J. Bauer",
+    "team": "NSH",
+    "gamesPlayed": 24,
+    "gamesStarted": 9,
+    "minutesPlayed": 836,
+    "goals": 2,
+    "assists": 2,
+    "xG": 0.99
+  },
+  {
+    "playerName": "J. Palacios",
+    "team": "NSH",
+    "gamesPlayed": 22,
+    "gamesStarted": 21,
+    "minutesPlayed": 1833,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.11
+  },
+  {
+    "playerName": "H. Kijima",
+    "team": "DC",
+    "gamesPlayed": 29,
+    "gamesStarted": 20,
+    "minutesPlayed": 1600,
+    "goals": 2,
+    "assists": 0,
+    "xG": 1.44
+  },
+  {
+    "playerName": "A. Nájar",
+    "team": "NSH",
+    "gamesPlayed": 33,
+    "gamesStarted": 28,
+    "minutesPlayed": 2548,
+    "goals": 2,
+    "assists": 10,
+    "xG": 1.63
+  },
+  {
+    "playerName": "T. Avilés",
+    "team": "MIA",
+    "gamesPlayed": 25,
+    "gamesStarted": 15,
+    "minutesPlayed": 1194,
+    "goals": 2,
+    "assists": 2,
+    "xG": 0.74
+  },
+  {
+    "playerName": "L. Orellano",
+    "team": "CIN",
+    "gamesPlayed": 27,
+    "gamesStarted": 22,
+    "minutesPlayed": 1927,
+    "goals": 2,
+    "assists": 6,
+    "xG": 3.45
+  },
+  {
+    "playerName": "K. Ferreira",
+    "team": "DAL",
+    "gamesPlayed": 27,
+    "gamesStarted": 21,
+    "minutesPlayed": 1668,
+    "goals": 2,
+    "assists": 0,
+    "xG": 1.28
+  },
+  {
+    "playerName": "S. Brunell",
+    "team": "SEA",
+    "gamesPlayed": 6,
+    "gamesStarted": 3,
+    "minutesPlayed": 293,
+    "goals": 2,
+    "assists": 0,
+    "xG": 0.95
+  },
+  {
+    "playerName": "L. Sanabria",
+    "team": "LA",
+    "gamesPlayed": 21,
+    "gamesStarted": 12,
+    "minutesPlayed": 984,
+    "goals": 2,
+    "assists": 0,
+    "xG": 1.41
+  },
+  {
+    "playerName": "J. Dilrosun",
+    "team": "LAFC",
+    "gamesPlayed": 6,
+    "gamesStarted": 6,
+    "minutesPlayed": 434,
+    "goals": 2,
+    "assists": 0,
+    "xG": 0.99
+  },
+  {
+    "playerName": "C. Pompeu",
+    "team": "STL",
+    "gamesPlayed": 28,
+    "gamesStarted": 16,
+    "minutesPlayed": 1477,
+    "goals": 2,
+    "assists": 3,
+    "xG": 1.66
+  },
+  {
+    "playerName": "D. Gazdag",
+    "team": "PHI",
+    "gamesPlayed": 6,
+    "gamesStarted": 6,
+    "minutesPlayed": 498,
+    "goals": 2,
+    "assists": 2,
+    "xG": 0.94
+  },
+  {
+    "playerName": "N. Triantis",
+    "team": "MIN",
+    "gamesPlayed": 5,
+    "gamesStarted": 4,
+    "minutesPlayed": 354,
+    "goals": 2,
+    "assists": 2,
+    "xG": 0.28
+  },
+  {
+    "playerName": "P. Martins",
+    "team": "DAL",
+    "gamesPlayed": 23,
+    "gamesStarted": 9,
+    "minutesPlayed": 931,
+    "goals": 2,
+    "assists": 3,
+    "xG": 2.2
+  },
+  {
+    "playerName": "A. Yusuf",
+    "team": "NE",
+    "gamesPlayed": 34,
+    "gamesStarted": 32,
+    "minutesPlayed": 2936,
+    "goals": 2,
+    "assists": 2,
+    "xG": 2.63
+  },
+  {
+    "playerName": "B. Slisz",
+    "team": "ATL",
+    "gamesPlayed": 29,
+    "gamesStarted": 26,
+    "minutesPlayed": 2293,
+    "goals": 2,
+    "assists": 2,
+    "xG": 2.46
+  },
+  {
+    "playerName": "F. Escobar",
+    "team": "HOU",
+    "gamesPlayed": 23,
+    "gamesStarted": 18,
+    "minutesPlayed": 1569,
+    "goals": 2,
+    "assists": 3,
+    "xG": 1.65
+  },
+  {
+    "playerName": "S. Adekugbe",
+    "team": "VAN",
+    "gamesPlayed": 7,
+    "gamesStarted": 4,
+    "minutesPlayed": 292,
+    "goals": 2,
+    "assists": 0,
+    "xG": 1.78
+  },
+  {
+    "playerName": "J. Murrell",
+    "team": "DC",
+    "gamesPlayed": 24,
+    "gamesStarted": 7,
+    "minutesPlayed": 865,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.65
+  },
+  {
+    "playerName": "J. Lukic",
+    "team": "PHI",
+    "gamesPlayed": 32,
+    "gamesStarted": 30,
+    "minutesPlayed": 2620,
+    "goals": 2,
+    "assists": 4,
+    "xG": 2.29
+  },
+  {
+    "playerName": "B. McSorley",
+    "team": "STL",
+    "gamesPlayed": 8,
+    "gamesStarted": 2,
+    "minutesPlayed": 272,
+    "goals": 2,
+    "assists": 1,
+    "xG": 2.05
+  },
+  {
+    "playerName": "I. Harkes",
+    "team": "SJ",
+    "gamesPlayed": 30,
+    "gamesStarted": 26,
+    "minutesPlayed": 2158,
+    "goals": 2,
+    "assists": 3,
+    "xG": 1.59
+  },
+  {
+    "playerName": "W. Trapp",
+    "team": "MIN",
+    "gamesPlayed": 34,
+    "gamesStarted": 32,
+    "minutesPlayed": 2728,
+    "goals": 2,
+    "assists": 4,
+    "xG": 1.17
+  },
+  {
+    "playerName": "J. Ragen",
+    "team": "SEA",
+    "gamesPlayed": 24,
+    "gamesStarted": 21,
+    "minutesPlayed": 1916,
+    "goals": 2,
+    "assists": 1,
+    "xG": 1.58
+  },
+  {
+    "playerName": "M. Ilenic",
+    "team": "NYC",
+    "gamesPlayed": 19,
+    "gamesStarted": 10,
+    "minutesPlayed": 1087,
+    "goals": 2,
+    "assists": 2,
+    "xG": 0.75
+  },
+  {
+    "playerName": "R. Hollingshead",
+    "team": "LAFC",
+    "gamesPlayed": 31,
+    "gamesStarted": 22,
+    "minutesPlayed": 2108,
+    "goals": 2,
+    "assists": 3,
+    "xG": 4.68
+  },
+  {
+    "playerName": "C. Araújo",
+    "team": "ORL",
+    "gamesPlayed": 22,
+    "gamesStarted": 20,
+    "minutesPlayed": 1801,
+    "goals": 2,
+    "assists": 3,
+    "xG": 1.33
+  },
+  {
+    "playerName": "B. Kamungo",
+    "team": "DAL",
+    "gamesPlayed": 28,
+    "gamesStarted": 16,
+    "minutesPlayed": 1573,
+    "goals": 2,
+    "assists": 1,
+    "xG": 3.24
+  },
+  {
+    "playerName": "D. D’Avilla",
+    "team": "CHI",
+    "gamesPlayed": 21,
+    "gamesStarted": 11,
+    "minutesPlayed": 1170,
+    "goals": 2,
+    "assists": 1,
+    "xG": 0.51
+  },
+  {
+    "playerName": "M. Yamane",
+    "team": "LA",
+    "gamesPlayed": 31,
+    "gamesStarted": 24,
+    "minutesPlayed": 2219,
+    "goals": 1,
+    "assists": 4,
+    "xG": 1.07
+  },
+  {
+    "playerName": "S. Reid",
+    "team": "NYC",
+    "gamesPlayed": 9,
+    "gamesStarted": 0,
+    "minutesPlayed": 74,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.36
+  },
+  {
+    "playerName": "P. Amador",
+    "team": "ATL",
+    "gamesPlayed": 26,
+    "gamesStarted": 24,
+    "minutesPlayed": 2084,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.6
+  },
+  {
+    "playerName": "C. Antley",
+    "team": "DC",
+    "gamesPlayed": 20,
+    "gamesStarted": 17,
+    "minutesPlayed": 1349,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.18
+  },
+  {
+    "playerName": "J. Ricketts",
+    "team": "SJ",
+    "gamesPlayed": 19,
+    "gamesStarted": 12,
+    "minutesPlayed": 917,
+    "goals": 1,
+    "assists": 3,
+    "xG": 0.77
+  },
+  {
+    "playerName": "P. Delgado",
+    "team": "DAL",
+    "gamesPlayed": 30,
+    "gamesStarted": 22,
+    "minutesPlayed": 1711,
+    "goals": 1,
+    "assists": 6,
+    "xG": 2.05
+  },
+  {
+    "playerName": "B. Sabovic",
+    "team": "ATX",
+    "gamesPlayed": 32,
+    "gamesStarted": 19,
+    "minutesPlayed": 1763,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.47
+  },
+  {
+    "playerName": "J. Rosales",
+    "team": "MIN",
+    "gamesPlayed": 25,
+    "gamesStarted": 15,
+    "minutesPlayed": 1451,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.78
+  },
+  {
+    "playerName": "I. Fray",
+    "team": "MIA",
+    "gamesPlayed": 21,
+    "gamesStarted": 13,
+    "minutesPlayed": 1233,
+    "goals": 1,
+    "assists": 3,
+    "xG": 0.85
+  },
+  {
+    "playerName": "A. Smolyakov",
+    "team": "LAFC",
+    "gamesPlayed": 26,
+    "gamesStarted": 13,
+    "minutesPlayed": 1125,
+    "goals": 1,
+    "assists": 3,
+    "xG": 0.66
+  },
+  {
+    "playerName": "D. Brekalo",
+    "team": "ORL",
+    "gamesPlayed": 29,
+    "gamesStarted": 27,
+    "minutesPlayed": 2402,
+    "goals": 1,
+    "assists": 3,
+    "xG": 3.09
+  },
+  {
+    "playerName": "M. Farsi",
+    "team": "CLB",
+    "gamesPlayed": 18,
+    "gamesStarted": 16,
+    "minutesPlayed": 1484,
+    "goals": 1,
+    "assists": 5,
+    "xG": 3
+  },
+  {
+    "playerName": "N. Eile",
+    "team": "RBNY",
+    "gamesPlayed": 30,
+    "gamesStarted": 29,
+    "minutesPlayed": 2610,
+    "goals": 1,
+    "assists": 1,
+    "xG": 2.6
+  },
+  {
+    "playerName": "A. Rodrigues de Oliveira",
+    "team": "SJ",
+    "gamesPlayed": 20,
+    "gamesStarted": 17,
+    "minutesPlayed": 1485,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.43
+  },
+  {
+    "playerName": "L. Abubakar",
+    "team": "DAL",
+    "gamesPlayed": 29,
+    "gamesStarted": 18,
+    "minutesPlayed": 1651,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.65
+  },
+  {
+    "playerName": "H. Miller",
+    "team": "LA",
+    "gamesPlayed": 10,
+    "gamesStarted": 9,
+    "minutesPlayed": 646,
+    "goals": 1,
+    "assists": 2,
+    "xG": 0.86
+  },
+  {
+    "playerName": "V. Costa",
+    "team": "SJ",
+    "gamesPlayed": 25,
+    "gamesStarted": 19,
+    "minutesPlayed": 1620,
+    "goals": 1,
+    "assists": 2,
+    "xG": 2.5
+  },
+  {
+    "playerName": "B. Vera",
+    "team": "RSL",
+    "gamesPlayed": 27,
+    "gamesStarted": 23,
+    "minutesPlayed": 1985,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.8
+  },
+  {
+    "playerName": "D. Yedlin",
+    "team": "RSL",
+    "gamesPlayed": 7,
+    "gamesStarted": 7,
+    "minutesPlayed": 630,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.19
+  },
+  {
+    "playerName": "F. Awodesu",
+    "team": "HOU",
+    "gamesPlayed": 24,
+    "gamesStarted": 17,
+    "minutesPlayed": 1543,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.8
+  },
+  {
+    "playerName": "N. Lodeiro",
+    "team": "HOU",
+    "gamesPlayed": 16,
+    "gamesStarted": 6,
+    "minutesPlayed": 577,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.34
+  },
+  {
+    "playerName": "W. Reilly",
+    "team": "ATL",
+    "gamesPlayed": 11,
+    "gamesStarted": 4,
+    "minutesPlayed": 497,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.37
+  },
+  {
+    "playerName": "T. Martins",
+    "team": "NYC",
+    "gamesPlayed": 31,
+    "gamesStarted": 30,
+    "minutesPlayed": 2698,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.72
+  },
+  {
+    "playerName": "C. Terán",
+    "team": "CHI",
+    "gamesPlayed": 8,
+    "gamesStarted": 7,
+    "minutesPlayed": 536,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.49
+  },
+  {
+    "playerName": "A. Carlos",
+    "team": "HOU",
+    "gamesPlayed": 8,
+    "gamesStarted": 7,
+    "minutesPlayed": 604,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.4
+  },
+  {
+    "playerName": "O. Fernández",
+    "team": "POR",
+    "gamesPlayed": 18,
+    "gamesStarted": 3,
+    "minutesPlayed": 417,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.01
+  },
+  {
+    "playerName": "J. Neal",
+    "team": "MTL",
+    "gamesPlayed": 14,
+    "gamesStarted": 12,
+    "minutesPlayed": 956,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.43
+  },
+  {
+    "playerName": "P. Ortiz",
+    "team": "HOU",
+    "gamesPlayed": 20,
+    "gamesStarted": 16,
+    "minutesPlayed": 1394,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.21
+  },
+  {
+    "playerName": "D. Pereira",
+    "team": "ATX",
+    "gamesPlayed": 27,
+    "gamesStarted": 23,
+    "minutesPlayed": 2071,
+    "goals": 1,
+    "assists": 4,
+    "xG": 1.43
+  },
+  {
+    "playerName": "J. Gallagher",
+    "team": "ATX",
+    "gamesPlayed": 34,
+    "gamesStarted": 25,
+    "minutesPlayed": 2349,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.07
+  },
+  {
+    "playerName": "A. Watts",
+    "team": "STL",
+    "gamesPlayed": 22,
+    "gamesStarted": 14,
+    "minutesPlayed": 1412,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.69
+  },
+  {
+    "playerName": "N. Tolo",
+    "team": "SEA",
+    "gamesPlayed": 27,
+    "gamesStarted": 25,
+    "minutesPlayed": 2202,
+    "goals": 1,
+    "assists": 2,
+    "xG": 0.99
+  },
+  {
+    "playerName": "T. Johnson",
+    "team": "VAN",
+    "gamesPlayed": 29,
+    "gamesStarted": 20,
+    "minutesPlayed": 1974,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.18
+  },
+  {
+    "playerName": "Y. Kubo",
+    "team": "CIN",
+    "gamesPlayed": 14,
+    "gamesStarted": 7,
+    "minutesPlayed": 658,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.72
+  },
+  {
+    "playerName": "C. Ruvalcaba",
+    "team": "CLB",
+    "gamesPlayed": 14,
+    "gamesStarted": 2,
+    "minutesPlayed": 297,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.09
+  },
+  {
+    "playerName": "M. Joyner",
+    "team": "STL",
+    "gamesPlayed": 13,
+    "gamesStarted": 1,
+    "minutesPlayed": 359,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.64
+  },
+  {
+    "playerName": "B. Enow",
+    "team": "DC",
+    "gamesPlayed": 29,
+    "gamesStarted": 17,
+    "minutesPlayed": 1634,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.44
+  },
+  {
+    "playerName": "E. Echenique",
+    "team": "CIN",
+    "gamesPlayed": 8,
+    "gamesStarted": 6,
+    "minutesPlayed": 512,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1
+  },
+  {
+    "playerName": "M. Robinson",
+    "team": "CIN",
+    "gamesPlayed": 26,
+    "gamesStarted": 26,
+    "minutesPlayed": 2257,
+    "goals": 1,
+    "assists": 0,
+    "xG": 2.5
+  },
+  {
+    "playerName": "O. Makhanya",
+    "team": "PHI",
+    "gamesPlayed": 29,
+    "gamesStarted": 23,
+    "minutesPlayed": 2145,
+    "goals": 1,
+    "assists": 0,
+    "xG": 2.98
+  },
+  {
+    "playerName": "T. Parker",
+    "team": "RBNY",
+    "gamesPlayed": 13,
+    "gamesStarted": 10,
+    "minutesPlayed": 868,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.14
+  },
+  {
+    "playerName": "J. Dean",
+    "team": "CHI",
+    "gamesPlayed": 29,
+    "gamesStarted": 18,
+    "minutesPlayed": 1671,
+    "goals": 1,
+    "assists": 4,
+    "xG": 1.13
+  },
+  {
+    "playerName": "A. Muyl",
+    "team": "NSH",
+    "gamesPlayed": 32,
+    "gamesStarted": 28,
+    "minutesPlayed": 2242,
+    "goals": 1,
+    "assists": 4,
+    "xG": 3.92
+  },
+  {
+    "playerName": "S. Santos",
+    "team": "CIN",
+    "gamesPlayed": 18,
+    "gamesStarted": 6,
+    "minutesPlayed": 643,
+    "goals": 1,
+    "assists": 2,
+    "xG": 2.41
+  },
+  {
+    "playerName": "I. Smith",
+    "team": "POR",
+    "gamesPlayed": 20,
+    "gamesStarted": 11,
+    "minutesPlayed": 1021,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.66
+  },
+  {
+    "playerName": "M. Polster",
+    "team": "NE",
+    "gamesPlayed": 26,
+    "gamesStarted": 26,
+    "minutesPlayed": 2320,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.29
+  },
+  {
+    "playerName": "E. Mosquera",
+    "team": "ATL",
+    "gamesPlayed": 10,
+    "gamesStarted": 0,
+    "minutesPlayed": 147,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.44
+  },
+  {
+    "playerName": "M. Falcón",
+    "team": "MIA",
+    "gamesPlayed": 24,
+    "gamesStarted": 21,
+    "minutesPlayed": 1875,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.48
+  },
+  {
+    "playerName": "S. Palencia",
+    "team": "LAFC",
+    "gamesPlayed": 33,
+    "gamesStarted": 32,
+    "minutesPlayed": 2811,
+    "goals": 1,
+    "assists": 4,
+    "xG": 1.07
+  },
+  {
+    "playerName": "L. Insigne",
+    "team": "TOR",
+    "gamesPlayed": 12,
+    "gamesStarted": 10,
+    "minutesPlayed": 864,
+    "goals": 1,
+    "assists": 3,
+    "xG": 1.37
+  },
+  {
+    "playerName": "M. Kaye",
+    "team": "SJ",
+    "gamesPlayed": 27,
+    "gamesStarted": 10,
+    "minutesPlayed": 1004,
+    "goals": 1,
+    "assists": 3,
+    "xG": 1.49
+  },
+  {
+    "playerName": "L. Chú",
+    "team": "DAL",
+    "gamesPlayed": 4,
+    "gamesStarted": 3,
+    "minutesPlayed": 212,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.87
+  },
+  {
+    "playerName": "Y. Bright",
+    "team": "MIA",
+    "gamesPlayed": 27,
+    "gamesStarted": 16,
+    "minutesPlayed": 1353,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.35
+  },
+  {
+    "playerName": "A. Bedoya",
+    "team": "PHI",
+    "gamesPlayed": 24,
+    "gamesStarted": 9,
+    "minutesPlayed": 739,
+    "goals": 1,
+    "assists": 3,
+    "xG": 2.76
+  },
+  {
+    "playerName": "T. Ostrak",
+    "team": "STL",
+    "gamesPlayed": 23,
+    "gamesStarted": 13,
+    "minutesPlayed": 1021,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.32
+  },
+  {
+    "playerName": "J. Glesnes",
+    "team": "PHI",
+    "gamesPlayed": 31,
+    "gamesStarted": 30,
+    "minutesPlayed": 2626,
+    "goals": 1,
+    "assists": 2,
+    "xG": 0.93
+  },
+  {
+    "playerName": "J. Mosquera",
+    "team": "POR",
+    "gamesPlayed": 28,
+    "gamesStarted": 26,
+    "minutesPlayed": 2273,
+    "goals": 1,
+    "assists": 5,
+    "xG": 1.24
+  },
+  {
+    "playerName": "J. Yaro",
+    "team": "STL",
+    "gamesPlayed": 18,
+    "gamesStarted": 14,
+    "minutesPlayed": 1265,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.59
+  },
+  {
+    "playerName": "L. Bombino",
+    "team": "SD",
+    "gamesPlayed": 26,
+    "gamesStarted": 24,
+    "minutesPlayed": 2126,
+    "goals": 1,
+    "assists": 4,
+    "xG": 1.21
+  },
+  {
+    "playerName": "P. Aaronson",
+    "team": "COL",
+    "gamesPlayed": 7,
+    "gamesStarted": 6,
+    "minutesPlayed": 571,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.38
+  },
+  {
+    "playerName": "S. Rosted",
+    "team": "TOR",
+    "gamesPlayed": 31,
+    "gamesStarted": 27,
+    "minutesPlayed": 2536,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.86
+  },
+  {
+    "playerName": "A. Pellegrino",
+    "team": "SJ",
+    "gamesPlayed": 13,
+    "gamesStarted": 5,
+    "minutesPlayed": 487,
+    "goals": 1,
+    "assists": 2,
+    "xG": 3.04
+  },
+  {
+    "playerName": "D. Edelman",
+    "team": "RBNY",
+    "gamesPlayed": 26,
+    "gamesStarted": 25,
+    "minutesPlayed": 2024,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.86
+  },
+  {
+    "playerName": "T. Habroune",
+    "team": "CLB",
+    "gamesPlayed": 18,
+    "gamesStarted": 5,
+    "minutesPlayed": 559,
+    "goals": 1,
+    "assists": 2,
+    "xG": 0.79
+  },
+  {
+    "playerName": "A. Maxsø",
+    "team": "COL",
+    "gamesPlayed": 32,
+    "gamesStarted": 32,
+    "minutesPlayed": 2880,
+    "goals": 1,
+    "assists": 0,
+    "xG": 2.45
+  },
+  {
+    "playerName": "A. Obando",
+    "team": "MIA",
+    "gamesPlayed": 6,
+    "gamesStarted": 1,
+    "minutesPlayed": 154,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.82
+  },
+  {
+    "playerName": "F. Westfield",
+    "team": "PHI",
+    "gamesPlayed": 25,
+    "gamesStarted": 18,
+    "minutesPlayed": 1724,
+    "goals": 1,
+    "assists": 5,
+    "xG": 1.02
+  },
+  {
+    "playerName": "A. Piol",
+    "team": "RSL",
+    "gamesPlayed": 24,
+    "gamesStarted": 12,
+    "minutesPlayed": 906,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.93
+  },
+  {
+    "playerName": "N. Rodríguez",
+    "team": "ORL",
+    "gamesPlayed": 12,
+    "gamesStarted": 2,
+    "minutesPlayed": 213,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.02
+  },
+  {
+    "playerName": "A. Moran",
+    "team": "LAFC",
+    "gamesPlayed": 8,
+    "gamesStarted": 3,
+    "minutesPlayed": 318,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.67
+  },
+  {
+    "playerName": "L. Ndenbe",
+    "team": "SKC",
+    "gamesPlayed": 30,
+    "gamesStarted": 22,
+    "minutesPlayed": 1995,
+    "goals": 1,
+    "assists": 0,
+    "xG": 2.25
+  },
+  {
+    "playerName": "O. De Rosario",
+    "team": "SEA",
+    "gamesPlayed": 12,
+    "gamesStarted": 3,
+    "minutesPlayed": 255,
+    "goals": 1,
+    "assists": 0,
+    "xG": 4.63
+  },
+  {
+    "playerName": "H. Dotson",
+    "team": "MIN",
+    "gamesPlayed": 8,
+    "gamesStarted": 5,
+    "minutesPlayed": 415,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.13
+  },
+  {
+    "playerName": "T. Leibold",
+    "team": "SKC",
+    "gamesPlayed": 19,
+    "gamesStarted": 11,
+    "minutesPlayed": 871,
+    "goals": 1,
+    "assists": 3,
+    "xG": 0.84
+  },
+  {
+    "playerName": "T. Spicer",
+    "team": "ORL",
+    "gamesPlayed": 8,
+    "gamesStarted": 2,
+    "minutesPlayed": 279,
+    "goals": 1,
+    "assists": 2,
+    "xG": 0.68
+  },
+  {
+    "playerName": "N. Pierre",
+    "team": "VAN",
+    "gamesPlayed": 3,
+    "gamesStarted": 0,
+    "minutesPlayed": 33,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.4
+  },
+  {
+    "playerName": "H. Synchuk",
+    "team": "MTL",
+    "gamesPlayed": 14,
+    "gamesStarted": 10,
+    "minutesPlayed": 797,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.05
+  },
+  {
+    "playerName": "J. Waterman",
+    "team": "CHI",
+    "gamesPlayed": 6,
+    "gamesStarted": 6,
+    "minutesPlayed": 531,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.56
+  },
+  {
+    "playerName": "D. Marczuk",
+    "team": "RSL",
+    "gamesPlayed": 17,
+    "gamesStarted": 10,
+    "minutesPlayed": 871,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.18
+  },
+  {
+    "playerName": "F. Herbers",
+    "team": "MTL",
+    "gamesPlayed": 16,
+    "gamesStarted": 11,
+    "minutesPlayed": 724,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.14
+  },
+  {
+    "playerName": "Ž. Kolmanič",
+    "team": "ATX",
+    "gamesPlayed": 25,
+    "gamesStarted": 5,
+    "minutesPlayed": 717,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.23
+  },
+  {
+    "playerName": "R. Gauld",
+    "team": "VAN",
+    "gamesPlayed": 6,
+    "gamesStarted": 3,
+    "minutesPlayed": 243,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.41
+  },
+  {
+    "playerName": "R. Taylor",
+    "team": "MIA",
+    "gamesPlayed": 4,
+    "gamesStarted": 2,
+    "minutesPlayed": 197,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.36
+  },
+  {
+    "playerName": "J. Gressel",
+    "team": "MIN",
+    "gamesPlayed": 21,
+    "gamesStarted": 12,
+    "minutesPlayed": 1082,
+    "goals": 1,
+    "assists": 3,
+    "xG": 0.85
+  },
+  {
+    "playerName": "K. Parks",
+    "team": "NYC",
+    "gamesPlayed": 14,
+    "gamesStarted": 10,
+    "minutesPlayed": 882,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.74
+  },
+  {
+    "playerName": "E. Segura",
+    "team": "LAFC",
+    "gamesPlayed": 31,
+    "gamesStarted": 28,
+    "minutesPlayed": 2493,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.98
+  },
+  {
+    "playerName": "D. Nealis",
+    "team": "RBNY",
+    "gamesPlayed": 18,
+    "gamesStarted": 13,
+    "minutesPlayed": 1096,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.03
+  },
+  {
+    "playerName": "M. Boxall",
+    "team": "MIN",
+    "gamesPlayed": 31,
+    "gamesStarted": 28,
+    "minutesPlayed": 2649,
+    "goals": 1,
+    "assists": 5,
+    "xG": 1.29
+  },
+  {
+    "playerName": "J. Rodríguez",
+    "team": "POR",
+    "gamesPlayed": 6,
+    "gamesStarted": 0,
+    "minutesPlayed": 149,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.3
+  },
+  {
+    "playerName": "A. Hack",
+    "team": "RBNY",
+    "gamesPlayed": 22,
+    "gamesStarted": 16,
+    "minutesPlayed": 1447,
+    "goals": 1,
+    "assists": 1,
+    "xG": 2.04
+  },
+  {
+    "playerName": "E. Garces",
+    "team": "LA",
+    "gamesPlayed": 23,
+    "gamesStarted": 19,
+    "minutesPlayed": 1711,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.47
+  },
+  {
+    "playerName": "K. Hiebert",
+    "team": "STL",
+    "gamesPlayed": 22,
+    "gamesStarted": 19,
+    "minutesPlayed": 1694,
+    "goals": 1,
+    "assists": 1,
+    "xG": 2.12
+  },
+  {
+    "playerName": "C. Wallem",
+    "team": "STL",
+    "gamesPlayed": 32,
+    "gamesStarted": 28,
+    "minutesPlayed": 2423,
+    "goals": 1,
+    "assists": 4,
+    "xG": 3.12
+  },
+  {
+    "playerName": "I. Sánchez",
+    "team": "ATX",
+    "gamesPlayed": 26,
+    "gamesStarted": 20,
+    "minutesPlayed": 1647,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.58
+  },
+  {
+    "playerName": "J. Sang-bin",
+    "team": "STL",
+    "gamesPlayed": 9,
+    "gamesStarted": 9,
+    "minutesPlayed": 641,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.28
+  },
+  {
+    "playerName": "N. Caliskan",
+    "team": "RSL",
+    "gamesPlayed": 25,
+    "gamesStarted": 22,
+    "minutesPlayed": 1991,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.96
+  },
+  {
+    "playerName": "R. Hernández",
+    "team": "ATL",
+    "gamesPlayed": 21,
+    "gamesStarted": 16,
+    "minutesPlayed": 1322,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.86
+  },
+  {
+    "playerName": "T. Ku-Dipietro",
+    "team": "COL",
+    "gamesPlayed": 25,
+    "gamesStarted": 12,
+    "minutesPlayed": 1138,
+    "goals": 1,
+    "assists": 3,
+    "xG": 2.34
+  },
+  {
+    "playerName": "A. Long",
+    "team": "LAFC",
+    "gamesPlayed": 15,
+    "gamesStarted": 15,
+    "minutesPlayed": 1274,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.96
+  },
+  {
+    "playerName": "J. Pérez",
+    "team": "NSH",
+    "gamesPlayed": 22,
+    "gamesStarted": 10,
+    "minutesPlayed": 847,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.3
+  },
+  {
+    "playerName": "K. Cabrera",
+    "team": "VAN",
+    "gamesPlayed": 6,
+    "gamesStarted": 2,
+    "minutesPlayed": 178,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.69
+  },
+  {
+    "playerName": "Y. Yeboah",
+    "team": "LAFC",
+    "gamesPlayed": 17,
+    "gamesStarted": 4,
+    "minutesPlayed": 454,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.37
+  },
+  {
+    "playerName": "D. Badji",
+    "team": "DC",
+    "gamesPlayed": 21,
+    "gamesStarted": 6,
+    "minutesPlayed": 738,
+    "goals": 1,
+    "assists": 0,
+    "xG": 3.33
+  },
+  {
+    "playerName": "G. Minoungou",
+    "team": "SEA",
+    "gamesPlayed": 21,
+    "gamesStarted": 6,
+    "minutesPlayed": 713,
+    "goals": 1,
+    "assists": 3,
+    "xG": 3.57
+  },
+  {
+    "playerName": "N. Saliba",
+    "team": "MTL",
+    "gamesPlayed": 16,
+    "gamesStarted": 15,
+    "minutesPlayed": 1264,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.83
+  },
+  {
+    "playerName": "K. Miller",
+    "team": "POR",
+    "gamesPlayed": 24,
+    "gamesStarted": 23,
+    "minutesPlayed": 1883,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.47
+  },
+  {
+    "playerName": "T. Muyumba",
+    "team": "ATL",
+    "gamesPlayed": 24,
+    "gamesStarted": 15,
+    "minutesPlayed": 1192,
+    "goals": 1,
+    "assists": 0,
+    "xG": 2.05
+  },
+  {
+    "playerName": "J. Urso",
+    "team": "HOU",
+    "gamesPlayed": 19,
+    "gamesStarted": 11,
+    "minutesPlayed": 970,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.49
+  },
+  {
+    "playerName": "M. Desler",
+    "team": "ATX",
+    "gamesPlayed": 20,
+    "gamesStarted": 18,
+    "minutesPlayed": 1348,
+    "goals": 1,
+    "assists": 3,
+    "xG": 1.11
+  },
+  {
+    "playerName": "S. Kowalczyk",
+    "team": "HOU",
+    "gamesPlayed": 29,
+    "gamesStarted": 16,
+    "minutesPlayed": 1498,
+    "goals": 1,
+    "assists": 3,
+    "xG": 1.64
+  },
+  {
+    "playerName": "J. Haak",
+    "team": "NYC",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 3010,
+    "goals": 1,
+    "assists": 4,
+    "xG": 1.52
+  },
+  {
+    "playerName": "C. Cappis",
+    "team": "DAL",
+    "gamesPlayed": 11,
+    "gamesStarted": 9,
+    "minutesPlayed": 821,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.22
+  },
+  {
+    "playerName": "S. Ngoma",
+    "team": "RBNY",
+    "gamesPlayed": 20,
+    "gamesStarted": 5,
+    "minutesPlayed": 621,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.3
+  },
+  {
+    "playerName": "J. Vilsaint",
+    "team": "TOR",
+    "gamesPlayed": 7,
+    "gamesStarted": 1,
+    "minutesPlayed": 174,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.9
+  },
+  {
+    "playerName": "S. Moreira",
+    "team": "CLB",
+    "gamesPlayed": 30,
+    "gamesStarted": 29,
+    "minutesPlayed": 2462,
+    "goals": 1,
+    "assists": 3,
+    "xG": 1.81
+  },
+  {
+    "playerName": "D. Williams",
+    "team": "ATL",
+    "gamesPlayed": 17,
+    "gamesStarted": 15,
+    "minutesPlayed": 1321,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.51
+  },
+  {
+    "playerName": "B. Ceballos",
+    "team": "NE",
+    "gamesPlayed": 29,
+    "gamesStarted": 29,
+    "minutesPlayed": 2554,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.61
+  },
+  {
+    "playerName": "J. Badwal",
+    "team": "VAN",
+    "gamesPlayed": 25,
+    "gamesStarted": 9,
+    "minutesPlayed": 893,
+    "goals": 1,
+    "assists": 3,
+    "xG": 0.89
+  },
+  {
+    "playerName": "W. Bogacz",
+    "team": "RBNY",
+    "gamesPlayed": 19,
+    "gamesStarted": 1,
+    "minutesPlayed": 304,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.04
+  },
+  {
+    "playerName": "I. Pilcher",
+    "team": "SD",
+    "gamesPlayed": 17,
+    "gamesStarted": 8,
+    "minutesPlayed": 916,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.28
+  },
+  {
+    "playerName": "J. Artur",
+    "team": "HOU",
+    "gamesPlayed": 33,
+    "gamesStarted": 32,
+    "minutesPlayed": 2856,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.36
+  },
+  {
+    "playerName": "L. Barroso",
+    "team": "CHI",
+    "gamesPlayed": 19,
+    "gamesStarted": 11,
+    "minutesPlayed": 1044,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.25
+  },
+  {
+    "playerName": "L. MacNaughton",
+    "team": "DC",
+    "gamesPlayed": 11,
+    "gamesStarted": 9,
+    "minutesPlayed": 719,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.74
+  },
+  {
+    "playerName": "J. Shore",
+    "team": "NYC",
+    "gamesPlayed": 28,
+    "gamesStarted": 14,
+    "minutesPlayed": 1390,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.94
+  },
+  {
+    "playerName": "S. Santos",
+    "team": "HOU",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 16,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.3
+  },
+  {
+    "playerName": "I. Glavinovich",
+    "team": "PHI",
+    "gamesPlayed": 4,
+    "gamesStarted": 3,
+    "minutesPlayed": 257,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.73
+  },
+  {
+    "playerName": "A. Privett",
+    "team": "CLT",
+    "gamesPlayed": 23,
+    "gamesStarted": 19,
+    "minutesPlayed": 1796,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.15
+  },
+  {
+    "playerName": "S. Lletget",
+    "team": "DAL",
+    "gamesPlayed": 20,
+    "gamesStarted": 14,
+    "minutesPlayed": 1150,
+    "goals": 1,
+    "assists": 3,
+    "xG": 1.85
+  },
+  {
+    "playerName": "B. Cremaschi",
+    "team": "MIA",
+    "gamesPlayed": 22,
+    "gamesStarted": 16,
+    "minutesPlayed": 1388,
+    "goals": 1,
+    "assists": 4,
+    "xG": 0.88
+  },
+  {
+    "playerName": "J. Orozco",
+    "team": "STL",
+    "gamesPlayed": 7,
+    "gamesStarted": 6,
+    "minutesPlayed": 531,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.25
+  },
+  {
+    "playerName": "S. Junqua",
+    "team": "RSL",
+    "gamesPlayed": 32,
+    "gamesStarted": 17,
+    "minutesPlayed": 1829,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.74
+  },
+  {
+    "playerName": "R. Jansson",
+    "team": "ORL",
+    "gamesPlayed": 30,
+    "gamesStarted": 30,
+    "minutesPlayed": 2614,
+    "goals": 1,
+    "assists": 1,
+    "xG": 2.08
+  },
+  {
+    "playerName": "Z. Bassong",
+    "team": "SKC",
+    "gamesPlayed": 25,
+    "gamesStarted": 18,
+    "minutesPlayed": 1666,
+    "goals": 1,
+    "assists": 3,
+    "xG": 0.67
+  },
+  {
+    "playerName": "J. Fortune",
+    "team": "ATL",
+    "gamesPlayed": 15,
+    "gamesStarted": 8,
+    "minutesPlayed": 780,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.01
+  },
+  {
+    "playerName": "O. Svatok",
+    "team": "ATX",
+    "gamesPlayed": 29,
+    "gamesStarted": 25,
+    "minutesPlayed": 2367,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.08
+  },
+  {
+    "playerName": "N. Tsakiris",
+    "team": "SJ",
+    "gamesPlayed": 11,
+    "gamesStarted": 4,
+    "minutesPlayed": 362,
+    "goals": 1,
+    "assists": 2,
+    "xG": 0.43
+  },
+  {
+    "playerName": "F. Ajago",
+    "team": "RSL",
+    "gamesPlayed": 6,
+    "gamesStarted": 3,
+    "minutesPlayed": 258,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.38
+  },
+  {
+    "playerName": "R. Laryea",
+    "team": "TOR",
+    "gamesPlayed": 17,
+    "gamesStarted": 14,
+    "minutesPlayed": 1250,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.62
+  },
+  {
+    "playerName": "A. Malanda",
+    "team": "CLT",
+    "gamesPlayed": 33,
+    "gamesStarted": 33,
+    "minutesPlayed": 2900,
+    "goals": 1,
+    "assists": 2,
+    "xG": 3.62
+  },
+  {
+    "playerName": "M. Amundsen",
+    "team": "CLB",
+    "gamesPlayed": 24,
+    "gamesStarted": 21,
+    "minutesPlayed": 1781,
+    "goals": 1,
+    "assists": 3,
+    "xG": 1.16
+  },
+  {
+    "playerName": "A. Katranis",
+    "team": "RSL",
+    "gamesPlayed": 29,
+    "gamesStarted": 23,
+    "minutesPlayed": 1840,
+    "goals": 1,
+    "assists": 5,
+    "xG": 1.91
+  },
+  {
+    "playerName": "F. Negri",
+    "team": "SD",
+    "gamesPlayed": 15,
+    "gamesStarted": 9,
+    "minutesPlayed": 659,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.28
+  },
+  {
+    "playerName": "D. Jones",
+    "team": "SJ",
+    "gamesPlayed": 15,
+    "gamesStarted": 13,
+    "minutesPlayed": 1162,
+    "goals": 1,
+    "assists": 6,
+    "xG": 0.84
+  },
+  {
+    "playerName": "K. O'Toole",
+    "team": "NYC",
+    "gamesPlayed": 26,
+    "gamesStarted": 22,
+    "minutesPlayed": 1895,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.56
+  },
+  {
+    "playerName": "O. Escobar",
+    "team": "MTL",
+    "gamesPlayed": 13,
+    "gamesStarted": 4,
+    "minutesPlayed": 446,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.9
+  },
+  {
+    "playerName": "C. Roldán",
+    "team": "SEA",
+    "gamesPlayed": 31,
+    "gamesStarted": 30,
+    "minutesPlayed": 2633,
+    "goals": 1,
+    "assists": 9,
+    "xG": 2.04
+  },
+  {
+    "playerName": "D. Kreilach",
+    "team": "VAN",
+    "gamesPlayed": 4,
+    "gamesStarted": 0,
+    "minutesPlayed": 21,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.77
+  },
+  {
+    "playerName": "L. Ennali",
+    "team": "HOU",
+    "gamesPlayed": 18,
+    "gamesStarted": 10,
+    "minutesPlayed": 993,
+    "goals": 1,
+    "assists": 4,
+    "xG": 3.05
+  },
+  {
+    "playerName": "B. Tuiloma",
+    "team": "CLT",
+    "gamesPlayed": 8,
+    "gamesStarted": 6,
+    "minutesPlayed": 431,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.63
+  },
+  {
+    "playerName": "D. Holmes",
+    "team": "HOU",
+    "gamesPlayed": 18,
+    "gamesStarted": 5,
+    "minutesPlayed": 573,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.4
+  },
+  {
+    "playerName": "M. Choinière",
+    "team": "LAFC",
+    "gamesPlayed": 10,
+    "gamesStarted": 7,
+    "minutesPlayed": 642,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.8
+  },
+  {
+    "playerName": "C. Fodrey",
+    "team": "ATX",
+    "gamesPlayed": 22,
+    "gamesStarted": 2,
+    "minutesPlayed": 324,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.66
+  },
+  {
+    "playerName": "S. Ibeagha",
+    "team": "DAL",
+    "gamesPlayed": 33,
+    "gamesStarted": 30,
+    "minutesPlayed": 2763,
+    "goals": 1,
+    "assists": 1,
+    "xG": 2.49
+  },
+  {
+    "playerName": "A. Coupland",
+    "team": "VAN",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 14,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.17
+  },
+  {
+    "playerName": "R. Santos",
+    "team": "COL",
+    "gamesPlayed": 7,
+    "gamesStarted": 5,
+    "minutesPlayed": 381,
+    "goals": 1,
+    "assists": 3,
+    "xG": 0.17
+  },
+  {
+    "playerName": "A. Westwood",
+    "team": "CLT",
+    "gamesPlayed": 32,
+    "gamesStarted": 32,
+    "minutesPlayed": 2880,
+    "goals": 1,
+    "assists": 5,
+    "xG": 1.56
+  },
+  {
+    "playerName": "D. Martínez",
+    "team": "MIA",
+    "gamesPlayed": 9,
+    "gamesStarted": 3,
+    "minutesPlayed": 376,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.33
+  },
+  {
+    "playerName": "M. Weigandt",
+    "team": "MIA",
+    "gamesPlayed": 24,
+    "gamesStarted": 18,
+    "minutesPlayed": 1539,
+    "goals": 1,
+    "assists": 3,
+    "xG": 1.44
+  },
+  {
+    "playerName": "M. Rojas",
+    "team": "POR",
+    "gamesPlayed": 7,
+    "gamesStarted": 5,
+    "minutesPlayed": 352,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.88
+  },
+  {
+    "playerName": "A. Mighten",
+    "team": "SD",
+    "gamesPlayed": 26,
+    "gamesStarted": 11,
+    "minutesPlayed": 1045,
+    "goals": 1,
+    "assists": 0,
+    "xG": 3.68
+  },
+  {
+    "playerName": "A. Godoy",
+    "team": "SD",
+    "gamesPlayed": 25,
+    "gamesStarted": 21,
+    "minutesPlayed": 1728,
+    "goals": 1,
+    "assists": 2,
+    "xG": 1.3
+  },
+  {
+    "playerName": "M. Anderson",
+    "team": "PHI",
+    "gamesPlayed": 3,
+    "gamesStarted": 1,
+    "minutesPlayed": 98,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.19
+  },
+  {
+    "playerName": "P. Yazbek",
+    "team": "NSH",
+    "gamesPlayed": 32,
+    "gamesStarted": 24,
+    "minutesPlayed": 2107,
+    "goals": 1,
+    "assists": 4,
+    "xG": 0.62
+  },
+  {
+    "playerName": "A. Coello",
+    "team": "TOR",
+    "gamesPlayed": 31,
+    "gamesStarted": 24,
+    "minutesPlayed": 2167,
+    "goals": 1,
+    "assists": 1,
+    "xG": 0.9
+  },
+  {
+    "playerName": "J. Bueno",
+    "team": "PHI",
+    "gamesPlayed": 20,
+    "gamesStarted": 11,
+    "minutesPlayed": 903,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.04
+  },
+  {
+    "playerName": "L. Lappalainen",
+    "team": "CLB",
+    "gamesPlayed": 17,
+    "gamesStarted": 5,
+    "minutesPlayed": 387,
+    "goals": 1,
+    "assists": 4,
+    "xG": 1.2
+  },
+  {
+    "playerName": "D. Chambost",
+    "team": "CLB",
+    "gamesPlayed": 34,
+    "gamesStarted": 30,
+    "minutesPlayed": 2632,
+    "goals": 1,
+    "assists": 8,
+    "xG": 3.7
+  },
+  {
+    "playerName": "B. Lennon",
+    "team": "ATL",
+    "gamesPlayed": 25,
+    "gamesStarted": 17,
+    "minutesPlayed": 1557,
+    "goals": 1,
+    "assists": 3,
+    "xG": 1.6
+  },
+  {
+    "playerName": "B. Wilson",
+    "team": "SJ",
+    "gamesPlayed": 16,
+    "gamesStarted": 13,
+    "minutesPlayed": 1224,
+    "goals": 1,
+    "assists": 0,
+    "xG": 1.45
+  },
+  {
+    "playerName": "N. Hagglund",
+    "team": "CIN",
+    "gamesPlayed": 17,
+    "gamesStarted": 16,
+    "minutesPlayed": 1166,
+    "goals": 1,
+    "assists": 1,
+    "xG": 1.12
+  },
+  {
+    "playerName": "F. Amaya",
+    "team": "LAFC",
+    "gamesPlayed": 19,
+    "gamesStarted": 3,
+    "minutesPlayed": 420,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.79
+  },
+  {
+    "playerName": "J. Hall",
+    "team": "RBNY",
+    "gamesPlayed": 26,
+    "gamesStarted": 4,
+    "minutesPlayed": 669,
+    "goals": 1,
+    "assists": 0,
+    "xG": 2.03
+  },
+  {
+    "playerName": "J. Reynolds",
+    "team": "CHI",
+    "gamesPlayed": 4,
+    "gamesStarted": 1,
+    "minutesPlayed": 145,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.87
+  },
+  {
+    "playerName": "R. Taylor",
+    "team": "ATX",
+    "gamesPlayed": 17,
+    "gamesStarted": 1,
+    "minutesPlayed": 396,
+    "goals": 1,
+    "assists": 0,
+    "xG": 0.83
+  },
+  {
+    "playerName": "M. Pineda",
+    "team": "CHI",
+    "gamesPlayed": 28,
+    "gamesStarted": 18,
+    "minutesPlayed": 1516,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.46
+  },
+  {
+    "playerName": "A. Tarbell",
+    "team": "HOU",
+    "gamesPlayed": 4,
+    "gamesStarted": 4,
+    "minutesPlayed": 307,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Pinter",
+    "team": "MIA",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 20,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "É. Díaz",
+    "team": "LAFC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Etienne Jr.",
+    "team": "TOR",
+    "gamesPlayed": 25,
+    "gamesStarted": 10,
+    "minutesPlayed": 983,
+    "goals": 0,
+    "assists": 3,
+    "xG": 1.49
+  },
+  {
+    "playerName": "J. Girdwood-Reich",
+    "team": "STL",
+    "gamesPlayed": 10,
+    "gamesStarted": 5,
+    "minutesPlayed": 492,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Vazquez",
+    "team": "SD",
+    "gamesPlayed": 4,
+    "gamesStarted": 2,
+    "minutesPlayed": 177,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.15
+  },
+  {
+    "playerName": "E. Sviatchenko",
+    "team": "HOU",
+    "gamesPlayed": 15,
+    "gamesStarted": 13,
+    "minutesPlayed": 965,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1
+  },
+  {
+    "playerName": "A. Carrera",
+    "team": "DAL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "Z. Steffen",
+    "team": "COL",
+    "gamesPlayed": 23,
+    "gamesStarted": 23,
+    "minutesPlayed": 2070,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Brown",
+    "team": "RSL",
+    "gamesPlayed": 3,
+    "gamesStarted": 3,
+    "minutesPlayed": 195,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.52
+  },
+  {
+    "playerName": "N. Radoja",
+    "team": "SKC",
+    "gamesPlayed": 20,
+    "gamesStarted": 13,
+    "minutesPlayed": 1099,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.37
+  },
+  {
+    "playerName": "L. Pruter",
+    "team": "CLB",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Baird",
+    "team": "SD",
+    "gamesPlayed": 5,
+    "gamesStarted": 3,
+    "minutesPlayed": 263,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.3
+  },
+  {
+    "playerName": "N. Cobb",
+    "team": "COL",
+    "gamesPlayed": 4,
+    "gamesStarted": 4,
+    "minutesPlayed": 360,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.15
+  },
+  {
+    "playerName": "E. Bush",
+    "team": "CLB",
+    "gamesPlayed": 6,
+    "gamesStarted": 6,
+    "minutesPlayed": 540,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "P. Holbrook",
+    "team": "PHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Musto",
+    "team": "LA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "P. Stroud",
+    "team": "RBNY",
+    "gamesPlayed": 27,
+    "gamesStarted": 22,
+    "minutesPlayed": 1731,
+    "goals": 0,
+    "assists": 3,
+    "xG": 0.83
+  },
+  {
+    "playerName": "C. Mercado",
+    "team": "ORL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Halbouni",
+    "team": "VAN",
+    "gamesPlayed": 13,
+    "gamesStarted": 7,
+    "minutesPlayed": 728,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.2
+  },
+  {
+    "playerName": "N. Buck",
+    "team": "SJ",
+    "gamesPlayed": 9,
+    "gamesStarted": 0,
+    "minutesPlayed": 141,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "W. Carmona",
+    "team": "RBNY",
+    "gamesPlayed": 34,
+    "gamesStarted": 21,
+    "minutesPlayed": 1896,
+    "goals": 0,
+    "assists": 3,
+    "xG": 1.79
+  },
+  {
+    "playerName": "G. Flores",
+    "team": "CIN",
+    "gamesPlayed": 16,
+    "gamesStarted": 12,
+    "minutesPlayed": 1183,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.5
+  },
+  {
+    "playerName": "R. Veselinović",
+    "team": "VAN",
+    "gamesPlayed": 21,
+    "gamesStarted": 20,
+    "minutesPlayed": 1755,
+    "goals": 0,
+    "assists": 0,
+    "xG": 2.63
+  },
+  {
+    "playerName": "D. Padelford",
+    "team": "STL",
+    "gamesPlayed": 10,
+    "gamesStarted": 9,
+    "minutesPlayed": 750,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.16
+  },
+  {
+    "playerName": "J. Terry",
+    "team": "LAFC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Benedetti",
+    "team": "RBNY",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Travis",
+    "team": "COL",
+    "gamesPlayed": 9,
+    "gamesStarted": 9,
+    "minutesPlayed": 679,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.1
+  },
+  {
+    "playerName": "E. Cerrillo",
+    "team": "LA",
+    "gamesPlayed": 32,
+    "gamesStarted": 32,
+    "minutesPlayed": 2681,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.84
+  },
+  {
+    "playerName": "C. Guske",
+    "team": "ORL",
+    "gamesPlayed": 5,
+    "gamesStarted": 0,
+    "minutesPlayed": 13,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Byrne",
+    "team": "CLT",
+    "gamesPlayed": 17,
+    "gamesStarted": 17,
+    "minutesPlayed": 1528,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "P. Ruiz",
+    "team": "RSL",
+    "gamesPlayed": 21,
+    "gamesStarted": 14,
+    "minutesPlayed": 1209,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.73
+  },
+  {
+    "playerName": "M. Paes",
+    "team": "DAL",
+    "gamesPlayed": 22,
+    "gamesStarted": 22,
+    "minutesPlayed": 1980,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Fleuriau Chateau",
+    "team": "VAN",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 7,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.37
+  },
+  {
+    "playerName": "M. Fry",
+    "team": "NE",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Hawkins",
+    "team": "SEA",
+    "gamesPlayed": 4,
+    "gamesStarted": 0,
+    "minutesPlayed": 124,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.06
+  },
+  {
+    "playerName": "A. Essengue",
+    "team": "LA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "I. Parente",
+    "team": "LA",
+    "gamesPlayed": 25,
+    "gamesStarted": 9,
+    "minutesPlayed": 1045,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.33
+  },
+  {
+    "playerName": "J. Otero",
+    "team": "ORL",
+    "gamesPlayed": 2,
+    "gamesStarted": 2,
+    "minutesPlayed": 180,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Batioja",
+    "team": "HOU",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 9,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Kerkvliet",
+    "team": "RSL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Bender",
+    "team": "CLT",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Ortiz",
+    "team": "POR",
+    "gamesPlayed": 20,
+    "gamesStarted": 17,
+    "minutesPlayed": 1117,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.25
+  },
+  {
+    "playerName": "P. Walters",
+    "team": "CIN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Montenegro",
+    "team": "MIA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Konincks",
+    "team": "CHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Mrowka",
+    "team": "CLB",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 26,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.04
+  },
+  {
+    "playerName": "N. Edwards",
+    "team": "TOR",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Marques Siqueira",
+    "team": "LAFC",
+    "gamesPlayed": 3,
+    "gamesStarted": 1,
+    "minutesPlayed": 65,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Sali",
+    "team": "DAL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Rodríguez",
+    "team": "SKC",
+    "gamesPlayed": 19,
+    "gamesStarted": 7,
+    "minutesPlayed": 650,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.37
+  },
+  {
+    "playerName": "M. Peltola",
+    "team": "DC",
+    "gamesPlayed": 26,
+    "gamesStarted": 16,
+    "minutesPlayed": 1525,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.36
+  },
+  {
+    "playerName": "E. Arzu",
+    "team": "HOU",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Sirois",
+    "team": "MTL",
+    "gamesPlayed": 23,
+    "gamesStarted": 23,
+    "minutesPlayed": 2070,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "Á. Augusto",
+    "team": "DAL",
+    "gamesPlayed": 7,
+    "gamesStarted": 4,
+    "minutesPlayed": 365,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.11
+  },
+  {
+    "playerName": "S. Jimenez",
+    "team": "CIN",
+    "gamesPlayed": 2,
+    "gamesStarted": 1,
+    "minutesPlayed": 106,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Gomez",
+    "team": "SEA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Cafumana",
+    "team": "DAL",
+    "gamesPlayed": 6,
+    "gamesStarted": 4,
+    "minutesPlayed": 305,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.03
+  },
+  {
+    "playerName": "B. Farkarlun",
+    "team": "ATX",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Hagen",
+    "team": "CLB",
+    "gamesPlayed": 3,
+    "gamesStarted": 3,
+    "minutesPlayed": 270,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Bravo",
+    "team": "POR",
+    "gamesPlayed": 8,
+    "gamesStarted": 3,
+    "minutesPlayed": 328,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.59
+  },
+  {
+    "playerName": "D. Yedlin",
+    "team": "CIN",
+    "gamesPlayed": 27,
+    "gamesStarted": 22,
+    "minutesPlayed": 1974,
+    "goals": 0,
+    "assists": 4,
+    "xG": 0.96
+  },
+  {
+    "playerName": "R. Camacho",
+    "team": "CLB",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Schewe",
+    "team": "SKC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "P. Pomykal",
+    "team": "DAL",
+    "gamesPlayed": 4,
+    "gamesStarted": 0,
+    "minutesPlayed": 39,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.12
+  },
+  {
+    "playerName": "D. Schnegg",
+    "team": "DC",
+    "gamesPlayed": 32,
+    "gamesStarted": 31,
+    "minutesPlayed": 2703,
+    "goals": 0,
+    "assists": 4,
+    "xG": 1.44
+  },
+  {
+    "playerName": "N. Hansen",
+    "team": "COL",
+    "gamesPlayed": 10,
+    "gamesStarted": 10,
+    "minutesPlayed": 900,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Lundt",
+    "team": "STL",
+    "gamesPlayed": 9,
+    "gamesStarted": 9,
+    "minutesPlayed": 810,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Roberts",
+    "team": "SJ",
+    "gamesPlayed": 14,
+    "gamesStarted": 10,
+    "minutesPlayed": 890,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.54
+  },
+  {
+    "playerName": "B. Kikanovic",
+    "team": "SJ",
+    "gamesPlayed": 10,
+    "gamesStarted": 5,
+    "minutesPlayed": 421,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.08
+  },
+  {
+    "playerName": "J. Löffelsend",
+    "team": "SD",
+    "gamesPlayed": 13,
+    "gamesStarted": 7,
+    "minutesPlayed": 602,
+    "goals": 0,
+    "assists": 3,
+    "xG": 0.24
+  },
+  {
+    "playerName": "J. Bartlett",
+    "team": "SKC",
+    "gamesPlayed": 30,
+    "gamesStarted": 22,
+    "minutesPlayed": 1934,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.15
+  },
+  {
+    "playerName": "J. Vilsaint",
+    "team": "MTL",
+    "gamesPlayed": 9,
+    "gamesStarted": 1,
+    "minutesPlayed": 219,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.6
+  },
+  {
+    "playerName": "J. Barea",
+    "team": "RSL",
+    "gamesPlayed": 11,
+    "gamesStarted": 1,
+    "minutesPlayed": 255,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.28
+  },
+  {
+    "playerName": "M. Burton",
+    "team": "ATX",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Olney Jr",
+    "team": "PHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "P. Weah",
+    "team": "ATL",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 5,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Cavallo",
+    "team": "NYC",
+    "gamesPlayed": 15,
+    "gamesStarted": 2,
+    "minutesPlayed": 313,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.09
+  },
+  {
+    "playerName": "S. Gidi",
+    "team": "CIN",
+    "gamesPlayed": 5,
+    "gamesStarted": 3,
+    "minutesPlayed": 302,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.11
+  },
+  {
+    "playerName": "D. Parisian",
+    "team": "NE",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Jeong",
+    "team": "MIN",
+    "gamesPlayed": 15,
+    "gamesStarted": 2,
+    "minutesPlayed": 309,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.06
+  },
+  {
+    "playerName": "A. Causey",
+    "team": "RBNY",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. O'Neill",
+    "team": "VAN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Montes",
+    "team": "SKC",
+    "gamesPlayed": 8,
+    "gamesStarted": 5,
+    "minutesPlayed": 457,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.76
+  },
+  {
+    "playerName": "M. Crépeau",
+    "team": "POR",
+    "gamesPlayed": 15,
+    "gamesStarted": 15,
+    "minutesPlayed": 1350,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Oyirwoth",
+    "team": "NE",
+    "gamesPlayed": 5,
+    "gamesStarted": 4,
+    "minutesPlayed": 287,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.24
+  },
+  {
+    "playerName": "M. Wentzel",
+    "team": "STL",
+    "gamesPlayed": 2,
+    "gamesStarted": 1,
+    "minutesPlayed": 97,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.07
+  },
+  {
+    "playerName": "B. Acosta",
+    "team": "NSH",
+    "gamesPlayed": 14,
+    "gamesStarted": 1,
+    "minutesPlayed": 212,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.02
+  },
+  {
+    "playerName": "C. Baird",
+    "team": "CIN",
+    "gamesPlayed": 18,
+    "gamesStarted": 3,
+    "minutesPlayed": 414,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.8
+  },
+  {
+    "playerName": "S. Breza",
+    "team": "MTL",
+    "gamesPlayed": 3,
+    "gamesStarted": 3,
+    "minutesPlayed": 270,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Cilley",
+    "team": "STL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Torres",
+    "team": "ATX",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 7,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Longstaff",
+    "team": "TOR",
+    "gamesPlayed": 17,
+    "gamesStarted": 11,
+    "minutesPlayed": 906,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.54
+  },
+  {
+    "playerName": "G. Bovalina",
+    "team": "VAN",
+    "gamesPlayed": 7,
+    "gamesStarted": 2,
+    "minutesPlayed": 203,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.87
+  },
+  {
+    "playerName": "I. Murphy",
+    "team": "COL",
+    "gamesPlayed": 16,
+    "gamesStarted": 12,
+    "minutesPlayed": 1049,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.01
+  },
+  {
+    "playerName": "K. Shelton",
+    "team": "SKC",
+    "gamesPlayed": 27,
+    "gamesStarted": 21,
+    "minutesPlayed": 1806,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.36
+  },
+  {
+    "playerName": "R. Benetti",
+    "team": "DAL",
+    "gamesPlayed": 29,
+    "gamesStarted": 27,
+    "minutesPlayed": 2309,
+    "goals": 0,
+    "assists": 4,
+    "xG": 0.22
+  },
+  {
+    "playerName": "K. Rizvanovich",
+    "team": "MIN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Buck",
+    "team": "NE",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 22,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Basabe",
+    "team": "MIA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Keller",
+    "team": "MIN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Gressel",
+    "team": "MIA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Klich",
+    "team": "ATL",
+    "gamesPlayed": 16,
+    "gamesStarted": 9,
+    "minutesPlayed": 797,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.25
+  },
+  {
+    "playerName": "S. Alzate",
+    "team": "ATL",
+    "gamesPlayed": 10,
+    "gamesStarted": 7,
+    "minutesPlayed": 648,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.29
+  },
+  {
+    "playerName": "A. De Rosario",
+    "team": "TOR",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Romero",
+    "team": "MIN",
+    "gamesPlayed": 27,
+    "gamesStarted": 25,
+    "minutesPlayed": 2125,
+    "goals": 0,
+    "assists": 5,
+    "xG": 1.68
+  },
+  {
+    "playerName": "N. Pierre",
+    "team": "PHI",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 20,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Kahlina",
+    "team": "CLT",
+    "gamesPlayed": 32,
+    "gamesStarted": 32,
+    "minutesPlayed": 2880,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Zuparic",
+    "team": "POR",
+    "gamesPlayed": 19,
+    "gamesStarted": 17,
+    "minutesPlayed": 1568,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.71
+  },
+  {
+    "playerName": "A. Marín",
+    "team": "ORL",
+    "gamesPlayed": 5,
+    "gamesStarted": 4,
+    "minutesPlayed": 326,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.28
+  },
+  {
+    "playerName": "L. Mesanvi",
+    "team": "MIN",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 10,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Cobb",
+    "team": "ATL",
+    "gamesPlayed": 13,
+    "gamesStarted": 3,
+    "minutesPlayed": 429,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.32
+  },
+  {
+    "playerName": "R. Gustavo",
+    "team": "NYC",
+    "gamesPlayed": 5,
+    "gamesStarted": 5,
+    "minutesPlayed": 421,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.15
+  },
+  {
+    "playerName": "J. Bell",
+    "team": "SEA",
+    "gamesPlayed": 21,
+    "gamesStarted": 13,
+    "minutesPlayed": 1324,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.23
+  },
+  {
+    "playerName": "F. Carballo",
+    "team": "POR",
+    "gamesPlayed": 2,
+    "gamesStarted": 2,
+    "minutesPlayed": 125,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.22
+  },
+  {
+    "playerName": "T. Hall",
+    "team": "MIA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Diaz",
+    "team": "MIN",
+    "gamesPlayed": 27,
+    "gamesStarted": 24,
+    "minutesPlayed": 1907,
+    "goals": 0,
+    "assists": 4,
+    "xG": 0.9
+  },
+  {
+    "playerName": "C. Clark",
+    "team": "MTL",
+    "gamesPlayed": 26,
+    "gamesStarted": 17,
+    "minutesPlayed": 1571,
+    "goals": 0,
+    "assists": 6,
+    "xG": 1.89
+  },
+  {
+    "playerName": "H. Kessler",
+    "team": "STL",
+    "gamesPlayed": 17,
+    "gamesStarted": 15,
+    "minutesPlayed": 1374,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.65
+  },
+  {
+    "playerName": "L. Diaz Espinoza",
+    "team": "NE",
+    "gamesPlayed": 19,
+    "gamesStarted": 1,
+    "minutesPlayed": 382,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.59
+  },
+  {
+    "playerName": "R. Ríos Novo",
+    "team": "MIA",
+    "gamesPlayed": 10,
+    "gamesStarted": 7,
+    "minutesPlayed": 789,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "L. Mackenzie",
+    "team": "VAN",
+    "gamesPlayed": 1,
+    "gamesStarted": 1,
+    "minutesPlayed": 64,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Joon Hong",
+    "team": "DC",
+    "gamesPlayed": 8,
+    "gamesStarted": 8,
+    "minutesPlayed": 720,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "F. Redondo",
+    "team": "MIA",
+    "gamesPlayed": 20,
+    "gamesStarted": 8,
+    "minutesPlayed": 874,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.25
+  },
+  {
+    "playerName": "J. Obrian",
+    "team": "ATX",
+    "gamesPlayed": 31,
+    "gamesStarted": 9,
+    "minutesPlayed": 902,
+    "goals": 0,
+    "assists": 1,
+    "xG": 2.94
+  },
+  {
+    "playerName": "J. Castro",
+    "team": "VAN",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 1,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Afrifa",
+    "team": "SKC",
+    "gamesPlayed": 9,
+    "gamesStarted": 1,
+    "minutesPlayed": 133,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.53
+  },
+  {
+    "playerName": "S. Busquets",
+    "team": "MIA",
+    "gamesPlayed": 33,
+    "gamesStarted": 32,
+    "minutesPlayed": 2870,
+    "goals": 0,
+    "assists": 9,
+    "xG": 0.46
+  },
+  {
+    "playerName": "R. Cabral",
+    "team": "RSL",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 3060,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Gomez",
+    "team": "ATX",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Freese",
+    "team": "NYC",
+    "gamesPlayed": 31,
+    "gamesStarted": 31,
+    "minutesPlayed": 2767,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Jackson",
+    "team": "DAL",
+    "gamesPlayed": 4,
+    "gamesStarted": 3,
+    "minutesPlayed": 341,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Hughes",
+    "team": "NE",
+    "gamesPlayed": 7,
+    "gamesStarted": 4,
+    "minutesPlayed": 368,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.17
+  },
+  {
+    "playerName": "K. Lambert",
+    "team": "RSL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Farrell",
+    "team": "NE",
+    "gamesPlayed": 3,
+    "gamesStarted": 0,
+    "minutesPlayed": 21,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "L. Väisänen",
+    "team": "ATX",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Bassett",
+    "team": "COL",
+    "gamesPlayed": 12,
+    "gamesStarted": 3,
+    "minutesPlayed": 333,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.55
+  },
+  {
+    "playerName": "P. Cruz",
+    "team": "HOU",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Fadal",
+    "team": "COL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Rosa",
+    "team": "COL",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 22,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Pulskamp",
+    "team": "SKC",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 3060,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Bond",
+    "team": "HOU",
+    "gamesPlayed": 26,
+    "gamesStarted": 26,
+    "minutesPlayed": 2340,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Padelford",
+    "team": "MIN",
+    "gamesPlayed": 4,
+    "gamesStarted": 1,
+    "minutesPlayed": 104,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Marcinkowski",
+    "team": "LA",
+    "gamesPlayed": 3,
+    "gamesStarted": 3,
+    "minutesPlayed": 270,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Fernández",
+    "team": "SKC",
+    "gamesPlayed": 17,
+    "gamesStarted": 16,
+    "minutesPlayed": 1300,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.51
+  },
+  {
+    "playerName": "É. Dueñas",
+    "team": "HOU",
+    "gamesPlayed": 8,
+    "gamesStarted": 1,
+    "minutesPlayed": 152,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.28
+  },
+  {
+    "playerName": "O. Larraz",
+    "team": "COL",
+    "gamesPlayed": 33,
+    "gamesStarted": 26,
+    "minutesPlayed": 2225,
+    "goals": 0,
+    "assists": 4,
+    "xG": 1.45
+  },
+  {
+    "playerName": "P. Soma",
+    "team": "SD",
+    "gamesPlayed": 5,
+    "gamesStarted": 0,
+    "minutesPlayed": 66,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Stroud",
+    "team": "DC",
+    "gamesPlayed": 29,
+    "gamesStarted": 15,
+    "minutesPlayed": 1304,
+    "goals": 0,
+    "assists": 0,
+    "xG": 2.97
+  },
+  {
+    "playerName": "S. Rogers",
+    "team": "CHI",
+    "gamesPlayed": 22,
+    "gamesStarted": 20,
+    "minutesPlayed": 1705,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.96
+  },
+  {
+    "playerName": "S. Mohammed",
+    "team": "ORL",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 4,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Rindov",
+    "team": "LA",
+    "gamesPlayed": 6,
+    "gamesStarted": 6,
+    "minutesPlayed": 515,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.47
+  },
+  {
+    "playerName": "O. Nwobodo",
+    "team": "CIN",
+    "gamesPlayed": 14,
+    "gamesStarted": 11,
+    "minutesPlayed": 868,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.19
+  },
+  {
+    "playerName": "S. Ibrahim",
+    "team": "MTL",
+    "gamesPlayed": 10,
+    "gamesStarted": 0,
+    "minutesPlayed": 70,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.72
+  },
+  {
+    "playerName": "S. Lobjanidze",
+    "team": "ATL",
+    "gamesPlayed": 33,
+    "gamesStarted": 23,
+    "minutesPlayed": 1937,
+    "goals": 0,
+    "assists": 7,
+    "xG": 4.28
+  },
+  {
+    "playerName": "M. Duah",
+    "team": "SD",
+    "gamesPlayed": 14,
+    "gamesStarted": 12,
+    "minutesPlayed": 1038,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.22
+  },
+  {
+    "playerName": "O. Graham-Roache",
+    "team": "MTL",
+    "gamesPlayed": 6,
+    "gamesStarted": 1,
+    "minutesPlayed": 120,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.06
+  },
+  {
+    "playerName": "S. Cleveland",
+    "team": "ATX",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Russo",
+    "team": "VAN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "H. Diop",
+    "team": "SD",
+    "gamesPlayed": 7,
+    "gamesStarted": 0,
+    "minutesPlayed": 190,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.09
+  },
+  {
+    "playerName": "M. Turner",
+    "team": "NE",
+    "gamesPlayed": 10,
+    "gamesStarted": 10,
+    "minutesPlayed": 900,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Lapkes",
+    "team": "CLB",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "V. Hlyut",
+    "team": "CHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. O'Neill",
+    "team": "NYC",
+    "gamesPlayed": 20,
+    "gamesStarted": 17,
+    "minutesPlayed": 1512,
+    "goals": 0,
+    "assists": 4,
+    "xG": 0.48
+  },
+  {
+    "playerName": "B. Bye",
+    "team": "NE",
+    "gamesPlayed": 26,
+    "gamesStarted": 12,
+    "minutesPlayed": 1095,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.66
+  },
+  {
+    "playerName": "H. Picard",
+    "team": "CLB",
+    "gamesPlayed": 8,
+    "gamesStarted": 5,
+    "minutesPlayed": 502,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.36
+  },
+  {
+    "playerName": "K. Nielsen",
+    "team": "LAFC",
+    "gamesPlayed": 2,
+    "gamesStarted": 1,
+    "minutesPlayed": 93,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.14
+  },
+  {
+    "playerName": "M. Collodi",
+    "team": "DAL",
+    "gamesPlayed": 9,
+    "gamesStarted": 9,
+    "minutesPlayed": 736,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Marshall-Rutty",
+    "team": "MTL",
+    "gamesPlayed": 6,
+    "gamesStarted": 2,
+    "minutesPlayed": 228,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.14
+  },
+  {
+    "playerName": "H. Toffolo",
+    "team": "CLT",
+    "gamesPlayed": 3,
+    "gamesStarted": 2,
+    "minutesPlayed": 119,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "F. Fall",
+    "team": "STL",
+    "gamesPlayed": 8,
+    "gamesStarted": 6,
+    "minutesPlayed": 588,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.49
+  },
+  {
+    "playerName": "B. Guzan",
+    "team": "ATL",
+    "gamesPlayed": 26,
+    "gamesStarted": 26,
+    "minutesPlayed": 2340,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Taylor",
+    "team": "MIN",
+    "gamesPlayed": 7,
+    "gamesStarted": 1,
+    "minutesPlayed": 195,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Bingham",
+    "team": "CLT",
+    "gamesPlayed": 2,
+    "gamesStarted": 2,
+    "minutesPlayed": 180,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "L. Bartlett",
+    "team": "DC",
+    "gamesPlayed": 30,
+    "gamesStarted": 29,
+    "minutesPlayed": 2602,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.25
+  },
+  {
+    "playerName": "J. Forbes",
+    "team": "CLT",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Ochoa",
+    "team": "LAFC",
+    "gamesPlayed": 1,
+    "gamesStarted": 1,
+    "minutesPlayed": 90,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "F. Loyola",
+    "team": "ORL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Halliday",
+    "team": "HOU",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Pantemis",
+    "team": "POR",
+    "gamesPlayed": 19,
+    "gamesStarted": 19,
+    "minutesPlayed": 1710,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Washington",
+    "team": "NSH",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Ntsabeleng",
+    "team": "DAL",
+    "gamesPlayed": 13,
+    "gamesStarted": 1,
+    "minutesPlayed": 330,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.4
+  },
+  {
+    "playerName": "T. Hasal",
+    "team": "LAFC",
+    "gamesPlayed": 2,
+    "gamesStarted": 1,
+    "minutesPlayed": 135,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Clark",
+    "team": "DC",
+    "gamesPlayed": 4,
+    "gamesStarted": 1,
+    "minutesPlayed": 139,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.2
+  },
+  {
+    "playerName": "E. Louro",
+    "team": "CIN",
+    "gamesPlayed": 4,
+    "gamesStarted": 4,
+    "minutesPlayed": 360,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Wathuta",
+    "team": "COL",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 1,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Atencio",
+    "team": "COL",
+    "gamesPlayed": 27,
+    "gamesStarted": 23,
+    "minutesPlayed": 1780,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.06
+  },
+  {
+    "playerName": "A. Reyes",
+    "team": "SD",
+    "gamesPlayed": 1,
+    "gamesStarted": 1,
+    "minutesPlayed": 44,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Fleming",
+    "team": "CHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Ronan",
+    "team": "COL",
+    "gamesPlayed": 24,
+    "gamesStarted": 10,
+    "minutesPlayed": 1017,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.55
+  },
+  {
+    "playerName": "C. Brady",
+    "team": "CHI",
+    "gamesPlayed": 28,
+    "gamesStarted": 28,
+    "minutesPlayed": 2466,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. McCarthy",
+    "team": "RBNY",
+    "gamesPlayed": 1,
+    "gamesStarted": 1,
+    "minutesPlayed": 90,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Vazquez",
+    "team": "PHI",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 19,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Kent",
+    "team": "SEA",
+    "gamesPlayed": 15,
+    "gamesStarted": 5,
+    "minutesPlayed": 540,
+    "goals": 0,
+    "assists": 4,
+    "xG": 0.24
+  },
+  {
+    "playerName": "T. Totland",
+    "team": "STL",
+    "gamesPlayed": 17,
+    "gamesStarted": 12,
+    "minutesPlayed": 1076,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.43
+  },
+  {
+    "playerName": "B. Servania",
+    "team": "DC",
+    "gamesPlayed": 30,
+    "gamesStarted": 24,
+    "minutesPlayed": 2044,
+    "goals": 0,
+    "assists": 3,
+    "xG": 1.1
+  },
+  {
+    "playerName": "G. Brugman",
+    "team": "NSH",
+    "gamesPlayed": 24,
+    "gamesStarted": 14,
+    "minutesPlayed": 1277,
+    "goals": 0,
+    "assists": 3,
+    "xG": 1.36
+  },
+  {
+    "playerName": "E. Eneli",
+    "team": "RSL",
+    "gamesPlayed": 28,
+    "gamesStarted": 19,
+    "minutesPlayed": 1802,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.33
+  },
+  {
+    "playerName": "O. Mbaizo",
+    "team": "PHI",
+    "gamesPlayed": 9,
+    "gamesStarted": 6,
+    "minutesPlayed": 481,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.02
+  },
+  {
+    "playerName": "N. Micovic",
+    "team": "LA",
+    "gamesPlayed": 20,
+    "gamesStarted": 20,
+    "minutesPlayed": 1800,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Bartlow",
+    "team": "HOU",
+    "gamesPlayed": 22,
+    "gamesStarted": 14,
+    "minutesPlayed": 1325,
+    "goals": 0,
+    "assists": 2,
+    "xG": 1.19
+  },
+  {
+    "playerName": "R. Edwards",
+    "team": "RBNY",
+    "gamesPlayed": 24,
+    "gamesStarted": 15,
+    "minutesPlayed": 1426,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.88
+  },
+  {
+    "playerName": "S. Musu",
+    "team": "NYC",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 13,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.19
+  },
+  {
+    "playerName": "I. Tavares",
+    "team": "CLT",
+    "gamesPlayed": 5,
+    "gamesStarted": 0,
+    "minutesPlayed": 21,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.11
+  },
+  {
+    "playerName": "L. Duru",
+    "team": "SD",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 37,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "G. Berggren",
+    "team": "RBNY",
+    "gamesPlayed": 6,
+    "gamesStarted": 4,
+    "minutesPlayed": 355,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Diani",
+    "team": "CLT",
+    "gamesPlayed": 25,
+    "gamesStarted": 14,
+    "minutesPlayed": 1149,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.89
+  },
+  {
+    "playerName": "C. Sullivan",
+    "team": "PHI",
+    "gamesPlayed": 11,
+    "gamesStarted": 1,
+    "minutesPlayed": 214,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.46
+  },
+  {
+    "playerName": "A. Herrera",
+    "team": "DC",
+    "gamesPlayed": 26,
+    "gamesStarted": 24,
+    "minutesPlayed": 2068,
+    "goals": 0,
+    "assists": 4,
+    "xG": 1.27
+  },
+  {
+    "playerName": "J. Santiago",
+    "team": "LAFC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Dodson",
+    "team": "DC",
+    "gamesPlayed": 14,
+    "gamesStarted": 5,
+    "minutesPlayed": 571,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.24
+  },
+  {
+    "playerName": "F. Barajas",
+    "team": "DC",
+    "gamesPlayed": 4,
+    "gamesStarted": 0,
+    "minutesPlayed": 34,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Chandler",
+    "team": "MIN",
+    "gamesPlayed": 1,
+    "gamesStarted": 1,
+    "minutesPlayed": 65,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Boateng",
+    "team": "SD",
+    "gamesPlayed": 13,
+    "gamesStarted": 0,
+    "minutesPlayed": 230,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "Z. McGraw",
+    "team": "POR",
+    "gamesPlayed": 4,
+    "gamesStarted": 3,
+    "minutesPlayed": 241,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Petretta",
+    "team": "TOR",
+    "gamesPlayed": 25,
+    "gamesStarted": 22,
+    "minutesPlayed": 1847,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.41
+  },
+  {
+    "playerName": "T. Gray",
+    "team": "NYC",
+    "gamesPlayed": 26,
+    "gamesStarted": 22,
+    "minutesPlayed": 1760,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.33
+  },
+  {
+    "playerName": "T. Pearce",
+    "team": "MTL",
+    "gamesPlayed": 21,
+    "gamesStarted": 9,
+    "minutesPlayed": 911,
+    "goals": 0,
+    "assists": 3,
+    "xG": 1.26
+  },
+  {
+    "playerName": "J. Maher",
+    "team": "NSH",
+    "gamesPlayed": 30,
+    "gamesStarted": 29,
+    "minutesPlayed": 2572,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.23
+  },
+  {
+    "playerName": "L. Deedson",
+    "team": "DAL",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 21,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.02
+  },
+  {
+    "playerName": "N. Fernandez",
+    "team": "SJ",
+    "gamesPlayed": 2,
+    "gamesStarted": 2,
+    "minutesPlayed": 120,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.1
+  },
+  {
+    "playerName": "A. Zendejas",
+    "team": "VAN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Amadou",
+    "team": "COL",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 10,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "W. Omsberg",
+    "team": "NE",
+    "gamesPlayed": 9,
+    "gamesStarted": 4,
+    "minutesPlayed": 393,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.93
+  },
+  {
+    "playerName": "S. Korzeniowski",
+    "team": "PHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Santos",
+    "team": "LAFC",
+    "gamesPlayed": 11,
+    "gamesStarted": 7,
+    "minutesPlayed": 634,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.16
+  },
+  {
+    "playerName": "X. Silva",
+    "team": "ATL",
+    "gamesPlayed": 7,
+    "gamesStarted": 2,
+    "minutesPlayed": 224,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.16
+  },
+  {
+    "playerName": "H. Karamoko",
+    "team": "DC",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 19,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Beason",
+    "team": "NE",
+    "gamesPlayed": 27,
+    "gamesStarted": 22,
+    "minutesPlayed": 1948,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.11
+  },
+  {
+    "playerName": "M. Floriani",
+    "team": "SJ",
+    "gamesPlayed": 14,
+    "gamesStarted": 9,
+    "minutesPlayed": 821,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "Y. Takaoka",
+    "team": "VAN",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 3060,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "G. Diarbian",
+    "team": "NE",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "L. Ulrich",
+    "team": "SJ",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Rafanello",
+    "team": "PHI",
+    "gamesPlayed": 15,
+    "gamesStarted": 2,
+    "minutesPlayed": 274,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.1
+  },
+  {
+    "playerName": "M. Djordjevic",
+    "team": "ATX",
+    "gamesPlayed": 4,
+    "gamesStarted": 4,
+    "minutesPlayed": 326,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. González",
+    "team": "ATX",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "L. Afonso",
+    "team": "ATL",
+    "gamesPlayed": 3,
+    "gamesStarted": 1,
+    "minutesPlayed": 77,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.11
+  },
+  {
+    "playerName": "O. Glasgow",
+    "team": "CHI",
+    "gamesPlayed": 14,
+    "gamesStarted": 4,
+    "minutesPlayed": 522,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.4
+  },
+  {
+    "playerName": "J. Harms",
+    "team": "DAL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Olivas",
+    "team": "PHI",
+    "gamesPlayed": 3,
+    "gamesStarted": 0,
+    "minutesPlayed": 45,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.31
+  },
+  {
+    "playerName": "C. Cupps",
+    "team": "CHI",
+    "gamesPlayed": 4,
+    "gamesStarted": 3,
+    "minutesPlayed": 284,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Sousa",
+    "team": "SEA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Baumgartl",
+    "team": "STL",
+    "gamesPlayed": 22,
+    "gamesStarted": 20,
+    "minutesPlayed": 1756,
+    "goals": 0,
+    "assists": 2,
+    "xG": 1.3
+  },
+  {
+    "playerName": "A. Marcucci",
+    "team": "RBNY",
+    "gamesPlayed": 2,
+    "gamesStarted": 2,
+    "minutesPlayed": 180,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Voloder",
+    "team": "SKC",
+    "gamesPlayed": 18,
+    "gamesStarted": 16,
+    "minutesPlayed": 1490,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.04
+  },
+  {
+    "playerName": "A. Smir",
+    "team": "MIN",
+    "gamesPlayed": 2,
+    "gamesStarted": 1,
+    "minutesPlayed": 160,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Romero",
+    "team": "CLB",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Henry",
+    "team": "RSL",
+    "gamesPlayed": 3,
+    "gamesStarted": 0,
+    "minutesPlayed": 39,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.02
+  },
+  {
+    "playerName": "E. Tagseth",
+    "team": "NSH",
+    "gamesPlayed": 33,
+    "gamesStarted": 29,
+    "minutesPlayed": 2462,
+    "goals": 0,
+    "assists": 4,
+    "xG": 0.62
+  },
+  {
+    "playerName": "R. Leal",
+    "team": "DC",
+    "gamesPlayed": 15,
+    "gamesStarted": 4,
+    "minutesPlayed": 518,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.55
+  },
+  {
+    "playerName": "R. Bürki",
+    "team": "STL",
+    "gamesPlayed": 25,
+    "gamesStarted": 25,
+    "minutesPlayed": 2250,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Henry",
+    "team": "TOR",
+    "gamesPlayed": 9,
+    "gamesStarted": 0,
+    "minutesPlayed": 109,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.03
+  },
+  {
+    "playerName": "N. Pariano",
+    "team": "PHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Norris",
+    "team": "DAL",
+    "gamesPlayed": 13,
+    "gamesStarted": 8,
+    "minutesPlayed": 636,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.33
+  },
+  {
+    "playerName": "J. Farr",
+    "team": "DC",
+    "gamesPlayed": 3,
+    "gamesStarted": 2,
+    "minutesPlayed": 247,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Mehmeti",
+    "team": "RBNY",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Fofana",
+    "team": "NE",
+    "gamesPlayed": 30,
+    "gamesStarted": 30,
+    "minutesPlayed": 2575,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.31
+  },
+  {
+    "playerName": "K. Duncan",
+    "team": "RBNY",
+    "gamesPlayed": 20,
+    "gamesStarted": 17,
+    "minutesPlayed": 1533,
+    "goals": 0,
+    "assists": 5,
+    "xG": 0.9
+  },
+  {
+    "playerName": "A. Lassiter",
+    "team": "POR",
+    "gamesPlayed": 21,
+    "gamesStarted": 4,
+    "minutesPlayed": 517,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.41
+  },
+  {
+    "playerName": "Ó. Ustari",
+    "team": "MIA",
+    "gamesPlayed": 25,
+    "gamesStarted": 25,
+    "minutesPlayed": 2084,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. De Paul",
+    "team": "MIA",
+    "gamesPlayed": 11,
+    "gamesStarted": 9,
+    "minutesPlayed": 890,
+    "goals": 0,
+    "assists": 4,
+    "xG": 0.87
+  },
+  {
+    "playerName": "A. Alvarado",
+    "team": "SD",
+    "gamesPlayed": 12,
+    "gamesStarted": 6,
+    "minutesPlayed": 486,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.38
+  },
+  {
+    "playerName": "P. McNair",
+    "team": "SD",
+    "gamesPlayed": 23,
+    "gamesStarted": 21,
+    "minutesPlayed": 1712,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.84
+  },
+  {
+    "playerName": "S. Williams",
+    "team": "CHI",
+    "gamesPlayed": 7,
+    "gamesStarted": 3,
+    "minutesPlayed": 314,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.06
+  },
+  {
+    "playerName": "S. Shashoua",
+    "team": "MIN",
+    "gamesPlayed": 5,
+    "gamesStarted": 0,
+    "minutesPlayed": 100,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.11
+  },
+  {
+    "playerName": "A. Wibowo",
+    "team": "LAFC",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 16,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Coronel",
+    "team": "RBNY",
+    "gamesPlayed": 31,
+    "gamesStarted": 31,
+    "minutesPlayed": 2790,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Olusanya",
+    "team": "HOU",
+    "gamesPlayed": 6,
+    "gamesStarted": 0,
+    "minutesPlayed": 52,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.1
+  },
+  {
+    "playerName": "M. Jeahze",
+    "team": "DC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Torres",
+    "team": "ATL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Utvik",
+    "team": "VAN",
+    "gamesPlayed": 16,
+    "gamesStarted": 12,
+    "minutesPlayed": 1034,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.88
+  },
+  {
+    "playerName": "R. Neri",
+    "team": "ATL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "H. Wingo",
+    "team": "TOR",
+    "gamesPlayed": 6,
+    "gamesStarted": 5,
+    "minutesPlayed": 280,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "O. Fernández",
+    "team": "COL",
+    "gamesPlayed": 8,
+    "gamesStarted": 0,
+    "minutesPlayed": 175,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.14
+  },
+  {
+    "playerName": "R. Fisher",
+    "team": "TOR",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "G. Ranjitsingh",
+    "team": "NYC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Jääskeläinen",
+    "team": "STL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Hidalgo",
+    "team": "RSL",
+    "gamesPlayed": 18,
+    "gamesStarted": 8,
+    "minutesPlayed": 813,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.66
+  },
+  {
+    "playerName": "M. Edwards",
+    "team": "ATL",
+    "gamesPlayed": 20,
+    "gamesStarted": 14,
+    "minutesPlayed": 1209,
+    "goals": 0,
+    "assists": 2,
+    "xG": 1.21
+  },
+  {
+    "playerName": "J. Pupe",
+    "team": "VAN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "G. Caraballo",
+    "team": "ORL",
+    "gamesPlayed": 5,
+    "gamesStarted": 0,
+    "minutesPlayed": 13,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Durkin",
+    "team": "STL",
+    "gamesPlayed": 18,
+    "gamesStarted": 14,
+    "minutesPlayed": 1113,
+    "goals": 0,
+    "assists": 3,
+    "xG": 1.04
+  },
+  {
+    "playerName": "J. Nilsson",
+    "team": "STL",
+    "gamesPlayed": 6,
+    "gamesStarted": 2,
+    "minutesPlayed": 132,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.6
+  },
+  {
+    "playerName": "W. Zimmerman",
+    "team": "NSH",
+    "gamesPlayed": 21,
+    "gamesStarted": 16,
+    "minutesPlayed": 1529,
+    "goals": 0,
+    "assists": 2,
+    "xG": 2.04
+  },
+  {
+    "playerName": "M. Dieng",
+    "team": "MIN",
+    "gamesPlayed": 4,
+    "gamesStarted": 1,
+    "minutesPlayed": 111,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.62
+  },
+  {
+    "playerName": "P. Sisniega",
+    "team": "SD",
+    "gamesPlayed": 4,
+    "gamesStarted": 4,
+    "minutesPlayed": 360,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "O. Gene",
+    "team": "MIN",
+    "gamesPlayed": 22,
+    "gamesStarted": 5,
+    "minutesPlayed": 645,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.4
+  },
+  {
+    "playerName": "D. Bugaj",
+    "team": "MTL",
+    "gamesPlayed": 23,
+    "gamesStarted": 19,
+    "minutesPlayed": 1731,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.25
+  },
+  {
+    "playerName": "A. Jabbari",
+    "team": "CIN",
+    "gamesPlayed": 5,
+    "gamesStarted": 1,
+    "minutesPlayed": 112,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.41
+  },
+  {
+    "playerName": "B. Bender",
+    "team": "PHI",
+    "gamesPlayed": 7,
+    "gamesStarted": 4,
+    "minutesPlayed": 320,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.21
+  },
+  {
+    "playerName": "D. Leyva",
+    "team": "SEA",
+    "gamesPlayed": 16,
+    "gamesStarted": 6,
+    "minutesPlayed": 699,
+    "goals": 0,
+    "assists": 4,
+    "xG": 0.51
+  },
+  {
+    "playerName": "A. Lopez",
+    "team": "SEA",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 1,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Chará",
+    "team": "POR",
+    "gamesPlayed": 27,
+    "gamesStarted": 10,
+    "minutesPlayed": 1183,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.06
+  },
+  {
+    "playerName": "A. Băluță",
+    "team": "LAFC",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 14,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.3
+  },
+  {
+    "playerName": "T. Ream",
+    "team": "CLT",
+    "gamesPlayed": 27,
+    "gamesStarted": 24,
+    "minutesPlayed": 2202,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "L. Stefanović",
+    "team": "TOR",
+    "gamesPlayed": 14,
+    "gamesStarted": 4,
+    "minutesPlayed": 569,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Gal",
+    "team": "CHI",
+    "gamesPlayed": 7,
+    "gamesStarted": 6,
+    "minutesPlayed": 590,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Acosta",
+    "team": "CHI",
+    "gamesPlayed": 19,
+    "gamesStarted": 6,
+    "minutesPlayed": 648,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.08
+  },
+  {
+    "playerName": "A. Rick",
+    "team": "PHI",
+    "gamesPlayed": 14,
+    "gamesStarted": 13,
+    "minutesPlayed": 1232,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Stokes",
+    "team": "RBNY",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Goodwin",
+    "team": "CLT",
+    "gamesPlayed": 6,
+    "gamesStarted": 0,
+    "minutesPlayed": 37,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.89
+  },
+  {
+    "playerName": "D. Romney",
+    "team": "SJ",
+    "gamesPlayed": 33,
+    "gamesStarted": 29,
+    "minutesPlayed": 2669,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.17
+  },
+  {
+    "playerName": "S. Chirila",
+    "team": "CIN",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 7,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Mosquera",
+    "team": "RBNY",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 9,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "G. Campbell",
+    "team": "MTL",
+    "gamesPlayed": 16,
+    "gamesStarted": 15,
+    "minutesPlayed": 1348,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.12
+  },
+  {
+    "playerName": "T. Scott",
+    "team": "DAL",
+    "gamesPlayed": 4,
+    "gamesStarted": 0,
+    "minutesPlayed": 44,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.38
+  },
+  {
+    "playerName": "C. dos Santos",
+    "team": "SD",
+    "gamesPlayed": 30,
+    "gamesStarted": 30,
+    "minutesPlayed": 2700,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Schonlau",
+    "team": "VAN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Yueill",
+    "team": "NE",
+    "gamesPlayed": 14,
+    "gamesStarted": 8,
+    "minutesPlayed": 724,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.06
+  },
+  {
+    "playerName": "N. Quiñones",
+    "team": "HOU",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 10,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Chanot",
+    "team": "LAFC",
+    "gamesPlayed": 1,
+    "gamesStarted": 1,
+    "minutesPlayed": 67,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Antwi",
+    "team": "STL",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 13,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Marshall-Rutty",
+    "team": "CLT",
+    "gamesPlayed": 24,
+    "gamesStarted": 19,
+    "minutesPlayed": 1797,
+    "goals": 0,
+    "assists": 3,
+    "xG": 0.31
+  },
+  {
+    "playerName": "A. Franco",
+    "team": "CHI",
+    "gamesPlayed": 6,
+    "gamesStarted": 5,
+    "minutesPlayed": 402,
+    "goals": 0,
+    "assists": 4,
+    "xG": 0.18
+  },
+  {
+    "playerName": "E. Edwards Jr.",
+    "team": "SJ",
+    "gamesPlayed": 7,
+    "gamesStarted": 5,
+    "minutesPlayed": 565,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "Y. Gómez Andrade",
+    "team": "SEA",
+    "gamesPlayed": 24,
+    "gamesStarted": 24,
+    "minutesPlayed": 1765,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.55
+  },
+  {
+    "playerName": "R. Vieira",
+    "team": "SJ",
+    "gamesPlayed": 7,
+    "gamesStarted": 6,
+    "minutesPlayed": 544,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.49
+  },
+  {
+    "playerName": "C. Olivares",
+    "team": "STL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Cambridge",
+    "team": "CLT",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 1,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.39
+  },
+  {
+    "playerName": "M. Farfan",
+    "team": "DAL",
+    "gamesPlayed": 17,
+    "gamesStarted": 14,
+    "minutesPlayed": 1291,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.28
+  },
+  {
+    "playerName": "C. Sharp",
+    "team": "TOR",
+    "gamesPlayed": 6,
+    "gamesStarted": 1,
+    "minutesPlayed": 105,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.46
+  },
+  {
+    "playerName": "P. Arriola",
+    "team": "SEA",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 74,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.09
+  },
+  {
+    "playerName": "J. Mior",
+    "team": "SEA",
+    "gamesPlayed": 11,
+    "gamesStarted": 6,
+    "minutesPlayed": 478,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.24
+  },
+  {
+    "playerName": "A. Pelayo",
+    "team": "VAN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Morales",
+    "team": "MTL",
+    "gamesPlayed": 6,
+    "gamesStarted": 5,
+    "minutesPlayed": 484,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.76
+  },
+  {
+    "playerName": "K. Rowles",
+    "team": "DC",
+    "gamesPlayed": 31,
+    "gamesStarted": 29,
+    "minutesPlayed": 2685,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.26
+  },
+  {
+    "playerName": "I. James",
+    "team": "SKC",
+    "gamesPlayed": 8,
+    "gamesStarted": 5,
+    "minutesPlayed": 490,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.11
+  },
+  {
+    "playerName": "K. Long",
+    "team": "TOR",
+    "gamesPlayed": 24,
+    "gamesStarted": 23,
+    "minutesPlayed": 1889,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.58
+  },
+  {
+    "playerName": "T. Tillman",
+    "team": "LAFC",
+    "gamesPlayed": 30,
+    "gamesStarted": 28,
+    "minutesPlayed": 2419,
+    "goals": 0,
+    "assists": 3,
+    "xG": 1.62
+  },
+  {
+    "playerName": "A. Gordon",
+    "team": "ATL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Beaudry",
+    "team": "COL",
+    "gamesPlayed": 1,
+    "gamesStarted": 1,
+    "minutesPlayed": 90,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Velde",
+    "team": "POR",
+    "gamesPlayed": 8,
+    "gamesStarted": 8,
+    "minutesPlayed": 656,
+    "goals": 0,
+    "assists": 2,
+    "xG": 2.01
+  },
+  {
+    "playerName": "S. Oregel",
+    "team": "CHI",
+    "gamesPlayed": 28,
+    "gamesStarted": 25,
+    "minutesPlayed": 2061,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.99
+  },
+  {
+    "playerName": "L. Morgan",
+    "team": "RBNY",
+    "gamesPlayed": 3,
+    "gamesStarted": 2,
+    "minutesPlayed": 148,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.38
+  },
+  {
+    "playerName": "R. Holding",
+    "team": "COL",
+    "gamesPlayed": 6,
+    "gamesStarted": 6,
+    "minutesPlayed": 527,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.33
+  },
+  {
+    "playerName": "J. Hibbert",
+    "team": "ATL",
+    "gamesPlayed": 8,
+    "gamesStarted": 8,
+    "minutesPlayed": 720,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Gazdov",
+    "team": "MTL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "P. Marie",
+    "team": "SJ",
+    "gamesPlayed": 2,
+    "gamesStarted": 1,
+    "minutesPlayed": 103,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.24
+  },
+  {
+    "playerName": "C. Adams",
+    "team": "CLB",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Romero",
+    "team": "NYC",
+    "gamesPlayed": 4,
+    "gamesStarted": 3,
+    "minutesPlayed": 293,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "H. López",
+    "team": "SJ",
+    "gamesPlayed": 5,
+    "gamesStarted": 4,
+    "minutesPlayed": 255,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.55
+  },
+  {
+    "playerName": "R. Donkor",
+    "team": "RBNY",
+    "gamesPlayed": 20,
+    "gamesStarted": 8,
+    "minutesPlayed": 860,
+    "goals": 0,
+    "assists": 3,
+    "xG": 0.17
+  },
+  {
+    "playerName": "K. Stewart-Baynes",
+    "team": "COL",
+    "gamesPlayed": 4,
+    "gamesStarted": 0,
+    "minutesPlayed": 28,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Gunn",
+    "team": "NE",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Gregersen",
+    "team": "ATL",
+    "gamesPlayed": 18,
+    "gamesStarted": 18,
+    "minutesPlayed": 1372,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.81
+  },
+  {
+    "playerName": "J. Gaines",
+    "team": "NSH",
+    "gamesPlayed": 3,
+    "gamesStarted": 0,
+    "minutesPlayed": 23,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.01
+  },
+  {
+    "playerName": "F. Carballo",
+    "team": "RBNY",
+    "gamesPlayed": 16,
+    "gamesStarted": 10,
+    "minutesPlayed": 940,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.8
+  },
+  {
+    "playerName": "N. Van Rijn",
+    "team": "ATX",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Raposo",
+    "team": "LAFC",
+    "gamesPlayed": 5,
+    "gamesStarted": 0,
+    "minutesPlayed": 15,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Baker",
+    "team": "SEA",
+    "gamesPlayed": 3,
+    "gamesStarted": 1,
+    "minutesPlayed": 115,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "W. Sands",
+    "team": "NE",
+    "gamesPlayed": 19,
+    "gamesStarted": 6,
+    "minutesPlayed": 729,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.45
+  },
+  {
+    "playerName": "H. Osorio",
+    "team": "CHI",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 1,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Cruz",
+    "team": "RSL",
+    "gamesPlayed": 10,
+    "gamesStarted": 8,
+    "minutesPlayed": 617,
+    "goals": 0,
+    "assists": 1,
+    "xG": 2.28
+  },
+  {
+    "playerName": "J. Neeley",
+    "team": "CLT",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 2,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Ramos Jr.",
+    "team": "LA",
+    "gamesPlayed": 6,
+    "gamesStarted": 1,
+    "minutesPlayed": 125,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.9
+  },
+  {
+    "playerName": "J. Fory",
+    "team": "POR",
+    "gamesPlayed": 26,
+    "gamesStarted": 23,
+    "minutesPlayed": 2066,
+    "goals": 0,
+    "assists": 3,
+    "xG": 0.53
+  },
+  {
+    "playerName": "T. Wolff",
+    "team": "RSL",
+    "gamesPlayed": 13,
+    "gamesStarted": 2,
+    "minutesPlayed": 354,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.44
+  },
+  {
+    "playerName": "D. St. Clair",
+    "team": "MIN",
+    "gamesPlayed": 30,
+    "gamesStarted": 30,
+    "minutesPlayed": 2700,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Lepley",
+    "team": "LA",
+    "gamesPlayed": 16,
+    "gamesStarted": 6,
+    "minutesPlayed": 548,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.95
+  },
+  {
+    "playerName": "B. Hidalgo",
+    "team": "MTL",
+    "gamesPlayed": 6,
+    "gamesStarted": 4,
+    "minutesPlayed": 349,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.04
+  },
+  {
+    "playerName": "J. Jackson",
+    "team": "SD",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "L. Afonso",
+    "team": "MIA",
+    "gamesPlayed": 3,
+    "gamesStarted": 1,
+    "minutesPlayed": 89,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.92
+  },
+  {
+    "playerName": "O. González",
+    "team": "CHI",
+    "gamesPlayed": 12,
+    "gamesStarted": 3,
+    "minutesPlayed": 420,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Jones",
+    "team": "CLB",
+    "gamesPlayed": 5,
+    "gamesStarted": 3,
+    "minutesPlayed": 247,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.12
+  },
+  {
+    "playerName": "M. Dominguez",
+    "team": "TOR",
+    "gamesPlayed": 24,
+    "gamesStarted": 15,
+    "minutesPlayed": 1417,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.12
+  },
+  {
+    "playerName": "L. Engel",
+    "team": "CIN",
+    "gamesPlayed": 33,
+    "gamesStarted": 31,
+    "minutesPlayed": 2735,
+    "goals": 0,
+    "assists": 4,
+    "xG": 0.98
+  },
+  {
+    "playerName": "M. Silvetti",
+    "team": "MIA",
+    "gamesPlayed": 3,
+    "gamesStarted": 1,
+    "minutesPlayed": 96,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.84
+  },
+  {
+    "playerName": "I. Jesus",
+    "team": "LAFC",
+    "gamesPlayed": 24,
+    "gamesStarted": 22,
+    "minutesPlayed": 1859,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.48
+  },
+  {
+    "playerName": "T. Smalls",
+    "team": "CLT",
+    "gamesPlayed": 14,
+    "gamesStarted": 0,
+    "minutesPlayed": 144,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.29
+  },
+  {
+    "playerName": "J. Maurer",
+    "team": "HOU",
+    "gamesPlayed": 2,
+    "gamesStarted": 1,
+    "minutesPlayed": 120,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Tori",
+    "team": "ORL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "P. Quinton",
+    "team": "RSL",
+    "gamesPlayed": 16,
+    "gamesStarted": 9,
+    "minutesPlayed": 807,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.32
+  },
+  {
+    "playerName": "R. Schlegel",
+    "team": "ORL",
+    "gamesPlayed": 31,
+    "gamesStarted": 31,
+    "minutesPlayed": 2686,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.02
+  },
+  {
+    "playerName": "J. Willis",
+    "team": "NSH",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 3060,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.12
+  },
+  {
+    "playerName": "S. Piette",
+    "team": "MTL",
+    "gamesPlayed": 24,
+    "gamesStarted": 20,
+    "minutesPlayed": 1547,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.18
+  },
+  {
+    "playerName": "C. Gasper",
+    "team": "CHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "I. Boehmer",
+    "team": "VAN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Morales",
+    "team": "RBNY",
+    "gamesPlayed": 4,
+    "gamesStarted": 2,
+    "minutesPlayed": 183,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.08
+  },
+  {
+    "playerName": "B. Gillingham",
+    "team": "HOU",
+    "gamesPlayed": 4,
+    "gamesStarted": 3,
+    "minutesPlayed": 293,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Chong Qui",
+    "team": "ATL",
+    "gamesPlayed": 3,
+    "gamesStarted": 2,
+    "minutesPlayed": 150,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.02
+  },
+  {
+    "playerName": "B. Risa",
+    "team": "NYC",
+    "gamesPlayed": 17,
+    "gamesStarted": 12,
+    "minutesPlayed": 1058,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.34
+  },
+  {
+    "playerName": "A. Manyoma",
+    "team": "COL",
+    "gamesPlayed": 3,
+    "gamesStarted": 0,
+    "minutesPlayed": 38,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.05
+  },
+  {
+    "playerName": "T. Hadebe",
+    "team": "CIN",
+    "gamesPlayed": 20,
+    "gamesStarted": 9,
+    "minutesPlayed": 949,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.71
+  },
+  {
+    "playerName": "X. Silva",
+    "team": "STL",
+    "gamesPlayed": 11,
+    "gamesStarted": 0,
+    "minutesPlayed": 204,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.33
+  },
+  {
+    "playerName": "Z. Campagnolo",
+    "team": "COL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Celentano",
+    "team": "CIN",
+    "gamesPlayed": 30,
+    "gamesStarted": 30,
+    "minutesPlayed": 2700,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Hines-Ike",
+    "team": "ATX",
+    "gamesPlayed": 31,
+    "gamesStarted": 31,
+    "minutesPlayed": 2762,
+    "goals": 0,
+    "assists": 2,
+    "xG": 1.61
+  },
+  {
+    "playerName": "O. Marquez",
+    "team": "RSL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Adnan",
+    "team": "CIN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Johnson",
+    "team": "TOR",
+    "gamesPlayed": 31,
+    "gamesStarted": 31,
+    "minutesPlayed": 2790,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Williamson",
+    "team": "CLT",
+    "gamesPlayed": 24,
+    "gamesStarted": 4,
+    "minutesPlayed": 664,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.27
+  },
+  {
+    "playerName": "K. Linhares",
+    "team": "POR",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "G. Luján",
+    "team": "MIA",
+    "gamesPlayed": 26,
+    "gamesStarted": 21,
+    "minutesPlayed": 1754,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.55
+  },
+  {
+    "playerName": "M. Berry",
+    "team": "LA",
+    "gamesPlayed": 17,
+    "gamesStarted": 7,
+    "minutesPlayed": 674,
+    "goals": 0,
+    "assists": 2,
+    "xG": 1.6
+  },
+  {
+    "playerName": "B. Duke",
+    "team": "MTL",
+    "gamesPlayed": 18,
+    "gamesStarted": 7,
+    "minutesPlayed": 675,
+    "goals": 0,
+    "assists": 2,
+    "xG": 1.04
+  },
+  {
+    "playerName": "J. Selemani",
+    "team": "VAN",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 26,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.06
+  },
+  {
+    "playerName": "M. Jørgensen",
+    "team": "LA",
+    "gamesPlayed": 17,
+    "gamesStarted": 16,
+    "minutesPlayed": 1349,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.26
+  },
+  {
+    "playerName": "C. Applewhite",
+    "team": "NSH",
+    "gamesPlayed": 5,
+    "gamesStarted": 2,
+    "minutesPlayed": 188,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Steres",
+    "team": "HOU",
+    "gamesPlayed": 8,
+    "gamesStarted": 3,
+    "minutesPlayed": 395,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.03
+  },
+  {
+    "playerName": "J. McCarthy",
+    "team": "LA",
+    "gamesPlayed": 11,
+    "gamesStarted": 11,
+    "minutesPlayed": 990,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Castro",
+    "team": "SEA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Tanasijević",
+    "team": "NYC",
+    "gamesPlayed": 14,
+    "gamesStarted": 6,
+    "minutesPlayed": 611,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Cascante",
+    "team": "ATX",
+    "gamesPlayed": 13,
+    "gamesStarted": 9,
+    "minutesPlayed": 755,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.19
+  },
+  {
+    "playerName": "L. Hille",
+    "team": "MIN",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 1,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Cabral",
+    "team": "COL",
+    "gamesPlayed": 18,
+    "gamesStarted": 10,
+    "minutesPlayed": 770,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.41
+  },
+  {
+    "playerName": "T. Sandy Jr.",
+    "team": "ORL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Cimermancic",
+    "team": "TOR",
+    "gamesPlayed": 9,
+    "gamesStarted": 3,
+    "minutesPlayed": 255,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.04
+  },
+  {
+    "playerName": "P. Mangione",
+    "team": "CIN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Frei",
+    "team": "SEA",
+    "gamesPlayed": 26,
+    "gamesStarted": 26,
+    "minutesPlayed": 2340,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "O. Verhoeven",
+    "team": "SJ",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 5,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Glad",
+    "team": "RSL",
+    "gamesPlayed": 31,
+    "gamesStarted": 31,
+    "minutesPlayed": 2779,
+    "goals": 0,
+    "assists": 2,
+    "xG": 1.5
+  },
+  {
+    "playerName": "J. Cohen",
+    "team": "ATL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Oliveira",
+    "team": "NE",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Petkovic",
+    "team": "CLT",
+    "gamesPlayed": 4,
+    "gamesStarted": 1,
+    "minutesPlayed": 97,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.53
+  },
+  {
+    "playerName": "O. Holm",
+    "team": "LAFC",
+    "gamesPlayed": 3,
+    "gamesStarted": 1,
+    "minutesPlayed": 98,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Corcoran",
+    "team": "NSH",
+    "gamesPlayed": 8,
+    "gamesStarted": 3,
+    "minutesPlayed": 256,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Waterman",
+    "team": "MTL",
+    "gamesPlayed": 18,
+    "gamesStarted": 17,
+    "minutesPlayed": 1439,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.08
+  },
+  {
+    "playerName": "G. Guerra",
+    "team": "POR",
+    "gamesPlayed": 6,
+    "gamesStarted": 0,
+    "minutesPlayed": 127,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.43
+  },
+  {
+    "playerName": "A. Carleton",
+    "team": "NSH",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 37,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. De Sousa Britto",
+    "team": "SJ",
+    "gamesPlayed": 29,
+    "gamesStarted": 29,
+    "minutesPlayed": 2495,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. García",
+    "team": "DAL",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 11,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Morales",
+    "team": "ATL",
+    "gamesPlayed": 5,
+    "gamesStarted": 5,
+    "minutesPlayed": 405,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.16
+  },
+  {
+    "playerName": "D. Ferree",
+    "team": "SD",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "P. Kingston",
+    "team": "SEA",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 10,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Zouhir",
+    "team": "DC",
+    "gamesPlayed": 15,
+    "gamesStarted": 2,
+    "minutesPlayed": 325,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.49
+  },
+  {
+    "playerName": "K. Opoku",
+    "team": "MTL",
+    "gamesPlayed": 9,
+    "gamesStarted": 2,
+    "minutesPlayed": 188,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.23
+  },
+  {
+    "playerName": "T. Bunbury",
+    "team": "NSH",
+    "gamesPlayed": 21,
+    "gamesStarted": 1,
+    "minutesPlayed": 197,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.43
+  },
+  {
+    "playerName": "J. Skahan",
+    "team": "SJ",
+    "gamesPlayed": 5,
+    "gamesStarted": 0,
+    "minutesPlayed": 54,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.37
+  },
+  {
+    "playerName": "B. Stuver",
+    "team": "ATX",
+    "gamesPlayed": 34,
+    "gamesStarted": 34,
+    "minutesPlayed": 3060,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Nealis",
+    "team": "RBNY",
+    "gamesPlayed": 25,
+    "gamesStarted": 20,
+    "minutesPlayed": 1832,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.64
+  },
+  {
+    "playerName": "X. Valdez",
+    "team": "NSH",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Thomas",
+    "team": "SEA",
+    "gamesPlayed": 8,
+    "gamesStarted": 8,
+    "minutesPlayed": 720,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Jarvis",
+    "team": "RBNY",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Cifuentes",
+    "team": "TOR",
+    "gamesPlayed": 7,
+    "gamesStarted": 6,
+    "minutesPlayed": 490,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.13
+  },
+  {
+    "playerName": "T. Gillier",
+    "team": "MTL",
+    "gamesPlayed": 8,
+    "gamesStarted": 8,
+    "minutesPlayed": 720,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "G. Marks",
+    "team": "PHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Kann",
+    "team": "CIN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Torquato",
+    "team": "DAL",
+    "gamesPlayed": 5,
+    "gamesStarted": 3,
+    "minutesPlayed": 226,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "W. Yarbrough",
+    "team": "MIA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "H. Jung",
+    "team": "MIN",
+    "gamesPlayed": 4,
+    "gamesStarted": 1,
+    "minutesPlayed": 86,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Cubas",
+    "team": "VAN",
+    "gamesPlayed": 26,
+    "gamesStarted": 25,
+    "minutesPlayed": 1988,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.29
+  },
+  {
+    "playerName": "R. Mitchell",
+    "team": "RBNY",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Nagbe",
+    "team": "CLB",
+    "gamesPlayed": 30,
+    "gamesStarted": 30,
+    "minutesPlayed": 2601,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.43
+  },
+  {
+    "playerName": "R. Thomas",
+    "team": "ATX",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Ivacic",
+    "team": "NE",
+    "gamesPlayed": 24,
+    "gamesStarted": 24,
+    "minutesPlayed": 2160,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Ramírez",
+    "team": "DAL",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 1,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Sarver",
+    "team": "DAL",
+    "gamesPlayed": 6,
+    "gamesStarted": 1,
+    "minutesPlayed": 162,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.12
+  },
+  {
+    "playerName": "E. Klein",
+    "team": "NE",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 2,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Baiera",
+    "team": "NYC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "O. Jabang",
+    "team": "MTL",
+    "gamesPlayed": 1,
+    "gamesStarted": 1,
+    "minutesPlayed": 89,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Fletcher",
+    "team": "DC",
+    "gamesPlayed": 3,
+    "gamesStarted": 0,
+    "minutesPlayed": 75,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.08
+  },
+  {
+    "playerName": "J. Ellis",
+    "team": "ORL",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 2,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Longstaff",
+    "team": "MTL",
+    "gamesPlayed": 8,
+    "gamesStarted": 6,
+    "minutesPlayed": 584,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.21
+  },
+  {
+    "playerName": "D. Randell",
+    "team": "MIN",
+    "gamesPlayed": 4,
+    "gamesStarted": 1,
+    "minutesPlayed": 63,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Iankov",
+    "team": "MTL",
+    "gamesPlayed": 3,
+    "gamesStarted": 0,
+    "minutesPlayed": 29,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.06
+  },
+  {
+    "playerName": "J. Gerbet",
+    "team": "ORL",
+    "gamesPlayed": 20,
+    "gamesStarted": 13,
+    "minutesPlayed": 1115,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.06
+  },
+  {
+    "playerName": "D. Rosero",
+    "team": "SKC",
+    "gamesPlayed": 5,
+    "gamesStarted": 2,
+    "minutesPlayed": 177,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.42
+  },
+  {
+    "playerName": "C. Togashi",
+    "team": "ATL",
+    "gamesPlayed": 7,
+    "gamesStarted": 0,
+    "minutesPlayed": 94,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.06
+  },
+  {
+    "playerName": "S. Doumbia",
+    "team": "CLT",
+    "gamesPlayed": 11,
+    "gamesStarted": 8,
+    "minutesPlayed": 603,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0
+  },
+  {
+    "playerName": "I. Angulo",
+    "team": "ORL",
+    "gamesPlayed": 33,
+    "gamesStarted": 30,
+    "minutesPlayed": 2317,
+    "goals": 0,
+    "assists": 7,
+    "xG": 3.46
+  },
+  {
+    "playerName": "J. Davis",
+    "team": "SKC",
+    "gamesPlayed": 28,
+    "gamesStarted": 19,
+    "minutesPlayed": 1867,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.59
+  },
+  {
+    "playerName": "W. Frederick",
+    "team": "COL",
+    "gamesPlayed": 9,
+    "gamesStarted": 2,
+    "minutesPlayed": 219,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.08
+  },
+  {
+    "playerName": "M. Edwards",
+    "team": "COL",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 26,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "O. Valencia",
+    "team": "RBNY",
+    "gamesPlayed": 20,
+    "gamesStarted": 17,
+    "minutesPlayed": 1404,
+    "goals": 0,
+    "assists": 5,
+    "xG": 0.36
+  },
+  {
+    "playerName": "S. Vines",
+    "team": "COL",
+    "gamesPlayed": 22,
+    "gamesStarted": 13,
+    "minutesPlayed": 1266,
+    "goals": 0,
+    "assists": 2,
+    "xG": 1.48
+  },
+  {
+    "playerName": "Á. Roldán",
+    "team": "SEA",
+    "gamesPlayed": 29,
+    "gamesStarted": 24,
+    "minutesPlayed": 2118,
+    "goals": 0,
+    "assists": 5,
+    "xG": 1.54
+  },
+  {
+    "playerName": "J. Knight",
+    "team": "NSH",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "I. Jaime",
+    "team": "MTL",
+    "gamesPlayed": 6,
+    "gamesStarted": 3,
+    "minutesPlayed": 307,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1
+  },
+  {
+    "playerName": "L. Gavran",
+    "team": "TOR",
+    "gamesPlayed": 3,
+    "gamesStarted": 3,
+    "minutesPlayed": 270,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Sejdić",
+    "team": "CLB",
+    "gamesPlayed": 14,
+    "gamesStarted": 4,
+    "minutesPlayed": 335,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.1
+  },
+  {
+    "playerName": "E. Atuesta",
+    "team": "ORL",
+    "gamesPlayed": 28,
+    "gamesStarted": 25,
+    "minutesPlayed": 2271,
+    "goals": 0,
+    "assists": 7,
+    "xG": 2.22
+  },
+  {
+    "playerName": "M. Miazga",
+    "team": "CIN",
+    "gamesPlayed": 21,
+    "gamesStarted": 19,
+    "minutesPlayed": 1537,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.41
+  },
+  {
+    "playerName": "E. Mihaj",
+    "team": "ATL",
+    "gamesPlayed": 9,
+    "gamesStarted": 7,
+    "minutesPlayed": 631,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.27
+  },
+  {
+    "playerName": "B. Coulibaly",
+    "team": "CLT",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 9,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "F. Surman",
+    "team": "POR",
+    "gamesPlayed": 31,
+    "gamesStarted": 31,
+    "minutesPlayed": 2721,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.24
+  },
+  {
+    "playerName": "N. Palacio",
+    "team": "RSL",
+    "gamesPlayed": 10,
+    "gamesStarted": 6,
+    "minutesPlayed": 587,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.26
+  },
+  {
+    "playerName": "L. Brook",
+    "team": "RSL",
+    "gamesPlayed": 5,
+    "gamesStarted": 0,
+    "minutesPlayed": 97,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.21
+  },
+  {
+    "playerName": "J. Berrocal",
+    "team": "ATL",
+    "gamesPlayed": 10,
+    "gamesStarted": 5,
+    "minutesPlayed": 573,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.32
+  },
+  {
+    "playerName": "T. Reid-Brown",
+    "team": "ORL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "S. Jura",
+    "team": "POR",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Davis",
+    "team": "PHI",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 2,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Kim",
+    "team": "SEA",
+    "gamesPlayed": 15,
+    "gamesStarted": 10,
+    "minutesPlayed": 1034,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.27
+  },
+  {
+    "playerName": "A. Bono",
+    "team": "NE",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Nelson",
+    "team": "LA",
+    "gamesPlayed": 31,
+    "gamesStarted": 24,
+    "minutesPlayed": 2051,
+    "goals": 0,
+    "assists": 3,
+    "xG": 0.43
+  },
+  {
+    "playerName": "L. Abram",
+    "team": "ATL",
+    "gamesPlayed": 21,
+    "gamesStarted": 16,
+    "minutesPlayed": 1491,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.1
+  },
+  {
+    "playerName": "G. Turner",
+    "team": "DC",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 24,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.02
+  },
+  {
+    "playerName": "C. Abadia-Reda",
+    "team": "MIA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "O. Semmle",
+    "team": "PHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "Z. Taifi",
+    "team": "ORL",
+    "gamesPlayed": 6,
+    "gamesStarted": 0,
+    "minutesPlayed": 34,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Harangi",
+    "team": "SD",
+    "gamesPlayed": 5,
+    "gamesStarted": 5,
+    "minutesPlayed": 339,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.3
+  },
+  {
+    "playerName": "R. Alm",
+    "team": "STL",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 7,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.04
+  },
+  {
+    "playerName": "M. Duggan",
+    "team": "MIN",
+    "gamesPlayed": 21,
+    "gamesStarted": 14,
+    "minutesPlayed": 1305,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.82
+  },
+  {
+    "playerName": "D. Lowe",
+    "team": "HOU",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "L. Brennan",
+    "team": "ATL",
+    "gamesPlayed": 14,
+    "gamesStarted": 6,
+    "minutesPlayed": 527,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.43
+  },
+  {
+    "playerName": "M. Anchor",
+    "team": "VAN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Callender",
+    "team": "MIA",
+    "gamesPlayed": 3,
+    "gamesStarted": 2,
+    "minutesPlayed": 184,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Kamara",
+    "team": "CIN",
+    "gamesPlayed": 19,
+    "gamesStarted": 8,
+    "minutesPlayed": 786,
+    "goals": 0,
+    "assists": 1,
+    "xG": 2.16
+  },
+  {
+    "playerName": "A. Blake",
+    "team": "PHI",
+    "gamesPlayed": 21,
+    "gamesStarted": 21,
+    "minutesPlayed": 1828,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "W. Meyer",
+    "team": "NSH",
+    "gamesPlayed": 6,
+    "gamesStarted": 3,
+    "minutesPlayed": 235,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.13
+  },
+  {
+    "playerName": "S. Mazzaferro",
+    "team": "ATL",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 73,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Miller",
+    "team": "SKC",
+    "gamesPlayed": 29,
+    "gamesStarted": 25,
+    "minutesPlayed": 2305,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.52
+  },
+  {
+    "playerName": "E. O'Brien",
+    "team": "NSH",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Marczuk",
+    "team": "CIN",
+    "gamesPlayed": 5,
+    "gamesStarted": 3,
+    "minutesPlayed": 215,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.1
+  },
+  {
+    "playerName": "N. Gomis",
+    "team": "TOR",
+    "gamesPlayed": 6,
+    "gamesStarted": 6,
+    "minutesPlayed": 481,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Raines",
+    "team": "HOU",
+    "gamesPlayed": 22,
+    "gamesStarted": 20,
+    "minutesPlayed": 1700,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.27
+  },
+  {
+    "playerName": "E. Zavaleta",
+    "team": "LA",
+    "gamesPlayed": 5,
+    "gamesStarted": 1,
+    "minutesPlayed": 144,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.16
+  },
+  {
+    "playerName": "J. Zalinsky",
+    "team": "STL",
+    "gamesPlayed": 7,
+    "gamesStarted": 2,
+    "minutesPlayed": 215,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Halsey",
+    "team": "CIN",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 32,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "G. Tubbs",
+    "team": "DC",
+    "gamesPlayed": 8,
+    "gamesStarted": 7,
+    "minutesPlayed": 567,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Sullivan",
+    "team": "LA",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 10,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.06
+  },
+  {
+    "playerName": "J. Shokalook",
+    "team": "CHI",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 14,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Donovan",
+    "team": "PHI",
+    "gamesPlayed": 20,
+    "gamesStarted": 6,
+    "minutesPlayed": 540,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.71
+  },
+  {
+    "playerName": "A. Saidi",
+    "team": "SD",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 9,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "L. Barraza",
+    "team": "DC",
+    "gamesPlayed": 24,
+    "gamesStarted": 24,
+    "minutesPlayed": 2091,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "S. George",
+    "team": "NE",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 4,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Gonzalez",
+    "team": "HOU",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Ojeda",
+    "team": "NYC",
+    "gamesPlayed": 34,
+    "gamesStarted": 12,
+    "minutesPlayed": 1333,
+    "goals": 0,
+    "assists": 5,
+    "xG": 1.31
+  },
+  {
+    "playerName": "A. Hezarkhani",
+    "team": "RSL",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 57,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.06
+  },
+  {
+    "playerName": "P. Molinari",
+    "team": "NYC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "K. Franklin",
+    "team": "TOR",
+    "gamesPlayed": 15,
+    "gamesStarted": 8,
+    "minutesPlayed": 780,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.14
+  },
+  {
+    "playerName": "W. Kumado",
+    "team": "SD",
+    "gamesPlayed": 19,
+    "gamesStarted": 7,
+    "minutesPlayed": 757,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.07
+  },
+  {
+    "playerName": "N. Scardina",
+    "team": "CLT",
+    "gamesPlayed": 15,
+    "gamesStarted": 8,
+    "minutesPlayed": 798,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.04
+  },
+  {
+    "playerName": "R. Baker-Whiting",
+    "team": "SEA",
+    "gamesPlayed": 14,
+    "gamesStarted": 6,
+    "minutesPlayed": 541,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.12
+  },
+  {
+    "playerName": "W. Agada",
+    "team": "SKC",
+    "gamesPlayed": 6,
+    "gamesStarted": 1,
+    "minutesPlayed": 96,
+    "goals": 0,
+    "assists": 0,
+    "xG": 1.08
+  },
+  {
+    "playerName": "K. Mboma Dem",
+    "team": "CIN",
+    "gamesPlayed": 4,
+    "gamesStarted": 0,
+    "minutesPlayed": 82,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "I. LeFlore",
+    "team": "PHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Panayotou",
+    "team": "NE",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Cannon",
+    "team": "COL",
+    "gamesPlayed": 28,
+    "gamesStarted": 28,
+    "minutesPlayed": 2447,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.33
+  },
+  {
+    "playerName": "B. Smith",
+    "team": "CIN",
+    "gamesPlayed": 17,
+    "gamesStarted": 3,
+    "minutesPlayed": 309,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.36
+  },
+  {
+    "playerName": "N. Sessock",
+    "team": "ATL",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 3,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Dubersarsky",
+    "team": "ATX",
+    "gamesPlayed": 22,
+    "gamesStarted": 7,
+    "minutesPlayed": 688,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.51
+  },
+  {
+    "playerName": "J. Horn",
+    "team": "STL",
+    "gamesPlayed": 9,
+    "gamesStarted": 9,
+    "minutesPlayed": 724,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.05
+  },
+  {
+    "playerName": "A. Guboglo",
+    "team": "MTL",
+    "gamesPlayed": 23,
+    "gamesStarted": 10,
+    "minutesPlayed": 1003,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.38
+  },
+  {
+    "playerName": "P. Schulte",
+    "team": "CLB",
+    "gamesPlayed": 25,
+    "gamesStarted": 25,
+    "minutesPlayed": 2250,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Saldaña",
+    "team": "LAFC",
+    "gamesPlayed": 2,
+    "gamesStarted": 2,
+    "minutesPlayed": 180,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.03
+  },
+  {
+    "playerName": "M. Sullivan",
+    "team": "TOR",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 5,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Brown",
+    "team": "CLB",
+    "gamesPlayed": 6,
+    "gamesStarted": 0,
+    "minutesPlayed": 38,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.03
+  },
+  {
+    "playerName": "S. Morales",
+    "team": "MIA",
+    "gamesPlayed": 4,
+    "gamesStarted": 0,
+    "minutesPlayed": 26,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Newman",
+    "team": "DAL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Djordjevic",
+    "team": "VAN",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Brody",
+    "team": "SKC",
+    "gamesPlayed": 12,
+    "gamesStarted": 6,
+    "minutesPlayed": 491,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.15
+  },
+  {
+    "playerName": "G. Dillon",
+    "team": "RSL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Tafari",
+    "team": "LAFC",
+    "gamesPlayed": 25,
+    "gamesStarted": 20,
+    "minutesPlayed": 1829,
+    "goals": 0,
+    "assists": 1,
+    "xG": 1.16
+  },
+  {
+    "playerName": "A. Sipić",
+    "team": "NSH",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Sanchez",
+    "team": "ATL",
+    "gamesPlayed": 2,
+    "gamesStarted": 1,
+    "minutesPlayed": 101,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Anunga",
+    "team": "CIN",
+    "gamesPlayed": 30,
+    "gamesStarted": 19,
+    "minutesPlayed": 1698,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.82
+  },
+  {
+    "playerName": "M. Carrizo",
+    "team": "NYC",
+    "gamesPlayed": 5,
+    "gamesStarted": 0,
+    "minutesPlayed": 83,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.1
+  },
+  {
+    "playerName": "Z. Monlouis",
+    "team": "TOR",
+    "gamesPlayed": 10,
+    "gamesStarted": 6,
+    "minutesPlayed": 515,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.05
+  },
+  {
+    "playerName": "A. Ahmed",
+    "team": "VAN",
+    "gamesPlayed": 22,
+    "gamesStarted": 12,
+    "minutesPlayed": 1287,
+    "goals": 0,
+    "assists": 8,
+    "xG": 2.53
+  },
+  {
+    "playerName": "A. Harris",
+    "team": "COL",
+    "gamesPlayed": 4,
+    "gamesStarted": 0,
+    "minutesPlayed": 41,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Santos",
+    "team": "ORL",
+    "gamesPlayed": 17,
+    "gamesStarted": 6,
+    "minutesPlayed": 676,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.46
+  },
+  {
+    "playerName": "H. Bruseth",
+    "team": "SD",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Porteous",
+    "team": "LAFC",
+    "gamesPlayed": 10,
+    "gamesStarted": 9,
+    "minutesPlayed": 821,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.07
+  },
+  {
+    "playerName": "T. Williams",
+    "team": "ORL",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 10,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "C. Awaziem",
+    "team": "COL",
+    "gamesPlayed": 20,
+    "gamesStarted": 20,
+    "minutesPlayed": 1774,
+    "goals": 0,
+    "assists": 1,
+    "xG": 2.04
+  },
+  {
+    "playerName": "K. Smith",
+    "team": "ORL",
+    "gamesPlayed": 29,
+    "gamesStarted": 12,
+    "minutesPlayed": 1148,
+    "goals": 0,
+    "assists": 3,
+    "xG": 1.39
+  },
+  {
+    "playerName": "B. Dowd",
+    "team": "CHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "Y. Cheberko",
+    "team": "CLB",
+    "gamesPlayed": 30,
+    "gamesStarted": 25,
+    "minutesPlayed": 2315,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.53
+  },
+  {
+    "playerName": "D. Samassékou",
+    "team": "HOU",
+    "gamesPlayed": 1,
+    "gamesStarted": 0,
+    "minutesPlayed": 1,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Rosborough",
+    "team": "RBNY",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "P. Gallese",
+    "team": "ORL",
+    "gamesPlayed": 32,
+    "gamesStarted": 32,
+    "minutesPlayed": 2880,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Ruíz",
+    "team": "MIA",
+    "gamesPlayed": 4,
+    "gamesStarted": 2,
+    "minutesPlayed": 128,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.33
+  },
+  {
+    "playerName": "S. Karani",
+    "team": "LA",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Powell",
+    "team": "CIN",
+    "gamesPlayed": 25,
+    "gamesStarted": 8,
+    "minutesPlayed": 846,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.35
+  },
+  {
+    "playerName": "A. Morales",
+    "team": "STL",
+    "gamesPlayed": 25,
+    "gamesStarted": 11,
+    "minutesPlayed": 1097,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.26
+  },
+  {
+    "playerName": "I. Aliyu",
+    "team": "HOU",
+    "gamesPlayed": 8,
+    "gamesStarted": 2,
+    "minutesPlayed": 174,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.11
+  },
+  {
+    "playerName": "N. Allen",
+    "team": "MIA",
+    "gamesPlayed": 26,
+    "gamesStarted": 20,
+    "minutesPlayed": 1893,
+    "goals": 0,
+    "assists": 2,
+    "xG": 0.19
+  },
+  {
+    "playerName": "O. Verhoeven",
+    "team": "SD",
+    "gamesPlayed": 14,
+    "gamesStarted": 11,
+    "minutesPlayed": 1003,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.05
+  },
+  {
+    "playerName": "P. Amponsah",
+    "team": "NYC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "F. Álvarez",
+    "team": "MTL",
+    "gamesPlayed": 22,
+    "gamesStarted": 11,
+    "minutesPlayed": 1088,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0.58
+  },
+  {
+    "playerName": "A. Rando",
+    "team": "NYC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "N. Lima",
+    "team": "SJ",
+    "gamesPlayed": 11,
+    "gamesStarted": 4,
+    "minutesPlayed": 445,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.25
+  },
+  {
+    "playerName": "J. Reid",
+    "team": "STL",
+    "gamesPlayed": 8,
+    "gamesStarted": 5,
+    "minutesPlayed": 450,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Schwake",
+    "team": "NSH",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "T. Muse",
+    "team": "POR",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "E. Miller",
+    "team": "POR",
+    "gamesPlayed": 16,
+    "gamesStarted": 3,
+    "minutesPlayed": 427,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.23
+  },
+  {
+    "playerName": "Z. Yañez",
+    "team": "NYC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "J. Aude",
+    "team": "LA",
+    "gamesPlayed": 28,
+    "gamesStarted": 11,
+    "minutesPlayed": 1208,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.33
+  },
+  {
+    "playerName": "T. Pearce",
+    "team": "STL",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 28,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Fitz",
+    "team": "MIN",
+    "gamesPlayed": 5,
+    "gamesStarted": 1,
+    "minutesPlayed": 149,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.15
+  },
+  {
+    "playerName": "K. Thompson",
+    "team": "TOR",
+    "gamesPlayed": 28,
+    "gamesStarted": 23,
+    "minutesPlayed": 2121,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.74
+  },
+  {
+    "playerName": "M. Murray",
+    "team": "NYC",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "O. Presthus",
+    "team": "CLB",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "W. Speel",
+    "team": "MIN",
+    "gamesPlayed": 3,
+    "gamesStarted": 3,
+    "minutesPlayed": 200,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "M. Stajduhar",
+    "team": "RSL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Sailor",
+    "team": "MIA",
+    "gamesPlayed": 5,
+    "gamesStarted": 1,
+    "minutesPlayed": 94,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.24
+  },
+  {
+    "playerName": "T. Boyd",
+    "team": "NSH",
+    "gamesPlayed": 5,
+    "gamesStarted": 1,
+    "minutesPlayed": 158,
+    "goals": 0,
+    "assists": 1,
+    "xG": 0
+  },
+  {
+    "playerName": "B. Craig",
+    "team": "MTL",
+    "gamesPlayed": 23,
+    "gamesStarted": 14,
+    "minutesPlayed": 1430,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0.73
+  },
+  {
+    "playerName": "T. Schmitt",
+    "team": "NSH",
+    "gamesPlayed": 2,
+    "gamesStarted": 0,
+    "minutesPlayed": 15,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "D. Borso",
+    "team": "CHI",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "A. Rojas",
+    "team": "RBNY",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "Z. Farnsworth",
+    "team": "RSL",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "F. Montali",
+    "team": "SJ",
+    "gamesPlayed": 0,
+    "gamesStarted": 0,
+    "minutesPlayed": 0,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "H. Lloris",
+    "team": "LAFC",
+    "gamesPlayed": 32,
+    "gamesStarted": 32,
+    "minutesPlayed": 2835,
+    "goals": 0,
+    "assists": 0,
+    "xG": 0
+  },
+  {
+    "playerName": "R. Priso",
+    "team": "VAN",
+    "gamesPlayed": 28,
+    "gamesStarted": 14,
+    "minutesPlayed": 1386,
+    "goals": 0,
+    "assists": 3,
+    "xG": 1.28
+  }
+]
