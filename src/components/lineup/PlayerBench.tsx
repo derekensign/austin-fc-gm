@@ -8,15 +8,25 @@ import { useLineup } from '@/context/LineupContext';
 
 interface PlayerBenchProps {
   onPlayerSelect?: (playerId: number) => void;
+  externalFilter?: string | null;
+  onFilterApplied?: () => void;
 }
 
 /**
  * Player bench component showing available players grouped by position
  */
-export function PlayerBench({ onPlayerSelect }: PlayerBenchProps) {
+export function PlayerBench({ onPlayerSelect, externalFilter, onFilterApplied }: PlayerBenchProps) {
   const { lineupState, addToLineup, removeFromLineup } = useLineup();
   const [searchQuery, setSearchQuery] = useState('');
   const [filterPosition, setFilterPosition] = useState<string>('all');
+
+  // Apply external filter when set (e.g. from vacant slot tap)
+  React.useEffect(() => {
+    if (externalFilter) {
+      setFilterPosition(externalFilter);
+      onFilterApplied?.();
+    }
+  }, [externalFilter, onFilterApplied]);
 
   // Get players for bench
   const benchPlayers = austinFCRoster.filter(p =>
@@ -55,8 +65,12 @@ export function PlayerBench({ onPlayerSelect }: PlayerBenchProps) {
     if (lineupState.startingXI.includes(player.id)) {
       removeFromLineup(player.id);
     } else if (lineupState.startingXI.length < 11) {
-      addToLineup(player.id);
-      onPlayerSelect?.(player.id);
+      if (onPlayerSelect) {
+        // Parent handles add + scroll (vacant slot substitution flow)
+        onPlayerSelect(player.id);
+      } else {
+        addToLineup(player.id);
+      }
     }
   };
 

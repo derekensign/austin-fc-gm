@@ -7,7 +7,7 @@
  * - Cap Hit Calculations: The North End Podcast Spreadsheet (HIGH CONFIDENCE)
  * - Transactions: Official Austin FC press releases
  * 
- * Last Updated: January 2026
+ * Last Updated: March 2026
  * 
  * 2026 SALARY CAP:
  * - Salary Budget: $6,425,000 (up from $5.95M in 2025)
@@ -79,7 +79,8 @@ export type PositionGroup = 'GK' | 'DEF' | 'MID' | 'FWD';
 
 // Helper to build player image URL from asset ID
 // Using Cloudinary face-detection thumb crop - z_1.5 zooms in tighter on face
-const playerImg = (id: string) => `https://images.mlssoccer.com/image/private/c_thumb,g_face,w_100,h_100,z_1.3,q_auto:best/mls-atx/${id}.jpg`;
+// Asset IDs now include file extension (some are .png)
+const playerImg = (id: string) => `https://images.mlssoccer.com/image/private/c_thumb,g_face,w_100,h_100,z_1.3,q_auto:best/mls-atx/${id}`;
 
 export interface AustinFCPlayer {
   id: number;
@@ -120,7 +121,11 @@ export interface AustinFCPlayer {
   // Acquisition info
   acquisitionDate?: string;
   previousClub?: string;
-  
+
+  // Performance Stats (2025 MLS Season)
+  goals2025?: number;
+  assists2025?: number;
+
   // Transfer Fee / Acquisition Cost (CRITICAL for cap calculation!)
   // ⚠️ IMPORTANT DISTINCTION:
   // - CASH transfer fees: Get amortized over contract, ADD to budget charge
@@ -164,6 +169,12 @@ export const AUSTIN_FC_2026_TRANSACTIONS = {
   notes: [
     'Joseph Rosales acquired via $1.5M cash transfer (Dec 2025)',
     'Jáder Obrian contract buyout exercised (Jan 27, 2026)',
+    'Christian Ramirez acquired from MLS Waivers (Feb 2026)',
+    'Oleksandr Svatok received Green Card - frees international slot (Mar 2026)',
+    'Batuhan Arici mutually agreed contract termination with Austin FC II (2026)',
+    'GAM acquired in trade with LA Galaxy (2026)',
+    'GAM acquired in trade with Real Salt Lake (2026)',
+    'Jorge Alastuey signed to Short-Term Agreement from Austin FC II (Mar 20, 2026)',
   ],
 };
 
@@ -185,7 +196,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 34,
     nationality: 'United States',
     countryCode: 'US',
-    photo: playerImg('htazouqbrahn1btwxytc'),
+    photo: playerImg('f2ypm06gn5w2f4iirxtc.jpg'),
     baseSalary: 484_500,  // MLSPA Oct 2025
     guaranteedCompensation: 507_313,  // MLSPA Oct 2025
     tamApplied: 0,
@@ -206,13 +217,13 @@ export const austinFCRoster: AustinFCPlayer[] = [
     name: 'Damian Las',
     firstName: 'Damian',
     lastName: 'Las',
-    number: null,
+    number: 12,
     position: 'GK',
     positionGroup: 'GK',
     age: 21,
     nationality: 'Poland',
     countryCode: 'PL',
-    photo: playerImg('m9kffz475citj1yzsqr1'),
+    photo: playerImg('nhqhzjqc3vqolxha9l3u.jpg'),
     baseSalary: 125_000,  // MLSPA via North End
     guaranteedCompensation: 125_000,  // MLSPA via North End
     tamApplied: 0,
@@ -241,7 +252,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 23,
     nationality: 'United States',
     countryCode: 'US',
-    photo: playerImg('fnz65tyhquzanjitftaw'),
+    photo: playerImg('xkzjcxi1c6yruluud3od.jpg'),
     baseSalary: 88_025,  // Reserve minimum per North End
     guaranteedCompensation: 88_025,  // Reserve minimum per North End
     tamApplied: 0,
@@ -268,7 +279,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 29,
     nationality: 'Denmark',
     countryCode: 'DK',
-    photo: playerImg('jlfqjgtcodltisx5ko80'),
+    photo: playerImg('cwzhp2i50frbonlbvdte.jpg'),
     baseSalary: 550_000,  // MLSPA Oct 2025
     guaranteedCompensation: 550_000,  // MLSPA Oct 2025
     tamApplied: 0,
@@ -295,7 +306,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 27,
     nationality: 'United States',
     countryCode: 'US',
-    photo: playerImg('a7vpviy1afjhefsebkgt'),
+    photo: playerImg('p1vfe7mknq8ygqqpih3r.jpg'),
     baseSalary: 325_000,  // MLSPA Oct 2025
     guaranteedCompensation: 325_000,  // MLSPA Oct 2025
     tamApplied: 0,
@@ -322,7 +333,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 26,
     nationality: 'Ukraine',
     countryCode: 'UA',
-    photo: playerImg('bmblirlojdy29w37g2ds'),
+    photo: playerImg('zs3irbcdfo0vvwnaqta6.png'),
     baseSalary: 500_000,  // MLSPA Oct 2025
     guaranteedCompensation: 505_000,  // MLSPA Oct 2025
     tamApplied: 0,
@@ -331,7 +342,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     contractEnd: 'Dec 2027',
     designation: 'Senior',
     rosterSlot: 'Senior',
-    isInternational: true,
+    isInternational: false, // Green card received (March 2026)
     isHomegrown: false,
     isU22: false,
     isDP: false,
@@ -349,7 +360,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 29,
     nationality: 'Ireland',
     countryCode: 'IE',
-    photo: playerImg('rp2bhpb3l6uigvbhkc8s'),
+    photo: playerImg('igebxuczvarhlmfcv8ql.jpg'),
     baseSalary: 375_000,  // MLSPA Oct 2025
     guaranteedCompensation: 375_000,  // MLSPA Oct 2025
     tamApplied: 0,
@@ -376,7 +387,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 26,
     nationality: 'Slovenia',
     countryCode: 'SI',
-    photo: playerImg('yovynwnhcuvmsy9oatdt'),
+    photo: playerImg('l42yvcsudflv4jyw51rp.jpg'),
     baseSalary: 350_000,  // MLSPA Oct 2025
     guaranteedCompensation: 350_000,  // MLSPA Oct 2025
     tamApplied: 0,
@@ -403,7 +414,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 22,
     nationality: 'Brazil',
     countryCode: 'BR',
-    photo: playerImg('t9exssoo29m90jp8wupe'),
+    photo: playerImg('awozbyayezep4xhyt38l.jpg'),
     baseSalary: 275_000,  // MLSPA Oct 2025
     guaranteedCompensation: 275_000,  // MLSPA Oct 2025
     tamApplied: 0,
@@ -430,7 +441,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 21,
     nationality: 'Serbia',
     countryCode: 'RS',
-    photo: playerImg('nop1fj45vlhsw1djft3g'),
+    photo: playerImg('ltbltnisldc52exelynm.jpg'),
     baseSalary: 337_500,  // MLSPA via North End
     guaranteedCompensation: 347_500,  // MLSPA via North End
     tamApplied: 0,
@@ -451,13 +462,13 @@ export const austinFCRoster: AustinFCPlayer[] = [
     name: 'Jon Bell',
     firstName: 'Jon',
     lastName: 'Bell',
-    number: null,
+    number: 15,
     position: 'CB',
     positionGroup: 'DEF',
     age: 26,
     nationality: 'United States',
     countryCode: 'US',
-    photo: '', // New acquisition - no ATX photo yet
+    photo: playerImg('wcclruzpsgwzppyokrav.jpg'),
     baseSalary: 150_000,
     guaranteedCompensation: 175_000,
     tamApplied: 0,
@@ -488,7 +499,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 35,
     nationality: 'Spain',
     countryCode: 'ES',
-    photo: playerImg('y0z46cqdtbzt3ivjnv3h'),
+    photo: playerImg('weuxcdph1vxiwpezd5fq.jpg'),
     baseSalary: 600_000,  // New contract Nov 2025, salary from 2025 pending new MLSPA
     guaranteedCompensation: 600_000,  // MLSPA via North End
     tamApplied: 0,
@@ -515,14 +526,14 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 27,
     nationality: 'Venezuela',
     countryCode: 'VE',
-    photo: playerImg('wc90b7unzzmn05n6elja'),
+    photo: playerImg('cq4ga5c5zr94lm3ycwws.jpg'),
     baseSalary: 475_000,  // MLSPA via North End
     guaranteedCompensation: 514_375,  // MLSPA via North End
-    tamApplied: 0,
+    tamApplied: 0,  // TAM amount TBD pending updated MLSPA data
     gamApplied: 0,
     budgetCharge: 514_375,
     contractEnd: 'June 2028',
-    designation: 'Senior',
+    designation: 'TAM',  // Official roster lists as TAM Player
     rosterSlot: 'Senior',
     isInternational: false, // Green card
     isHomegrown: false,
@@ -542,7 +553,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 28,
     nationality: 'Sweden',
     countryCode: 'SE',
-    photo: playerImg('veltppjtysozeshww4mq'),
+    photo: playerImg('ggsjiamsopn1arakfbaq.jpg'),
     baseSalary: 550_000,  // MLSPA via North End
     guaranteedCompensation: 550_000,  // MLSPA via North End
     tamApplied: 0,
@@ -565,11 +576,11 @@ export const austinFCRoster: AustinFCPlayer[] = [
     lastName: 'Taylor',
     number: 16,
     position: 'LW',
-    positionGroup: 'FWD',
+    positionGroup: 'MID',  // Official roster categorizes as Midfielder
     age: 30,
     nationality: 'Finland',
     countryCode: 'FI',
-    photo: playerImg('ps03xx7stokprxdka5e4'),
+    photo: playerImg('whofapu6wuq0mp5ttyut.jpg'),
     baseSalary: 575_000,  // MLSPA via North End
     guaranteedCompensation: 633_333,  // MLSPA via North End
     tamApplied: 0,
@@ -596,7 +607,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 22,
     nationality: 'Argentina',
     countryCode: 'AR',
-    photo: playerImg('aeyqqn5vq9jmtgzkahkn'),
+    photo: playerImg('utfax9yd1fqcnvxebrpv.jpg'),
     baseSalary: 275_000,  // MLSPA via North End
     guaranteedCompensation: 297_986,  // MLSPA via North End
     tamApplied: 0,
@@ -623,7 +634,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 19,
     nationality: 'United States',
     countryCode: 'US',
-    photo: playerImg('xp6vxrlv18czxbfigg9c'),
+    photo: playerImg('cfsrvw93xwexvcqmfg6q.jpg'),
     baseSalary: 113_400,  // MLSPA via North End (senior min)
     guaranteedCompensation: 115_000,  // MLSPA via North End
     tamApplied: 0,
@@ -650,7 +661,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 20,
     nationality: 'United States',
     countryCode: 'US',
-    photo: playerImg('a1blbto0oeg5vub4pe0n'),
+    photo: playerImg('a476h8qyuelvuiueffqe.jpg'),
     baseSalary: 275_000,
     guaranteedCompensation: 350_000,
     tamApplied: 0,
@@ -671,13 +682,13 @@ export const austinFCRoster: AustinFCPlayer[] = [
     name: 'Ervin Torres',
     firstName: 'Ervin',
     lastName: 'Torres',
-    number: null,
+    number: 38,
     position: 'MID',
     positionGroup: 'MID',
     age: 23,
     nationality: 'United States',
     countryCode: 'US',
-    photo: playerImg('kysdrfbe7fubwjfhonja'),
+    photo: playerImg('tfqgoraytsufazgfujqo.jpg'),
     baseSalary: 88_025,  // Reserve minimum per North End
     guaranteedCompensation: 88_025,  // Reserve minimum per North End
     tamApplied: 0,
@@ -698,13 +709,13 @@ export const austinFCRoster: AustinFCPlayer[] = [
     name: 'Joseph Rosales',
     firstName: 'Joseph',
     lastName: 'Rosales',
-    number: null,
+    number: 30,
     position: 'LB',
     positionGroup: 'DEF',
     age: 25,
     nationality: 'Honduras',
     countryCode: 'HN',
-    photo: '', // New acquisition - no ATX photo yet
+    photo: playerImg('hjh17xntrzmyvzcfof1d.jpg'),
     baseSalary: 325_000,
     guaranteedCompensation: 375_000,
     // ⚠️ CRITICAL: Cash trade fee IS amortized and added to budget charge per 2025 MLS rules!
@@ -736,13 +747,13 @@ export const austinFCRoster: AustinFCPlayer[] = [
     name: 'Jayden Nelson',
     firstName: 'Jayden',
     lastName: 'Nelson',
-    number: null,
+    number: 7,
     position: 'RW',
     positionGroup: 'FWD',
     age: 22,
     nationality: 'Canada',
     countryCode: 'CA',
-    photo: '', // New acquisition - no ATX photo yet
+    photo: playerImg('kai2ddm37m1lktgxmb4b.jpg'),
     baseSalary: 360_000,  // MLSPA via North End
     guaranteedCompensation: 414_000,  // MLSPA via North End
     tamApplied: 0,
@@ -776,13 +787,13 @@ export const austinFCRoster: AustinFCPlayer[] = [
     name: 'Facundo Torres',
     firstName: 'Facundo',
     lastName: 'Torres',
-    number: null,  // TBD
+    number: 11,
     position: 'RW',
     positionGroup: 'FWD',
     age: 25,
     nationality: 'Uruguay',
     countryCode: 'UY',
-    photo: '', // New acquisition - no ATX photo yet
+    photo: playerImg('owbtzevmraad5jesrefa.png'),
     baseSalary: 2_000_000,  // ESTIMATE - actual salary TBD until MLSPA Spring 2026 release
     guaranteedCompensation: 2_000_000,  // ESTIMATE - actual salary TBD until MLSPA Spring 2026 release
     tamApplied: 0,
@@ -811,7 +822,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 26,
     nationality: 'United States',
     countryCode: 'US',
-    photo: playerImg('s6umv5k9pbdvwirq4kaq'),
+    photo: playerImg('c8srsrempb1uh8xppfgd.jpg'),
     baseSalary: 3_200_000,  // MLSPA via North End
     guaranteedCompensation: 3_551_778,  // MLSPA via North End
     tamApplied: 0,
@@ -838,7 +849,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 29,
     nationality: 'Albania',
     countryCode: 'AL',
-    photo: playerImg('ix7d845kt7g6mme8t8ix'),
+    photo: playerImg('ed5ks5n9r4cz4yiufpgt.jpg'),
     baseSalary: 1_520_000,  // MLSPA via North End
     guaranteedCompensation: 2_225_000,  // MLSPA via North End
     tamApplied: 0,
@@ -865,7 +876,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     age: 22,
     nationality: 'United States',
     countryCode: 'US',
-    photo: playerImg('mqa9ymj7msgph4hauilf'),
+    photo: playerImg('jffcxwhnikqc6rc60keg.jpg'),
     baseSalary: 113_400,  // MLSPA via North End (senior min)
     guaranteedCompensation: 113_400,  // MLSPA via North End
     tamApplied: 0,
@@ -880,6 +891,35 @@ export const austinFCRoster: AustinFCPlayer[] = [
     isDP: false,
     isGenerationAdidas: true,
     marketValue: 300_000,
+  },
+  {
+    id: 26,
+    name: 'Christian Ramirez',
+    firstName: 'Christian',
+    lastName: 'Ramirez',
+    number: 21,
+    position: 'ST',
+    positionGroup: 'FWD',
+    age: 34,
+    nationality: 'United States',
+    countryCode: 'US',
+    photo: playerImg('dwcsguunc9yo6sujzkzr.png'),
+    baseSalary: 88_025,  // Estimated: reserve minimum (waiver pickup, supplemental)
+    guaranteedCompensation: 88_025,  // Estimated: reserve minimum
+    tamApplied: 0,
+    gamApplied: 0,
+    budgetCharge: 0, // Supplemental
+    contractEnd: 'Dec 2026',
+    designation: 'Supplemental',
+    rosterSlot: 'Supplemental',
+    isInternational: false,
+    isHomegrown: false,
+    isU22: false,
+    isDP: false,
+    isGenerationAdidas: false,
+    marketValue: 200_000,
+    acquisitionDate: 'Feb 2026',
+    previousClub: 'LA Galaxy',
   },
 ];
 

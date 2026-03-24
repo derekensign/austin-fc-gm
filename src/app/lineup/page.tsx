@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Shield, Settings, Users, RotateCcw, Share2, Check } from 'lucide-react';
+import { useState, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Shield, Settings, Users, RotateCcw, Share2, Check, Plus } from 'lucide-react';
 import { LineupProvider, useLineup, type PlayerPosition, type TacticsSettings } from '@/context/LineupContext';
 import { SoccerField } from '@/components/lineup/SoccerField';
 import { DraggablePlayer } from '@/components/lineup/DraggablePlayer';
@@ -11,6 +11,16 @@ import { PlayerBench } from '@/components/lineup/PlayerBench';
 import { TacticsPanel } from '@/components/lineup/TacticsPanel';
 import { LineupExporter } from '@/components/lineup/LineupExporter';
 import { austinFCRoster } from '@/data/austin-fc-roster';
+
+/**
+ * Map a formation role (e.g. 'CB', 'RW', 'ST') to a position group filter
+ */
+function roleToPositionGroup(role: string): string {
+  if (role === 'GK') return 'GK';
+  if (['RB', 'LB', 'CB', 'RWB', 'LWB', 'RCB', 'LCB'].includes(role)) return 'DEF';
+  if (['CDM', 'CM', 'CAM', 'RM', 'LM', 'RCM', 'LCM', 'RCDM', 'LCDM', 'RAM', 'LAM'].includes(role)) return 'MID';
+  return 'FWD';
+}
 
 /**
  * Apply tactical adjustments to player positions
@@ -127,9 +137,48 @@ function DraggableBenchPlayer({
 }
 
 function LineupBuilderContent() {
-  const { lineupState, setPlayerPosition, resetToDefault, addToLineup, getShareableUrl } = useLineup();
+  const { lineupState, setPlayerPosition, resetToDefault, addToLineup, removeFromLineup, getShareableUrl } = useLineup();
   const [showFullLineupMessage, setShowFullLineupMessage] = useState(false);
   const [showCopied, setShowCopied] = useState(false);
+  const [benchFilter, setBenchFilter] = useState<string | null>(null);
+
+  // Refs for scroll-to behavior
+  const fieldRef = useRef<HTMLDivElement>(null);
+  const squadPanelRef = useRef<HTMLDivElement>(null);
+
+  // Handle tapping the vacant slot "+" marker on the field
+  const handleVacantSlotTap = useCallback(() => {
+    const lastPos = lineupState.lastRemovedPosition;
+    if (!lastPos) return;
+
+    // Determine position group to filter bench by
+    const posGroup = roleToPositionGroup(lastPos.role);
+    setBenchFilter(posGroup);
+
+    // Scroll to the squad panel
+    setTimeout(() => {
+      squadPanelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }, [lineupState.lastRemovedPosition]);
+
+  // Handle when a bench player is selected while a vacant slot exists
+  const handleBenchPlayerSelect = useCallback((playerId: number) => {
+    // addToLineup already uses lastRemovedPosition for placement
+    addToLineup(playerId);
+
+    // Clear the bench filter
+    setBenchFilter(null);
+
+    // Scroll back up to the field
+    setTimeout(() => {
+      fieldRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }, [addToLineup]);
+
+  // Clear bench filter after it's been applied
+  const handleFilterApplied = useCallback(() => {
+    setBenchFilter(null);
+  }, []);
 
   // Handle share button click
   const handleShare = async () => {
@@ -203,12 +252,12 @@ function LineupBuilderContent() {
 
       {/* Main Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        {/* Left Panel - Controls (30%) */}
+        {/* Left Panel - Controls (30%) - hidden on mobile, shown below field via order */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
-          className="lg:col-span-4 space-y-4"
+          className="lg:col-span-4 space-y-4 order-2 lg:order-1"
         >
           {/* Formation Selector */}
           <div className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg p-4">
@@ -229,24 +278,28 @@ function LineupBuilderContent() {
           </div>
 
           {/* Player Bench */}
-          <div className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg p-4">
+          <div ref={squadPanelRef} className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg p-4">
             <div className="flex items-center gap-2 mb-3">
               <Users className="w-4 h-4 text-[var(--verde)]" />
               <h2 className="font-display text-lg text-white">Squad</h2>
             </div>
-            <PlayerBench />
+            <PlayerBench
+              onPlayerSelect={lineupState.lastRemovedPosition ? handleBenchPlayerSelect : undefined}
+              externalFilter={benchFilter}
+              onFilterApplied={handleFilterApplied}
+            />
           </div>
         </motion.div>
 
-        {/* Right Panel - Field & Export (70%) */}
+        {/* Right Panel - Field & Export (70%) - shown first on mobile */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
-          className="lg:col-span-8 space-y-4"
+          className="lg:col-span-8 space-y-4 order-1 lg:order-2"
         >
           {/* Soccer Field with Bench */}
-          <div className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg p-4 overflow-hidden relative">
+          <div ref={fieldRef} className="bg-[var(--obsidian-light)] border border-[var(--obsidian-lighter)] rounded-lg p-4 overflow-hidden relative">
             {/* Full Lineup Notification */}
             {showFullLineupMessage && (
               <motion.div
@@ -255,29 +308,29 @@ function LineupBuilderContent() {
                 exit={{ opacity: 0 }}
                 className="absolute top-16 left-1/2 -translate-x-1/2 z-50 bg-red-500 text-white px-6 py-3 rounded-lg shadow-xl border border-red-400"
               >
-                <p className="text-sm font-semibold whitespace-nowrap">
+                <p className="text-xs md:text-sm font-semibold whitespace-nowrap">
                   Must remove player from field before subbing on a replacement.
                 </p>
               </motion.div>
             )}
 
             {/* Action Buttons */}
-            <div className="absolute top-4 right-4 z-10 flex gap-2">
+            <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10 flex gap-1.5 md:gap-2">
               {/* Share Button */}
               <button
                 onClick={handleShare}
-                className="flex items-center gap-2 px-4 py-2 bg-[var(--verde)] hover:bg-[var(--verde)]/80 text-black font-semibold rounded-lg transition-colors"
+                className="flex items-center gap-1 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 bg-[var(--verde)] hover:bg-[var(--verde)]/80 text-black font-semibold rounded-lg transition-colors text-xs md:text-sm"
                 title="Copy shareable URL to clipboard"
               >
                 {showCopied ? (
                   <>
-                    <Check className="w-5 h-5" />
-                    Copied!
+                    <Check className="w-4 h-4" />
+                    <span className="hidden sm:inline">Copied!</span>
                   </>
                 ) : (
                   <>
-                    <Share2 className="w-5 h-5" />
-                    Share
+                    <Share2 className="w-4 h-4" />
+                    <span className="hidden sm:inline">Share</span>
                   </>
                 )}
               </button>
@@ -285,18 +338,18 @@ function LineupBuilderContent() {
               {/* Reset Button */}
               <button
                 onClick={resetToDefault}
-                className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors border border-white/20"
+                className="flex items-center gap-1 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors border border-white/20 text-xs md:text-sm"
                 title="Reset positions to default for current formation"
               >
-                <RotateCcw className="w-5 h-5" />
-                Reset
+                <RotateCcw className="w-4 h-4" />
+                <span className="hidden sm:inline">Reset</span>
               </button>
             </div>
 
-            {/* Field Container with Bench on Left */}
-            <div className="flex gap-4 items-stretch justify-center">
-              {/* Bench Area - Left Side (Portrait) */}
-              <div className="flex-shrink-0 w-48 flex" data-bench-container>
+            {/* Field Container with Bench on Left (desktop) or below (mobile) */}
+            <div className="flex flex-col md:flex-row gap-4 items-stretch justify-center">
+              {/* Bench Area - Hidden on mobile (use Squad panel instead), shown on md+ */}
+              <div className="hidden md:flex flex-shrink-0 w-48" data-bench-container>
                 <div className="bg-[var(--obsidian)] border border-[var(--obsidian-lighter)] rounded-lg p-2 flex flex-col w-full">
                   <div className="flex items-center gap-1 mb-2 justify-center flex-shrink-0">
                     <Users className="w-3 h-3 text-[var(--verde)]" />
@@ -333,8 +386,8 @@ function LineupBuilderContent() {
                 </div>
               </div>
 
-              {/* Soccer Field - Right Side */}
-              <div className="aspect-[2/3] w-full max-w-md" data-field-container>
+              {/* Soccer Field - Full width on mobile, right side on desktop */}
+              <div className="aspect-[2/3] w-full max-w-sm mx-auto md:max-w-md" data-field-container>
                 <SoccerField tactics={lineupState.tactics} showOverlays={true}>
                   {startingPlayers.map((player) => {
                     const basePosition = lineupState.positions.get(player.id);
@@ -356,6 +409,28 @@ function LineupBuilderContent() {
                       />
                     );
                   })}
+
+                  {/* Vacant Slot Marker - appears when a player is removed */}
+                  <AnimatePresence>
+                    {lineupState.lastRemovedPosition && (
+                      <motion.button
+                        key="vacant-slot"
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0, opacity: 0 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                        onClick={handleVacantSlotTap}
+                        className="absolute -translate-x-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black border-2 border-white/60 flex items-center justify-center shadow-lg hover:border-[var(--verde)] hover:shadow-[0_0_12px_var(--verde-glow)] transition-all cursor-pointer"
+                        style={{
+                          left: `${lineupState.lastRemovedPosition.x}%`,
+                          top: `${lineupState.lastRemovedPosition.y}%`,
+                        }}
+                        title="Tap to find a replacement"
+                      >
+                        <Plus className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                      </motion.button>
+                    )}
+                  </AnimatePresence>
                 </SoccerField>
               </div>
             </div>

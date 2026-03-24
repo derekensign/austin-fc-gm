@@ -42,11 +42,11 @@ export function DraggablePlayer({
     removeFromLineup(player.id);
   };
 
-  // Size configurations
+  // Size configurations - smaller on mobile
   const sizeConfig = {
-    small: { avatar: 32, text: 'text-[8px]' },
-    medium: { avatar: 40, text: 'text-[10px]' },
-    large: { avatar: 48, text: 'text-xs' },
+    small: { avatar: 28, avatarMd: 32, text: 'text-[7px] md:text-[8px]' },
+    medium: { avatar: 32, avatarMd: 40, text: 'text-[8px] md:text-[10px]' },
+    large: { avatar: 38, avatarMd: 48, text: 'text-[10px] md:text-xs' },
   };
 
   const config = sizeConfig[size];
@@ -149,9 +149,9 @@ export function DraggablePlayer({
       onClick={onClick}
     >
       {/* Player Node Container */}
-      <div className="flex flex-col items-center gap-1 pointer-events-none select-none">
+      <div className="flex flex-col items-center gap-0.5 md:gap-1 pointer-events-none select-none">
         {/* Player Last Name */}
-        <div className="text-white text-xs font-bold text-center whitespace-nowrap bg-[var(--obsidian)]/50 px-2 py-0.5 rounded">
+        <div className="text-white text-[9px] md:text-xs font-bold text-center whitespace-nowrap bg-[var(--obsidian)]/50 px-1.5 md:px-2 py-0.5 rounded max-w-[60px] md:max-w-none truncate">
           {player.lastName}
         </div>
 
@@ -163,8 +163,7 @@ export function DraggablePlayer({
               isSelected
                 ? 'border-[var(--verde)] shadow-[0_0_12px_var(--verde)]'
                 : 'border-white/30 hover:border-[var(--verde)]'
-            } bg-[var(--obsidian-light)] transition-all`}
-            style={{ width: config.avatar, height: config.avatar }}
+            } bg-[var(--obsidian-light)] transition-all w-8 h-8 md:w-10 md:h-10`}
           >
             {player.photo ? (
               <img
@@ -194,9 +193,9 @@ export function DraggablePlayer({
           {/* Jersey Number Overlay */}
           {player.number && (
             <div
-              className="absolute -top-1 -right-1 bg-[var(--obsidian)] border border-[var(--verde)] rounded-full w-5 h-5 flex items-center justify-center"
+              className="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 bg-[var(--obsidian)] border border-[var(--verde)] rounded-full w-4 h-4 md:w-5 md:h-5 flex items-center justify-center"
             >
-              <span className="text-[9px] font-bold text-[var(--verde)]">
+              <span className="text-[7px] md:text-[9px] font-bold text-[var(--verde)]">
                 {player.number}
               </span>
             </div>
@@ -205,10 +204,10 @@ export function DraggablePlayer({
           {/* Remove Button */}
           <button
             onClick={handleRemove}
-            className="absolute -top-1 -left-1 bg-black/80 hover:bg-red-500 rounded-full w-5 h-5 flex items-center justify-center transition-colors shadow-lg z-10 pointer-events-auto border border-white/30"
+            className="absolute -top-0.5 -left-0.5 md:-top-1 md:-left-1 bg-black/80 hover:bg-red-500 rounded-full w-4 h-4 md:w-5 md:h-5 flex items-center justify-center transition-colors shadow-lg z-10 pointer-events-auto border border-white/30"
             title="Remove from lineup"
           >
-            <X className="w-3 h-3 text-white" />
+            <X className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
           </button>
 
           {/* Hover Tooltip */}
@@ -233,7 +232,7 @@ export function DraggablePlayer({
 
         {/* Position Badge */}
         <div
-          className={`px-2 py-0.5 rounded border ${positionColor} ${config.text} font-bold uppercase tracking-wide whitespace-nowrap`}
+          className={`px-1 md:px-2 py-0.5 rounded border ${positionColor} ${config.text} font-bold uppercase tracking-wide whitespace-nowrap`}
         >
           {position.role}
         </div>
