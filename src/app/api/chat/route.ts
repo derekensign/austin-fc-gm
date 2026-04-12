@@ -1,11 +1,51 @@
 import { anthropic } from '@ai-sdk/anthropic';
 import { streamText } from 'ai';
+import { headers } from 'next/headers';
 import { getRulesContext, rosterConstructionModels, designatedPlayerRules, u22InitiativeRules, allocationMoney, internationalSlots, freeAgencyRules, homegrownRules, tradeRules } from '@/data/mls-rules-2025';
 import { austinFCRoster, MLS_2026_RULES, AUSTIN_FC_2026_TRANSACTIONS } from '@/data/austin-fc-roster';
 import { getMergedRosters, generateMergedRosterSummaryForAI, getMLSPASalariesCount } from '@/lib/data-sources/mls-merged-rosters';
 import { ALL_TRANSFERS, getTransferStats, getMLSTeams } from '@/data/mls-transfers-all';
 
 export const maxDuration = 60;
+
+// --- Rate limiting ---
+const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 10;  // max requests per window
+
+interface RateLimitEntry {
+  timestamps: number[];
+}
+
+const rateLimitStore = new Map<string, RateLimitEntry>();
+
+// Clean up stale entries every 5 minutes to prevent memory leak
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, entry] of rateLimitStore) {
+    entry.timestamps = entry.timestamps.filter(t => now - t < RATE_LIMIT_WINDOW_MS);
+    if (entry.timestamps.length === 0) {
+      rateLimitStore.delete(key);
+    }
+  }
+}, 5 * 60_000);
+
+function isRateLimited(clientIp: string): { limited: boolean; retryAfterSeconds?: number } {
+  const now = Date.now();
+  const entry = rateLimitStore.get(clientIp) ?? { timestamps: [] };
+
+  // Remove timestamps outside the window
+  entry.timestamps = entry.timestamps.filter(t => now - t < RATE_LIMIT_WINDOW_MS);
+
+  if (entry.timestamps.length >= RATE_LIMIT_MAX_REQUESTS) {
+    const oldestInWindow = entry.timestamps[0];
+    const retryAfterSeconds = Math.ceil((oldestInWindow + RATE_LIMIT_WINDOW_MS - now) / 1000);
+    return { limited: true, retryAfterSeconds };
+  }
+
+  entry.timestamps.push(now);
+  rateLimitStore.set(clientIp, entry);
+  return { limited: false };
+}
 
 // Generate Austin FC roster context from actual data
 function generateRosterContext() {
@@ -237,6 +277,26 @@ ${summary}
 }
 
 export async function POST(req: Request) {
+  // Rate limiting
+  const headersList = await headers();
+  const clientIp = headersList.get('x-forwarded-for')?.split(',')[0]?.trim()
+    ?? headersList.get('x-real-ip')
+    ?? 'unknown';
+  const { limited, retryAfterSeconds } = isRateLimited(clientIp);
+
+  if (limited) {
+    return new Response(
+      JSON.stringify({ error: 'Too many requests. Please wait before sending another message.' }),
+      {
+        status: 429,
+        headers: {
+          'Content-Type': 'application/json',
+          'Retry-After': String(retryAfterSeconds),
+        },
+      },
+    );
+  }
+
   const { messages } = await req.json();
 
   // Fetch MLS-wide context (async)
@@ -248,7 +308,7 @@ export async function POST(req: Request) {
   const fullSystemPrompt = systemPrompt + mlsContext + transferContext;
 
   const result = streamText({
-    model: anthropic('claude-sonnet-4-5'),
+    model: anthropic(process.env.CHAT_MODEL_ID || 'claude-sonnet-4-5'),
     system: fullSystemPrompt,
     messages,
   });

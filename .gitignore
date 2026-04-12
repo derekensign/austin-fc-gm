@@ -43,3 +43,17 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 mcp-servers/*/node_modules
+
+# Debug screenshots
+austin-fc-debug.png
+mls-*-error*.png
+
+# One-off test/diagnostic scripts in root
+test-*.mjs
+
+# Intermediate/backup data files
+data/*.backup.json
+data/*-enriched.json
+data/*-final.json
+data/transfermarkt-api-responses.json
+data/mls-player-stats-2024.json

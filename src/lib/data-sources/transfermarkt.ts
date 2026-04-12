@@ -169,20 +169,6 @@ export async function getTeamValuations(teamId: number = AUSTIN_FC_TM_ID, forceR
     // Wait a bit for dynamic content
     await new Promise(r => setTimeout(r, 3000));
     
-    // Debug: Log what we see on the page
-    const debugInfo = await page.evaluate(() => {
-      const tables = document.querySelectorAll('table');
-      const items = document.querySelectorAll('.items');
-      return {
-        url: window.location.href,
-        title: document.title,
-        tableCount: tables.length,
-        itemsCount: items.length,
-        bodyPreview: document.body?.innerText?.substring(0, 500) || 'no body',
-      };
-    });
-    console.log('Transfermarkt debug:', JSON.stringify(debugInfo, null, 2));
-    
     // Extract data directly from the DOM using page.evaluate
     const players = await page.evaluate(() => {
       const results: {
@@ -369,9 +355,7 @@ export async function getTeamTransfers(teamId: number = AUSTIN_FC_TM_ID, forceRe
     if (cached) return cached;
   }
 
-  // Would need to scrape the transfers page
-  // For now, return null to indicate not implemented
-  console.log('Transfer scraping not fully implemented');
+  // Transfer scraping not yet implemented — use ALL_TRANSFERS data from data/ instead
   return null;
 }
 

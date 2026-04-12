@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef, useEffect, useState, FormEvent } from 'react';
+import { useRef, useEffect, useState, useCallback, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Bot, User, Loader2 } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, User, Loader2, Clock } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -21,7 +21,29 @@ export function ChatWidget() {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [cooldownSeconds, setCooldownSeconds] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const cooldownTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startCooldown = useCallback((seconds: number) => {
+    setCooldownSeconds(seconds);
+    if (cooldownTimerRef.current) clearInterval(cooldownTimerRef.current);
+    cooldownTimerRef.current = setInterval(() => {
+      setCooldownSeconds(prev => {
+        if (prev <= 1) {
+          if (cooldownTimerRef.current) clearInterval(cooldownTimerRef.current);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (cooldownTimerRef.current) clearInterval(cooldownTimerRef.current);
+    };
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -33,7 +55,7 @@ export function ChatWidget() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || cooldownSeconds > 0) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -56,6 +78,17 @@ export function ChatWidget() {
           })),
         }),
       });
+
+      if (response.status === 429) {
+        const retryAfter = parseInt(response.headers.get('Retry-After') ?? '30', 10);
+        startCooldown(retryAfter);
+        setMessages(prev => [...prev, {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: `You're sending messages too quickly. Please wait ${retryAfter} seconds before trying again.`,
+        }]);
+        return;
+      }
 
       if (!response.ok) throw new Error('Failed to fetch');
 
@@ -232,10 +265,18 @@ export function ChatWidget() {
                 />
                 <button
                   type="submit"
-                  disabled={!input.trim() || isLoading}
+                  disabled={!input.trim() || isLoading || cooldownSeconds > 0}
                   className="px-4 py-2.5 rounded-xl bg-[var(--verde)] text-black font-semibold hover:bg-[var(--verde-dark)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  title={cooldownSeconds > 0 ? `Wait ${cooldownSeconds}s` : undefined}
                 >
-                  <Send className="h-4 w-4" />
+                  {cooldownSeconds > 0 ? (
+                    <span className="flex items-center gap-1 text-xs font-mono">
+                      <Clock className="h-3 w-3" />
+                      {cooldownSeconds}s
+                    </span>
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
                 </button>
               </div>
             </form>

@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Verde Manager — Austin FC GM Lab
+
+A fan-built Austin FC roster management and analytics web app. Explore the salary cap, build lineups, analyze the MLS transfer market, and chat with an AI assistant loaded with real roster and salary data.
+
+**Live:** [austinfc-gm.vercel.app](https://austinfc-gm.vercel.app)
+
+## Features
+
+- **Dashboard** — Salary cap status, roster composition, and designation breakdowns at a glance
+- **Lineup Builder** — Drag-and-drop players into formations with tactical overlays; export as PNG or PDF
+- **Roster** — Sortable player table with salary, contract, and cap designation details
+- **MLS Market** — League-wide salary, transfer fee, and performance data by position
+- **Transactions** — Austin FC's recent moves and trade history
+- **MLS Rules** — Quick reference for salary cap, DP, U22, TAM/GAM, and roster construction rules
+- **Transfer Sources** — Where MLS clubs are buying from (country, league, fee benchmarks)
+- **AI Chat** — Ask questions about the roster, salary cap, trade scenarios, and transfer market — powered by Claude with real data injected into every conversation
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (Turbopack) + React 19
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS with custom Austin FC theme (Verde, Obsidian)
+- **State:** React Context API
+- **Animation:** Framer Motion
+- **Charts:** Recharts
+- **Export:** html-to-image + jsPDF
+- **AI:** Anthropic Claude via Vercel AI SDK
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Prerequisites: Node.js >= 20.9
+nvm use          # uses .nvmrc
+
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` with:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+ANTHROPIC_API_KEY=sk-ant-...    # Required for AI chat
+CHAT_MODEL_ID=claude-sonnet-4-5 # Optional — override the chat model
+```
 
-## Learn More
+## Data Sources
 
-To learn more about Next.js, take a look at the following resources:
+| Data | Source | Updated |
+|------|--------|---------|
+| Player salaries | [MLSPA Salary Guide](https://mlsplayers.org/resources/salary-guide) (Oct 2025) | Jan 2026 |
+| Austin FC roster | [austinfc.com/roster](https://www.austinfc.com/roster) | Mar 2026 |
+| Transfer fees | [Transfermarkt](https://www.transfermarkt.us) (2020–2025) | Feb 2026 |
+| Player stats | [MLSSoccer.com](https://www.mlssoccer.com/stats/) (2025 season) | Feb 2026 |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/              # Next.js App Router pages + API routes
+├── components/       # UI components (chat, dashboard, layout, lineup)
+├── context/          # React Context (LineupContext, AllocationContext)
+├── data/             # Static TypeScript data (roster, salaries, transfers, stats)
+├── hooks/            # Custom hooks (useLiveData)
+└── lib/              # Utilities (cache, data sources, market data processing)
 
-## Deploy on Vercel
+data/                 # Raw JSON data files
+scripts/              # Data scraping and processing scripts (Playwright, Cheerio)
+mcp-servers/          # Local MCP servers for editor AI integration
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Hosted on [Vercel](https://vercel.com) with automatic deployments from `main`.
+
+```bash
+npm run build   # Verify production build locally
+```
+
+## License
+
+This is a personal fan project and is not affiliated with Austin FC, Major League Soccer, or MLS Players Association.
