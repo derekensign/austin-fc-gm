@@ -121,9 +121,9 @@ export default function Dashboard() {
       {/* Main Content Grid - 3:1 ratio matching the stats row above */}
       {/* Wrap in AllocationProvider so RosterOverview and SalaryCapCard share state */}
       <AllocationProvider>
-        <div className="grid grid-cols-1 xl:grid-cols-4 gap-2 md:gap-3">
-          {/* Roster Overview - 3 columns */}
-          <div className="xl:col-span-3">
+        <div className="grid grid-cols-1 2xl:grid-cols-4 gap-2 md:gap-3">
+          {/* Roster Overview - 3 columns on wide screens, full width on laptops */}
+          <div className="2xl:col-span-3">
             <RosterOverview />
           </div>
 

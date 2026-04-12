@@ -64,6 +64,17 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
+  // Auto-collapse sidebar on laptop-sized screens (<1280px)
+  useEffect(() => {
+    const handleResize = () => {
+      const isLaptop = window.innerWidth < 1280;
+      setIsCollapsed(isLaptop);
+    };
+    handleResize(); // Set initial state
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <SidebarContext.Provider value={{ isCollapsed, setIsCollapsed, isMobileOpen, setIsMobileOpen }}>
       {children}
