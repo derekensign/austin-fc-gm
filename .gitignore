@@ -48,6 +48,9 @@ mcp-servers/*/node_modules
 austin-fc-debug.png
 mls-*-error*.png
 
+# Scripts (dev-only scrapers and utilities, kept locally)
+/scripts/
+
 # One-off test/diagnostic scripts in root
 test-*.mjs
 
@@ -55,5 +58,9 @@ test-*.mjs
 data/*.backup.json
 data/*-enriched.json
 data/*-final.json
+data/*-supplement.json
 data/transfermarkt-api-responses.json
 data/mls-player-stats-2024.json
+
+# Claude skills (auto-generated)
+.claude/skills/
