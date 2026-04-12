@@ -1,8 +1,10 @@
-// Comprehensive MLS Transfer Data from Transfermarkt (2020-2024)
+// Comprehensive MLS Transfer Data from Transfermarkt (2015-2026)
 // Countries extracted directly from Transfermarkt flag images
 // Values converted from EUR to USD
+// Includes historical supplement for pre-2021 high-profile transfers
 
 import transferData from '../../data/mls-transfers-all-years.json';
+import historicalSupplement from '../../data/mls-transfers-historical-supplement.json';
 
 export interface TransferRecord {
   playerName: string;
@@ -97,22 +99,103 @@ function isLikelyDeparture(sourceClub: string, sourceCountry: string, fee: numbe
   return false;
 }
 
-// Convert EUR values to USD - now we only have incoming arrivals from the parser
-export const ALL_TRANSFERS: TransferRecord[] = (transferData as any).transfers
+// List of MLS teams to identify internal transfers
+const MLS_TEAMS = [
+  'Atlanta United', 'Austin FC', 'Charlotte FC', 'Chicago Fire', 'FC Cincinnati',
+  'Colorado Rapids', 'Columbus Crew', 'D.C. United', 'FC Dallas', 'Houston Dynamo',
+  'LA Galaxy', 'LAFC', 'Inter Miami', 'Minnesota United', 'CF Montréal', 'Nashville SC',
+  'New England Revolution', 'New York City FC', 'New York Red Bulls', 'Orlando City',
+  'Philadelphia Union', 'Portland Timbers', 'Real Salt Lake', 'San Jose Earthquakes',
+  'Seattle Sounders', 'Sporting Kansas City', 'St. Louis CITY', 'Toronto FC', 'Vancouver Whitecaps',
+  'San Diego FC', // 2025 expansion
+];
+
+// Check if a club name matches any MLS team
+function isMLSTeam(clubName: string): boolean {
+  const normalized = clubName.toLowerCase().trim();
+  return MLS_TEAMS.some(team =>
+    normalized.includes(team.toLowerCase()) ||
+    team.toLowerCase().includes(normalized)
+  );
+}
+
+// Known European/international professional clubs (partial matches)
+const PROFESSIONAL_CLUB_KEYWORDS = [
+  // Top 5 leagues
+  'chelsea', 'liverpool', 'arsenal', 'manchester', 'tottenham', 'newcastle', 'fulham', 'brighton',
+  'barcelona', 'real madrid', 'atletico', 'sevilla', 'valencia', 'celta', 'villarreal',
+  'bayern', 'dortmund', 'leverkusen', 'leipzig', 'frankfurt', 'freiburg', 'wolfsburg', 'fürth', 'fortuna',
+  'juventus', 'inter', 'milan', 'napoli', 'roma', 'lazio', 'atalanta', 'fiorentina', 'bologna',
+  'psg', 'marseille', 'lyon', 'monaco', 'lille', 'nice', 'rennes', 'strasbourg', 'montpellier', 'metz',
+  // Other European
+  'ajax', 'psv', 'feyenoord', 'brugge', 'anderlecht', 'benfica', 'porto', 'sporting',
+  'celtic', 'rangers', 'antwerp', 'lokeren', 'swansea', 'derby', 'middlesbrough',
+  // South American
+  'boca', 'river', 'palmeiras', 'flamengo', 'corinthians', 'santos', 'gremio', 'botafogo',
+  // Mexican
+  'tigres', 'monterrey', 'america', 'chivas', 'cruz azul', 'pachuca', 'leon', 'toluca', 'tijuana', 'atlas',
+];
+
+// US non-professional sources to exclude (colleges, academies, USL2, amateur)
+const EXCLUDE_SOURCES = [
+  'academy', 'acad.', 'acad', 'hoosier', 'bruins', 'cardinal', 'bluejays', 'billikens', 'stags',
+  'pioneers', 'camels', 'hurricane', 'crimson', 'big red', 'tar heels', 'wolfpack', 'wildcats',
+  'bulldogs', 'tigers', 'trojans', 'buckeyes', 'spartans', 'wolverines', 'badgers', 'hawkeyes',
+  'fighting', 'golden', 'st.', 'college', 'university', 'u-', 'ii', ' b', 'b ', '2 ', ' 2',
+  'without club', 'unattached', 'free agent',
+];
+
+function isProfessionalSource(sourceClub: string): boolean {
+  if (!sourceClub) return false;
+  const clubLower = sourceClub.toLowerCase();
+
+  // Check if it's a known professional club
+  if (PROFESSIONAL_CLUB_KEYWORDS.some(kw => clubLower.includes(kw))) {
+    return true;
+  }
+
+  // Check if it's an MLS team
+  if (isMLSTeam(sourceClub)) {
+    return true;
+  }
+
+  // Exclude known non-professional sources
+  if (EXCLUDE_SOURCES.some(exc => clubLower.includes(exc))) {
+    return false;
+  }
+
+  // Default: keep if it doesn't match exclusion patterns
+  // This catches European clubs not in our keyword list
+  return true;
+}
+
+// Convert EUR values to USD - now includes MLS-to-MLS transfers + historical supplement
+const mainTransfers = (transferData as any).transfers
   .filter((t: any) => {
     // Filter out transfers with unknown or missing source country
     if (!t.sourceCountry || t.sourceCountry === 'Unknown') return false;
-    
-    // Filter out US domestic transfers (internal MLS moves, USL, college, etc.)
-    if (t.sourceCountry === 'United States' || t.sourceCountry === 'USA') return false;
-    
-    return true;
+
+    // Keep all international transfers (non-US nationality)
+    if (t.sourceCountry !== 'United States' && t.sourceCountry !== 'USA') return true;
+
+    // For US players, check if source club is professional
+    // This keeps returns from Europe (e.g., Turner from Lyon, Steffen from Man City)
+    return isProfessionalSource(t.sourceClub);
   })
   .map((t: any) => ({
     ...t,
     marketValue: Math.round((t.marketValue || 0) * EUR_TO_USD),
     fee: Math.round((t.fee || 0) * EUR_TO_USD),
   }));
+
+// Add historical supplement transfers (already in USD)
+const supplementalTransfers = (historicalSupplement as any).transfers;
+
+// Merge all transfers
+export const ALL_TRANSFERS: TransferRecord[] = [
+  ...supplementalTransfers,
+  ...mainTransfers
+];
 
 // Get unique list of MLS teams from the data
 export function getMLSTeams(): string[] {

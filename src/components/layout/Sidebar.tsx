@@ -13,7 +13,7 @@ import {
   Settings,
   Search,
   // DollarSign, // Hidden per user request
-  // BarChart3, // Hidden per user request
+  BarChart3,
   Shield,
   ChevronDown,
   ChevronLeft,
@@ -35,6 +35,7 @@ const navigation = [
   { name: 'GAM/TAM Transactions', href: '/transactions', icon: ArrowLeftRight },
   { name: 'Transfer Calculator', href: '/rules', icon: Calculator },
   { name: 'Transfer Sources', href: '/transfer-sources', icon: Globe },
+  { name: 'MLS Market Analysis', href: '/mls-market', icon: BarChart3 },
 ];
 
 const secondaryNav = [
@@ -158,31 +159,7 @@ export function Sidebar() {
           );
         })}
 
-        <div className="my-3 border-t border-[var(--obsidian-lighter)]" />
-
-        {showFull && (
-          <p className="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-white/40">
-            Tools
-          </p>
-        )}
-        {secondaryNav.map((item) => {
-          const isActive = pathname === item.href;
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
-                isActive
-                  ? 'bg-[var(--verde)]/10 text-[var(--verde)]'
-                  : 'text-white/70 hover:bg-[var(--obsidian-lighter)] hover:text-white'
-              } ${!showFull ? 'justify-center' : ''}`}
-              title={!showFull ? item.name : undefined}
-            >
-              <item.icon className="h-5 w-5 flex-shrink-0" />
-              {showFull && <span className="font-medium text-sm">{item.name}</span>}
-            </Link>
-          );
-        })}
+        {/* Tools section hidden — Trade Analyzer and Settings pages not yet implemented */}
       </nav>
 
       {/* User */}

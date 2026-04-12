@@ -152,14 +152,16 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
     annualAllocation: 3_280_000,
     thirdDPDistribution: 0,         // $0 - using all 3 DP slots (Vazquez, Uzuni, Torres)
     bukariSaleGAM: 0,               // $0! Sold at LOSS (€5.5M vs €8M acquisition)
-    
+    laGalaxyIntlSlot: 240_000,      // +$240K from LA Galaxy international slot trade (Feb 2026)
+    rslIntlSlot: 235_000,           // +$235K from Real Salt Lake international slot trade (Feb 2026)
+
     // 2026 Debits (already committed)
     nelsonTradeGAM2027: -550_000,   // Owes Vancouver $550K in 2027 GAM
-    
+
     // Current available GAM (2026)
     // Note: deficit includes Nelson ($700K), but Taylor ($250K) is separate
     taylorTrade2026: -250_000,
-    available2026: 3_280_000 + 0 + 0 - 605_364 - 250_000, // = $2,424,636
+    available2026: 3_280_000 + 0 + 0 + 240_000 + 235_000 - 605_364 - 250_000, // = $2,899,636
     
     // Reserved for cap compliance (GAM portion only - TAM covers $2.0M first)
     // Total buydowns needed: $2.44M (from $8.86M charge - $6.42M budget)
@@ -167,7 +169,7 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
     estimatedBuydownsNeeded: 440_000, // GAM portion after TAM exhausted
     
     // Free GAM after compliance
-    freeGAM: 3_280_000 + 0 + 0 - 605_364 - 250_000 - 440_000, // = $1,984,636
+    freeGAM: 3_280_000 + 0 + 0 + 240_000 + 235_000 - 605_364 - 250_000 - 440_000, // = $2,459,636
   },
   
   // =====================================================
@@ -190,13 +192,13 @@ export const AUSTIN_FC_2026_ALLOCATION_POSITION = {
   // =====================================================
   combined: {
     // For new signings (after cap compliance)
-    // GAM: $3.28M + $0 - $0.6M deficit - $0.25M Taylor - $0.44M buydowns = $1.98M
-    freeGAM: 1_984_636,
+    // GAM: $3.28M + $0.24M LA Galaxy + $0.235M RSL + $0 - $0.6M deficit - $0.25M Taylor - $0.44M buydowns = $2.46M
+    freeGAM: 2_459_636,
     freeTAM: 125_000,
-    totalFlexibility: 1_984_636 + 125_000, // = $2,109,636
+    totalFlexibility: 2_459_636 + 125_000, // = $2,584,636
 
     // For trades
-    tradeableGAM: 1_984_636,  // GAM is tradeable
+    tradeableGAM: 2_459_636,  // GAM is tradeable
     tradeableTAM: 0,          // TAM cannot be traded
   },
   
@@ -244,20 +246,20 @@ export const AUSTIN_FC_2027_ALLOCATION_POSITION = {
     thirdDPDistribution: 250_000,   // Estimated - depends on roster build
     
     // Carried over from 2026 (estimated - depends on 2026 usage)
-    estimatedCarryover: 1_024_636,   // Assuming same free GAM as projected 2026
+    estimatedCarryover: 1_259_636,   // Assuming same free GAM as projected 2026
     
     // 2027 Debits (already committed from previous trades)
     nelsonGAMToVancouver: -550_000,
     taylorConditionalToMiami: -50_000,
     
     // Gross available (before buydowns)
-    grossAvailable: 3_921_000 + 250_000 + 1_024_636 - 550_000 - 50_000, // = $4,595,636
+    grossAvailable: 3_921_000 + 250_000 + 1_259_636 - 550_000 - 50_000, // = $4,830,636
     
     // Estimated for cap compliance (will vary based on roster)
     estimatedBuydownsNeeded: 1_500_000,
     
     // Free GAM after compliance
-    freeGAM: 3_921_000 + 250_000 + 1_024_636 - 550_000 - 50_000 - 1_500_000, // = $3,095,636
+    freeGAM: 3_921_000 + 250_000 + 1_259_636 - 550_000 - 50_000 - 1_500_000, // = $3,330,636
   },
   
   // =====================================================
@@ -276,11 +278,11 @@ export const AUSTIN_FC_2027_ALLOCATION_POSITION = {
   // COMBINED FLEXIBILITY (PROJECTED)
   // =====================================================
   combined: {
-    freeGAM: 3_095_636,
+    freeGAM: 3_330_636,
     freeTAM: 525_000,
-    totalFlexibility: 3_095_636 + 525_000, // = $3,620,636
-    
-    tradeableGAM: 3_095_636,
+    totalFlexibility: 3_330_636 + 525_000, // = $3,855,636
+
+    tradeableGAM: 3_330_636,
     tradeableTAM: 0,
   },
   
@@ -398,7 +400,8 @@ export type TransactionType =
 
 export interface AllocationTransaction {
   id: string;
-  date: string;
+  date: string;             // When the GAM/TAM is allocated (the year it applies to)
+  tradeDate?: string;       // When the trade actually happened (for multi-year deals)
   type: TransactionType;
   amount: number | null;  // null if undisclosed
   conditionalAmount?: number;  // additional conditional GAM
@@ -774,9 +777,36 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
     source: 'https://www.austinfc.com/news/austin-fc-acquires-robert-taylor-in-trade-with-inter-miami-cf',
     verified: true,
   },
+
+  // International Roster Slot Trade with LA Galaxy (2026)
+  {
+    id: '2026-la-galaxy-intl-slot',
+    date: '2026-02-01',
+    type: 'GAM_TRADED_IN',
+    amount: 240_000,
+    amountEstimated: false,
+    description: 'GAM received from LA Galaxy in exchange for 2026 international roster slot',
+    counterparty: 'LA Galaxy',
+    source: 'https://www.austinfc.com/news/',
+    verified: true,
+  },
+  // International Roster Slot Trade with Real Salt Lake (2026)
+  {
+    id: '2026-rsl-intl-slot',
+    date: '2026-02-03',
+    type: 'GAM_TRADED_IN',
+    amount: 235_000,
+    amountEstimated: false,
+    description: 'GAM received from Real Salt Lake in exchange for 2026 international roster slot (returns at secondary window)',
+    counterparty: 'Real Salt Lake',
+    source: 'https://www.austinfc.com/news/',
+    notes: 'International slot returns to Austin FC when secondary transfer window opens July 13, 2026.',
+    verified: true,
+  },
   {
     id: '2026-taylor-miami-2026gam',
-    date: '2026-03-01',  // Use March to avoid timezone issues
+    date: '2026-03-01',
+    tradeDate: '2025-01-09',  // Actual trade date
     type: 'GAM_TRADED_OUT',
     amount: 250_000,
     amountEstimated: false,
@@ -815,11 +845,12 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
   // Note: Date set to 2026-03-01 because this is 2026 GAM being traded
   {
     id: '2026-nelson-vancouver-2026gam',
-    date: '2026-03-01',  // 2026 GAM (trade happened Dec 2025)
+    date: '2026-03-01',  // 2026 GAM allocation year
+    tradeDate: '2025-12-18',  // Actual trade date
     type: 'GAM_TRADED_OUT',
     amount: 700_000,
     amountEstimated: false,
-    description: 'GAM sent (2026) to Vancouver in Jayden Nelson trade (Dec 2025)',
+    description: 'GAM sent (2026) to Vancouver in Jayden Nelson trade',
     relatedPlayer: 'Jayden Nelson',
     counterparty: 'Vancouver Whitecaps FC',
     source: 'https://www.austinfc.com/news/austin-fc-acquires-winger-jayden-nelson-in-trade-with-vancouver',
@@ -873,6 +904,7 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
   {
     id: '2027-nelson-vancouver-2027gam',
     date: '2027-03-01',
+    tradeDate: '2025-12-18',  // Actual trade date
     type: 'GAM_TRADED_OUT',
     amount: 550_000,
     amountEstimated: false,
@@ -885,6 +917,7 @@ export const austinFCAllocationHistory: AllocationTransaction[] = [
   {
     id: '2027-taylor-miami-conditional',
     date: '2027-01-01',
+    tradeDate: '2025-01-09',  // Actual trade date
     type: 'GAM_TRADED_OUT',
     amount: 50_000,
     conditionalTerms: 'Conditional',

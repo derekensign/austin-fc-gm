@@ -160,6 +160,10 @@ export const MLS_2026_RULES = {
   maxCashTransfersPerWindow: 2,   // Cash transfers per trade window
 };
 
+// International slots traded away in 2026
+// These reduce the available slots but not the base max (8)
+export const AUSTIN_FC_2026_INTL_SLOTS_TRADED = 2; // LA Galaxy (season-long) + RSL (returns July 13, 2026)
+
 // Austin FC 2026 Transaction Usage Tracking
 export const AUSTIN_FC_2026_TRANSACTIONS = {
   buyoutsUsed: 1,                 // Jáder Obrian (Jan 27, 2026)
@@ -1065,7 +1069,7 @@ export function calculateRosterCapSummary(): RosterCapSummary {
     u22SlotsUsed: u22s.length,
     u22SlotsAvailable: 3 - u22s.length,
     internationalSlotsUsed: intl.length,
-    internationalSlotsAvailable: MLS_2026_RULES.maxInternationalSlots - intl.length,
+    internationalSlotsAvailable: MLS_2026_RULES.maxInternationalSlots - AUSTIN_FC_2026_INTL_SLOTS_TRADED - intl.length,
     seniorSlotsAvailable: MLS_2026_RULES.maxSeniorRoster - senior.length,
     supplementalSlotsAvailable: MLS_2026_RULES.maxSupplementalRoster - supplemental.length,
   };

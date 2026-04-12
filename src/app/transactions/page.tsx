@@ -89,12 +89,30 @@ function TransactionCard({ transaction }: { transaction: AllocationTransaction }
         </div>
         
         {/* Right: Date */}
-        <div className="flex items-center gap-1.5 text-white/40 text-sm">
-          <Calendar className="h-3.5 w-3.5" />
-          {new Date(transaction.date).toLocaleDateString('en-US', { 
-            month: 'short', 
-            year: 'numeric' 
-          })}
+        <div className="text-right text-sm">
+          {transaction.tradeDate ? (
+            <>
+              <div className="flex items-center gap-1.5 text-white/60">
+                <Calendar className="h-3.5 w-3.5" />
+                {new Date(transaction.tradeDate + 'T00:00:00').toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric'
+                })}
+              </div>
+              <div className="text-[10px] text-white/30 mt-0.5">
+                {new Date(transaction.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric' })} GAM
+              </div>
+            </>
+          ) : (
+            <div className="flex items-center gap-1.5 text-white/40">
+              <Calendar className="h-3.5 w-3.5" />
+              {new Date(transaction.date + 'T00:00:00').toLocaleDateString('en-US', {
+                month: 'short',
+                year: 'numeric'
+              })}
+            </div>
+          )}
         </div>
       </div>
       

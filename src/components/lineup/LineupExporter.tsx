@@ -26,12 +26,15 @@ export function LineupExporter() {
         return;
       }
 
+      // Get the actual element dimensions
+      const rect = element.getBoundingClientRect();
+
       const dataUrl = await toPng(element, {
         quality: 1.0,
-        width: 2400,
-        height: 3200,
         backgroundColor: '#1a1a1a',
-        pixelRatio: 3,
+        pixelRatio: 4, // High resolution export (4x the screen resolution)
+        width: rect.width,
+        height: rect.height,
       });
 
       // Download
@@ -59,12 +62,15 @@ export function LineupExporter() {
         return;
       }
 
+      // Get the actual element dimensions
+      const rect = element.getBoundingClientRect();
+
       const dataUrl = await toPng(element, {
         quality: 1.0,
-        width: 2400,
-        height: 3200,
         backgroundColor: '#1a1a1a',
-        pixelRatio: 3,
+        pixelRatio: 4, // High resolution export (4x the screen resolution)
+        width: rect.width,
+        height: rect.height,
       });
 
       // Create PDF (A4 portrait)
