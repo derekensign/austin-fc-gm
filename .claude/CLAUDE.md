@@ -4,7 +4,7 @@
 
 Verde Manager - An Austin FC roster management and lineup builder application built with Next.js, React, and TypeScript.
 
-**Live URL:** https://austinfc-gm.vercel.app
+**Live URL:** https://verdemanager.com (also: https://austinfc-gm.vercel.app)
 
 **Key Features:**
 - Interactive lineup builder with drag-and-drop players

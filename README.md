@@ -2,7 +2,7 @@
 
 A fan-built Austin FC roster management and analytics web app. Explore the salary cap, build lineups, analyze the MLS transfer market, and chat with an AI assistant loaded with real roster and salary data.
 
-**Live:** [austinfc-gm.vercel.app](https://austinfc-gm.vercel.app)
+**Live:** [verdemanager.com](https://verdemanager.com)
 
 ## Features
 

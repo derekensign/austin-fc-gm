@@ -388,7 +388,7 @@ export const designatedPlayerRules = {
    * DPs count against the salary budget at the Maximum Salary Budget Charge,
    * NOT their actual salary.
    */
-  budgetCharge: 743_750, // 2025
+  budgetCharge: 803_125, // 2026 (was $743,750 in 2025)
 
   /**
    * YOUNG DESIGNATED PLAYER
@@ -1231,6 +1231,29 @@ export const transferWindows2025 = {
   },
 };
 
+export const transferWindows2026 = {
+  primary: {
+    start: '2026-02-13',
+    end: '2026-05-06',
+    description: 'Main window for international signings and MLS trades',
+  },
+  secondary: {
+    start: '2026-07-07',
+    end: '2026-08-05',
+    description: 'Mid-season window for roster adjustments',
+  },
+  rosterComplianceDate: {
+    date: '2026-02-20',
+    time: '8:00 PM ET',
+    description: 'Clubs must be roster and budget compliant for season start',
+  },
+  rosterFreezeDate: {
+    date: '2026-09-11',
+    description: 'Final 30-man roster submitted, no changes until after MLS Cup',
+    exception: 'Extreme Hardship',
+  },
+};
+
 // ============================================================================
 // PLAYER PROFESSIONAL DEVELOPMENT ROLE (2025+)
 // Source: https://www.mlssoccer.com/about/roster-rules-and-regulations
@@ -1326,6 +1349,20 @@ export const keyDates2025 = {
   midseasonModelSwitchWindow: {
     start: '2025-07-01',
     end: '2025-08-21',
+  },
+};
+
+export const keyDates2026 = {
+  rosterComplianceDate: '2026-02-20',
+  primaryTransferWindowOpen: '2026-02-13',
+  primaryTransferWindowClose: '2026-05-06',
+  secondaryTransferWindowOpen: '2026-07-07',
+  secondaryTransferWindowClose: '2026-08-05',
+  tradeDeadline: '2026-08-05',
+  rosterFreezeDate: '2026-09-11',
+  midseasonModelSwitchWindow: {
+    start: '2026-07-01',
+    end: '2026-08-20',
   },
 };
 
@@ -2378,52 +2415,82 @@ export const cbaArticle15LoansTransfers = {
 // ============================================================================
 
 /**
- * AUSTIN FC 2025 RULES QUICK REFERENCE
+ * AUSTIN FC 2025 RULES QUICK REFERENCE (HISTORICAL)
  * Source: https://www.mlssoccer.com/about/roster-rules-and-regulations (Feb 5, 2025)
  */
 export const austinFC2025QuickReference = {
-  // Budget
   salaryBudget: '$5,950,000',
   maxBudgetCharge: '$743,750 (becomes DP above this)',
-  
-  // Roster Construction Models (choose one by Feb 21)
   dpSlots: '3 max (Model A) or 2 max (Model B)',
   u22Slots: '3 max (Model A) or 4 max (Model B)',
-  
-  // Roster Composition
   maxRoster: '30 players total',
   seniorRoster: '20 players max (slots 1-20, count against budget)',
   supplementalRoster: '11 players max (slots 21-31, do NOT count against budget)',
-  
-  // International
   internationalSlots: '8 default (tradeable, 241 total league-wide)',
-  
-  // Allocation Money
   TAM: '$2,317,500 annually (NOT tradeable)',
   GAM: '$1,825,000 base + $2M if Model B (tradeable)',
-  
-  // TAM Salary Parameters
   tamMinToQualify: '>$743,750',
   tamMaxEligible: '$1,743,750',
   tamMinAfterBuydown: '$150,000',
-  
-  // Special Charges
   dpCharge: '$743,750 (full season), $371,875 (mid-season)',
   youngDpCharge: '$150,000 (20 or under), $200,000 (21-23)',
   u22Charge: '$150,000 (20 or under), $200,000 (21-25)',
-  
-  // Minimums
   seniorMinimum: '$104,000',
   reserveMinimum: '$80,622',
-  
-  // Key Dates
   rosterComplianceDate: 'Feb 21, 2025 8pm ET',
   primaryWindow: 'Jan 31 - Apr 23, 2025',
   secondaryWindow: 'Jul 24 - Aug 21, 2025',
   rosterFreezeDate: 'Sep 12, 2025',
-  
-  // Free Agency
   freeAgency2026: '24 years old + 4 years service',
+};
+
+/**
+ * AUSTIN FC 2026 RULES QUICK REFERENCE (CURRENT SEASON)
+ * Values from MLS_2026_RULES in austin-fc-roster.ts
+ */
+export const austinFC2026QuickReference = {
+  // Budget
+  salaryBudget: '$6,425,000',
+  maxBudgetCharge: '$803,125 (becomes DP above this)',
+
+  // Roster Construction Models (choose one by Feb 20)
+  dpSlots: '3 max (Model A) or 2 max (Model B)',
+  u22Slots: '3 max (Model A) or 4 max (Model B)',
+
+  // Roster Composition
+  maxRoster: '30 players total',
+  seniorRoster: '20 players max (slots 1-20, count against budget)',
+  supplementalRoster: '11 players max (slots 21-31, do NOT count against budget)',
+
+  // International
+  internationalSlots: '8 default (tradeable)',
+
+  // Allocation Money
+  TAM: '$2,125,000 annually (NOT tradeable)',
+  GAM: '$3,280,000 base + $2M if Model B (tradeable)',
+
+  // TAM Salary Parameters
+  tamMinToQualify: '>$803,125',
+  tamMaxEligible: '$1,803,125',
+  tamMinAfterBuydown: '$150,000',
+
+  // Special Charges
+  dpCharge: '$803,125 (full season), $401,563 (mid-season)',
+  youngDpCharge: '$150,000 (20 or under), $200,000 (21-23)',
+  u22Charge: '$150,000 (20 or under), $200,000 (21-25)',
+
+  // Minimums
+  seniorMinimum: '$113,400',
+  reserveMinimum: '$88,025',
+
+  // Key Dates
+  rosterComplianceDate: 'Feb 20, 2026 8pm ET',
+  primaryWindow: 'Feb 13 - May 6, 2026',
+  secondaryWindow: 'Jul 7 - Aug 5, 2026',
+  rosterFreezeDate: 'Sep 11, 2026',
+
+  // Free Agency
+  freeAgency: '24 years old + 4 years service',
 };
 
 // ============================================================================
@@ -2928,24 +2995,24 @@ export function calculateRosterCompliance(
  */
 /**
  * Get all rules as a formatted string for AI context
- * Source: https://www.mlssoccer.com/about/roster-rules-and-regulations (Feb 5, 2025)
+ * Updated for 2026 season values from MLS_2026_RULES
  */
 export function getRulesContext(): string {
   return `
-MLS ROSTER RULES (2025 Season)
-Source: https://www.mlssoccer.com/about/roster-rules-and-regulations
+MLS ROSTER RULES (2026 Season)
+Source: MLS CBA 2020-2028, updated for 2026 escalators
 
 ═══════════════════════════════════════════════════════════════════
-SALARY BUDGET & CHARGES (2025)
+SALARY BUDGET & CHARGES (2026)
 ═══════════════════════════════════════════════════════════════════
-Club Salary Budget: $5,950,000
-Maximum Salary Budget Charge: $743,750 (players above this = DP or need TAM)
-Senior Minimum Salary: $104,000
-Reserve Minimum Salary: $80,622
+Club Salary Budget: $6,425,000
+Maximum Salary Budget Charge: $803,125 (players above this = DP or need TAM)
+Senior Minimum Salary: $113,400
+Reserve Minimum Salary: $88,025
 
 DESIGNATED PLAYER CHARGES:
-- Full Season DP: $743,750
-- Mid-Season DP: $371,875
+- Full Season DP: $803,125
+- Mid-Season DP: $401,563
 - Young DP (20 or under): $150,000
 - Young DP (21-23): $200,000
 
@@ -2954,23 +3021,23 @@ U22 INITIATIVE CHARGES:
 - Age 21-25: $200,000
 
 ═══════════════════════════════════════════════════════════════════
-ROSTER COMPOSITION (2025)
+ROSTER COMPOSITION (2026)
 ═══════════════════════════════════════════════════════════════════
 Maximum Roster: 30 players total
 
 SENIOR ROSTER (Slots 1-20):
-- Count against $5,950,000 Salary Budget
+- Count against $6,425,000 Salary Budget
 - Slots 19-20 are optional (don't need to fill)
 - Minimum 18 players (or imputed charges apply)
 
 SUPPLEMENTAL ROSTER (Slots 21-31): ⚠️ 11 SLOTS, NOT 10!
 - Do NOT count against Salary Budget
-- Slots 21-24: Senior Minimum ($104,000) - HG, GA, Draft players
-- Slots 25-30: Reserve Minimum ($80,622) - Must be ≤24 years old
-- Slot 31: NEW! Season-long loan slot for ≤24y/o loaned to lower division
+- Slots 21-24: Senior Minimum ($113,400) - HG, GA, Draft players
+- Slots 25-30: Reserve Minimum ($88,025) - Must be ≤24 years old
+- Slot 31: Season-long loan slot for ≤24y/o loaned to lower division
 
 ═══════════════════════════════════════════════════════════════════
-ROSTER CONSTRUCTION PATH (choose by Feb 21)
+ROSTER CONSTRUCTION PATH (choose by Feb 20)
 ═══════════════════════════════════════════════════════════════════
 MODEL A - THREE DESIGNATED PLAYER MODEL:
 - Up to 3 DPs
@@ -2981,16 +3048,16 @@ MODEL B - U22 INITIATIVE PLAYER MODEL:
 - Up to 4 U22 Initiative Players
 - Additional $2,000,000 GAM (⚠️ USE-IT-OR-LOSE-IT by Roster Freeze!)
 
-Mid-season model change allowed: July 1 - Aug 21 (with conditions)
+Mid-season model change allowed: July 1 - Aug 20 (with conditions)
 
 ═══════════════════════════════════════════════════════════════════
 TARGETED ALLOCATION MONEY (TAM)
 ═══════════════════════════════════════════════════════════════════
-Annual Allocation: ~$2,317,500 (2025)
+Annual Allocation: $2,125,000 (2026)
 
 ⚠️ TAM SALARY PARAMETERS (CRITICAL!):
-- Player must earn MORE than $743,750 to qualify
-- Maximum eligible compensation: $1,743,750
+- Player must earn MORE than $803,125 to qualify
+- Maximum eligible compensation: $1,803,125
 - Cannot buy down below $150,000 using TAM
 - TAM MAY NOT BE TRADED
 
@@ -3000,27 +3067,26 @@ Club can convert TAM player back to DP if they have a free slot.
 ═══════════════════════════════════════════════════════════════════
 GENERAL ALLOCATION MONEY (GAM)
 ═══════════════════════════════════════════════════════════════════
-Annual Allocation: ~$1,825,000 base
+Annual Allocation: $3,280,000 base (2026)
 Model B Bonus: +$2,000,000 (must use same season by Roster Freeze!)
 GAM IS TRADEABLE
 
 ═══════════════════════════════════════════════════════════════════
 INTERNATIONAL SLOTS
 ═══════════════════════════════════════════════════════════════════
-Total League Slots (2025): 241 divided among 30 clubs
-Default per Club: ~8 slots
+Default per Club: 8 slots
 Slots are TRADEABLE in full season increments
 No maximum with trades
 
-Green Card Rule: Player becomes domestic if residency established by Jul 24
+Green Card Rule: Player becomes domestic if residency established by Jul 7
 
 ═══════════════════════════════════════════════════════════════════
-KEY DATES (2025)
+KEY DATES (2026)
 ═══════════════════════════════════════════════════════════════════
-Roster Compliance Date: Feb 21, 2025 (8pm ET)
-Primary Transfer Window: Jan 31 - Apr 23, 2025
-Secondary Transfer Window: Jul 24 - Aug 21, 2025
-Roster Freeze Date: Sep 12, 2025 (no changes until after MLS Cup)
+Roster Compliance Date: Feb 20, 2026 (8pm ET)
+Primary Transfer Window: Feb 13 - May 6, 2026
+Secondary Transfer Window: Jul 7 - Aug 5, 2026
+Roster Freeze Date: Sep 11, 2026 (no changes until after MLS Cup)
 
 ═══════════════════════════════════════════════════════════════════
 ⚠️ TRANSFER FEES (CRITICAL - Commonly Misunderstood!)
@@ -3029,7 +3095,7 @@ Transfer fees DO count against salary budget as AMORTIZED annual costs!
 Formula: Annual Budget Charge = Base Salary + (Transfer Fee ÷ Contract Years)
 
 EXEMPTIONS (fees DON'T add to cap):
-- DPs: Charge capped at $743,750 regardless of fee
+- DPs: Charge capped at $803,125 regardless of fee
 - U22: Charge fixed at $150-200K regardless of fee
 
 NON-EXEMPT PLAYERS (fees DO add to cap!):
@@ -3048,7 +3114,7 @@ Clubs can use up to $200K TAM/GAM for first HG contract (League approval require
 OTHER KEY RULES
 ═══════════════════════════════════════════════════════════════════
 CONTRACT BUYOUTS: Max 2 guaranteed contracts per year (including DPs)
-FREE AGENCY (2026+): Age 24+ with 4+ years MLS service
+FREE AGENCY: Age 24+ with 4+ years MLS service
 SHORT-TERM AGREEMENTS: Up to 4 weeks for emergency coverage
 PROFESSIONAL DEVELOPMENT ROLE: 1 player per club can transition to coaching/FO role
 `.trim();

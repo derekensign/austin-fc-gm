@@ -52,7 +52,7 @@ export function TeamStatsCard() {
       <div className="border-b border-[var(--obsidian-lighter)] px-4 py-3 flex items-center justify-between">
         <div>
         <h2 className="font-display text-lg text-white tracking-wide">STANDINGS</h2>
-          <p className="text-xs text-white/50">2025 Western Conference</p>
+          <p className="text-xs text-white/50">2026 Western Conference</p>
         </div>
         <span className="text-[10px] px-1.5 py-0.5 bg-[var(--verde)]/20 text-[var(--verde)] rounded">LIVE</span>
       </div>

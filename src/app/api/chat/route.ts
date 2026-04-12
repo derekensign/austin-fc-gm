@@ -78,7 +78,7 @@ function generateRosterContext() {
   return `
 ==============================================================================
 AUSTIN FC 2026 ROSTER (ACTUAL DATA - SOURCE OF TRUTH)
-Source: MLSPA Salary Guide + austinfc.com/roster (Last Updated: January 2026)
+Source: MLSPA Salary Guide (Oct 2025) + austinfc.com/roster (Last Updated: March 2026)
 ==============================================================================
 
 CURRENT ROSTER (${austinFCRoster.length} players):
@@ -169,7 +169,7 @@ INSTRUCTIONS FOR ANSWERING QUESTIONS
 6. For TRANSFER FEE questions: Use the Transfermarkt data to discuss market values, source leagues, and comparable signings.
 7. When discussing potential signings from abroad, reference similar transfers from the database for fee benchmarks.
 8. For market analysis: The transfer data shows where MLS clubs are buying from (England, Argentina, Brazil are top sources).
-9. If a player isn't in our data (very recent signing), note that their salary isn't in the October 2025 MLSPA release.
+9. If a player isn't in our data (very recent signing), note that salary data is from the MLSPA October 2025 release and may not include 2026 signings.
 
 REMEMBER: You are a GM assistant with REAL Austin FC data and MLS-wide salary data. Be accurate, not creative with numbers.`;
 

@@ -22,8 +22,8 @@ const API_HOST = 'api-football-v1.p.rapidapi.com';
 // MLS League ID in API-Football
 const MLS_LEAGUE_ID = 253;
 // Note: Free API-Football plan only has 2022-2024 data
-// Change to 2025 when you upgrade or when season data becomes available
-const CURRENT_SEASON = 2024;
+// Change to current year when you upgrade or when season data becomes available
+const CURRENT_SEASON = 2026;
 
 interface ApiResponse<T> {
   response: T;

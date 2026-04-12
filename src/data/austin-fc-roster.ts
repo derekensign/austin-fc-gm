@@ -122,9 +122,9 @@ export interface AustinFCPlayer {
   acquisitionDate?: string;
   previousClub?: string;
 
-  // Performance Stats (2025 MLS Season)
-  goals2025?: number;
-  assists2025?: number;
+  // Performance Stats (2026 MLS Season)
+  goals2026?: number;
+  assists2026?: number;
 
   // Transfer Fee / Acquisition Cost (CRITICAL for cap calculation!)
   // ⚠️ IMPORTANT DISTINCTION:
@@ -312,7 +312,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     tamApplied: 0,
     gamApplied: 0,
     budgetCharge: 325_000,
-    contractEnd: 'Dec 2025',  // Option for 2026
+    contractEnd: 'Dec 2026',  // 2026 option exercised
     designation: 'Senior',
     rosterSlot: 'Senior',
     isInternational: false,
@@ -718,7 +718,7 @@ export const austinFCRoster: AustinFCPlayer[] = [
     photo: playerImg('hjh17xntrzmyvzcfof1d.jpg'),
     baseSalary: 325_000,
     guaranteedCompensation: 375_000,
-    // ⚠️ CRITICAL: Cash trade fee IS amortized and added to budget charge per 2025 MLS rules!
+    // ⚠️ CRITICAL: Cash trade fee IS amortized and added to budget charge per MLS CBA rules!
     // $1.5M cash / 3.5 years guaranteed = ~$428K/year amortized
     // TAM Strategy: MAX OUT to $150K minimum per MLS rules ($803K - $150K = $653K TAM)
     tamApplied: 653_000,  // MAX TAM: Buy down to $150K minimum (was $428K, now maxed out)
