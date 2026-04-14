@@ -59,6 +59,7 @@ data/*.backup.json
 data/*-enriched.json
 data/*-final.json
 data/*-supplement.json
+!data/mls-transfers-historical-supplement.json
 data/transfermarkt-api-responses.json
 data/mls-player-stats-2024.json
 
