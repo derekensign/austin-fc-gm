@@ -21,7 +21,7 @@ export function MainContent({ children }: { children: React.ReactNode }) {
             href="https://buymeacoffee.com/derekensign"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFDD00]/10 text-[#FFDD00]/80 hover:bg-[#FFDD00]/20 hover:text-[#FFDD00] transition-colors text-xs font-medium"
+            className="md:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFDD00]/10 text-[#FFDD00]/80 hover:bg-[#FFDD00]/20 hover:text-[#FFDD00] transition-colors text-xs font-medium"
           >
             <span>☕</span>
             <span>Buy me a coffee — vote for the next team!</span>

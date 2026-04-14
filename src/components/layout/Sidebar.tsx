@@ -173,6 +173,20 @@ export function Sidebar() {
         {/* Tools section hidden — Trade Analyzer and Settings pages not yet implemented */}
       </nav>
 
+      {/* Buy Me a Coffee */}
+      <div className="border-t border-[var(--obsidian-lighter)] px-2 py-2">
+        <a
+          href="https://buymeacoffee.com/derekensign"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[#FFDD00]/70 hover:bg-[#FFDD00]/10 hover:text-[#FFDD00] transition-colors ${!showFull ? 'justify-center' : ''}`}
+          title={!showFull ? 'Buy me a coffee' : undefined}
+        >
+          <span className="text-base flex-shrink-0">☕</span>
+          {showFull && <span className="text-xs font-medium">Vote for the next team!</span>}
+        </a>
+      </div>
+
       {/* User */}
       <div className="border-t border-[var(--obsidian-lighter)] p-3">
         <div className={`flex items-center gap-3 ${!showFull ? 'justify-center' : ''}`}>
