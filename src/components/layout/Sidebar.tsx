@@ -183,7 +183,11 @@ export function Sidebar() {
           title={!showFull ? 'Buy me a coffee' : undefined}
         >
           <span className="text-base flex-shrink-0">☕</span>
-          {showFull && <span className="text-xs font-medium">Vote for the next team!</span>}
+          {showFull && (
+            <span className="text-xs font-medium leading-tight">
+              Buy me a coffee —<br />vote for the next team!
+            </span>
+          )}
         </a>
       </div>
 
