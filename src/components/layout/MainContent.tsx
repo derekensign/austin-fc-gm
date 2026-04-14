@@ -16,16 +16,27 @@ export function MainContent({ children }: { children: React.ReactNode }) {
         <div className="flex-1">
           {children}
         </div>
-        <footer className="py-4 px-6 text-center text-xs text-white/30">
-          &copy; {new Date().getFullYear()}{' '}
+        <footer className="py-5 px-6 text-center text-xs text-white/30 space-y-2">
           <a
-            href="https://derekensign.com"
+            href="https://buymeacoffee.com/derekensign"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white/40 hover:text-[var(--verde)] transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFDD00]/10 text-[#FFDD00]/80 hover:bg-[#FFDD00]/20 hover:text-[#FFDD00] transition-colors text-xs font-medium"
           >
-            derekensign
+            <span>☕</span>
+            <span>Buy me a coffee — vote for the next team!</span>
           </a>
+          <div>
+            &copy; {new Date().getFullYear()}{' '}
+            <a
+              href="https://derekensign.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/40 hover:text-[var(--verde)] transition-colors"
+            >
+              derekensign
+            </a>
+          </div>
         </footer>
       </div>
     </main>
