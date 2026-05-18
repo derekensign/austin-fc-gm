@@ -23,6 +23,7 @@ import {
   ArrowLeftRight,
   Globe,
   ClipboardList,
+  Building2,
 } from 'lucide-react';
 
 const navigation = [
@@ -35,6 +36,7 @@ const navigation = [
   { name: 'GAM/TAM Transactions', href: '/transactions', icon: ArrowLeftRight },
   { name: 'Transfer Calculator', href: '/rules', icon: Calculator },
   { name: 'Transfer Sources', href: '/transfer-sources', icon: Globe },
+  { name: 'Club Spending', href: '/club-spending', icon: Building2 },
   { name: 'MLS Market Analysis', href: '/mls-market', icon: BarChart3 },
 ];
 
