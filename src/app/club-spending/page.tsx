@@ -23,6 +23,8 @@ import {
   Trophy,
   Calendar,
   Building2,
+  ChevronDown,
+  ChevronRight,
 } from 'lucide-react';
 import { ALL_TRANSFERS, type TransferRecord, getMLSTeams } from '@/data/mls-transfers-all';
 
@@ -70,16 +72,74 @@ const MAX_YEAR = YEARS[YEARS.length - 1];
 type SortKey = 'totalSpend' | 'transfers' | 'avgFee' | 'topFee';
 type SortDirection = 'asc' | 'desc';
 
-// Only "arrival" rows in the dataset count as incoming MLS purchases.
-const INCOMING_TRANSFERS: TransferRecord[] = ALL_TRANSFERS.filter(t => t.direction === 'arrival');
-
 const VERDE = '#00b140';
-const BLUE = '#3b82f6';
 const TEAM_COLORS = [
   '#00b140', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6',
   '#10b981', '#ec4899', '#06b6d4', '#f97316', '#6366f1',
   '#14b8a6', '#a855f7', '#eab308', '#22d3ee', '#f43f5e',
 ];
+
+// Normalize a player name to a dedupe key. Uses the last whitespace-separated
+// token, lowercased and ascii-folded, so "Sebastián Driussi" and "S. Driussi"
+// collapse to the same bucket. Same-last-name distinct players moving to the
+// same MLS team across this date range is rare enough to accept as residual noise.
+function lastNameKey(playerName: string): string {
+  const last = playerName.trim().split(/\s+/).pop() || playerName;
+  return last
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase();
+}
+
+// Two-pass dedupe:
+//   1. Within a single (team, year), the same player can appear twice — usually
+//      a loan + permanent pair. Keep the highest-fee row.
+//   2. Across years, the same player joining the same team (loan-then-buy, e.g.
+//      Driussi 2021 loan + 2022 permanent) double-counts spend. Keep only the
+//      highest-fee row across all years for each (team, lastName).
+function dedupeArrivals(rows: TransferRecord[]): TransferRecord[] {
+  const withinYear = new Map<string, TransferRecord>();
+  for (const row of rows) {
+    const key = `${row.mlsTeam}|${lastNameKey(row.playerName)}|${row.year}`;
+    const existing = withinYear.get(key);
+    if (!existing || row.fee > existing.fee) withinYear.set(key, row);
+  }
+
+  const acrossYears = new Map<string, TransferRecord>();
+  for (const row of withinYear.values()) {
+    const key = `${row.mlsTeam}|${lastNameKey(row.playerName)}`;
+    const existing = acrossYears.get(key);
+    if (!existing) {
+      acrossYears.set(key, row);
+      continue;
+    }
+    // Prefer the higher-fee row. Tiebreak: prefer the more recent permanent
+    // transfer over a free loan.
+    if (
+      row.fee > existing.fee ||
+      (row.fee === existing.fee && row.transferType === 'permanent' && existing.transferType !== 'permanent')
+    ) {
+      acrossYears.set(key, row);
+    }
+  }
+
+  return Array.from(acrossYears.values());
+}
+
+const INCOMING_TRANSFERS: TransferRecord[] = dedupeArrivals(
+  ALL_TRANSFERS.filter(t => t.direction === 'arrival')
+);
+
+type ClubAgg = {
+  mlsTeam: string;
+  transfers: number;
+  totalSpend: number;
+  paidCount: number;
+  topFee: number;
+  topPlayer: string;
+  avgFee: number;
+  rows: TransferRecord[];
+};
 
 export default function ClubSpendingPage() {
   const [startYear, setStartYear] = useState<number>(MIN_YEAR);
@@ -87,6 +147,7 @@ export default function ClubSpendingPage() {
   const [sortKey, setSortKey] = useState<SortKey>('totalSpend');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
   const [showTop, setShowTop] = useState<number>(15);
+  const [expandedTeams, setExpandedTeams] = useState<Set<string>>(new Set());
 
   const formatCurrency = (amount: number) => {
     if (amount >= 1_000_000) return `$${(amount / 1_000_000).toFixed(1)}M`;
@@ -98,21 +159,13 @@ export default function ClubSpendingPage() {
   const [lo, hi] = startYear <= endYear ? [startYear, endYear] : [endYear, startYear];
   const isSingleYear = lo === hi;
 
-  const rangeTransfers = useMemo(() => {
-    return INCOMING_TRANSFERS.filter(t => t.year >= lo && t.year <= hi);
-  }, [lo, hi]);
+  const rangeTransfers = useMemo(
+    () => INCOMING_TRANSFERS.filter(t => t.year >= lo && t.year <= hi),
+    [lo, hi]
+  );
 
-  // Aggregate per MLS club for the selected window.
-  const clubData = useMemo(() => {
-    type Agg = {
-      mlsTeam: string;
-      transfers: number;
-      totalSpend: number;
-      paidCount: number;
-      topFee: number;
-      topPlayer: string;
-    };
-    const map = new Map<string, Agg>();
+  const clubData = useMemo<ClubAgg[]>(() => {
+    const map = new Map<string, ClubAgg>();
 
     rangeTransfers.forEach(t => {
       const existing = map.get(t.mlsTeam) || {
@@ -122,6 +175,8 @@ export default function ClubSpendingPage() {
         paidCount: 0,
         topFee: 0,
         topPlayer: '',
+        avgFee: 0,
+        rows: [],
       };
       existing.transfers++;
       existing.totalSpend += t.fee;
@@ -130,6 +185,7 @@ export default function ClubSpendingPage() {
         existing.topFee = t.fee;
         existing.topPlayer = t.playerName;
       }
+      existing.rows.push(t);
       map.set(t.mlsTeam, existing);
     });
 
@@ -143,6 +199,8 @@ export default function ClubSpendingPage() {
           paidCount: 0,
           topFee: 0,
           topPlayer: '',
+          avgFee: 0,
+          rows: [],
         });
       }
     });
@@ -151,6 +209,7 @@ export default function ClubSpendingPage() {
       .map(d => ({
         ...d,
         avgFee: d.paidCount > 0 ? d.totalSpend / d.paidCount : 0,
+        rows: d.rows.sort((a, b) => b.fee - a.fee || b.year - a.year),
       }))
       .sort((a, b) => {
         const multiplier = sortDirection === 'desc' ? -1 : 1;
@@ -159,6 +218,13 @@ export default function ClubSpendingPage() {
   }, [rangeTransfers, sortKey, sortDirection]);
 
   const visibleClubs = useMemo(() => clubData.slice(0, showTop), [clubData, showTop]);
+
+  // Lookup by team for the chart tooltip
+  const clubByTeam = useMemo(() => {
+    const map = new Map<string, ClubAgg>();
+    clubData.forEach(c => map.set(c.mlsTeam, c));
+    return map;
+  }, [clubData]);
 
   const summaryStats = useMemo(() => {
     const totalSpend = rangeTransfers.reduce((sum, t) => sum + t.fee, 0);
@@ -177,7 +243,6 @@ export default function ClubSpendingPage() {
     };
   }, [rangeTransfers, clubData]);
 
-  // Year-by-year spend, one series per visible club. Used when range spans 2+ seasons.
   const yearlyByClub = useMemo(() => {
     if (isSingleYear) return [];
     const seriesClubs = visibleClubs.slice(0, 8).map(c => c.mlsTeam);
@@ -207,6 +272,15 @@ export default function ClubSpendingPage() {
     }
   };
 
+  const toggleExpanded = (team: string) => {
+    setExpandedTeams(prev => {
+      const next = new Set(prev);
+      if (next.has(team)) next.delete(team);
+      else next.add(team);
+      return next;
+    });
+  };
+
   const barChartData = visibleClubs.map(c => ({
     name: fixDisplay(c.mlsTeam),
     rawTeam: c.mlsTeam,
@@ -217,6 +291,58 @@ export default function ClubSpendingPage() {
   }));
 
   const rangeLabel = isSingleYear ? `${lo}` : `${lo}–${hi}`;
+
+  // Custom tooltip — shows team aggregate + top 5 signings
+  type TooltipPayload = {
+    payload?: { rawTeam?: string };
+  };
+  const ClubTooltip = ({ active, payload }: { active?: boolean; payload?: TooltipPayload[] }) => {
+    if (!active || !payload || !payload.length) return null;
+    const team = payload[0]?.payload?.rawTeam;
+    if (!team) return null;
+    const club = clubByTeam.get(team);
+    if (!club) return null;
+
+    const topFive = club.rows.slice(0, 5);
+
+    return (
+      <div className="bg-[var(--obsidian)] border border-[var(--verde)] rounded-lg p-3 shadow-xl max-w-md">
+        <p className="font-bold text-white mb-1">🏟️ {fixDisplay(team)}</p>
+        <p className="text-xs text-white/60 mb-2">{rangeLabel}</p>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs mb-3">
+          <span className="text-white/60">Total Spend</span>
+          <span className="text-[var(--verde)] font-semibold text-right">{formatCurrency(club.totalSpend)}</span>
+          <span className="text-white/60">Transfers</span>
+          <span className="text-white font-semibold text-right">{club.transfers}</span>
+          <span className="text-white/60">Avg Paid Fee</span>
+          <span className="text-white font-semibold text-right">{club.avgFee > 0 ? formatCurrency(club.avgFee) : '-'}</span>
+          <span className="text-white/60">Top Fee</span>
+          <span className="text-white font-semibold text-right">{club.topFee > 0 ? formatCurrency(club.topFee) : '-'}</span>
+        </div>
+        {topFive.length > 0 && (
+          <>
+            <p className="text-xs text-white/40 uppercase tracking-wider mb-1">
+              {club.transfers > 5 ? `Top 5 of ${club.transfers}` : 'Signings'}
+            </p>
+            <ul className="space-y-1">
+              {topFive.map((t, i) => (
+                <li key={i} className="text-xs flex items-center justify-between gap-3">
+                  <span className="text-white/85 truncate">
+                    <span className="text-white/40 mr-1">{t.year}</span>
+                    {fixDisplay(t.playerName)}
+                    <span className="text-white/40 ml-1">({t.position})</span>
+                  </span>
+                  <span className={t.fee > 0 ? 'text-[var(--verde)] font-semibold whitespace-nowrap' : 'text-white/40 whitespace-nowrap'}>
+                    {t.fee > 0 ? formatCurrency(t.fee) : 'Free'}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--obsidian)] via-[var(--obsidian-light)] to-[var(--obsidian)]">
@@ -242,7 +368,7 @@ export default function ClubSpendingPage() {
             >
               Transfermarkt
             </a>
-            . Fees converted to USD. Only incoming transfers (arrivals) are counted.
+            . Fees in USD. Loan-then-permanent duplicates are collapsed (the higher fee is kept).
           </p>
         </div>
 
@@ -389,7 +515,7 @@ export default function ClubSpendingPage() {
 
         {/* Bar Chart - Club Ranking */}
         <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-6 mb-8">
-          <h2 className="text-xl font-bold text-white mb-4">
+          <h2 className="text-xl font-bold text-white mb-1">
             Club Ranking — {rangeLabel}
             <span className="text-sm font-normal text-white/50 ml-2">
               ({sortKey === 'totalSpend' ? 'Total Spend ($M)' :
@@ -398,6 +524,9 @@ export default function ClubSpendingPage() {
                 'Top Single Fee ($M)'})
             </span>
           </h2>
+          <p className="text-xs text-white/40 mb-4">
+            Hover a bar to see top signings • click a row in the table below to expand all transfers
+          </p>
           <div className="h-[600px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
@@ -431,23 +560,7 @@ export default function ClubSpendingPage() {
                   width={130}
                   tick={{ fontSize: 11, fill: 'rgba(255,255,255,0.85)' }}
                 />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: 'var(--obsidian)',
-                    border: '1px solid var(--verde)',
-                    borderRadius: '8px',
-                    padding: '12px 16px',
-                  }}
-                  labelStyle={{ color: 'white', fontWeight: 'bold', marginBottom: '8px' }}
-                  itemStyle={{ color: 'white', padding: '2px 0' }}
-                  cursor={{ fill: 'rgba(0, 177, 64, 0.1)' }}
-                  formatter={(value, name) => {
-                    if (value === undefined) return ['', ''];
-                    if (name === 'transfers') return [`${value} players`, '📊 Transfers'];
-                    return [`$${Number(value).toFixed(2)}M`, '💰 Value'];
-                  }}
-                  labelFormatter={(label) => `🏟️  ${label}`}
-                />
+                <Tooltip content={<ClubTooltip />} cursor={{ fill: 'rgba(0, 177, 64, 0.08)' }} />
                 <Bar
                   dataKey={
                     sortKey === 'totalSpend' ? 'spend' :
@@ -535,7 +648,7 @@ export default function ClubSpendingPage() {
           </div>
         )}
 
-        {/* Detail Table */}
+        {/* Detail Table — rows expand to show every transfer */}
         <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 overflow-hidden mb-8">
           <div className="px-6 py-4 border-b border-[var(--verde)]/20">
             <h2 className="text-xl font-bold text-white">
@@ -544,11 +657,13 @@ export default function ClubSpendingPage() {
                 ({clubData.filter(c => c.transfers > 0).length} clubs with activity)
               </span>
             </h2>
+            <p className="text-xs text-white/50 mt-1">Click any row to expand all transfers for that club.</p>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="bg-[var(--obsidian)]">
+                  <th className="px-3 py-3 w-8"></th>
                   <th className="px-6 py-3 text-left text-xs font-semibold text-white/60 uppercase tracking-wider">Rank</th>
                   <th className="px-6 py-3 text-left text-xs font-semibold text-white/60 uppercase tracking-wider">Club</th>
                   <th
@@ -583,42 +698,93 @@ export default function ClubSpendingPage() {
               <tbody className="divide-y divide-[var(--obsidian-lighter)]">
                 {clubData.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="px-6 py-8 text-center text-white/50">
+                    <td colSpan={8} className="px-6 py-8 text-center text-white/50">
                       No clubs in the selected range
                     </td>
                   </tr>
                 ) : (
-                  clubData.map((row, index) => (
-                    <tr key={row.mlsTeam} className="hover:bg-[var(--obsidian)] transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-white/50">{index + 1}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="text-sm font-medium text-white">{fixDisplay(row.mlsTeam)}</span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right">
-                        <span className={`text-sm font-semibold ${sortKey === 'totalSpend' ? 'text-[var(--verde)]' : 'text-white'}`}>
-                          {row.totalSpend > 0 ? formatCurrency(row.totalSpend) : '-'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right">
-                        <span className={`text-sm font-semibold ${sortKey === 'transfers' ? 'text-[var(--verde)]' : 'text-white'}`}>
-                          {row.transfers}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right">
-                        <span className={`text-sm font-semibold ${sortKey === 'avgFee' ? 'text-[var(--verde)]' : 'text-white'}`}>
-                          {row.avgFee > 0 ? formatCurrency(row.avgFee) : '-'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right">
-                        <span className={`text-sm font-semibold ${sortKey === 'topFee' ? 'text-[var(--verde)]' : 'text-white'}`}>
-                          {row.topFee > 0 ? formatCurrency(row.topFee) : '-'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-white/60 max-w-xs truncate">
-                        {row.topPlayer ? fixDisplay(row.topPlayer) : <span className="text-white/30">-</span>}
-                      </td>
-                    </tr>
-                  ))
+                  clubData.map((row, index) => {
+                    const isExpanded = expandedTeams.has(row.mlsTeam);
+                    const canExpand = row.rows.length > 0;
+                    return (
+                      <>
+                        <tr
+                          key={row.mlsTeam}
+                          className={`transition-colors ${canExpand ? 'cursor-pointer hover:bg-[var(--obsidian)]' : ''}`}
+                          onClick={() => canExpand && toggleExpanded(row.mlsTeam)}
+                        >
+                          <td className="px-3 py-4 text-white/40">
+                            {canExpand && (
+                              isExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />
+                            )}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-white/50">{index + 1}</td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className="text-sm font-medium text-white">{fixDisplay(row.mlsTeam)}</span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-right">
+                            <span className={`text-sm font-semibold ${sortKey === 'totalSpend' ? 'text-[var(--verde)]' : 'text-white'}`}>
+                              {row.totalSpend > 0 ? formatCurrency(row.totalSpend) : '-'}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-right">
+                            <span className={`text-sm font-semibold ${sortKey === 'transfers' ? 'text-[var(--verde)]' : 'text-white'}`}>
+                              {row.transfers}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-right">
+                            <span className={`text-sm font-semibold ${sortKey === 'avgFee' ? 'text-[var(--verde)]' : 'text-white'}`}>
+                              {row.avgFee > 0 ? formatCurrency(row.avgFee) : '-'}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-right">
+                            <span className={`text-sm font-semibold ${sortKey === 'topFee' ? 'text-[var(--verde)]' : 'text-white'}`}>
+                              {row.topFee > 0 ? formatCurrency(row.topFee) : '-'}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 text-sm text-white/60 max-w-xs truncate">
+                            {row.topPlayer ? fixDisplay(row.topPlayer) : <span className="text-white/30">-</span>}
+                          </td>
+                        </tr>
+                        {isExpanded && canExpand && (
+                          <tr key={`${row.mlsTeam}-expanded`}>
+                            <td colSpan={8} className="bg-[var(--obsidian)] px-6 py-4">
+                              <div className="overflow-x-auto">
+                                <table className="w-full text-sm">
+                                  <thead>
+                                    <tr className="text-xs text-white/40 uppercase tracking-wider">
+                                      <th className="px-3 py-2 text-left">Year</th>
+                                      <th className="px-3 py-2 text-left">Player</th>
+                                      <th className="px-3 py-2 text-left">Pos</th>
+                                      <th className="px-3 py-2 text-left">From</th>
+                                      <th className="px-3 py-2 text-left">Country</th>
+                                      <th className="px-3 py-2 text-left">Type</th>
+                                      <th className="px-3 py-2 text-right">Fee</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {row.rows.map((t, i) => (
+                                      <tr key={`${row.mlsTeam}-${i}`} className="border-t border-[var(--obsidian-lighter)]">
+                                        <td className="px-3 py-2 text-white/60">{t.year}</td>
+                                        <td className="px-3 py-2 text-white">{fixDisplay(t.playerName)}</td>
+                                        <td className="px-3 py-2 text-white/60">{t.position}</td>
+                                        <td className="px-3 py-2 text-white/70">{fixDisplay(t.sourceClub)}</td>
+                                        <td className="px-3 py-2 text-white/60">{t.sourceCountry}</td>
+                                        <td className="px-3 py-2 text-white/60 capitalize">{t.transferType}</td>
+                                        <td className={`px-3 py-2 text-right font-semibold ${t.fee > 0 ? 'text-[var(--verde)]' : 'text-white/40'}`}>
+                                          {t.fee > 0 ? formatCurrency(t.fee) : 'Free'}
+                                        </td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </>
+                    );
+                  })
                 )}
               </tbody>
             </table>
