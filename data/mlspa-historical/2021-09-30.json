@@ -1,0 +1,6955 @@
+{
+  "label": "2021-09-30",
+  "caption": "2021 MLS Player Salaries As of September 30th, 2021",
+  "releaseDate": "September 30, 2021",
+  "releaseYear": 2021,
+  "releaseSeason": "fall",
+  "totalPlayers": 868,
+  "players": [
+    {
+      "firstName": "Paxten",
+      "lastName": "Aaronson",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 87500,
+      "guaranteedCompensation": 91500
+    },
+    {
+      "firstName": "Saad",
+      "lastName": "Abdul-Salaam",
+      "club": "Columbus Crew",
+      "position": "D",
+      "baseSalary": 125000,
+      "guaranteedCompensation": 133667
+    },
+    {
+      "firstName": "Luciano",
+      "lastName": "Abecasis",
+      "club": "San Jose Earthquakes",
+      "position": "D",
+      "baseSalary": 380000,
+      "guaranteedCompensation": 394000
+    },
+    {
+      "firstName": "Ramon",
+      "lastName": "Abila",
+      "club": "DC United",
+      "position": "F",
+      "baseSalary": 800000,
+      "guaranteedCompensation": 1105000
+    },
+    {
+      "firstName": "Lalas",
+      "lastName": "Abubakar",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 210000,
+      "guaranteedCompensation": 247125
+    },
+    {
+      "firstName": "David",
+      "lastName": "Accam",
+      "club": "Nashville SC",
+      "position": "F",
+      "baseSalary": 975000,
+      "guaranteedCompensation": 1102916
+    },
+    {
+      "firstName": "Nicolas",
+      "lastName": "Acevedo",
+      "club": "New York City FC",
+      "position": "D-M",
+      "baseSalary": 135000,
+      "guaranteedCompensation": 151000
+    },
+    {
+      "firstName": "Ifunanyachi",
+      "lastName": "Achara",
+      "club": "Toronto FC",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Kellyn",
+      "lastName": "Acosta",
+      "club": "Colorado Rapids",
+      "position": "M",
+      "baseSalary": 1000000,
+      "guaranteedCompensation": 1115000
+    },
+    {
+      "firstName": "Luciano",
+      "lastName": "Acosta",
+      "club": "FC Cincinnati",
+      "position": "M",
+      "baseSalary": 1943500,
+      "guaranteedCompensation": 2222854
+    },
+    {
+      "firstName": "Bryan",
+      "lastName": "Acosta",
+      "club": "FC Dallas",
+      "position": "M",
+      "baseSalary": 650000,
+      "guaranteedCompensation": 700000
+    },
+    {
+      "firstName": "George",
+      "lastName": "Acosta",
+      "club": "Inter Miami",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Danilo",
+      "lastName": "Acosta",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 135000,
+      "guaranteedCompensation": 135000
+    },
+    {
+      "firstName": "Mohammed \"Mo\"",
+      "lastName": "Adams",
+      "club": "Atlanta United",
+      "position": "M",
+      "baseSalary": 121000,
+      "guaranteedCompensation": 141000
+    },
+    {
+      "firstName": "Fanendo",
+      "lastName": "Adi",
+      "club": "Minnesota United",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 83875
+    },
+    {
+      "firstName": "Harrison",
+      "lastName": "Afful",
+      "club": "Columbus Crew",
+      "position": "D",
+      "baseSalary": 335000,
+      "guaranteedCompensation": 365000
+    },
+    {
+      "firstName": "Juan",
+      "lastName": "Agudelo",
+      "club": "Minnesota United",
+      "position": "F",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 212500
+    },
+    {
+      "firstName": "Raul",
+      "lastName": "Aguilera",
+      "club": "Orlando City SC",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Daniel",
+      "lastName": "Aguirre",
+      "club": "LA Galaxy",
+      "position": "M-F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Matheus",
+      "lastName": "Aias",
+      "club": "Orlando City SC",
+      "position": "F",
+      "baseSalary": 252000,
+      "guaranteedCompensation": 267500
+    },
+    {
+      "firstName": "Jacob",
+      "lastName": "Akanyirige",
+      "club": "San Jose Earthquakes",
+      "position": "D",
+      "baseSalary": 105000,
+      "guaranteedCompensation": 107000
+    },
+    {
+      "firstName": "Tesho",
+      "lastName": "Akindele",
+      "club": "Orlando City SC",
+      "position": "F",
+      "baseSalary": 275000,
+      "guaranteedCompensation": 290000
+    },
+    {
+      "firstName": "Ayo",
+      "lastName": "Akinola",
+      "club": "Toronto FC",
+      "position": "F",
+      "baseSalary": 89513,
+      "guaranteedCompensation": 157513
+    },
+    {
+      "firstName": "Oswaldo",
+      "lastName": "Alanis",
+      "club": "San Jose Earthquakes",
+      "position": "D",
+      "baseSalary": 630000,
+      "guaranteedCompensation": 730000
+    },
+    {
+      "firstName": "Antonio",
+      "lastName": "Alfaro",
+      "club": "DC United",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Ignacio",
+      "lastName": "Aliseda",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 821501
+    },
+    {
+      "firstName": "Osvaldo",
+      "lastName": "Alonso",
+      "club": "Minnesota United",
+      "position": "M",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 322000
+    },
+    {
+      "firstName": "Jozy",
+      "lastName": "Altidore",
+      "club": "Toronto FC",
+      "position": "F",
+      "baseSalary": 2161250,
+      "guaranteedCompensation": 3602250
+    },
+    {
+      "firstName": "Ventura",
+      "lastName": "Alvarado",
+      "club": "Inter Miami",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 124708
+    },
+    {
+      "firstName": "Alexander",
+      "lastName": "Alvarado",
+      "club": "Orlando City SC",
+      "position": "F",
+      "baseSalary": 220000,
+      "guaranteedCompensation": 238240
+    },
+    {
+      "firstName": "Matheus",
+      "lastName": "Alvarenga de Oliveira",
+      "club": "Philadelphia Union",
+      "position": "M-F",
+      "baseSalary": 240000,
+      "guaranteedCompensation": 253000
+    },
+    {
+      "firstName": "Efrain",
+      "lastName": "Alvarez",
+      "club": "LA Galaxy",
+      "position": "M",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 612167
+    },
+    {
+      "firstName": "Frankie",
+      "lastName": "Amaya",
+      "club": "New York Red Bulls",
+      "position": "M",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 187000
+    },
+    {
+      "firstName": "Mikey",
+      "lastName": "Ambrose",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Malte",
+      "lastName": "Amundsen",
+      "club": "New York City FC",
+      "position": "D",
+      "baseSalary": 240000,
+      "guaranteedCompensation": 278700
+    },
+    {
+      "firstName": "Sebastian",
+      "lastName": "Anderson",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 91667
+    },
+    {
+      "firstName": "Jalil",
+      "lastName": "Anibaba",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 200000
+    },
+    {
+      "firstName": "Tah Brian",
+      "lastName": "Anunga",
+      "club": "Nashville SC",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Cristian",
+      "lastName": "Arango",
+      "club": "LAFC",
+      "position": "M-F",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 659000
+    },
+    {
+      "firstName": "Luiz",
+      "lastName": "Araujo",
+      "club": "Atlanta United",
+      "position": "F-M",
+      "baseSalary": 3600000,
+      "guaranteedCompensation": 3941667
+    },
+    {
+      "firstName": "Julian",
+      "lastName": "Araujo",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 550000,
+      "guaranteedCompensation": 653750
+    },
+    {
+      "firstName": "Heber",
+      "lastName": "Araujo dos Santos",
+      "club": "New York City FC",
+      "position": "F",
+      "baseSalary": 785000,
+      "guaranteedCompensation": 788750
+    },
+    {
+      "firstName": "Adam",
+      "lastName": "Armour",
+      "club": "Charlotte FC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Xavier",
+      "lastName": "Arreaga",
+      "club": "Seattle Sounders FC",
+      "position": "D",
+      "baseSalary": 393600,
+      "guaranteedCompensation": 500850
+    },
+    {
+      "firstName": "Paul",
+      "lastName": "Arriola",
+      "club": "DC United",
+      "position": "M",
+      "baseSalary": 1000000,
+      "guaranteedCompensation": 1050000
+    },
+    {
+      "firstName": "Yamil",
+      "lastName": "Asad",
+      "club": "DC United",
+      "position": "M-F",
+      "baseSalary": 475000,
+      "guaranteedCompensation": 542667
+    },
+    {
+      "firstName": "George",
+      "lastName": "Asomani",
+      "club": "San Jose Earthquakes",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Dairon",
+      "lastName": "Asprilla",
+      "club": "Portland Timbers",
+      "position": "M-F",
+      "baseSalary": 275000,
+      "guaranteedCompensation": 277500
+    },
+    {
+      "firstName": "Isaac",
+      "lastName": "Atanga",
+      "club": "FC Cincinnati",
+      "position": "F",
+      "baseSalary": 259000,
+      "guaranteedCompensation": 273000
+    },
+    {
+      "firstName": "Joshua",
+      "lastName": "Atencio",
+      "club": "Seattle Sounders FC",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 68161
+    },
+    {
+      "firstName": "Jeff",
+      "lastName": "Attinella",
+      "club": "Portland Timbers",
+      "position": "GK",
+      "baseSalary": 108000,
+      "guaranteedCompensation": 114125
+    },
+    {
+      "firstName": "Eduard",
+      "lastName": "Atuesta",
+      "club": "LAFC",
+      "position": "M",
+      "baseSalary": 550000,
+      "guaranteedCompensation": 1278000
+    },
+    {
+      "firstName": "Edison",
+      "lastName": "Azcona",
+      "club": "Inter Miami",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Dominique",
+      "lastName": "Badji",
+      "club": "Colorado Rapids",
+      "position": "F",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 306250
+    },
+    {
+      "firstName": "Zico",
+      "lastName": "Bailey",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Thelonius",
+      "lastName": "Bair",
+      "club": "Vancouver Whitecaps",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Corey",
+      "lastName": "Baird",
+      "club": "Houston Dynamo",
+      "position": "F",
+      "baseSalary": 365000,
+      "guaranteedCompensation": 396031
+    },
+    {
+      "firstName": "Mateo",
+      "lastName": "Bajamich",
+      "club": "Houston Dynamo",
+      "position": "F",
+      "baseSalary": 264000,
+      "guaranteedCompensation": 324069
+    },
+    {
+      "firstName": "Reed",
+      "lastName": "Baker-Whiting",
+      "club": "Seattle Sounders FC",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 83547
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Baldisimo",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 89513,
+      "guaranteedCompensation": 91275
+    },
+    {
+      "firstName": "Grayson",
+      "lastName": "Banks Barber",
+      "club": "Sporting Kansas City",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 67297
+    },
+    {
+      "firstName": "Ezequiel",
+      "lastName": "Barco",
+      "club": "Atlanta United",
+      "position": "M",
+      "baseSalary": 1875000,
+      "guaranteedCompensation": 2358333
+    },
+    {
+      "firstName": "Tom",
+      "lastName": "Barlow",
+      "club": "New York Red Bulls",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 94526
+    },
+    {
+      "firstName": "Luis",
+      "lastName": "Barraza",
+      "club": "New York City FC",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Alvaro",
+      "lastName": "Barreal",
+      "club": "FC Cincinnati",
+      "position": "F",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 300000
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Barrios",
+      "club": "Colorado Rapids",
+      "position": "M",
+      "baseSalary": 650000,
+      "guaranteedCompensation": 650000
+    },
+    {
+      "firstName": "Ethan",
+      "lastName": "Bartlow",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 88875
+    },
+    {
+      "firstName": "Cole",
+      "lastName": "Bassett",
+      "club": "Colorado Rapids",
+      "position": "M",
+      "baseSalary": 110000,
+      "guaranteedCompensation": 119000
+    },
+    {
+      "firstName": "Zorhan",
+      "lastName": "Bassong",
+      "club": "Montreal",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 93875
+    },
+    {
+      "firstName": "Josh",
+      "lastName": "Bauer",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Clement",
+      "lastName": "Bayiha",
+      "club": "Montreal",
+      "position": "M-D",
+      "baseSalary": 85500,
+      "guaranteedCompensation": 90875
+    },
+    {
+      "firstName": "Tanner",
+      "lastName": "Beason",
+      "club": "San Jose Earthquakes",
+      "position": "D",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 110000
+    },
+    {
+      "firstName": "Alejandro",
+      "lastName": "Bedoya",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 810000,
+      "guaranteedCompensation": 1023333
+    },
+    {
+      "firstName": "Steven",
+      "lastName": "Beitashour",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 165000
+    },
+    {
+      "firstName": "Jon",
+      "lastName": "Bell",
+      "club": "New England Revolution",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "George",
+      "lastName": "Bello",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 135000,
+      "guaranteedCompensation": 139000
+    },
+    {
+      "firstName": "Jordan",
+      "lastName": "Bender",
+      "club": "Orlando City SC",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Joe",
+      "lastName": "Bendik",
+      "club": "Philadelphia Union",
+      "position": "GK",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 200000
+    },
+    {
+      "firstName": "Nicolas",
+      "lastName": "Benezet",
+      "club": "Seattle Sounders FC",
+      "position": "M",
+      "baseSalary": 650000,
+      "guaranteedCompensation": 650000
+    },
+    {
+      "firstName": "Sebastian",
+      "lastName": "Berhalter",
+      "club": "Austin FC",
+      "position": "M",
+      "baseSalary": 85000,
+      "guaranteedCompensation": 122250
+    },
+    {
+      "firstName": "Robert",
+      "lastName": "Beric",
+      "club": "Chicago Fire",
+      "position": "F",
+      "baseSalary": 2274996,
+      "guaranteedCompensation": 2703164
+    },
+    {
+      "firstName": "Miguel",
+      "lastName": "Berry",
+      "club": "Columbus Crew",
+      "position": "F",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "Bersano",
+      "club": "San Jose Earthquakes",
+      "position": "GK",
+      "baseSalary": 106375,
+      "guaranteedCompensation": 106375
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "Besler",
+      "club": "Austin FC",
+      "position": "D",
+      "baseSalary": 650000,
+      "guaranteedCompensation": 650000
+    },
+    {
+      "firstName": "Nick",
+      "lastName": "Besler",
+      "club": "Real Salt Lake",
+      "position": "M",
+      "baseSalary": 167500,
+      "guaranteedCompensation": 167500
+    },
+    {
+      "firstName": "Janio",
+      "lastName": "Bikel",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 388750
+    },
+    {
+      "firstName": "Noah",
+      "lastName": "Billingsley",
+      "club": "Minnesota United",
+      "position": "D",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "David",
+      "lastName": "Bingham",
+      "club": "Portland Timbers",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Steven",
+      "lastName": "Birnbaum",
+      "club": "DC United",
+      "position": "D",
+      "baseSalary": 700000,
+      "guaranteedCompensation": 712500
+    },
+    {
+      "firstName": "Jose",
+      "lastName": "Bizama",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 225000,
+      "guaranteedCompensation": 250000
+    },
+    {
+      "firstName": "Tyler",
+      "lastName": "Blackett",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 398400,
+      "guaranteedCompensation": 398400
+    },
+    {
+      "firstName": "Jamal",
+      "lastName": "Blackman",
+      "club": "LAFC",
+      "position": "GK",
+      "baseSalary": 360000,
+      "guaranteedCompensation": 409333
+    },
+    {
+      "firstName": "Tristan",
+      "lastName": "Blackmon",
+      "club": "LAFC",
+      "position": "D",
+      "baseSalary": 193000,
+      "guaranteedCompensation": 203000
+    },
+    {
+      "firstName": "Andre",
+      "lastName": "Blake",
+      "club": "Philadelphia Union",
+      "position": "GK",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 650000
+    },
+    {
+      "firstName": "Sebastian",
+      "lastName": "Blanco",
+      "club": "Portland Timbers",
+      "position": "M-F",
+      "baseSalary": 2200000,
+      "guaranteedCompensation": 2313333
+    },
+    {
+      "firstName": "Latif",
+      "lastName": "Blessing",
+      "club": "LAFC",
+      "position": "M",
+      "baseSalary": 360000,
+      "guaranteedCompensation": 376667
+    },
+    {
+      "firstName": "Emmanuel",
+      "lastName": "Boateng",
+      "club": "New England Revolution",
+      "position": "M",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 200000
+    },
+    {
+      "firstName": "Blake",
+      "lastName": "Bodily",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 67360,
+      "guaranteedCompensation": 67360
+    },
+    {
+      "firstName": "Isaac",
+      "lastName": "Boehmer",
+      "club": "Vancouver Whitecaps",
+      "position": "GK",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Jovanny",
+      "lastName": "Bolivar",
+      "club": "DC United",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Jonathan",
+      "lastName": "Bond",
+      "club": "LA Galaxy",
+      "position": "GK",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 501875
+    },
+    {
+      "firstName": "Pablo",
+      "lastName": "Bonilla",
+      "club": "Portland Timbers",
+      "position": "D",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Alex",
+      "lastName": "Bono",
+      "club": "Toronto FC",
+      "position": "GK",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 482000
+    },
+    {
+      "firstName": "Jonathan",
+      "lastName": "Bornstein",
+      "club": "Chicago Fire",
+      "position": "D",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 323200
+    },
+    {
+      "firstName": "Gustavo",
+      "lastName": "Bou",
+      "club": "New England Revolution",
+      "position": "M-F",
+      "baseSalary": 2120000,
+      "guaranteedCompensation": 2120000
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Boxall",
+      "club": "Minnesota United",
+      "position": "D",
+      "baseSalary": 384000,
+      "guaranteedCompensation": 422400
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Bradley",
+      "club": "Toronto FC",
+      "position": "M",
+      "baseSalary": 1500000,
+      "guaranteedCompensation": 1500000
+    },
+    {
+      "firstName": "Chris",
+      "lastName": "Brady",
+      "club": "Chicago Fire",
+      "position": "GK",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 68624
+    },
+    {
+      "firstName": "Zachary",
+      "lastName": "Brault-Guillard",
+      "club": "Montreal",
+      "position": "D",
+      "baseSalary": 170000,
+      "guaranteedCompensation": 203625
+    },
+    {
+      "firstName": "Claudio",
+      "lastName": "Bravo",
+      "club": "Portland Timbers",
+      "position": "D",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 323310
+    },
+    {
+      "firstName": "Matheus",
+      "lastName": "Bressan",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 536000,
+      "guaranteedCompensation": 582340
+    },
+    {
+      "firstName": "Sebastian",
+      "lastName": "Breza",
+      "club": "Montreal",
+      "position": "GK",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Frederic",
+      "lastName": "Brillant",
+      "club": "DC United",
+      "position": "D",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 315000
+    },
+    {
+      "firstName": "Andrew",
+      "lastName": "Brody",
+      "club": "Real Salt Lake",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 85208
+    },
+    {
+      "firstName": "Brandt",
+      "lastName": "Bronico",
+      "club": "Charlotte FC",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 90705
+    },
+    {
+      "firstName": "Javain",
+      "lastName": "Brown",
+      "club": "Vancouver Whitecaps",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Will",
+      "lastName": "Bruin",
+      "club": "Seattle Sounders FC",
+      "position": "F",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 458333
+    },
+    {
+      "firstName": "Tajon",
+      "lastName": "Buchanan",
+      "club": "New England Revolution",
+      "position": "F",
+      "baseSalary": 110000,
+      "guaranteedCompensation": 121000
+    },
+    {
+      "firstName": "Jesus",
+      "lastName": "Bueno",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 96753
+    },
+    {
+      "firstName": "Adam",
+      "lastName": "Buksa",
+      "club": "New England Revolution",
+      "position": "F",
+      "baseSalary": 1000000,
+      "guaranteedCompensation": 1106250
+    },
+    {
+      "firstName": "Teal",
+      "lastName": "Bunbury",
+      "club": "New England Revolution",
+      "position": "M-F",
+      "baseSalary": 375000,
+      "guaranteedCompensation": 391667
+    },
+    {
+      "firstName": "Nkosi",
+      "lastName": "Burgess",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Cory",
+      "lastName": "Burke",
+      "club": "Philadelphia Union",
+      "position": "F",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 400770
+    },
+    {
+      "firstName": "Evan",
+      "lastName": "Bush",
+      "club": "Columbus Crew",
+      "position": "GK",
+      "baseSalary": 376000,
+      "guaranteedCompensation": 438667
+    },
+    {
+      "firstName": "Handwalla",
+      "lastName": "Bwana",
+      "club": "Nashville SC",
+      "position": "F-M",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Brandon",
+      "lastName": "Bye",
+      "club": "New England Revolution",
+      "position": "D",
+      "baseSalary": 170000,
+      "guaranteedCompensation": 178875
+    },
+    {
+      "firstName": "Kevin",
+      "lastName": "Cabral",
+      "club": "LA Galaxy",
+      "position": "F",
+      "baseSalary": 1440000,
+      "guaranteedCompensation": 1440000
+    },
+    {
+      "firstName": "Jhonder",
+      "lastName": "Cadiz",
+      "club": "Nashville SC",
+      "position": "F",
+      "baseSalary": 855000,
+      "guaranteedCompensation": 1023800
+    },
+    {
+      "firstName": "Luis",
+      "lastName": "Caicedo",
+      "club": "New England Revolution",
+      "position": "M",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 350000
+    },
+    {
+      "firstName": "Deiber",
+      "lastName": "Caicedo",
+      "club": "Vancouver Whitecaps",
+      "position": "M-F",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 331125
+    },
+    {
+      "firstName": "Scott",
+      "lastName": "Caldwell",
+      "club": "New England Revolution",
+      "position": "M",
+      "baseSalary": 205000,
+      "guaranteedCompensation": 215896
+    },
+    {
+      "firstName": "Drake",
+      "lastName": "Callender",
+      "club": "Inter Miami",
+      "position": "GK",
+      "baseSalary": 120000,
+      "guaranteedCompensation": 120000
+    },
+    {
+      "firstName": "Alexander",
+      "lastName": "Callens",
+      "club": "New York City FC",
+      "position": "D",
+      "baseSalary": 700000,
+      "guaranteedCompensation": 764000
+    },
+    {
+      "firstName": "Eric",
+      "lastName": "Calvillo",
+      "club": "San Jose Earthquakes",
+      "position": "M",
+      "baseSalary": 170000,
+      "guaranteedCompensation": 188000
+    },
+    {
+      "firstName": "Francisco",
+      "lastName": "Calvo",
+      "club": "Chicago Fire",
+      "position": "D",
+      "baseSalary": 830000,
+      "guaranteedCompensation": 902600
+    },
+    {
+      "firstName": "Rudy",
+      "lastName": "Camacho",
+      "club": "Montreal",
+      "position": "D",
+      "baseSalary": 800000,
+      "guaranteedCompensation": 851653
+    },
+    {
+      "firstName": "Geoff",
+      "lastName": "Cameron",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 336000,
+      "guaranteedCompensation": 389667
+    },
+    {
+      "firstName": "Matteo",
+      "lastName": "Campagna",
+      "club": "Vancouver Whitecaps",
+      "position": "D-M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 72559
+    },
+    {
+      "firstName": "George",
+      "lastName": "Campbell",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 80000,
+      "guaranteedCompensation": 80000
+    },
+    {
+      "firstName": "Russell",
+      "lastName": "Canouse",
+      "club": "DC United",
+      "position": "M",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 500000
+    },
+    {
+      "firstName": "Nathan",
+      "lastName": "Cardoso",
+      "club": "San Jose Earthquakes",
+      "position": "D",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 641250
+    },
+    {
+      "firstName": "Wikelman",
+      "lastName": "Carmona",
+      "club": "New York Red Bulls",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 66297
+    },
+    {
+      "firstName": "Julian",
+      "lastName": "Carranza",
+      "club": "Inter Miami",
+      "position": "F",
+      "baseSalary": 750000,
+      "guaranteedCompensation": 750000
+    },
+    {
+      "firstName": "Adalberto",
+      "lastName": "Carraquilla",
+      "club": "Houston Dynamo",
+      "position": "M",
+      "baseSalary": 418908,
+      "guaranteedCompensation": 469132
+    },
+    {
+      "firstName": "Javier",
+      "lastName": "Casas",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 68624
+    },
+    {
+      "firstName": "Julio",
+      "lastName": "Cascante",
+      "club": "Austin FC",
+      "position": "D",
+      "baseSalary": 290000,
+      "guaranteedCompensation": 317500
+    },
+    {
+      "firstName": "Cristian",
+      "lastName": "Casseres",
+      "club": "New York Red Bulls",
+      "position": "M",
+      "baseSalary": 205000,
+      "guaranteedCompensation": 249000
+    },
+    {
+      "firstName": "Dylan",
+      "lastName": "Castanheira",
+      "club": "Inter Miami",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Robert",
+      "lastName": "Castellanos",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Valentin",
+      "lastName": "Castellanos",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 776000
+    },
+    {
+      "firstName": "Juan",
+      "lastName": "Castilla",
+      "club": "Houston Dynamo",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 77897
+    },
+    {
+      "firstName": "Edgar",
+      "lastName": "Castillo",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 121000,
+      "guaranteedCompensation": 127019
+    },
+    {
+      "firstName": "Lucas",
+      "lastName": "Cavallini",
+      "club": "Vancouver Whitecaps",
+      "position": "F",
+      "baseSalary": 1100000,
+      "guaranteedCompensation": 1362500
+    },
+    {
+      "firstName": "Darwin",
+      "lastName": "Ceren",
+      "club": "Houston Dynamo",
+      "position": "M",
+      "baseSalary": 195500,
+      "guaranteedCompensation": 245500
+    },
+    {
+      "firstName": "Edwin",
+      "lastName": "Cerrillo",
+      "club": "FC Dallas",
+      "position": "M",
+      "baseSalary": 95000,
+      "guaranteedCompensation": 110000
+    },
+    {
+      "firstName": "Thomas",
+      "lastName": "Chacon",
+      "club": "Minnesota United",
+      "position": "M-F",
+      "baseSalary": 420000,
+      "guaranteedCompensation": 432000
+    },
+    {
+      "firstName": "Maikel",
+      "lastName": "Chang",
+      "club": "Real Salt Lake",
+      "position": "M",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Maxime",
+      "lastName": "Chanot",
+      "club": "New York City FC",
+      "position": "D",
+      "baseSalary": 785000,
+      "guaranteedCompensation": 785000
+    },
+    {
+      "firstName": "Jay",
+      "lastName": "Chapman",
+      "club": "Inter Miami",
+      "position": "M",
+      "baseSalary": 167500,
+      "guaranteedCompensation": 180333
+    },
+    {
+      "firstName": "Diego",
+      "lastName": "Chara",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 650000,
+      "guaranteedCompensation": 668750
+    },
+    {
+      "firstName": "Yimmi",
+      "lastName": "Chara",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 1200000,
+      "guaranteedCompensation": 1503000
+    },
+    {
+      "firstName": "Justin",
+      "lastName": "Che",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 80000,
+      "guaranteedCompensation": 89209
+    },
+    {
+      "firstName": "Mathieu",
+      "lastName": "Choiniere",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 105000,
+      "guaranteedCompensation": 114238
+    },
+    {
+      "firstName": "Machop",
+      "lastName": "Chol",
+      "club": "Atlanta United",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Leonardo",
+      "lastName": "Chu",
+      "club": "Seattle Sounders FC",
+      "position": "M-F",
+      "baseSalary": 540000,
+      "guaranteedCompensation": 540000
+    },
+    {
+      "firstName": "Jose",
+      "lastName": "Cifuentes",
+      "club": "LAFC",
+      "position": "M",
+      "baseSalary": 367875,
+      "guaranteedCompensation": 411750
+    },
+    {
+      "firstName": "Osvaldo",
+      "lastName": "Cisneros",
+      "club": "Sporting Kansas City",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 66547
+    },
+    {
+      "firstName": "Abdoulaye",
+      "lastName": "Cissoko",
+      "club": "Seattle Sounders FC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Caden",
+      "lastName": "Clark",
+      "club": "New York Red Bulls",
+      "position": "M",
+      "baseSalary": 106773,
+      "guaranteedCompensation": 143973
+    },
+    {
+      "firstName": "Steve",
+      "lastName": "Clark",
+      "club": "Portland Timbers",
+      "position": "GK",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 250000
+    },
+    {
+      "firstName": "Stefan",
+      "lastName": "Cleveland",
+      "club": "Seattle Sounders FC",
+      "position": "GK",
+      "baseSalary": 96375,
+      "guaranteedCompensation": 96375
+    },
+    {
+      "firstName": "Elliot",
+      "lastName": "Collier",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 101375,
+      "guaranteedCompensation": 101375
+    },
+    {
+      "firstName": "Aurelien",
+      "lastName": "Collin",
+      "club": "Philadelphia Union",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Simon",
+      "lastName": "Colyn",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Jackson",
+      "lastName": "Conway",
+      "club": "Atlanta United",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Derek",
+      "lastName": "Cornelius",
+      "club": "Vancouver Whitecaps",
+      "position": "D",
+      "baseSalary": 127050,
+      "guaranteedCompensation": 127050
+    },
+    {
+      "firstName": "Joe",
+      "lastName": "Corona",
+      "club": "Houston Dynamo",
+      "position": "M",
+      "baseSalary": 275000,
+      "guaranteedCompensation": 290000
+    },
+    {
+      "firstName": "Carlos Miguel",
+      "lastName": "Coronel",
+      "club": "New York Red Bulls",
+      "position": "GK",
+      "baseSalary": 462996,
+      "guaranteedCompensation": 512656
+    },
+    {
+      "firstName": "Sega",
+      "lastName": "Coulibaly",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 337000
+    },
+    {
+      "firstName": "Cade",
+      "lastName": "Cowell",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 120000,
+      "guaranteedCompensation": 130000
+    },
+    {
+      "firstName": "Brandan",
+      "lastName": "Craig",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 65000,
+      "guaranteedCompensation": 77825
+    },
+    {
+      "firstName": "Maxime",
+      "lastName": "Crepeau",
+      "club": "Vancouver Whitecaps",
+      "position": "GK",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 277500
+    },
+    {
+      "firstName": "Daniel",
+      "lastName": "Crisostomo",
+      "club": "LAFC",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Cody",
+      "lastName": "Cropper",
+      "club": "Major League Soccer",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 84427
+    },
+    {
+      "firstName": "Allan",
+      "lastName": "Cruz",
+      "club": "FC Cincinnati",
+      "position": "M",
+      "baseSalary": 1020000,
+      "guaranteedCompensation": 1134000
+    },
+    {
+      "firstName": "Antonio Carlos",
+      "lastName": "Cunha",
+      "club": "Orlando City SC",
+      "position": "D",
+      "baseSalary": 840000,
+      "guaranteedCompensation": 865000
+    },
+    {
+      "firstName": "Cristian",
+      "lastName": "Dajome",
+      "club": "Vancouver Whitecaps",
+      "position": "F",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 447917
+    },
+    {
+      "firstName": "Jurgen",
+      "lastName": "Damm",
+      "club": "Atlanta United",
+      "position": "M",
+      "baseSalary": 1290000,
+      "guaranteedCompensation": 1582509
+    },
+    {
+      "firstName": "Abu",
+      "lastName": "Danladi",
+      "club": "Nashville SC",
+      "position": "F",
+      "baseSalary": 180000,
+      "guaranteedCompensation": 237000
+    },
+    {
+      "firstName": "Toni",
+      "lastName": "Datkovic",
+      "club": "Real Salt Lake",
+      "position": "D",
+      "baseSalary": 420000,
+      "guaranteedCompensation": 468175
+    },
+    {
+      "firstName": "Sean",
+      "lastName": "Davis",
+      "club": "New York Red Bulls",
+      "position": "M",
+      "baseSalary": 375000,
+      "guaranteedCompensation": 402500
+    },
+    {
+      "firstName": "Bode",
+      "lastName": "Davis",
+      "club": "Real Salt Lake",
+      "position": "M-F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 67841
+    },
+    {
+      "firstName": "Jacob",
+      "lastName": "Davis",
+      "club": "Sporting Kansas City",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Ocimar",
+      "lastName": "De Almeida",
+      "club": "Orlando City SC",
+      "position": "M",
+      "baseSalary": 700000,
+      "guaranteedCompensation": 730000
+    },
+    {
+      "firstName": "Thiago",
+      "lastName": "De Andrade",
+      "club": "New York City FC",
+      "position": "F",
+      "baseSalary": 180000,
+      "guaranteedCompensation": 199600
+    },
+    {
+      "firstName": "Alex",
+      "lastName": "De John",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Gregore",
+      "lastName": "De Magalhaes Silva",
+      "club": "Inter Miami",
+      "position": "M",
+      "baseSalary": 550000,
+      "guaranteedCompensation": 651000
+    },
+    {
+      "firstName": "Jack",
+      "lastName": "De Vries",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 120000,
+      "guaranteedCompensation": 135556
+    },
+    {
+      "firstName": "AJ",
+      "lastName": "DeLaGarza",
+      "club": "New England Revolution",
+      "position": "D-M",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 250000
+    },
+    {
+      "firstName": "Jordy",
+      "lastName": "Delem",
+      "club": "Seattle Sounders FC",
+      "position": "M-D",
+      "baseSalary": 175000,
+      "guaranteedCompensation": 194000
+    },
+    {
+      "firstName": "Nick",
+      "lastName": "DeLeon",
+      "club": "Toronto FC",
+      "position": "D-M",
+      "baseSalary": 247500,
+      "guaranteedCompensation": 263242
+    },
+    {
+      "firstName": "Marco \"Marky\"",
+      "lastName": "Delgado",
+      "club": "Toronto FC",
+      "position": "M",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 581250
+    },
+    {
+      "firstName": "Nick",
+      "lastName": "DePuy",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Deshields",
+      "club": "DC United",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Jeffrey",
+      "lastName": "Dewsnup",
+      "club": "Real Salt Lake",
+      "position": "GK",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 73372
+    },
+    {
+      "firstName": "Joseph",
+      "lastName": "Dezart",
+      "club": "Orlando City SC",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Amadou",
+      "lastName": "Dia",
+      "club": "Sporting Kansas City",
+      "position": "D",
+      "baseSalary": 135000,
+      "guaranteedCompensation": 135000
+    },
+    {
+      "firstName": "Youba",
+      "lastName": "Diarra",
+      "club": "New York Red Bulls",
+      "position": "M",
+      "baseSalary": 337000,
+      "guaranteedCompensation": 398046
+    },
+    {
+      "firstName": "Luis",
+      "lastName": "Diaz",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 350004,
+      "guaranteedCompensation": 383904
+    },
+    {
+      "firstName": "Bakaye",
+      "lastName": "Dibassy",
+      "club": "Minnesota United",
+      "position": "D",
+      "baseSalary": 625000,
+      "guaranteedCompensation": 718125
+    },
+    {
+      "firstName": "Eric",
+      "lastName": "Dick",
+      "club": "Columbus Crew",
+      "position": "GK",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Daryl",
+      "lastName": "Dike",
+      "club": "Orlando City SC",
+      "position": "F",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 128750
+    },
+    {
+      "firstName": "Moussa",
+      "lastName": "Djitte",
+      "club": "Austin FC",
+      "position": "F",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 500000
+    },
+    {
+      "firstName": "Ethan",
+      "lastName": "Dobbelaere",
+      "club": "Seattle Sounders FC",
+      "position": "M",
+      "baseSalary": 67360,
+      "guaranteedCompensation": 81360
+    },
+    {
+      "firstName": "Derek",
+      "lastName": "Dodson",
+      "club": "Orlando City SC",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Cecilio",
+      "lastName": "Dominguez",
+      "club": "Austin FC",
+      "position": "F",
+      "baseSalary": 1530000,
+      "guaranteedCompensation": 1736000
+    },
+    {
+      "firstName": "Irakoze",
+      "lastName": "Donasiyano",
+      "club": "Nashville SC",
+      "position": "M-D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Griffin",
+      "lastName": "Dorsey",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 110000,
+      "guaranteedCompensation": 129000
+    },
+    {
+      "firstName": "Jonathan",
+      "lastName": "dos Santos",
+      "club": "LA Galaxy",
+      "position": "M",
+      "baseSalary": 2000000,
+      "guaranteedCompensation": 2000000
+    },
+    {
+      "firstName": "Hassani",
+      "lastName": "Dotson",
+      "club": "Minnesota United",
+      "position": "M-D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Issiar",
+      "lastName": "Drame",
+      "club": "New York Red Bulls",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 97158
+    },
+    {
+      "firstName": "Sebastian",
+      "lastName": "Driussi",
+      "club": "Austin FC",
+      "position": "F",
+      "baseSalary": 2571420,
+      "guaranteedCompensation": 2688420
+    },
+    {
+      "firstName": "Erik",
+      "lastName": "Duenas",
+      "club": "LAFC",
+      "position": "D",
+      "baseSalary": 90444,
+      "guaranteedCompensation": 92444
+    },
+    {
+      "firstName": "Bryce",
+      "lastName": "Duke",
+      "club": "LAFC",
+      "position": "M",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 90000
+    },
+    {
+      "firstName": "Cameron",
+      "lastName": "Duke",
+      "club": "Sporting Kansas City",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 84375
+    },
+    {
+      "firstName": "Cameron",
+      "lastName": "Dunbar",
+      "club": "LA Galaxy",
+      "position": "F",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 116750
+    },
+    {
+      "firstName": "Kyle",
+      "lastName": "Duncan",
+      "club": "New York Red Bulls",
+      "position": "D",
+      "baseSalary": 93581,
+      "guaranteedCompensation": 93581
+    },
+    {
+      "firstName": "Julian",
+      "lastName": "Dunn",
+      "club": "Toronto FC",
+      "position": "D",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Chris",
+      "lastName": "Duvall",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Dom",
+      "lastName": "Dwyer",
+      "club": "Toronto FC",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Jeremy",
+      "lastName": "Ebobisse",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 691250
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Edwards",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Raheem",
+      "lastName": "Edwards",
+      "club": "LAFC",
+      "position": "D-M",
+      "baseSalary": 96375,
+      "guaranteedCompensation": 96375
+    },
+    {
+      "firstName": "Earl",
+      "lastName": "Edwards",
+      "club": "New England Revolution",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Tom",
+      "lastName": "Edwards",
+      "club": "New York Red Bulls",
+      "position": "D-M",
+      "baseSalary": 409911,
+      "guaranteedCompensation": 409911
+    },
+    {
+      "firstName": "Mandela",
+      "lastName": "Egbo",
+      "club": "New York Red Bulls",
+      "position": "D",
+      "baseSalary": 276000,
+      "guaranteedCompensation": 310700
+    },
+    {
+      "firstName": "David",
+      "lastName": "Egbo",
+      "club": "Vancouver Whitecaps",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Jack",
+      "lastName": "Elliott",
+      "club": "Philadelphia Union",
+      "position": "D",
+      "baseSalary": 325000,
+      "guaranteedCompensation": 340000
+    },
+    {
+      "firstName": "Kalil",
+      "lastName": "Elmedkhar",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Fred",
+      "lastName": "Emmings",
+      "club": "Minnesota United",
+      "position": "GK",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 72724
+    },
+    {
+      "firstName": "Tsubasa",
+      "lastName": "Endoh",
+      "club": "Toronto FC",
+      "position": "M",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 105333
+    },
+    {
+      "firstName": "Franco",
+      "lastName": "Escobar",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 450000
+    },
+    {
+      "firstName": "Adam",
+      "lastName": "Esparza-Saldana",
+      "club": "LA Galaxy",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 87309
+    },
+    {
+      "firstName": "Jhon",
+      "lastName": "Espinoza",
+      "club": "Chicago Fire",
+      "position": "D",
+      "baseSalary": 162000,
+      "guaranteedCompensation": 188500
+    },
+    {
+      "firstName": "Cristian",
+      "lastName": "Espinoza",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 1150000,
+      "guaranteedCompensation": 1265000
+    },
+    {
+      "firstName": "Roger",
+      "lastName": "Espinoza",
+      "club": "Sporting Kansas City",
+      "position": "M",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 500000
+    },
+    {
+      "firstName": "Lucas",
+      "lastName": "Esteves",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 369996,
+      "guaranteedCompensation": 412467
+    },
+    {
+      "firstName": "Bento",
+      "lastName": "Estrela",
+      "club": "New York Red Bulls",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 87547
+    },
+    {
+      "firstName": "Derrick",
+      "lastName": "Etienne",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 125000,
+      "guaranteedCompensation": 125000
+    },
+    {
+      "firstName": "Gianfranco",
+      "lastName": "Facchineri",
+      "club": "Vancouver Whitecaps",
+      "position": "D",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 68724
+    },
+    {
+      "firstName": "Diego",
+      "lastName": "Fagundez",
+      "club": "Austin FC",
+      "position": "M",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 400000
+    },
+    {
+      "firstName": "Mamadou",
+      "lastName": "Fall",
+      "club": "LAFC",
+      "position": "D-M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 94125
+    },
+    {
+      "firstName": "Marco",
+      "lastName": "Farfan",
+      "club": "LAFC",
+      "position": "D",
+      "baseSalary": 190000,
+      "guaranteedCompensation": 190000
+    },
+    {
+      "firstName": "Zackery",
+      "lastName": "Farnsworth",
+      "club": "Real Salt Lake",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 96125
+    },
+    {
+      "firstName": "Andrew",
+      "lastName": "Farrell",
+      "club": "New England Revolution",
+      "position": "D",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 418750
+    },
+    {
+      "firstName": "Keesean",
+      "lastName": "Ferdinand",
+      "club": "Montreal",
+      "position": "",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 73592
+    },
+    {
+      "firstName": "Marcus",
+      "lastName": "Ferkranus",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 103625
+    },
+    {
+      "firstName": "Omir",
+      "lastName": "Fernandez",
+      "club": "New York Red Bulls",
+      "position": "M",
+      "baseSalary": 115000,
+      "guaranteedCompensation": 130000
+    },
+    {
+      "firstName": "Jesus",
+      "lastName": "Ferreira",
+      "club": "FC Dallas",
+      "position": "F",
+      "baseSalary": 550000,
+      "guaranteedCompensation": 550000
+    },
+    {
+      "firstName": "Carlos",
+      "lastName": "Fierro",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 850000,
+      "guaranteedCompensation": 908800
+    },
+    {
+      "firstName": "Jorge",
+      "lastName": "Figal",
+      "club": "Inter Miami",
+      "position": "D",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 630000
+    },
+    {
+      "firstName": "Maynor",
+      "lastName": "Figueroa",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 157688
+    },
+    {
+      "firstName": "Stuart",
+      "lastName": "Findlay",
+      "club": "Philadelphia Union",
+      "position": "D",
+      "baseSalary": 425000,
+      "guaranteedCompensation": 425000
+    },
+    {
+      "firstName": "Ethan",
+      "lastName": "Finlay",
+      "club": "Minnesota United",
+      "position": "M",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 450000
+    },
+    {
+      "firstName": "Oniel",
+      "lastName": "Fisher",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 140000,
+      "guaranteedCompensation": 147625
+    },
+    {
+      "firstName": "Jonas",
+      "lastName": "Fjeldberg",
+      "club": "FC Cincinnati",
+      "position": "",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Leon",
+      "lastName": "Flach",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 210000,
+      "guaranteedCompensation": 223750
+    },
+    {
+      "firstName": "Avionne",
+      "lastName": "Flanagan",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Edison",
+      "lastName": "Flores",
+      "club": "DC United",
+      "position": "M-F",
+      "baseSalary": 1600000,
+      "guaranteedCompensation": 1733000
+    },
+    {
+      "firstName": "George",
+      "lastName": "Fochive",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 240000,
+      "guaranteedCompensation": 240000
+    },
+    {
+      "firstName": "Anthony",
+      "lastName": "Fontana",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 100008,
+      "guaranteedCompensation": 108426
+    },
+    {
+      "firstName": "Andreu",
+      "lastName": "Fontas",
+      "club": "Sporting Kansas City",
+      "position": "D",
+      "baseSalary": 1125000,
+      "guaranteedCompensation": 1125000
+    },
+    {
+      "firstName": "Kortne",
+      "lastName": "Ford",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 140000,
+      "guaranteedCompensation": 140000
+    },
+    {
+      "firstName": "Franco",
+      "lastName": "Fragapane",
+      "club": "Minnesota United",
+      "position": "M-F",
+      "baseSalary": 135000,
+      "guaranteedCompensation": 142500
+    },
+    {
+      "firstName": "Waylon",
+      "lastName": "Francis",
+      "club": "Columbus Crew",
+      "position": "D",
+      "baseSalary": 220000,
+      "guaranteedCompensation": 230000
+    },
+    {
+      "firstName": "Alan",
+      "lastName": "Franco",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 378000,
+      "guaranteedCompensation": 505500
+    },
+    {
+      "firstName": "Liam",
+      "lastName": "Fraser",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 89513,
+      "guaranteedCompensation": 94513
+    },
+    {
+      "firstName": "Ian",
+      "lastName": "Fray",
+      "club": "Inter Miami",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Tyler",
+      "lastName": "Freeman",
+      "club": "Sporting Kansas City",
+      "position": "F",
+      "baseSalary": 95000,
+      "guaranteedCompensation": 97500
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "Freese",
+      "club": "Philadelphia Union",
+      "position": "GK",
+      "baseSalary": 96750,
+      "guaranteedCompensation": 115500
+    },
+    {
+      "firstName": "Stefan",
+      "lastName": "Frei",
+      "club": "Seattle Sounders FC",
+      "position": "GK",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 500000
+    },
+    {
+      "firstName": "Alejandro",
+      "lastName": "Fuenmayor",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 190008,
+      "guaranteedCompensation": 217508
+    },
+    {
+      "firstName": "Gilbert",
+      "lastName": "Fuentes",
+      "club": "San Jose Earthquakes",
+      "position": "M",
+      "baseSalary": 160000,
+      "guaranteedCompensation": 178750
+    },
+    {
+      "firstName": "McKinze",
+      "lastName": "Gaines",
+      "club": "Austin FC",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 84125
+    },
+    {
+      "firstName": "Julian",
+      "lastName": "Gaines",
+      "club": "LAFC",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 83375
+    },
+    {
+      "firstName": "Jon",
+      "lastName": "Gallagher",
+      "club": "Austin FC",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Erickson",
+      "lastName": "Gallardo",
+      "club": "Toronto FC",
+      "position": "M",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 331913
+    },
+    {
+      "firstName": "Pedro",
+      "lastName": "Gallese",
+      "club": "Orlando City SC",
+      "position": "GK",
+      "baseSalary": 410000,
+      "guaranteedCompensation": 410000
+    },
+    {
+      "firstName": "Braian",
+      "lastName": "Galvan",
+      "club": "Colorado Rapids",
+      "position": "F",
+      "baseSalary": 160000,
+      "guaranteedCompensation": 252375
+    },
+    {
+      "firstName": "Oscar Boniek",
+      "lastName": "Garcia",
+      "club": "Houston Dynamo",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Chris",
+      "lastName": "Garcia",
+      "club": "Real Salt Lake",
+      "position": "F",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 89744
+    },
+    {
+      "firstName": "Bruno",
+      "lastName": "Gaspar",
+      "club": "Vancouver Whitecaps",
+      "position": "D",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 233333
+    },
+    {
+      "firstName": "Chase",
+      "lastName": "Gasper",
+      "club": "Minnesota United",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Ryan",
+      "lastName": "Gauld",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 1920000,
+      "guaranteedCompensation": 2025000
+    },
+    {
+      "firstName": "Daniel",
+      "lastName": "Gazdag",
+      "club": "Philadelphia Union",
+      "position": "M-F",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 336250
+    },
+    {
+      "firstName": "Kieran",
+      "lastName": "Gibbs",
+      "club": "Inter Miami",
+      "position": "D",
+      "baseSalary": 120000,
+      "guaranteedCompensation": 128167
+    },
+    {
+      "firstName": "Carles",
+      "lastName": "Gil",
+      "club": "New England Revolution",
+      "position": "M",
+      "baseSalary": 2750000,
+      "guaranteedCompensation": 3045833
+    },
+    {
+      "firstName": "Gaston",
+      "lastName": "Gimenez",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 2058000,
+      "guaranteedCompensation": 2358667
+    },
+    {
+      "firstName": "Francisco",
+      "lastName": "Ginella",
+      "club": "LAFC",
+      "position": "M",
+      "baseSalary": 425000,
+      "guaranteedCompensation": 547250
+    },
+    {
+      "firstName": "Tomas",
+      "lastName": "Giraldo",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 75481
+    },
+    {
+      "firstName": "Justen",
+      "lastName": "Glad",
+      "club": "Real Salt Lake",
+      "position": "D",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 660031
+    },
+    {
+      "firstName": "Jakob",
+      "lastName": "Glesnes",
+      "club": "Philadelphia Union",
+      "position": "D",
+      "baseSalary": 425000,
+      "guaranteedCompensation": 448125
+    },
+    {
+      "firstName": "Christopher",
+      "lastName": "Gloster",
+      "club": "New York City FC",
+      "position": "D",
+      "baseSalary": 197000,
+      "guaranteedCompensation": 207000
+    },
+    {
+      "firstName": "Marcus",
+      "lastName": "Godinho",
+      "club": "Vancouver Whitecaps",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 84375
+    },
+    {
+      "firstName": "Anibal",
+      "lastName": "Godoy",
+      "club": "Nashville SC",
+      "position": "M",
+      "baseSalary": 700000,
+      "guaranteedCompensation": 771667
+    },
+    {
+      "firstName": "Erik",
+      "lastName": "Godoy",
+      "club": "Vancouver Whitecaps",
+      "position": "D",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 450000
+    },
+    {
+      "firstName": "Caiser Sergio",
+      "lastName": "Gomes",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Fabio",
+      "lastName": "Gomes",
+      "club": "New York Red Bulls",
+      "position": "F",
+      "baseSalary": 380000,
+      "guaranteedCompensation": 401400
+    },
+    {
+      "firstName": "Yeimar",
+      "lastName": "Gomez Andrade",
+      "club": "Seattle Sounders FC",
+      "position": "D",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 387000
+    },
+    {
+      "firstName": "Giancarlo",
+      "lastName": "Gonzalez",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 850000,
+      "guaranteedCompensation": 850000
+    },
+    {
+      "firstName": "Jorge",
+      "lastName": "Gonzalez",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Omar",
+      "lastName": "Gonzalez",
+      "club": "Toronto FC",
+      "position": "D",
+      "baseSalary": 780000,
+      "guaranteedCompensation": 1055936
+    },
+    {
+      "firstName": "Leandro",
+      "lastName": "Gonzalez Pirez",
+      "club": "Inter Miami",
+      "position": "D",
+      "baseSalary": 849996,
+      "guaranteedCompensation": 1010246
+    },
+    {
+      "firstName": "Samuel",
+      "lastName": "Grandsir",
+      "club": "LA Galaxy",
+      "position": "F-M",
+      "baseSalary": 850000,
+      "guaranteedCompensation": 938427
+    },
+    {
+      "firstName": "Tayvon",
+      "lastName": "Gray",
+      "club": "New York City FC",
+      "position": "D",
+      "baseSalary": 95000,
+      "guaranteedCompensation": 114788
+    },
+    {
+      "firstName": "Jacob",
+      "lastName": "Greene",
+      "club": "DC United",
+      "position": "D-M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 66547
+    },
+    {
+      "firstName": "Jan",
+      "lastName": "Gregus",
+      "club": "Minnesota United",
+      "position": "M",
+      "baseSalary": 750000,
+      "guaranteedCompensation": 883500
+    },
+    {
+      "firstName": "Julian",
+      "lastName": "Gressel",
+      "club": "DC United",
+      "position": "M",
+      "baseSalary": 705000,
+      "guaranteedCompensation": 760781
+    },
+    {
+      "firstName": "Adam",
+      "lastName": "Grinwis",
+      "club": "Orlando City SC",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Sami",
+      "lastName": "Guediri",
+      "club": "Inter Miami",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Brian",
+      "lastName": "Gutierrez",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 68624
+    },
+    {
+      "firstName": "Cristian",
+      "lastName": "Gutierrez",
+      "club": "Vancouver Whitecaps",
+      "position": "D",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 167500
+    },
+    {
+      "firstName": "Andrew",
+      "lastName": "Gutman",
+      "club": "New York Red Bulls",
+      "position": "D",
+      "baseSalary": 275000,
+      "guaranteedCompensation": 306250
+    },
+    {
+      "firstName": "Brad",
+      "lastName": "Guzan",
+      "club": "Atlanta United",
+      "position": "GK",
+      "baseSalary": 805000,
+      "guaranteedCompensation": 805000
+    },
+    {
+      "firstName": "Joe",
+      "lastName": "Gyau",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 273000,
+      "guaranteedCompensation": 273000
+    },
+    {
+      "firstName": "Justin",
+      "lastName": "Haak",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Luke",
+      "lastName": "Haakenson",
+      "club": "Nashville SC",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Kamron",
+      "lastName": "Habibullah",
+      "club": "Vancouver Whitecaps",
+      "position": "M-F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 74429
+    },
+    {
+      "firstName": "Teenage",
+      "lastName": "Hadebe",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 960000,
+      "guaranteedCompensation": 1125177
+    },
+    {
+      "firstName": "Nick",
+      "lastName": "Hagglund",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 175000,
+      "guaranteedCompensation": 184375
+    },
+    {
+      "firstName": "Marlon",
+      "lastName": "Hairston",
+      "club": "Columbus Crew",
+      "position": "M-D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Siad",
+      "lastName": "Haji",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 95000,
+      "guaranteedCompensation": 104000
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Halliday",
+      "club": "Orlando City SC",
+      "position": "D",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 95089
+    },
+    {
+      "firstName": "Bret",
+      "lastName": "Halsey",
+      "club": "Real Salt Lake",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 88875
+    },
+    {
+      "firstName": "Nicholas",
+      "lastName": "Hamalainen",
+      "club": "LA Galaxy",
+      "position": "D-M",
+      "baseSalary": 612500,
+      "guaranteedCompensation": 612500
+    },
+    {
+      "firstName": "Ahmed",
+      "lastName": "Hamdi",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 497500
+    },
+    {
+      "firstName": "Bill",
+      "lastName": "Hamid",
+      "club": "DC United",
+      "position": "GK",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 500000
+    },
+    {
+      "firstName": "Niko",
+      "lastName": "Hansen",
+      "club": "Minnesota United",
+      "position": "M",
+      "baseSalary": 110004,
+      "guaranteedCompensation": 129004
+    },
+    {
+      "firstName": "Cameron",
+      "lastName": "Harper",
+      "club": "New York Red Bulls",
+      "position": "M-F",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 251250
+    },
+    {
+      "firstName": "Nathan",
+      "lastName": "Harriel",
+      "club": "Philadelphia Union",
+      "position": "D",
+      "baseSalary": 70000,
+      "guaranteedCompensation": 87500
+    },
+    {
+      "firstName": "Calvin",
+      "lastName": "Harris",
+      "club": "FC Cincinnati",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 96375
+    },
+    {
+      "firstName": "Wilson",
+      "lastName": "Harris",
+      "club": "Sporting Kansas City",
+      "position": "F",
+      "baseSalary": 67360,
+      "guaranteedCompensation": 71212
+    },
+    {
+      "firstName": "Carlos Miguel",
+      "lastName": "Harvey",
+      "club": "LA Galaxy",
+      "position": "D-M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Jordan",
+      "lastName": "Harvey",
+      "club": "LAFC",
+      "position": "D",
+      "baseSalary": 110000,
+      "guaranteedCompensation": 110000
+    },
+    {
+      "firstName": "Thomas",
+      "lastName": "Hasal",
+      "club": "Vancouver Whitecaps",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Jacori",
+      "lastName": "Hayes",
+      "club": "Minnesota United",
+      "position": "M",
+      "baseSalary": 160000,
+      "guaranteedCompensation": 169833
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "Hedges",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 850000,
+      "guaranteedCompensation": 850000
+    },
+    {
+      "firstName": "Fabian",
+      "lastName": "Herbers",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 230000,
+      "guaranteedCompensation": 251250
+    },
+    {
+      "firstName": "Ronald",
+      "lastName": "Hernandez",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 250000
+    },
+    {
+      "firstName": "Dominick",
+      "lastName": "Hernandez",
+      "club": "FC Dallas",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 73237
+    },
+    {
+      "firstName": "Javier",
+      "lastName": "Hernandez",
+      "club": "LA Galaxy",
+      "position": "F",
+      "baseSalary": 6000000,
+      "guaranteedCompensation": 6000000
+    },
+    {
+      "firstName": "Felipe",
+      "lastName": "Hernandez",
+      "club": "Sporting Kansas City",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Aaron",
+      "lastName": "Herrera",
+      "club": "Real Salt Lake",
+      "position": "D",
+      "baseSalary": 315000,
+      "guaranteedCompensation": 343794
+    },
+    {
+      "firstName": "Federico",
+      "lastName": "Higuain",
+      "club": "Inter Miami",
+      "position": "M-F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Gonzalo",
+      "lastName": "Higuain",
+      "club": "Inter Miami",
+      "position": "F",
+      "baseSalary": 5100000,
+      "guaranteedCompensation": 5793750
+    },
+    {
+      "firstName": "Nick",
+      "lastName": "Hinds",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Brendan",
+      "lastName": "Hines-Ike",
+      "club": "DC United",
+      "position": "D",
+      "baseSalary": 240000,
+      "guaranteedCompensation": 274429
+    },
+    {
+      "firstName": "Danny",
+      "lastName": "Hoesen",
+      "club": "Austin FC",
+      "position": "F",
+      "baseSalary": 650000,
+      "guaranteedCompensation": 716667
+    },
+    {
+      "firstName": "Ian",
+      "lastName": "Hoffmann",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Ryan",
+      "lastName": "Hollingshead",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 346500,
+      "guaranteedCompensation": 346500
+    },
+    {
+      "firstName": "Erik",
+      "lastName": "Holt",
+      "club": "Real Salt Lake",
+      "position": "D",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 90000
+    },
+    {
+      "firstName": "Rio",
+      "lastName": "Hope-Gund",
+      "club": "Orlando City SC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Shandon",
+      "lastName": "Hopeau",
+      "club": "Seattle Sounders FC",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 74360
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "Hundley",
+      "club": "Colorado Rapids",
+      "position": "F",
+      "baseSalary": 95000,
+      "guaranteedCompensation": 104000
+    },
+    {
+      "firstName": "Adrien",
+      "lastName": "Hunou",
+      "club": "Minnesota United",
+      "position": "F",
+      "baseSalary": 2350000,
+      "guaranteedCompensation": 2587702
+    },
+    {
+      "firstName": "Erik",
+      "lastName": "Hurtado",
+      "club": "Columbus Crew",
+      "position": "F",
+      "baseSalary": 218182,
+      "guaranteedCompensation": 245682
+    },
+    {
+      "firstName": "Emerson",
+      "lastName": "Hyndman",
+      "club": "Atlanta United",
+      "position": "M",
+      "baseSalary": 900000,
+      "guaranteedCompensation": 900000
+    },
+    {
+      "firstName": "Franco",
+      "lastName": "Ibarra",
+      "club": "Atlanta United",
+      "position": "D-M",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 370000
+    },
+    {
+      "firstName": "Sebastien",
+      "lastName": "Ibeagha",
+      "club": "LAFC",
+      "position": "D",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 177125
+    },
+    {
+      "firstName": "Sunusi",
+      "lastName": "Ibrahim",
+      "club": "Montreal",
+      "position": "F",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 291250
+    },
+    {
+      "firstName": "Milan",
+      "lastName": "Iloski",
+      "club": "Real Salt Lake",
+      "position": "F",
+      "baseSalary": 120000,
+      "guaranteedCompensation": 121500
+    },
+    {
+      "firstName": "Clint",
+      "lastName": "Irwin",
+      "club": "Colorado Rapids",
+      "position": "GK",
+      "baseSalary": 190000,
+      "guaranteedCompensation": 203300
+    },
+    {
+      "firstName": "Nicolas",
+      "lastName": "Isimat-Mirin",
+      "club": "Sporting Kansas City",
+      "position": "D",
+      "baseSalary": 950000,
+      "guaranteedCompensation": 1028124
+    },
+    {
+      "firstName": "Aljaz",
+      "lastName": "Ivacic",
+      "club": "Portland Timbers",
+      "position": "GK",
+      "baseSalary": 225000,
+      "guaranteedCompensation": 235000
+    },
+    {
+      "firstName": "Stanislav",
+      "lastName": "Ivanov",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 275000,
+      "guaranteedCompensation": 334000
+    },
+    {
+      "firstName": "Aziel",
+      "lastName": "Jackson",
+      "club": "Minnesota United",
+      "position": "M-F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 67444
+    },
+    {
+      "firstName": "Adam",
+      "lastName": "Jahn",
+      "club": "Major League Soccer",
+      "position": "F",
+      "baseSalary": 125000,
+      "guaranteedCompensation": 134000
+    },
+    {
+      "firstName": "Robin",
+      "lastName": "Jansson",
+      "club": "Orlando City SC",
+      "position": "D",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 556250
+    },
+    {
+      "firstName": "Franco",
+      "lastName": "Jara",
+      "club": "FC Dallas",
+      "position": "F",
+      "baseSalary": 2290000,
+      "guaranteedCompensation": 2977000
+    },
+    {
+      "firstName": "Andres",
+      "lastName": "Jasson",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 80691
+    },
+    {
+      "firstName": "Assi",
+      "lastName": "Jean-Aniel",
+      "club": "Montreal",
+      "position": "",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 71310
+    },
+    {
+      "firstName": "Cal",
+      "lastName": "Jennings",
+      "club": "LAFC",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "David",
+      "lastName": "Jensen",
+      "club": "New York Red Bulls",
+      "position": "GK",
+      "baseSalary": 324996,
+      "guaranteedCompensation": 364631
+    },
+    {
+      "firstName": "Hector",
+      "lastName": "Jimenez",
+      "club": "Austin FC",
+      "position": "D",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 250000
+    },
+    {
+      "firstName": "Bjorn",
+      "lastName": "Johnsen",
+      "club": "Montreal",
+      "position": "F",
+      "baseSalary": 900000,
+      "guaranteedCompensation": 1036667
+    },
+    {
+      "firstName": "Sean",
+      "lastName": "Johnson",
+      "club": "New York City FC",
+      "position": "GK",
+      "baseSalary": 510000,
+      "guaranteedCompensation": 510000
+    },
+    {
+      "firstName": "Alistair",
+      "lastName": "Johnston",
+      "club": "Nashville SC",
+      "position": "M-D",
+      "baseSalary": 73079,
+      "guaranteedCompensation": 73079
+    },
+    {
+      "firstName": "Ismaila",
+      "lastName": "Jome",
+      "club": "Portland Timbers",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Derrick",
+      "lastName": "Jones",
+      "club": "Houston Dynamo",
+      "position": "M",
+      "baseSalary": 160000,
+      "guaranteedCompensation": 182969
+    },
+    {
+      "firstName": "Joevin",
+      "lastName": "Jones",
+      "club": "Inter Miami",
+      "position": "D-M",
+      "baseSalary": 180000,
+      "guaranteedCompensation": 278100
+    },
+    {
+      "firstName": "DeJuan",
+      "lastName": "Jones",
+      "club": "New England Revolution",
+      "position": "D-M",
+      "baseSalary": 95000,
+      "guaranteedCompensation": 99938
+    },
+    {
+      "firstName": "Mathias",
+      "lastName": "Jorgensen",
+      "club": "New York Red Bulls",
+      "position": "F",
+      "baseSalary": 325000,
+      "guaranteedCompensation": 356250
+    },
+    {
+      "firstName": "Dejan",
+      "lastName": "Joveljic",
+      "club": "LA Galaxy",
+      "position": "F",
+      "baseSalary": 612500,
+      "guaranteedCompensation": 612500
+    },
+    {
+      "firstName": "Thomas",
+      "lastName": "Judge",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Anderson",
+      "lastName": "Julio",
+      "club": "Real Salt Lake",
+      "position": "F-M",
+      "baseSalary": 402000,
+      "guaranteedCompensation": 485875
+    },
+    {
+      "firstName": "Florian",
+      "lastName": "Jungwirth",
+      "club": "Vancouver Whitecaps",
+      "position": "D-M",
+      "baseSalary": 525000,
+      "guaranteedCompensation": 567667
+    },
+    {
+      "firstName": "Sam",
+      "lastName": "Junqua",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Brent",
+      "lastName": "Kallman",
+      "club": "Minnesota United",
+      "position": "D",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 158125
+    },
+    {
+      "firstName": "Ola",
+      "lastName": "Kamara",
+      "club": "DC United",
+      "position": "F",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 420000
+    },
+    {
+      "firstName": "Alec",
+      "lastName": "Kann",
+      "club": "Atlanta United",
+      "position": "GK",
+      "baseSalary": 115000,
+      "guaranteedCompensation": 115000
+    },
+    {
+      "firstName": "Johan",
+      "lastName": "Kappelhof",
+      "club": "Chicago Fire",
+      "position": "D-M",
+      "baseSalary": 462500,
+      "guaranteedCompensation": 490333
+    },
+    {
+      "firstName": "Wilfrid",
+      "lastName": "Kaptoum",
+      "club": "New England Revolution",
+      "position": "M",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 557500
+    },
+    {
+      "firstName": "Mark-Anthony",
+      "lastName": "Kaye",
+      "club": "Colorado Rapids",
+      "position": "M",
+      "baseSalary": 235625,
+      "guaranteedCompensation": 247188
+    },
+    {
+      "firstName": "Aboubacar",
+      "lastName": "Keita",
+      "club": "Columbus Crew",
+      "position": "D",
+      "baseSalary": 110000,
+      "guaranteedCompensation": 110000
+    },
+    {
+      "firstName": "Jeremy",
+      "lastName": "Kelly",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Jon",
+      "lastName": "Kempin",
+      "club": "DC United",
+      "position": "GK",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Henry",
+      "lastName": "Kessler",
+      "club": "New England Revolution",
+      "position": "D",
+      "baseSalary": 95000,
+      "guaranteedCompensation": 115000
+    },
+    {
+      "firstName": "Jasser",
+      "lastName": "Khmiri",
+      "club": "Vancouver Whitecaps",
+      "position": "D",
+      "baseSalary": 240000,
+      "guaranteedCompensation": 240000
+    },
+    {
+      "firstName": "Nabilai",
+      "lastName": "Kibunguchy",
+      "club": "Minnesota United",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Benjamin",
+      "lastName": "Kikanovic",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 69322
+    },
+    {
+      "firstName": "Gadi",
+      "lastName": "Kinda",
+      "club": "Sporting Kansas City",
+      "position": "M",
+      "baseSalary": 850000,
+      "guaranteedCompensation": 918000
+    },
+    {
+      "firstName": "Perry",
+      "lastName": "Kitchen",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 275000,
+      "guaranteedCompensation": 301667
+    },
+    {
+      "firstName": "Mustafa",
+      "lastName": "Kizza",
+      "club": "Montreal",
+      "position": "D",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 166800
+    },
+    {
+      "firstName": "Edward",
+      "lastName": "Kizza",
+      "club": "New England Revolution",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Freddy",
+      "lastName": "Kleeman",
+      "club": "Austin FC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Patryk",
+      "lastName": "Klimala",
+      "club": "New York Red Bulls",
+      "position": "F",
+      "baseSalary": 1000000,
+      "guaranteedCompensation": 1135000
+    },
+    {
+      "firstName": "Jonathan",
+      "lastName": "Klinsmann",
+      "club": "LA Galaxy",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Sacha",
+      "lastName": "Kljestan",
+      "club": "LA Galaxy",
+      "position": "M",
+      "baseSalary": 247350,
+      "guaranteedCompensation": 247350
+    },
+    {
+      "firstName": "Brad",
+      "lastName": "Knighton",
+      "club": "New England Revolution",
+      "position": "GK",
+      "baseSalary": 140000,
+      "guaranteedCompensation": 146750
+    },
+    {
+      "firstName": "Zan",
+      "lastName": "Kolmanic",
+      "club": "Austin FC",
+      "position": "D",
+      "baseSalary": 225000,
+      "guaranteedCompensation": 225000
+    },
+    {
+      "firstName": "Ismael",
+      "lastName": "Koné",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 66172
+    },
+    {
+      "firstName": "Kai",
+      "lastName": "Koreniuk",
+      "club": "LA Galaxy",
+      "position": "M-F",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Damir",
+      "lastName": "Kreilach",
+      "club": "Real Salt Lake",
+      "position": "M",
+      "baseSalary": 1200000,
+      "guaranteedCompensation": 1350000
+    },
+    {
+      "firstName": "Kenneth",
+      "lastName": "Kronholm",
+      "club": "Chicago Fire",
+      "position": "GK",
+      "baseSalary": 569000,
+      "guaranteedCompensation": 632000
+    },
+    {
+      "firstName": "Yuya",
+      "lastName": "Kubo",
+      "club": "FC Cincinnati",
+      "position": "M",
+      "baseSalary": 1091000,
+      "guaranteedCompensation": 1206750
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "LaGrassa",
+      "club": "Nashville SC",
+      "position": "M",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "Lampson",
+      "club": "Major League Soccer",
+      "position": "GK",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Lassi",
+      "lastName": "Lappalainen",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 383657,
+      "guaranteedCompensation": 383657
+    },
+    {
+      "firstName": "Oliver",
+      "lastName": "Larraz",
+      "club": "Colorado Rapids",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Richie",
+      "lastName": "Laryea",
+      "club": "Toronto FC",
+      "position": "M",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 226953
+    },
+    {
+      "firstName": "Ariel",
+      "lastName": "Lassiter",
+      "club": "Houston Dynamo",
+      "position": "F",
+      "baseSalary": 210000,
+      "guaranteedCompensation": 230280
+    },
+    {
+      "firstName": "Vukashin",
+      "lastName": "Latinovich",
+      "club": "New York City FC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Kemar",
+      "lastName": "Lawrence",
+      "club": "Toronto FC",
+      "position": "D",
+      "baseSalary": 258000,
+      "guaranteedCompensation": 340500
+    },
+    {
+      "firstName": "Randall",
+      "lastName": "Leal",
+      "club": "Nashville SC",
+      "position": "F-M",
+      "baseSalary": 420000,
+      "guaranteedCompensation": 477750
+    },
+    {
+      "firstName": "Kelvin",
+      "lastName": "Leerdam",
+      "club": "Inter Miami",
+      "position": "D",
+      "baseSalary": 180000,
+      "guaranteedCompensation": 297625
+    },
+    {
+      "firstName": "Nico",
+      "lastName": "Lemoine",
+      "club": "Houston Dynamo",
+      "position": "F",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Brooks",
+      "lastName": "Lennon",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 375000,
+      "guaranteedCompensation": 375000
+    },
+    {
+      "firstName": "Antonio",
+      "lastName": "Leone",
+      "club": "LAFC",
+      "position": "D-M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 83375
+    },
+    {
+      "firstName": "Jonathan",
+      "lastName": "Lewis",
+      "club": "Colorado Rapids",
+      "position": "F",
+      "baseSalary": 410000,
+      "guaranteedCompensation": 435000
+    },
+    {
+      "firstName": "Luca",
+      "lastName": "Lewis",
+      "club": "New York Red Bulls",
+      "position": "GK",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 67147
+    },
+    {
+      "firstName": "Danny",
+      "lastName": "Leyva",
+      "club": "Seattle Sounders FC",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 100798
+    },
+    {
+      "firstName": "Grant",
+      "lastName": "Lillard",
+      "club": "Columbus Crew",
+      "position": "D",
+      "baseSalary": 125000,
+      "guaranteedCompensation": 127500
+    },
+    {
+      "firstName": "Nick",
+      "lastName": "Lima",
+      "club": "Austin FC",
+      "position": "D",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 350000
+    },
+    {
+      "firstName": "Artur",
+      "lastName": "Lima",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 480000,
+      "guaranteedCompensation": 531633
+    },
+    {
+      "firstName": "Jaylin",
+      "lastName": "Lindsey",
+      "club": "Sporting Kansas City",
+      "position": "D",
+      "baseSalary": 91547,
+      "guaranteedCompensation": 94547
+    },
+    {
+      "firstName": "Sebastian",
+      "lastName": "Lletget",
+      "club": "LA Galaxy",
+      "position": "M",
+      "baseSalary": 800000,
+      "guaranteedCompensation": 923750
+    },
+    {
+      "firstName": "Ake",
+      "lastName": "Loba",
+      "club": "Nashville SC",
+      "position": "F",
+      "baseSalary": 1077000,
+      "guaranteedCompensation": 1318475
+    },
+    {
+      "firstName": "Robin",
+      "lastName": "Lod",
+      "club": "Minnesota United",
+      "position": "M-F",
+      "baseSalary": 849996,
+      "guaranteedCompensation": 952496
+    },
+    {
+      "firstName": "Nicolas",
+      "lastName": "Lodeiro",
+      "club": "Seattle Sounders FC",
+      "position": "M",
+      "baseSalary": 2120000,
+      "guaranteedCompensation": 2736667
+    },
+    {
+      "firstName": "David",
+      "lastName": "Loera",
+      "club": "Orlando City SC",
+      "position": "M",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 102500
+    },
+    {
+      "firstName": "Aaron",
+      "lastName": "Long",
+      "club": "New York Red Bulls",
+      "position": "D",
+      "baseSalary": 895000,
+      "guaranteedCompensation": 925000
+    },
+    {
+      "firstName": "Eric",
+      "lastName": "Lopez",
+      "club": "LA Galaxy",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Marcos",
+      "lastName": "Lopez",
+      "club": "San Jose Earthquakes",
+      "position": "D",
+      "baseSalary": 330000,
+      "guaranteedCompensation": 370250
+    },
+    {
+      "firstName": "Javier",
+      "lastName": "Lopez Ramirez",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 860000,
+      "guaranteedCompensation": 860000
+    },
+    {
+      "firstName": "Erik",
+      "lastName": "Lopez Samaniego",
+      "club": "Atlanta United",
+      "position": "F",
+      "baseSalary": 340000,
+      "guaranteedCompensation": 508300
+    },
+    {
+      "firstName": "Marvin",
+      "lastName": "Loría",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Daniel",
+      "lastName": "Lovitz",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 385000,
+      "guaranteedCompensation": 415556
+    },
+    {
+      "firstName": "Everton",
+      "lastName": "Luiz",
+      "club": "Real Salt Lake",
+      "position": "M",
+      "baseSalary": 1160000,
+      "guaranteedCompensation": 1260000
+    },
+    {
+      "firstName": "Ben",
+      "lastName": "Lundgaard",
+      "club": "Atlanta United",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Adam",
+      "lastName": "Lundkvist",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 325000,
+      "guaranteedCompensation": 372500
+    },
+    {
+      "firstName": "Ben",
+      "lastName": "Lundt",
+      "club": "FC Cincinnati",
+      "position": "GK",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 87019
+    },
+    {
+      "firstName": "Jhegson Sebastián",
+      "lastName": "Méndez",
+      "club": "Orlando City SC",
+      "position": "M",
+      "baseSalary": 550000,
+      "guaranteedCompensation": 586750
+    },
+    {
+      "firstName": "Larrys",
+      "lastName": "Mabiala",
+      "club": "Portland Timbers",
+      "position": "D",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 450000
+    },
+    {
+      "firstName": "Emanuel",
+      "lastName": "Maciel",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 118182,
+      "guaranteedCompensation": 129811
+    },
+    {
+      "firstName": "Lucas",
+      "lastName": "Maciel Felix",
+      "club": "New England Revolution",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Zac",
+      "lastName": "MacMath",
+      "club": "Real Salt Lake",
+      "position": "GK",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 200000
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Mafla",
+      "club": "New England Revolution",
+      "position": "D-M",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 495000
+    },
+    {
+      "firstName": "Talles",
+      "lastName": "Magno",
+      "club": "New York City FC",
+      "position": "F",
+      "baseSalary": 950000,
+      "guaranteedCompensation": 1198000
+    },
+    {
+      "firstName": "Jack",
+      "lastName": "Maher",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 115000,
+      "guaranteedCompensation": 149000
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Makoun",
+      "club": "Inter Miami",
+      "position": "D-M",
+      "baseSalary": 175000,
+      "guaranteedCompensation": 175000
+    },
+    {
+      "firstName": "Kekuta",
+      "lastName": "Manneh",
+      "club": "Austin FC",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "JT",
+      "lastName": "Marcinkowski",
+      "club": "San Jose Earthquakes",
+      "position": "GK",
+      "baseSalary": 165000,
+      "guaranteedCompensation": 177000
+    },
+    {
+      "firstName": "Anthony",
+      "lastName": "Marcucci, Jr.",
+      "club": "New York Red Bulls",
+      "position": "GK",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Marko",
+      "lastName": "Maric",
+      "club": "Houston Dynamo",
+      "position": "GK",
+      "baseSalary": 465000,
+      "guaranteedCompensation": 513250
+    },
+    {
+      "firstName": "Paul",
+      "lastName": "Marie",
+      "club": "San Jose Earthquakes",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 87908
+    },
+    {
+      "firstName": "Jahkeele",
+      "lastName": "Marshall-Rutty",
+      "club": "Toronto FC",
+      "position": "F",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 106842
+    },
+    {
+      "firstName": "Nick",
+      "lastName": "Marsman",
+      "club": "Inter Miami",
+      "position": "GK",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 262188
+    },
+    {
+      "firstName": "Josef",
+      "lastName": "Martinez",
+      "club": "Atlanta United",
+      "position": "F",
+      "baseSalary": 3500000,
+      "guaranteedCompensation": 3891667
+    },
+    {
+      "firstName": "Jose Antonio",
+      "lastName": "Martinez",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 673000
+    },
+    {
+      "firstName": "Jose Andres",
+      "lastName": "Martinez",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 225000,
+      "guaranteedCompensation": 251250
+    },
+    {
+      "firstName": "Doug",
+      "lastName": "Martinez",
+      "club": "Real Salt Lake",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Felipe",
+      "lastName": "Martins",
+      "club": "DC United",
+      "position": "M",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 150000
+    },
+    {
+      "firstName": "Luis",
+      "lastName": "Martins",
+      "club": "Sporting Kansas City",
+      "position": "D",
+      "baseSalary": 340000,
+      "guaranteedCompensation": 340000
+    },
+    {
+      "firstName": "Emmanuel",
+      "lastName": "Mas",
+      "club": "Orlando City SC",
+      "position": "D",
+      "baseSalary": 252000,
+      "guaranteedCompensation": 282000
+    },
+    {
+      "firstName": "Alexandru",
+      "lastName": "Matan",
+      "club": "Columbus Crew",
+      "position": "M-F",
+      "baseSalary": 375000,
+      "guaranteedCompensation": 408250
+    },
+    {
+      "firstName": "Ronald",
+      "lastName": "Matarrita",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 700000,
+      "guaranteedCompensation": 756875
+    },
+    {
+      "firstName": "Blaise",
+      "lastName": "Matuidi",
+      "club": "Inter Miami",
+      "position": "M",
+      "baseSalary": 1500000,
+      "guaranteedCompensation": 1500000
+    },
+    {
+      "firstName": "Jimmy",
+      "lastName": "Maurer",
+      "club": "FC Dallas",
+      "position": "GK",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 267888
+    },
+    {
+      "firstName": "Jose",
+      "lastName": "Mauri",
+      "club": "Sporting Kansas City",
+      "position": "M",
+      "baseSalary": 660000,
+      "guaranteedCompensation": 660000
+    },
+    {
+      "firstName": "Chris",
+      "lastName": "Mavinga",
+      "club": "Toronto FC",
+      "position": "D",
+      "baseSalary": 850000,
+      "guaranteedCompensation": 887500
+    },
+    {
+      "firstName": "Philip",
+      "lastName": "Mayaka",
+      "club": "Colorado Rapids",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 94375
+    },
+    {
+      "firstName": "Olivier",
+      "lastName": "Mbaizo",
+      "club": "Philadelphia Union",
+      "position": "D",
+      "baseSalary": 89513,
+      "guaranteedCompensation": 89513
+    },
+    {
+      "firstName": "John",
+      "lastName": "McCarthy",
+      "club": "Inter Miami",
+      "position": "GK",
+      "baseSalary": 130000,
+      "guaranteedCompensation": 136583
+    },
+    {
+      "firstName": "Dax",
+      "lastName": "McCarty",
+      "club": "Nashville SC",
+      "position": "M",
+      "baseSalary": 725000,
+      "guaranteedCompensation": 725000
+    },
+    {
+      "firstName": "Erik",
+      "lastName": "McCue",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "McFarlane",
+      "club": "New York City FC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 81803
+    },
+    {
+      "firstName": "Jack",
+      "lastName": "McGlynn",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 64992,
+      "guaranteedCompensation": 78892
+    },
+    {
+      "firstName": "Zac",
+      "lastName": "McGraw",
+      "club": "Portland Timbers",
+      "position": "D",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Riley",
+      "lastName": "Mcgree",
+      "club": "Major League Soccer",
+      "position": "M",
+      "baseSalary": 170000,
+      "guaranteedCompensation": 180000
+    },
+    {
+      "firstName": "Kendall",
+      "lastName": "McIntosh",
+      "club": "Sporting Kansas City",
+      "position": "GK",
+      "baseSalary": 96375,
+      "guaranteedCompensation": 96375
+    },
+    {
+      "firstName": "Justin",
+      "lastName": "McMaster",
+      "club": "Minnesota United",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Thomas",
+      "lastName": "McNamara",
+      "club": "New England Revolution",
+      "position": "M",
+      "baseSalary": 225000,
+      "guaranteedCompensation": 225000
+    },
+    {
+      "firstName": "Ryan",
+      "lastName": "Meara",
+      "club": "New York Red Bulls",
+      "position": "GK",
+      "baseSalary": 270000,
+      "guaranteedCompensation": 270000
+    },
+    {
+      "firstName": "Jesus",
+      "lastName": "Medina",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 1050000,
+      "guaranteedCompensation": 1170833
+    },
+    {
+      "firstName": "Alvaro",
+      "lastName": "Medran",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 1000000,
+      "guaranteedCompensation": 1055000
+    },
+    {
+      "firstName": "Jimmy",
+      "lastName": "Medranda",
+      "club": "Seattle Sounders FC",
+      "position": "M-D",
+      "baseSalary": 180000,
+      "guaranteedCompensation": 190000
+    },
+    {
+      "firstName": "Haris",
+      "lastName": "Medunjanin",
+      "club": "FC Cincinnati",
+      "position": "M",
+      "baseSalary": 570000,
+      "guaranteedCompensation": 625750
+    },
+    {
+      "firstName": "Phelipe",
+      "lastName": "Megiolaro",
+      "club": "FC Dallas",
+      "position": "GK",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 176250
+    },
+    {
+      "firstName": "Tim",
+      "lastName": "Melia",
+      "club": "Sporting Kansas City",
+      "position": "GK",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 504167
+    },
+    {
+      "firstName": "Jonathan",
+      "lastName": "Menendez",
+      "club": "Real Salt Lake",
+      "position": "M-F",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 602813
+    },
+    {
+      "firstName": "Jonathan",
+      "lastName": "Mensah",
+      "club": "Columbus Crew",
+      "position": "D",
+      "baseSalary": 1000000,
+      "guaranteedCompensation": 1140667
+    },
+    {
+      "firstName": "Justin",
+      "lastName": "Meram",
+      "club": "Real Salt Lake",
+      "position": "M",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 500000
+    },
+    {
+      "firstName": "Bryan",
+      "lastName": "Meredith",
+      "club": "Nashville SC",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 87375
+    },
+    {
+      "firstName": "Romain",
+      "lastName": "Metanire",
+      "club": "Minnesota United",
+      "position": "D",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 699250
+    },
+    {
+      "firstName": "Patrick",
+      "lastName": "Metcalfe",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Nicolas",
+      "lastName": "Mezquida",
+      "club": "Colorado Rapids",
+      "position": "M",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 380000
+    },
+    {
+      "firstName": "Benji",
+      "lastName": "Michel",
+      "club": "Orlando City SC",
+      "position": "F",
+      "baseSalary": 109250,
+      "guaranteedCompensation": 115553
+    },
+    {
+      "firstName": "Djordje",
+      "lastName": "Mihailovic",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 651875
+    },
+    {
+      "firstName": "Matko",
+      "lastName": "Milijevic",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 545455,
+      "guaranteedCompensation": 593364
+    },
+    {
+      "firstName": "Tyler",
+      "lastName": "Miller",
+      "club": "Minnesota United",
+      "position": "GK",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 420937
+    },
+    {
+      "firstName": "Kamal",
+      "lastName": "Miller",
+      "club": "Montreal",
+      "position": "D",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Eric",
+      "lastName": "Miller",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 147000,
+      "guaranteedCompensation": 147000
+    },
+    {
+      "firstName": "Miguel",
+      "lastName": "Mina Nazarit",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 700000,
+      "guaranteedCompensation": 894375
+    },
+    {
+      "firstName": "Ben",
+      "lastName": "Mines",
+      "club": "FC Cincinnati",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 86239
+    },
+    {
+      "firstName": "Joao Paulo",
+      "lastName": "Mior",
+      "club": "Seattle Sounders FC",
+      "position": "M",
+      "baseSalary": 1000000,
+      "guaranteedCompensation": 1050000
+    },
+    {
+      "firstName": "Selmir",
+      "lastName": "Miscic",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 70026
+    },
+    {
+      "firstName": "Alexandru",
+      "lastName": "Mitrita",
+      "club": "New York City FC",
+      "position": "F",
+      "baseSalary": 700000,
+      "guaranteedCompensation": 700000
+    },
+    {
+      "firstName": "Cody",
+      "lastName": "Mizell",
+      "club": "New York City FC",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Kamohelo",
+      "lastName": "Mokotjo",
+      "club": "FC Cincinnati",
+      "position": "M",
+      "baseSalary": 925000,
+      "guaranteedCompensation": 1007969
+    },
+    {
+      "firstName": "Kevin",
+      "lastName": "Molino",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 667000,
+      "guaranteedCompensation": 667000
+    },
+    {
+      "firstName": "Alex",
+      "lastName": "Monis",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 68624
+    },
+    {
+      "firstName": "Jamiro",
+      "lastName": "Monteiro",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 1300000,
+      "guaranteedCompensation": 1476250
+    },
+    {
+      "firstName": "Fredy",
+      "lastName": "Montero",
+      "club": "Seattle Sounders FC",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Callum",
+      "lastName": "Montgomery",
+      "club": "Minnesota United",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 83292
+    },
+    {
+      "firstName": "Lucas",
+      "lastName": "Monzon",
+      "club": "New York Red Bulls",
+      "position": "D",
+      "baseSalary": 205000,
+      "guaranteedCompensation": 243917
+    },
+    {
+      "firstName": "Kim",
+      "lastName": "Moon-Hwan",
+      "club": "LAFC",
+      "position": "D-M",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 524000
+    },
+    {
+      "firstName": "Drew",
+      "lastName": "Moor",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 165000
+    },
+    {
+      "firstName": "Joseph",
+      "lastName": "Mora",
+      "club": "DC United",
+      "position": "D",
+      "baseSalary": 184000,
+      "guaranteedCompensation": 198600
+    },
+    {
+      "firstName": "Felipe",
+      "lastName": "Mora",
+      "club": "Portland Timbers",
+      "position": "F",
+      "baseSalary": 825000,
+      "guaranteedCompensation": 905000
+    },
+    {
+      "firstName": "Efrain",
+      "lastName": "Morales",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Alfredo",
+      "lastName": "Morales",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 662250
+    },
+    {
+      "firstName": "Maxi",
+      "lastName": "Moralez",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 2500000,
+      "guaranteedCompensation": 3285000
+    },
+    {
+      "firstName": "Steven",
+      "lastName": "Moreira",
+      "club": "Columbus Crew",
+      "position": "D",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 432708
+    },
+    {
+      "firstName": "Marcelino",
+      "lastName": "Moreno",
+      "club": "Atlanta United",
+      "position": "F-M",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 400000
+    },
+    {
+      "firstName": "Junior",
+      "lastName": "Moreno",
+      "club": "DC United",
+      "position": "M",
+      "baseSalary": 184000,
+      "guaranteedCompensation": 193550
+    },
+    {
+      "firstName": "Santiago",
+      "lastName": "Moreno",
+      "club": "Portland Timbers",
+      "position": "F",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 294576
+    },
+    {
+      "firstName": "Lewis",
+      "lastName": "Morgan",
+      "club": "Inter Miami",
+      "position": "M-F",
+      "baseSalary": 550000,
+      "guaranteedCompensation": 553125
+    },
+    {
+      "firstName": "Ashtone",
+      "lastName": "Morgan",
+      "club": "Real Salt Lake",
+      "position": "D",
+      "baseSalary": 132000,
+      "guaranteedCompensation": 132000
+    },
+    {
+      "firstName": "Aidan",
+      "lastName": "Morris",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 145000,
+      "guaranteedCompensation": 147000
+    },
+    {
+      "firstName": "Jordan",
+      "lastName": "Morris",
+      "club": "Seattle Sounders FC",
+      "position": "F",
+      "baseSalary": 1150000,
+      "guaranteedCompensation": 1270100
+    },
+    {
+      "firstName": "Justin",
+      "lastName": "Morrow",
+      "club": "Toronto FC",
+      "position": "D",
+      "baseSalary": 125000,
+      "guaranteedCompensation": 125000
+    },
+    {
+      "firstName": "Kyle",
+      "lastName": "Morton",
+      "club": "Houston Dynamo",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Joao",
+      "lastName": "Moutinho",
+      "club": "Orlando City SC",
+      "position": "D",
+      "baseSalary": 180000,
+      "guaranteedCompensation": 223000
+    },
+    {
+      "firstName": "Chris",
+      "lastName": "Mueller",
+      "club": "Orlando City SC",
+      "position": "M",
+      "baseSalary": 123715,
+      "guaranteedCompensation": 137465
+    },
+    {
+      "firstName": "Hany",
+      "lastName": "Mukhtar",
+      "club": "Nashville SC",
+      "position": "M",
+      "baseSalary": 1505000,
+      "guaranteedCompensation": 1505000
+    },
+    {
+      "firstName": "Patrick",
+      "lastName": "Mullins",
+      "club": "Toronto FC",
+      "position": "F",
+      "baseSalary": 234996,
+      "guaranteedCompensation": 248329
+    },
+    {
+      "firstName": "Jake",
+      "lastName": "Mulraney",
+      "club": "Atlanta United",
+      "position": "M",
+      "baseSalary": 275600,
+      "guaranteedCompensation": 312777
+    },
+    {
+      "firstName": "Eddie",
+      "lastName": "Munjoma",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Jesus",
+      "lastName": "Murillo",
+      "club": "LAFC",
+      "position": "D",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 459500
+    },
+    {
+      "firstName": "Trey",
+      "lastName": "Muse",
+      "club": "Seattle Sounders FC",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 90125
+    },
+    {
+      "firstName": "Danny",
+      "lastName": "Musovski",
+      "club": "LAFC",
+      "position": "F",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Alex",
+      "lastName": "Muyl",
+      "club": "Nashville SC",
+      "position": "M",
+      "baseSalary": 240000,
+      "guaranteedCompensation": 246563
+    },
+    {
+      "firstName": "Darlington",
+      "lastName": "Nagbe",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 1710000,
+      "guaranteedCompensation": 1710000
+    },
+    {
+      "firstName": "Andy",
+      "lastName": "Najar",
+      "club": "DC United",
+      "position": "D",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 100000
+    },
+    {
+      "firstName": "Younes",
+      "lastName": "Namli",
+      "club": "Colorado Rapids",
+      "position": "M",
+      "baseSalary": 850000,
+      "guaranteedCompensation": 1271000
+    },
+    {
+      "firstName": "Luis",
+      "lastName": "Nani",
+      "club": "Orlando City SC",
+      "position": "F",
+      "baseSalary": 2333333,
+      "guaranteedCompensation": 2486250
+    },
+    {
+      "firstName": "Miguel Angel",
+      "lastName": "Navarro",
+      "club": "Chicago Fire",
+      "position": "D",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 197000
+    },
+    {
+      "firstName": "Federico",
+      "lastName": "Navarro",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 180000,
+      "guaranteedCompensation": 257500
+    },
+    {
+      "firstName": "Jalen",
+      "lastName": "Neal",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 103625
+    },
+    {
+      "firstName": "Dylan",
+      "lastName": "Nealis",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 125000
+    },
+    {
+      "firstName": "Sean",
+      "lastName": "Nealis",
+      "club": "New York Red Bulls",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "John",
+      "lastName": "Nelson",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 115000,
+      "guaranteedCompensation": 123000
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Nelson",
+      "club": "Houston Dynamo",
+      "position": "GK",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Jayden",
+      "lastName": "Nelson",
+      "club": "Toronto FC",
+      "position": "F",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 106586
+    },
+    {
+      "firstName": "Jake",
+      "lastName": "Nerwinski",
+      "club": "Vancouver Whitecaps",
+      "position": "D",
+      "baseSalary": 255000,
+      "guaranteedCompensation": 270000
+    },
+    {
+      "firstName": "Evan",
+      "lastName": "Newton",
+      "club": "Vancouver Whitecaps",
+      "position": "GK",
+      "baseSalary": 95000,
+      "guaranteedCompensation": 104802
+    },
+    {
+      "firstName": "Michee",
+      "lastName": "Ngalina",
+      "club": "LAFC",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 82875
+    },
+    {
+      "firstName": "Jaroslaw",
+      "lastName": "Niezgoda",
+      "club": "Portland Timbers",
+      "position": "F",
+      "baseSalary": 739500,
+      "guaranteedCompensation": 908758
+    },
+    {
+      "firstName": "Moses",
+      "lastName": "Nyeman",
+      "club": "DC United",
+      "position": "M",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 88230
+    },
+    {
+      "firstName": "Shane",
+      "lastName": "O'Neill",
+      "club": "Seattle Sounders FC",
+      "position": "D",
+      "baseSalary": 115000,
+      "guaranteedCompensation": 115000
+    },
+    {
+      "firstName": "Jader",
+      "lastName": "Obrian",
+      "club": "FC Dallas",
+      "position": "F",
+      "baseSalary": 360000,
+      "guaranteedCompensation": 444600
+    },
+    {
+      "firstName": "Alfonso",
+      "lastName": "Ocampo-Chavez",
+      "club": "Seattle Sounders FC",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 95875
+    },
+    {
+      "firstName": "David",
+      "lastName": "Ochoa",
+      "club": "Real Salt Lake",
+      "position": "GK",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 90000
+    },
+    {
+      "firstName": "Emmanuel",
+      "lastName": "Ochoa",
+      "club": "San Jose Earthquakes",
+      "position": "GK",
+      "baseSalary": 65000,
+      "guaranteedCompensation": 75080
+    },
+    {
+      "firstName": "Chris",
+      "lastName": "Odoi-Atsem",
+      "club": "DC United",
+      "position": "D",
+      "baseSalary": 130000,
+      "guaranteedCompensation": 141000
+    },
+    {
+      "firstName": "Chinonso",
+      "lastName": "Offor",
+      "club": "Chicago Fire",
+      "position": "F",
+      "baseSalary": 132000,
+      "guaranteedCompensation": 181400
+    },
+    {
+      "firstName": "Noble",
+      "lastName": "Okello",
+      "club": "Toronto FC",
+      "position": "M",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 111815
+    },
+    {
+      "firstName": "Wyatt",
+      "lastName": "Omsberg",
+      "club": "Chicago Fire",
+      "position": "D",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Ike",
+      "lastName": "Opara",
+      "club": "Major League Soccer",
+      "position": "D",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 685333
+    },
+    {
+      "firstName": "Kwadwo",
+      "lastName": "Opoku",
+      "club": "LAFC",
+      "position": "F-M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 122430
+    },
+    {
+      "firstName": "Matej",
+      "lastName": "Oravec",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 270000,
+      "guaranteedCompensation": 284500
+    },
+    {
+      "firstName": "Arquimides",
+      "lastName": "Ordonez",
+      "club": "FC Cincinnati",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 67084
+    },
+    {
+      "firstName": "Jonathan",
+      "lastName": "Osorio",
+      "club": "Toronto FC",
+      "position": "M",
+      "baseSalary": 850000,
+      "guaranteedCompensation": 876250
+    },
+    {
+      "firstName": "Leonard",
+      "lastName": "Owusu",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 401250
+    },
+    {
+      "firstName": "Diego",
+      "lastName": "Palacios",
+      "club": "LAFC",
+      "position": "D",
+      "baseSalary": 432000,
+      "guaranteedCompensation": 456000
+    },
+    {
+      "firstName": "Marcelo",
+      "lastName": "Palomino",
+      "club": "Houston Dynamo",
+      "position": "F",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Elliot",
+      "lastName": "Panicco",
+      "club": "Nashville SC",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "James",
+      "lastName": "Pantemis",
+      "club": "Montreal",
+      "position": "GK",
+      "baseSalary": 130000,
+      "guaranteedCompensation": 145833
+    },
+    {
+      "firstName": "Kevin",
+      "lastName": "Paredes",
+      "club": "DC United",
+      "position": "M",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 108000
+    },
+    {
+      "firstName": "Cristhian",
+      "lastName": "Paredes",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 252000,
+      "guaranteedCompensation": 283500
+    },
+    {
+      "firstName": "Isaiah",
+      "lastName": "Parente",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 67547
+    },
+    {
+      "firstName": "Tim",
+      "lastName": "Parker",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 1161800,
+      "guaranteedCompensation": 1199300
+    },
+    {
+      "firstName": "Keaton",
+      "lastName": "Parks",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 350000
+    },
+    {
+      "firstName": "Tyler",
+      "lastName": "Pasher",
+      "club": "Houston Dynamo",
+      "position": "F",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 157881
+    },
+    {
+      "firstName": "Alexandre",
+      "lastName": "Pato",
+      "club": "Orlando City SC",
+      "position": "F",
+      "baseSalary": 272727,
+      "guaranteedCompensation": 272727
+    },
+    {
+      "firstName": "Damiano",
+      "lastName": "Pecile",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 72818
+    },
+    {
+      "firstName": "Matias",
+      "lastName": "Pellegrini",
+      "club": "Major League Soccer",
+      "position": "M-F",
+      "baseSalary": 825000,
+      "guaranteedCompensation": 920833
+    },
+    {
+      "firstName": "Jason",
+      "lastName": "Pendant",
+      "club": "New York Red Bulls",
+      "position": "D",
+      "baseSalary": 325000,
+      "guaranteedCompensation": 385750
+    },
+    {
+      "firstName": "Josh",
+      "lastName": "Penn",
+      "club": "Inter Miami",
+      "position": "M-F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Ricardo",
+      "lastName": "Pepi",
+      "club": "FC Dallas",
+      "position": "F",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 271333
+    },
+    {
+      "firstName": "Andres",
+      "lastName": "Perea",
+      "club": "Orlando City SC",
+      "position": "M",
+      "baseSalary": 180000,
+      "guaranteedCompensation": 188500
+    },
+    {
+      "firstName": "Danny",
+      "lastName": "Pereira",
+      "club": "Austin FC",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 99793
+    },
+    {
+      "firstName": "Mauricio",
+      "lastName": "Pereyra",
+      "club": "Orlando City SC",
+      "position": "M",
+      "baseSalary": 1800000,
+      "guaranteedCompensation": 1848000
+    },
+    {
+      "firstName": "Manny",
+      "lastName": "Perez",
+      "club": "Austin FC",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 89214
+    },
+    {
+      "firstName": "Adrien",
+      "lastName": "Perez",
+      "club": "DC United",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Jonathan",
+      "lastName": "Perez",
+      "club": "LA Galaxy",
+      "position": "M",
+      "baseSalary": 125000,
+      "guaranteedCompensation": 146750
+    },
+    {
+      "firstName": "Jordan",
+      "lastName": "Perruzza",
+      "club": "Toronto FC",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 67847
+    },
+    {
+      "firstName": "Fafa",
+      "lastName": "Picault",
+      "club": "Houston Dynamo",
+      "position": "F",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 500000
+    },
+    {
+      "firstName": "Kayden",
+      "lastName": "Pierre",
+      "club": "Sporting Kansas City",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 68647
+    },
+    {
+      "firstName": "Samuel",
+      "lastName": "Piette",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 425000,
+      "guaranteedCompensation": 454750
+    },
+    {
+      "firstName": "Mauricio",
+      "lastName": "Pineda",
+      "club": "Chicago Fire",
+      "position": "D-M",
+      "baseSalary": 175000,
+      "guaranteedCompensation": 198875
+    },
+    {
+      "firstName": "Rodrigo",
+      "lastName": "Pineiro",
+      "club": "Nashville SC",
+      "position": "F",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 347500
+    },
+    {
+      "firstName": "Donovan",
+      "lastName": "Pines",
+      "club": "DC United",
+      "position": "D",
+      "baseSalary": 125000,
+      "guaranteedCompensation": 127000
+    },
+    {
+      "firstName": "Rodolfo",
+      "lastName": "Pizarro",
+      "club": "Inter Miami",
+      "position": "M-F",
+      "baseSalary": 3050000,
+      "guaranteedCompensation": 3350000
+    },
+    {
+      "firstName": "Tomas",
+      "lastName": "Pochettino",
+      "club": "Austin FC",
+      "position": "M",
+      "baseSalary": 582447,
+      "guaranteedCompensation": 642447
+    },
+    {
+      "firstName": "Andy",
+      "lastName": "Polo",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 500000
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "Polster",
+      "club": "New England Revolution",
+      "position": "D-M",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 328438
+    },
+    {
+      "firstName": "Paxton",
+      "lastName": "Pomykal",
+      "club": "FC Dallas",
+      "position": "M",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 600000
+    },
+    {
+      "firstName": "Gino",
+      "lastName": "Portella",
+      "club": "Philadelphia Union",
+      "position": "",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 71615
+    },
+    {
+      "firstName": "Justin",
+      "lastName": "Portillo",
+      "club": "Real Salt Lake",
+      "position": "M",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Noah",
+      "lastName": "Powder",
+      "club": "Real Salt Lake",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 67609
+    },
+    {
+      "firstName": "Alvas",
+      "lastName": "Powell",
+      "club": "Philadelphia Union",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 88875
+    },
+    {
+      "firstName": "Alejandro",
+      "lastName": "Pozuelo",
+      "club": "Toronto FC",
+      "position": "M",
+      "baseSalary": 3800000,
+      "guaranteedCompensation": 4693000
+    },
+    {
+      "firstName": "Jack",
+      "lastName": "Price",
+      "club": "Colorado Rapids",
+      "position": "M",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 655625
+    },
+    {
+      "firstName": "Ralph",
+      "lastName": "Priso",
+      "club": "Toronto FC",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 70476
+    },
+    {
+      "firstName": "Kacper",
+      "lastName": "Przybylko",
+      "club": "Philadelphia Union",
+      "position": "F",
+      "baseSalary": 825000,
+      "guaranteedCompensation": 916250
+    },
+    {
+      "firstName": "Alan",
+      "lastName": "Pulido Izaguirre",
+      "club": "Sporting Kansas City",
+      "position": "F",
+      "baseSalary": 2200000,
+      "guaranteedCompensation": 2200000
+    },
+    {
+      "firstName": "William",
+      "lastName": "Pulisic",
+      "club": "Austin FC",
+      "position": "GK",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "John",
+      "lastName": "Pulskamp",
+      "club": "Sporting Kansas City",
+      "position": "GK",
+      "baseSalary": 67360,
+      "guaranteedCompensation": 69860
+    },
+    {
+      "firstName": "Roberto",
+      "lastName": "Puncec",
+      "club": "Sporting Kansas City",
+      "position": "D",
+      "baseSalary": 575000,
+      "guaranteedCompensation": 575000
+    },
+    {
+      "firstName": "Andrew",
+      "lastName": "Putna",
+      "club": "Real Salt Lake",
+      "position": "GK",
+      "baseSalary": 140000,
+      "guaranteedCompensation": 153458
+    },
+    {
+      "firstName": "Alvaro",
+      "lastName": "Quezada",
+      "club": "LAFC",
+      "position": "D-M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Facundo",
+      "lastName": "Quignon",
+      "club": "FC Dallas",
+      "position": "M",
+      "baseSalary": 786000,
+      "guaranteedCompensation": 840627
+    },
+    {
+      "firstName": "Darwin",
+      "lastName": "Quintero",
+      "club": "Houston Dynamo",
+      "position": "F",
+      "baseSalary": 1352055,
+      "guaranteedCompensation": 1352055
+    },
+    {
+      "firstName": "Jairo",
+      "lastName": "Quinteros",
+      "club": "Inter Miami",
+      "position": "D",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Romell",
+      "lastName": "Quioto",
+      "club": "Montreal",
+      "position": "F",
+      "baseSalary": 800000,
+      "guaranteedCompensation": 885000
+    },
+    {
+      "firstName": "Kaveh",
+      "lastName": "Rad",
+      "club": "Sporting Kansas City",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Jukka",
+      "lastName": "Raitala",
+      "club": "Minnesota United",
+      "position": "D",
+      "baseSalary": 285000,
+      "guaranteedCompensation": 306350
+    },
+    {
+      "firstName": "Jeizon",
+      "lastName": "Ramirez Chacon",
+      "club": "Real Salt Lake",
+      "position": "M",
+      "baseSalary": 360000,
+      "guaranteedCompensation": 401250
+    },
+    {
+      "firstName": "Gregory",
+      "lastName": "Ranjitsingh",
+      "club": "Major League Soccer",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Ryan",
+      "lastName": "Raposo",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 104000
+    },
+    {
+      "firstName": "Rayan",
+      "lastName": "Raveloson",
+      "club": "LA Galaxy",
+      "position": "M",
+      "baseSalary": 780000,
+      "guaranteedCompensation": 855025
+    },
+    {
+      "firstName": "Andre",
+      "lastName": "Rawls",
+      "club": "Colorado Rapids",
+      "position": "GK",
+      "baseSalary": 85000,
+      "guaranteedCompensation": 91000
+    },
+    {
+      "firstName": "Sean",
+      "lastName": "Rea",
+      "club": "Montreal",
+      "position": "",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 71730
+    },
+    {
+      "firstName": "Matthew",
+      "lastName": "Real",
+      "club": "Philadelphia Union",
+      "position": "D",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 90000
+    },
+    {
+      "firstName": "Rodney",
+      "lastName": "Redes",
+      "club": "Austin FC",
+      "position": "F",
+      "baseSalary": 385000,
+      "guaranteedCompensation": 385000
+    },
+    {
+      "firstName": "Beni",
+      "lastName": "Redzic",
+      "club": "FC Dallas",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 71169
+    },
+    {
+      "firstName": "Eric",
+      "lastName": "Remedi",
+      "club": "San Jose Earthquakes",
+      "position": "M",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 450000
+    },
+    {
+      "firstName": "Justin",
+      "lastName": "Rennicks",
+      "club": "New England Revolution",
+      "position": "F",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 110000
+    },
+    {
+      "firstName": "Andres",
+      "lastName": "Reyes",
+      "club": "New York Red Bulls",
+      "position": "D",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 444375
+    },
+    {
+      "firstName": "Yordy",
+      "lastName": "Reyna",
+      "club": "DC United",
+      "position": "M-F",
+      "baseSalary": 711500,
+      "guaranteedCompensation": 774640
+    },
+    {
+      "firstName": "Andre",
+      "lastName": "Reynolds",
+      "club": "Chicago Fire",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 89375
+    },
+    {
+      "firstName": "Emanuel",
+      "lastName": "Reynoso",
+      "club": "Minnesota United",
+      "position": "M",
+      "baseSalary": 750000,
+      "guaranteedCompensation": 966910
+    },
+    {
+      "firstName": "Andres",
+      "lastName": "Ricaurte",
+      "club": "FC Dallas",
+      "position": "M",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 487178
+    },
+    {
+      "firstName": "Spencer",
+      "lastName": "Richey",
+      "club": "Seattle Sounders FC",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Tosaint",
+      "lastName": "Ricketts",
+      "club": "Vancouver Whitecaps",
+      "position": "F",
+      "baseSalary": 160000,
+      "guaranteedCompensation": 165000
+    },
+    {
+      "firstName": "Alexander",
+      "lastName": "Ring",
+      "club": "Austin FC",
+      "position": "M",
+      "baseSalary": 1000000,
+      "guaranteedCompensation": 1095000
+    },
+    {
+      "firstName": "Daniel Esteban",
+      "lastName": "Rios",
+      "club": "Houston Dynamo",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 68069
+    },
+    {
+      "firstName": "Daniel",
+      "lastName": "Rios",
+      "club": "Nashville SC",
+      "position": "F",
+      "baseSalary": 140000,
+      "guaranteedCompensation": 161500
+    },
+    {
+      "firstName": "Andres",
+      "lastName": "Rios",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 870000,
+      "guaranteedCompensation": 939250
+    },
+    {
+      "firstName": "Damian",
+      "lastName": "Rivera",
+      "club": "New England Revolution",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Wilfredo",
+      "lastName": "Rivera",
+      "club": "Orlando City SC",
+      "position": "",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Nigel",
+      "lastName": "Robertha",
+      "club": "DC United",
+      "position": "F",
+      "baseSalary": 550000,
+      "guaranteedCompensation": 622406
+    },
+    {
+      "firstName": "Thomas",
+      "lastName": "Roberts",
+      "club": "FC Dallas",
+      "position": "M",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 163000
+    },
+    {
+      "firstName": "Miles",
+      "lastName": "Robinson",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 650000,
+      "guaranteedCompensation": 687500
+    },
+    {
+      "firstName": "Robbie",
+      "lastName": "Robinson",
+      "club": "Inter Miami",
+      "position": "F",
+      "baseSalary": 125000,
+      "guaranteedCompensation": 170000
+    },
+    {
+      "firstName": "Tony",
+      "lastName": "Rocha",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Allan",
+      "lastName": "Rodriguez",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 68624
+    },
+    {
+      "firstName": "Abraham",
+      "lastName": "Rodriguez",
+      "club": "Colorado Rapids",
+      "position": "GK",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Memo",
+      "lastName": "Rodriguez",
+      "club": "Houston Dynamo",
+      "position": "M",
+      "baseSalary": 265000,
+      "guaranteedCompensation": 290935
+    },
+    {
+      "firstName": "Brian",
+      "lastName": "Rodriguez",
+      "club": "LAFC",
+      "position": "F",
+      "baseSalary": 700000,
+      "guaranteedCompensation": 1039800
+    },
+    {
+      "firstName": "Santiago",
+      "lastName": "Rodriguez",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 612500,
+      "guaranteedCompensation": 612500
+    },
+    {
+      "firstName": "Cristian",
+      "lastName": "Roldan",
+      "club": "Seattle Sounders FC",
+      "position": "M",
+      "baseSalary": 760000,
+      "guaranteedCompensation": 881542
+    },
+    {
+      "firstName": "Alex",
+      "lastName": "Roldan",
+      "club": "Seattle Sounders FC",
+      "position": "M-D",
+      "baseSalary": 93581,
+      "guaranteedCompensation": 93581
+    },
+    {
+      "firstName": "Jhohan",
+      "lastName": "Romana",
+      "club": "Austin FC",
+      "position": "D",
+      "baseSalary": 420000,
+      "guaranteedCompensation": 420000
+    },
+    {
+      "firstName": "Antonio \"Rocco\"",
+      "lastName": "Romeo",
+      "club": "Toronto FC",
+      "position": "D",
+      "baseSalary": 81250,
+      "guaranteedCompensation": 84641
+    },
+    {
+      "firstName": "Tomas",
+      "lastName": "Romero",
+      "club": "LAFC",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 86375
+    },
+    {
+      "firstName": "Dave",
+      "lastName": "Romney",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 225000,
+      "guaranteedCompensation": 225000
+    },
+    {
+      "firstName": "Eloy",
+      "lastName": "Room",
+      "club": "Columbus Crew",
+      "position": "GK",
+      "baseSalary": 425004,
+      "guaranteedCompensation": 479698
+    },
+    {
+      "firstName": "Joseph",
+      "lastName": "Rosales",
+      "club": "Minnesota United",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Andy",
+      "lastName": "Rose",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 132000,
+      "guaranteedCompensation": 132000
+    },
+    {
+      "firstName": "Oriol",
+      "lastName": "Rosell",
+      "club": "Orlando City SC",
+      "position": "M",
+      "baseSalary": 475000,
+      "guaranteedCompensation": 475000
+    },
+    {
+      "firstName": "Keegan",
+      "lastName": "Rosenberry",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 285000,
+      "guaranteedCompensation": 298750
+    },
+    {
+      "firstName": "Matheus",
+      "lastName": "Rossetto",
+      "club": "Atlanta United",
+      "position": "M",
+      "baseSalary": 550000,
+      "guaranteedCompensation": 662500
+    },
+    {
+      "firstName": "Diego",
+      "lastName": "Rossi",
+      "club": "LAFC",
+      "position": "F",
+      "baseSalary": 1000000,
+      "guaranteedCompensation": 1052000
+    },
+    {
+      "firstName": "Kelyn",
+      "lastName": "Rowe",
+      "club": "Seattle Sounders FC",
+      "position": "M-D",
+      "baseSalary": 180000,
+      "guaranteedCompensation": 180000
+    },
+    {
+      "firstName": "Daniel",
+      "lastName": "Royer",
+      "club": "New York Red Bulls",
+      "position": "M",
+      "baseSalary": 750000,
+      "guaranteedCompensation": 818750
+    },
+    {
+      "firstName": "Rubio",
+      "lastName": "Rubin",
+      "club": "Real Salt Lake",
+      "position": "F",
+      "baseSalary": 135000,
+      "guaranteedCompensation": 152067
+    },
+    {
+      "firstName": "Diego",
+      "lastName": "Rubio Kostner",
+      "club": "Colorado Rapids",
+      "position": "F",
+      "baseSalary": 585000,
+      "guaranteedCompensation": 629583
+    },
+    {
+      "firstName": "Raul",
+      "lastName": "Ruidiaz",
+      "club": "Seattle Sounders FC",
+      "position": "F",
+      "baseSalary": 2100000,
+      "guaranteedCompensation": 2100000
+    },
+    {
+      "firstName": "Sergio",
+      "lastName": "Ruiz",
+      "club": "Major League Soccer",
+      "position": "M",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 363000
+    },
+    {
+      "firstName": "Pablo",
+      "lastName": "Ruiz",
+      "club": "Real Salt Lake",
+      "position": "M",
+      "baseSalary": 375000,
+      "guaranteedCompensation": 448500
+    },
+    {
+      "firstName": "Albert",
+      "lastName": "Rusnak",
+      "club": "Real Salt Lake",
+      "position": "M",
+      "baseSalary": 2150000,
+      "guaranteedCompensation": 2351667
+    },
+    {
+      "firstName": "Johnny",
+      "lastName": "Russell",
+      "club": "Sporting Kansas City",
+      "position": "F",
+      "baseSalary": 1600000,
+      "guaranteedCompensation": 1600000
+    },
+    {
+      "firstName": "Nathan-Dylan",
+      "lastName": "Saliba",
+      "club": "Montreal",
+      "position": "",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 73999
+    },
+    {
+      "firstName": "Shea",
+      "lastName": "Salinas",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 280000,
+      "guaranteedCompensation": 280000
+    },
+    {
+      "firstName": "Daniel",
+      "lastName": "Salloi",
+      "club": "Sporting Kansas City",
+      "position": "F",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 456667
+    },
+    {
+      "firstName": "Ilie",
+      "lastName": "Sanchez",
+      "club": "Sporting Kansas City",
+      "position": "M",
+      "baseSalary": 1000000,
+      "guaranteedCompensation": 1000000
+    },
+    {
+      "firstName": "James",
+      "lastName": "Sands",
+      "club": "New York City FC",
+      "position": "D-M",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 200000
+    },
+    {
+      "firstName": "Pedro",
+      "lastName": "Santos",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 817560,
+      "guaranteedCompensation": 864560
+    },
+    {
+      "firstName": "Sergio",
+      "lastName": "Santos",
+      "club": "Philadelphia Union",
+      "position": "F",
+      "baseSalary": 660000,
+      "guaranteedCompensation": 728500
+    },
+    {
+      "firstName": "CJ",
+      "lastName": "Sapong",
+      "club": "Nashville SC",
+      "position": "F",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 427778
+    },
+    {
+      "firstName": "Tor",
+      "lastName": "Saunders",
+      "club": "Nashville SC",
+      "position": "GK",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Rodrigo",
+      "lastName": "Schlegel",
+      "club": "Orlando City SC",
+      "position": "D",
+      "baseSalary": 120000,
+      "guaranteedCompensation": 127425
+    },
+    {
+      "firstName": "Tate",
+      "lastName": "Schmitt",
+      "club": "Real Salt Lake",
+      "position": "F",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 90000
+    },
+    {
+      "firstName": "Aaron",
+      "lastName": "Schoenfeld",
+      "club": "Austin FC",
+      "position": "F",
+      "baseSalary": 210000,
+      "guaranteedCompensation": 210000
+    },
+    {
+      "firstName": "Szabolcs",
+      "lastName": "Schon",
+      "club": "FC Dallas",
+      "position": "F",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 341800
+    },
+    {
+      "firstName": "Brady",
+      "lastName": "Scott",
+      "club": "Austin FC",
+      "position": "GK",
+      "baseSalary": 115000,
+      "guaranteedCompensation": 121236
+    },
+    {
+      "firstName": "Kyle",
+      "lastName": "Scott",
+      "club": "FC Cincinnati",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 92458
+    },
+    {
+      "firstName": "Patrick",
+      "lastName": "Seagrist",
+      "club": "Inter Miami",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Dante",
+      "lastName": "Sealy",
+      "club": "FC Dallas",
+      "position": "F",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 113400
+    },
+    {
+      "firstName": "Ulises",
+      "lastName": "Segura",
+      "club": "Austin FC",
+      "position": "M",
+      "baseSalary": 240000,
+      "guaranteedCompensation": 269125
+    },
+    {
+      "firstName": "Eddie",
+      "lastName": "Segura",
+      "club": "LAFC",
+      "position": "D",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 224000
+    },
+    {
+      "firstName": "Chris",
+      "lastName": "Seitz",
+      "club": "DC United",
+      "position": "GK",
+      "baseSalary": 160000,
+      "guaranteedCompensation": 160000
+    },
+    {
+      "firstName": "Amar",
+      "lastName": "Sejdic",
+      "club": "Atlanta United",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Boris",
+      "lastName": "Sekulic",
+      "club": "Chicago Fire",
+      "position": "D",
+      "baseSalary": 571000,
+      "guaranteedCompensation": 643900
+    },
+    {
+      "firstName": "Brandon",
+      "lastName": "Servania",
+      "club": "FC Dallas",
+      "position": "M",
+      "baseSalary": 230400,
+      "guaranteedCompensation": 271400
+    },
+    {
+      "firstName": "Jacob",
+      "lastName": "Shaffelburg",
+      "club": "Toronto FC",
+      "position": "M-F",
+      "baseSalary": 110000,
+      "guaranteedCompensation": 116500
+    },
+    {
+      "firstName": "Ryan",
+      "lastName": "Shawcross",
+      "club": "Inter Miami",
+      "position": "D",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 307500
+    },
+    {
+      "firstName": "Brek",
+      "lastName": "Shea",
+      "club": "Inter Miami",
+      "position": "M-D",
+      "baseSalary": 135000,
+      "guaranteedCompensation": 135000
+    },
+    {
+      "firstName": "Khiry",
+      "lastName": "Shelton",
+      "club": "Sporting Kansas City",
+      "position": "F",
+      "baseSalary": 650000,
+      "guaranteedCompensation": 650000
+    },
+    {
+      "firstName": "Andre",
+      "lastName": "Shinyashiki",
+      "club": "Colorado Rapids",
+      "position": "F",
+      "baseSalary": 120000,
+      "guaranteedCompensation": 130000
+    },
+    {
+      "firstName": "Bobby",
+      "lastName": "Shuttleworth",
+      "club": "Chicago Fire",
+      "position": "GK",
+      "baseSalary": 110000,
+      "guaranteedCompensation": 125750
+    },
+    {
+      "firstName": "Marcelo",
+      "lastName": "Silva",
+      "club": "Real Salt Lake",
+      "position": "D",
+      "baseSalary": 550000,
+      "guaranteedCompensation": 596667
+    },
+    {
+      "firstName": "Kevin",
+      "lastName": "Silva",
+      "club": "Toronto FC",
+      "position": "GK",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Luke",
+      "lastName": "Singh",
+      "club": "Toronto FC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 71513
+    },
+    {
+      "firstName": "Jonathan",
+      "lastName": "Sirois",
+      "club": "Montreal",
+      "position": "GK",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 71167
+    },
+    {
+      "firstName": "Pablo",
+      "lastName": "Sisniega",
+      "club": "LAFC",
+      "position": "GK",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 150000
+    },
+    {
+      "firstName": "Jack",
+      "lastName": "Skahan",
+      "club": "San Jose Earthquakes",
+      "position": "M",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 66724
+    },
+    {
+      "firstName": "Andrew",
+      "lastName": "Skundrich",
+      "club": "DC United",
+      "position": "M-F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Gabriel",
+      "lastName": "Slonina",
+      "club": "Chicago Fire",
+      "position": "GK",
+      "baseSalary": 100000,
+      "guaranteedCompensation": 104800
+    },
+    {
+      "firstName": "Nicholas",
+      "lastName": "Slonina",
+      "club": "Chicago Fire",
+      "position": "D",
+      "baseSalary": 66724,
+      "guaranteedCompensation": 67974
+    },
+    {
+      "firstName": "Kimarni",
+      "lastName": "Smith",
+      "club": "DC United",
+      "position": "M-F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Collin",
+      "lastName": "Smith",
+      "club": "FC Dallas",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 66547
+    },
+    {
+      "firstName": "Kyle",
+      "lastName": "Smith",
+      "club": "Orlando City SC",
+      "position": "D",
+      "baseSalary": 105996,
+      "guaranteedCompensation": 118660
+    },
+    {
+      "firstName": "Brad",
+      "lastName": "Smith",
+      "club": "Seattle Sounders FC",
+      "position": "D",
+      "baseSalary": 525000,
+      "guaranteedCompensation": 566250
+    },
+    {
+      "firstName": "Graham",
+      "lastName": "Smith",
+      "club": "Sporting Kansas City",
+      "position": "D",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Jan",
+      "lastName": "Sobocinksi",
+      "club": "Major League Soccer",
+      "position": "D",
+      "baseSalary": 120000,
+      "guaranteedCompensation": 146250
+    },
+    {
+      "firstName": "Anthony",
+      "lastName": "Sorenson",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 66547
+    },
+    {
+      "firstName": "Erik",
+      "lastName": "Sorga",
+      "club": "DC United",
+      "position": "F",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 173000
+    },
+    {
+      "firstName": "Santiago",
+      "lastName": "Sosa",
+      "club": "Atlanta United",
+      "position": "M-F",
+      "baseSalary": 385000,
+      "guaranteedCompensation": 503100
+    },
+    {
+      "firstName": "Yeferson",
+      "lastName": "Soteldo",
+      "club": "Toronto FC",
+      "position": "F",
+      "baseSalary": 1500000,
+      "guaranteedCompensation": 1965000
+    },
+    {
+      "firstName": "Caio Alexandre",
+      "lastName": "Sousa e Silva",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 500000,
+      "guaranteedCompensation": 539583
+    },
+    {
+      "firstName": "Brenner",
+      "lastName": "Souza da Silva",
+      "club": "FC Cincinnati",
+      "position": "F",
+      "baseSalary": 1221818,
+      "guaranteedCompensation": 1760418
+    },
+    {
+      "firstName": "Omar",
+      "lastName": "Sowe",
+      "club": "New York Red Bulls",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 72633
+    },
+    {
+      "firstName": "Dayne",
+      "lastName": "St. Clair",
+      "club": "Minnesota United",
+      "position": "GK",
+      "baseSalary": 95000,
+      "guaranteedCompensation": 99520
+    },
+    {
+      "firstName": "Mason",
+      "lastName": "Stajduhar",
+      "club": "Orlando City SC",
+      "position": "GK",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Caleb",
+      "lastName": "Stanko",
+      "club": "FC Cincinnati",
+      "position": "M",
+      "baseSalary": 210000,
+      "guaranteedCompensation": 210000
+    },
+    {
+      "firstName": "Aedan",
+      "lastName": "Stanley",
+      "club": "Austin FC",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Daniel",
+      "lastName": "Steres",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 375000,
+      "guaranteedCompensation": 393750
+    },
+    {
+      "firstName": "Luka",
+      "lastName": "Stojanovic",
+      "club": "Chicago Fire",
+      "position": "M",
+      "baseSalary": 314000,
+      "guaranteedCompensation": 373400
+    },
+    {
+      "firstName": "Jared",
+      "lastName": "Stroud",
+      "club": "Austin FC",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Aljaz \"Kiki\"",
+      "lastName": "Struna",
+      "club": "Montreal",
+      "position": "D",
+      "baseSalary": 1100000,
+      "guaranteedCompensation": 1210000
+    },
+    {
+      "firstName": "Brad",
+      "lastName": "Stuver",
+      "club": "Austin FC",
+      "position": "GK",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 160000
+    },
+    {
+      "firstName": "Quinn",
+      "lastName": "Sullivan",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 67047
+    },
+    {
+      "firstName": "Hunter",
+      "lastName": "Sulte",
+      "club": "Portland Timbers",
+      "position": "GK",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 68143
+    },
+    {
+      "firstName": "Beckham",
+      "lastName": "Sunderland",
+      "club": "FC Cincinnati",
+      "position": "GK",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 67609
+    },
+    {
+      "firstName": "Ben",
+      "lastName": "Sweat",
+      "club": "Austin FC",
+      "position": "D",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 250000
+    },
+    {
+      "firstName": "Ballou",
+      "lastName": "Tabla",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 276250
+    },
+    {
+      "firstName": "Ismael",
+      "lastName": "Tajouri-Shradi",
+      "club": "New York City FC",
+      "position": "F",
+      "baseSalary": 577500,
+      "guaranteedCompensation": 618985
+    },
+    {
+      "firstName": "Andrew",
+      "lastName": "Tarbell",
+      "club": "Austin FC",
+      "position": "GK",
+      "baseSalary": 275000,
+      "guaranteedCompensation": 283333
+    },
+    {
+      "firstName": "DJ",
+      "lastName": "Taylor",
+      "club": "Minnesota United",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Russell",
+      "lastName": "Teibert",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 387500
+    },
+    {
+      "firstName": "Ruan",
+      "lastName": "Teixeira",
+      "club": "Orlando City SC",
+      "position": "D",
+      "baseSalary": 190000,
+      "guaranteedCompensation": 190000
+    },
+    {
+      "firstName": "Carlos",
+      "lastName": "Teran",
+      "club": "Chicago Fire",
+      "position": "D",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 205440
+    },
+    {
+      "firstName": "Andrew",
+      "lastName": "Thomas",
+      "club": "Seattle Sounders FC",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 88875
+    },
+    {
+      "firstName": "Tommy",
+      "lastName": "Thompson",
+      "club": "San Jose Earthquakes",
+      "position": "D",
+      "baseSalary": 265000,
+      "guaranteedCompensation": 265000
+    },
+    {
+      "firstName": "Brooks",
+      "lastName": "Thompson",
+      "club": "Sporting Kansas City",
+      "position": "GK",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Gudmundur",
+      "lastName": "Thorarinson",
+      "club": "New York City FC",
+      "position": "D-M",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 400000
+    },
+    {
+      "firstName": "Robert",
+      "lastName": "Thorkelsson",
+      "club": "Montreal",
+      "position": "D",
+      "baseSalary": 150000,
+      "guaranteedCompensation": 173500
+    },
+    {
+      "firstName": "Anton",
+      "lastName": "Tinnerholm",
+      "club": "New York City FC",
+      "position": "D",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 650000
+    },
+    {
+      "firstName": "Donny",
+      "lastName": "Toia",
+      "club": "Real Salt Lake",
+      "position": "D",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 205000
+    },
+    {
+      "firstName": "John",
+      "lastName": "Tolkin",
+      "club": "New York Red Bulls",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 86375
+    },
+    {
+      "firstName": "Nouhou",
+      "lastName": "Tolo",
+      "club": "Seattle Sounders FC",
+      "position": "D",
+      "baseSalary": 125000,
+      "guaranteedCompensation": 169274
+    },
+    {
+      "firstName": "Erick",
+      "lastName": "Torres",
+      "club": "Atlanta United",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Torres",
+      "club": "LAFC",
+      "position": "F",
+      "baseSalary": 79738,
+      "guaranteedCompensation": 90968
+    },
+    {
+      "firstName": "Joaquin",
+      "lastName": "Torres",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 249800
+    },
+    {
+      "firstName": "Juan Pablo",
+      "lastName": "Torres",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 90000,
+      "guaranteedCompensation": 104500
+    },
+    {
+      "firstName": "Dantouma \"Yaya\"",
+      "lastName": "Toure",
+      "club": "Colorado Rapids",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 78165
+    },
+    {
+      "firstName": "Mason",
+      "lastName": "Toye",
+      "club": "Montreal",
+      "position": "F",
+      "baseSalary": 175000,
+      "guaranteedCompensation": 233000
+    },
+    {
+      "firstName": "Mohamed",
+      "lastName": "Traore",
+      "club": "LAFC",
+      "position": "D",
+      "baseSalary": 91444,
+      "guaranteedCompensation": 91444
+    },
+    {
+      "firstName": "Wil",
+      "lastName": "Trapp",
+      "club": "Minnesota United",
+      "position": "M",
+      "baseSalary": 747500,
+      "guaranteedCompensation": 747500
+    },
+    {
+      "firstName": "Arnor",
+      "lastName": "Traustason",
+      "club": "New England Revolution",
+      "position": "M",
+      "baseSalary": 375000,
+      "guaranteedCompensation": 413405
+    },
+    {
+      "firstName": "Auston",
+      "lastName": "Trusty",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 375000,
+      "guaranteedCompensation": 431250
+    },
+    {
+      "firstName": "Bill",
+      "lastName": "Tuiloma",
+      "club": "Portland Timbers",
+      "position": "D-M",
+      "baseSalary": 220000,
+      "guaranteedCompensation": 234125
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "Turner",
+      "club": "New England Revolution",
+      "position": "GK",
+      "baseSalary": 375000,
+      "guaranteedCompensation": 375000
+    },
+    {
+      "firstName": "Cole",
+      "lastName": "Turner",
+      "club": "Philadelphia Union",
+      "position": "M",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 88444
+    },
+    {
+      "firstName": "Ema",
+      "lastName": "Twumasi",
+      "club": "FC Dallas",
+      "position": "F",
+      "baseSalary": 200000,
+      "guaranteedCompensation": 246900
+    },
+    {
+      "firstName": "Przemyslaw",
+      "lastName": "Tyton",
+      "club": "FC Cincinnati",
+      "position": "GK",
+      "baseSalary": 262500,
+      "guaranteedCompensation": 269375
+    },
+    {
+      "firstName": "Victor",
+      "lastName": "Ulloa",
+      "club": "Inter Miami",
+      "position": "M",
+      "baseSalary": 220000,
+      "guaranteedCompensation": 220000
+    },
+    {
+      "firstName": "Maximiliano",
+      "lastName": "Urruti",
+      "club": "Houston Dynamo",
+      "position": "F",
+      "baseSalary": 1136127,
+      "guaranteedCompensation": 1270146
+    },
+    {
+      "firstName": "Felipe",
+      "lastName": "Valencia",
+      "club": "Inter Miami",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Zarek",
+      "lastName": "Valentin",
+      "club": "Houston Dynamo",
+      "position": "D",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 280000
+    },
+    {
+      "firstName": "Milton",
+      "lastName": "Valenzuela",
+      "club": "Columbus Crew",
+      "position": "D",
+      "baseSalary": 375000,
+      "guaranteedCompensation": 406300
+    },
+    {
+      "firstName": "Diego",
+      "lastName": "Valeri",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 765000,
+      "guaranteedCompensation": 914875
+    },
+    {
+      "firstName": "Gustavo",
+      "lastName": "Vallecilla",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 252000,
+      "guaranteedCompensation": 284880
+    },
+    {
+      "firstName": "Florian",
+      "lastName": "Valot",
+      "club": "FC Cincinnati",
+      "position": "M",
+      "baseSalary": 93581,
+      "guaranteedCompensation": 97498
+    },
+    {
+      "firstName": "Silvester",
+      "lastName": "Van der Water",
+      "club": "Orlando City SC",
+      "position": "F",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 325750
+    },
+    {
+      "firstName": "Maikel",
+      "lastName": "Van Der Werff",
+      "club": "FC Cincinnati",
+      "position": "D",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 435167
+    },
+    {
+      "firstName": "Jose",
+      "lastName": "Van Rankin",
+      "club": "Portland Timbers",
+      "position": "D-M",
+      "baseSalary": 105255,
+      "guaranteedCompensation": 105255
+    },
+    {
+      "firstName": "Freddy",
+      "lastName": "Vargas",
+      "club": "FC Dallas",
+      "position": "M",
+      "baseSalary": 160000,
+      "guaranteedCompensation": 186000
+    },
+    {
+      "firstName": "Indiana",
+      "lastName": "Vassilev",
+      "club": "Inter Miami",
+      "position": "F",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Brandon",
+      "lastName": "Vazquez",
+      "club": "FC Cincinnati",
+      "position": "F",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 279167
+    },
+    {
+      "firstName": "Victor",
+      "lastName": "Vazquez",
+      "club": "LA Galaxy",
+      "position": "M",
+      "baseSalary": 400000,
+      "guaranteedCompensation": 439167
+    },
+    {
+      "firstName": "Daniel",
+      "lastName": "Vega",
+      "club": "San Jose Earthquakes",
+      "position": "GK",
+      "baseSalary": 220000,
+      "guaranteedCompensation": 225000
+    },
+    {
+      "firstName": "Carlos",
+      "lastName": "Vela",
+      "club": "LAFC",
+      "position": "F",
+      "baseSalary": 4500000,
+      "guaranteedCompensation": 6300000
+    },
+    {
+      "firstName": "Matias Gabriel",
+      "lastName": "Vera",
+      "club": "Houston Dynamo",
+      "position": "M",
+      "baseSalary": 350000,
+      "guaranteedCompensation": 356250
+    },
+    {
+      "firstName": "Collin",
+      "lastName": "Verfurth",
+      "club": "New England Revolution",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Kenneth",
+      "lastName": "Vermeer",
+      "club": "FC Cincinnati",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 104375
+    },
+    {
+      "firstName": "Ranko",
+      "lastName": "Veselinovic",
+      "club": "Vancouver Whitecaps",
+      "position": "D",
+      "baseSalary": 360000,
+      "guaranteedCompensation": 445500
+    },
+    {
+      "firstName": "Jorge",
+      "lastName": "Villafaña",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 486667
+    },
+    {
+      "firstName": "Will",
+      "lastName": "Vint",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Pedro",
+      "lastName": "Vite",
+      "club": "Vancouver Whitecaps",
+      "position": "M",
+      "baseSalary": 556000,
+      "guaranteedCompensation": 609997
+    },
+    {
+      "firstName": "Justin",
+      "lastName": "Vom Steeg",
+      "club": "LA Galaxy",
+      "position": "GK",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Kai",
+      "lastName": "Wagner",
+      "club": "Philadelphia Union",
+      "position": "D",
+      "baseSalary": 450000,
+      "guaranteedCompensation": 521000
+    },
+    {
+      "firstName": "Anton",
+      "lastName": "Walkes",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 250000,
+      "guaranteedCompensation": 275062
+    },
+    {
+      "firstName": "Casey",
+      "lastName": "Walls",
+      "club": "San Jose Earthquakes",
+      "position": "D",
+      "baseSalary": 85000,
+      "guaranteedCompensation": 88000
+    },
+    {
+      "firstName": "Remi",
+      "lastName": "Walter",
+      "club": "Sporting Kansas City",
+      "position": "M",
+      "baseSalary": 650000,
+      "guaranteedCompensation": 650000
+    },
+    {
+      "firstName": "Victor",
+      "lastName": "Wanyama",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 2400000,
+      "guaranteedCompensation": 3091667
+    },
+    {
+      "firstName": "Collen",
+      "lastName": "Warner",
+      "club": "Colorado Rapids",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Bryce",
+      "lastName": "Washington",
+      "club": "Atlanta United",
+      "position": "D",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Taylor",
+      "lastName": "Washington",
+      "club": "Nashville SC",
+      "position": "D-M",
+      "baseSalary": 89513,
+      "guaranteedCompensation": 89513
+    },
+    {
+      "firstName": "Joel",
+      "lastName": "Waterman",
+      "club": "Montreal",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 90284
+    },
+    {
+      "firstName": "Patrick",
+      "lastName": "Weah",
+      "club": "Minnesota United",
+      "position": "M-F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 76733
+    },
+    {
+      "firstName": "Quentin",
+      "lastName": "Westberg",
+      "club": "Toronto FC",
+      "position": "GK",
+      "baseSalary": 275000,
+      "guaranteedCompensation": 288583
+    },
+    {
+      "firstName": "Brian",
+      "lastName": "White",
+      "club": "Vancouver Whitecaps",
+      "position": "F",
+      "baseSalary": 216000,
+      "guaranteedCompensation": 216000
+    },
+    {
+      "firstName": "Josh",
+      "lastName": "Williams",
+      "club": "Columbus Crew",
+      "position": "D",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 302500
+    },
+    {
+      "firstName": "Derrick",
+      "lastName": "Williams",
+      "club": "LA Galaxy",
+      "position": "D",
+      "baseSalary": 750000,
+      "guaranteedCompensation": 821458
+    },
+    {
+      "firstName": "Augustine",
+      "lastName": "Williams",
+      "club": "LA Galaxy",
+      "position": "F-M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Thomas",
+      "lastName": "Williams",
+      "club": "Orlando City SC",
+      "position": "",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 70077
+    },
+    {
+      "firstName": "Eryk",
+      "lastName": "Williamson",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 220000,
+      "guaranteedCompensation": 236500
+    },
+    {
+      "firstName": "Tommy",
+      "lastName": "Williamson",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 63547
+    },
+    {
+      "firstName": "Joe",
+      "lastName": "Willis",
+      "club": "Nashville SC",
+      "position": "GK",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 316250
+    },
+    {
+      "firstName": "Danny",
+      "lastName": "Wilson",
+      "club": "Colorado Rapids",
+      "position": "D",
+      "baseSalary": 275000,
+      "guaranteedCompensation": 288750
+    },
+    {
+      "firstName": "Tyler",
+      "lastName": "Wolff",
+      "club": "Atlanta United",
+      "position": "F-M",
+      "baseSalary": 75000,
+      "guaranteedCompensation": 79500
+    },
+    {
+      "firstName": "Owen",
+      "lastName": "Wolff",
+      "club": "Austin FC",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 76600
+    },
+    {
+      "firstName": "Chris",
+      "lastName": "Wondolowski",
+      "club": "San Jose Earthquakes",
+      "position": "F",
+      "baseSalary": 390000,
+      "guaranteedCompensation": 400000
+    },
+    {
+      "firstName": "Bobby",
+      "lastName": "Wood",
+      "club": "Real Salt Lake",
+      "position": "F",
+      "baseSalary": 875000,
+      "guaranteedCompensation": 968161
+    },
+    {
+      "firstName": "Vito",
+      "lastName": "Wormgoor",
+      "club": "Columbus Crew",
+      "position": "D",
+      "baseSalary": 415000,
+      "guaranteedCompensation": 492875
+    },
+    {
+      "firstName": "Bradley",
+      "lastName": "Wright-Phillips",
+      "club": "Columbus Crew",
+      "position": "F",
+      "baseSalary": 410000,
+      "guaranteedCompensation": 475750
+    },
+    {
+      "firstName": "Karifa",
+      "lastName": "Yao",
+      "club": "Montreal",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 85591
+    },
+    {
+      "firstName": "Darren",
+      "lastName": "Yapi",
+      "club": "Colorado Rapids",
+      "position": "F",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 74380
+    },
+    {
+      "firstName": "William",
+      "lastName": "Yarbrough",
+      "club": "Colorado Rapids",
+      "position": "GK",
+      "baseSalary": 300000,
+      "guaranteedCompensation": 375000
+    },
+    {
+      "firstName": "Dru",
+      "lastName": "Yearwood",
+      "club": "New York Red Bulls",
+      "position": "M",
+      "baseSalary": 475000,
+      "guaranteedCompensation": 519750
+    },
+    {
+      "firstName": "Griffin",
+      "lastName": "Yow",
+      "club": "DC United",
+      "position": "F",
+      "baseSalary": 110000,
+      "guaranteedCompensation": 116118
+    },
+    {
+      "firstName": "Jackson",
+      "lastName": "Yueill",
+      "club": "San Jose Earthquakes",
+      "position": "M",
+      "baseSalary": 600000,
+      "guaranteedCompensation": 636875
+    },
+    {
+      "firstName": "Renzo",
+      "lastName": "Zambrano",
+      "club": "Portland Timbers",
+      "position": "M",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Gyasi",
+      "lastName": "Zardes",
+      "club": "Columbus Crew",
+      "position": "F",
+      "baseSalary": 1350000,
+      "guaranteedCompensation": 1400000
+    },
+    {
+      "firstName": "Eriq",
+      "lastName": "Zavaleta",
+      "club": "Toronto FC",
+      "position": "D",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 115503
+    },
+    {
+      "firstName": "Gedion",
+      "lastName": "Zelalem",
+      "club": "New York City FC",
+      "position": "M",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 81375
+    },
+    {
+      "firstName": "Lucas",
+      "lastName": "Zelarayan",
+      "club": "Columbus Crew",
+      "position": "M",
+      "baseSalary": 1620000,
+      "guaranteedCompensation": 1985000
+    },
+    {
+      "firstName": "Adrian",
+      "lastName": "Zendejas",
+      "club": "Minnesota United",
+      "position": "GK",
+      "baseSalary": 81375,
+      "guaranteedCompensation": 90208
+    },
+    {
+      "firstName": "Walker",
+      "lastName": "Zimmerman",
+      "club": "Nashville SC",
+      "position": "D",
+      "baseSalary": 925000,
+      "guaranteedCompensation": 981050
+    },
+    {
+      "firstName": "Kyle",
+      "lastName": "Zobeck",
+      "club": "FC Dallas",
+      "position": "GK",
+      "baseSalary": 85444,
+      "guaranteedCompensation": 85444
+    },
+    {
+      "firstName": "Rida",
+      "lastName": "Zouhir",
+      "club": "Montreal",
+      "position": "M",
+      "baseSalary": 63547,
+      "guaranteedCompensation": 71730
+    },
+    {
+      "firstName": "Ethan",
+      "lastName": "Zubak",
+      "club": "LA Galaxy",
+      "position": "F",
+      "baseSalary": 130000,
+      "guaranteedCompensation": 133125
+    },
+    {
+      "firstName": "Dario",
+      "lastName": "Zuparic",
+      "club": "Portland Timbers",
+      "position": "D",
+      "baseSalary": 525000,
+      "guaranteedCompensation": 541667
+    },
+    {
+      "firstName": "Graham",
+      "lastName": "Zusi",
+      "club": "Sporting Kansas City",
+      "position": "D",
+      "baseSalary": 650000,
+      "guaranteedCompensation": 713333
+    }
+  ],
+  "source": "https://web.archive.org/web/20211021135445/https://mlsplayers.org/resources/salary-guide"
+}

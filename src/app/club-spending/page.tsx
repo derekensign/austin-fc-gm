@@ -24,6 +24,7 @@ import {
   Building2,
   ChevronDown,
   ChevronRight,
+  Users,
 } from 'lucide-react';
 import {
   ALL_TRANSFERS,
@@ -32,6 +33,11 @@ import {
   type DepartureRecord,
   getMLSTeams,
 } from '@/data/mls-transfers-all';
+import {
+  DEFINITIVE_RELEASES,
+  SALARY_YEARS,
+  canonicalSalaryTeam,
+} from '@/data/mlspa-historical';
 
 // Same display fixer as transfer-sources page — the underlying scrape strips some 's' chars.
 function fixDisplay(str: string): string {
@@ -92,7 +98,16 @@ function canonicalTeam(team: string): string {
   return CANONICAL_OVERRIDES[team] || team;
 }
 
-type SortKey = 'totalSpend' | 'outgoingSpend' | 'netSpend' | 'transfers' | 'outgoingCount' | 'avgFee' | 'topFee';
+type SortKey =
+  | 'totalSpend'
+  | 'outgoingSpend'
+  | 'netSpend'
+  | 'salarySpend'
+  | 'totalPlayerSpend'
+  | 'transfers'
+  | 'outgoingCount'
+  | 'avgFee'
+  | 'topFee';
 type SortDirection = 'asc' | 'desc';
 
 type BarRow = {
@@ -101,6 +116,8 @@ type BarRow = {
   spend: number;
   outgoingSpend: number;
   netSpend: number;
+  salarySpend: number;
+  totalPlayerSpend: number;
   transfers: number;
   outgoingCount: number;
   avgFee: number;
@@ -111,6 +128,8 @@ const SORT_KEY_TO_BAR: Record<SortKey, keyof BarRow> = {
   totalSpend: 'spend',
   outgoingSpend: 'outgoingSpend',
   netSpend: 'netSpend',
+  salarySpend: 'salarySpend',
+  totalPlayerSpend: 'totalPlayerSpend',
   transfers: 'transfers',
   outgoingCount: 'outgoingCount',
   avgFee: 'avgFee',
@@ -121,6 +140,8 @@ const SORT_KEY_LABEL: Record<SortKey, string> = {
   totalSpend: 'Incoming Spend ($M)',
   outgoingSpend: 'Outgoing Spend ($M)',
   netSpend: 'Net Spend ($M)',
+  salarySpend: 'Salary Spend ($M)',
+  totalPlayerSpend: 'Total Player Spend — Transfers + Salaries ($M)',
   transfers: '# Incoming Transfers',
   outgoingCount: '# Outgoing Sales',
   avgFee: 'Avg Paid Fee ($M)',
@@ -285,17 +306,41 @@ const OUTGOING_TRANSFERS: DepartureRecord[] = (() => {
 type ClubAgg = {
   mlsTeam: string;
   transfers: number;
-  totalSpend: number;
+  totalSpend: number;       // incoming transfer fees in window
   paidCount: number;
   topFee: number;
   topPlayer: string;
   avgFee: number;
-  outgoingSpend: number;
+  outgoingSpend: number;    // outgoing transfer fees in window
   outgoingCount: number;
-  netSpend: number;
+  netSpend: number;         // outgoing − incoming (transfers only)
+  salarySpend: number;      // sum of MLSPA guaranteed comp across selected years
+  salaryYearsCovered: number; // how many selected years had salary data available
+  totalPlayerSpend: number; // transfer spend (incoming) + salary spend
   rows: TransferRecord[];
   outgoingRows: DepartureRecord[];
 };
+
+// Pre-compute salary totals by canonical team for every release year so the
+// aggregation pass can sum across whatever years the user selected without
+// re-iterating MLSPA player rows on every render.
+const SALARY_BY_YEAR: Record<number, Map<string, { totalGC: number; players: number }>> = (() => {
+  const map: Record<number, Map<string, { totalGC: number; players: number }>> = {};
+  for (const year of SALARY_YEARS) {
+    const release = DEFINITIVE_RELEASES[year];
+    const teamMap = new Map<string, { totalGC: number; players: number }>();
+    for (const p of release.players) {
+      const team = canonicalSalaryTeam(p.club);
+      if (!team) continue;
+      const existing = teamMap.get(team) || { totalGC: 0, players: 0 };
+      existing.totalGC += p.guaranteedCompensation;
+      existing.players += 1;
+      teamMap.set(team, existing);
+    }
+    map[year] = teamMap;
+  }
+  return map;
+})();
 
 export default function ClubSpendingPage() {
   const [selectedYears, setSelectedYears] = useState<Set<number>>(new Set(YEARS));
@@ -340,6 +385,26 @@ export default function ClubSpendingPage() {
     [selectedYears]
   );
 
+  // Sum salary across the selected years, per canonical team. Years that
+  // have no MLSPA release available are skipped (and we count how many
+  // years were actually covered so the UI can label partial coverage).
+  const salaryByTeam = useMemo(() => {
+    const map = new Map<string, { totalGC: number; yearsCovered: number }>();
+    let yearsCovered = 0;
+    for (const year of selectedYearList) {
+      const teamMap = SALARY_BY_YEAR[year];
+      if (!teamMap) continue;
+      yearsCovered++;
+      for (const [team, agg] of teamMap.entries()) {
+        const existing = map.get(team) || { totalGC: 0, yearsCovered: 0 };
+        existing.totalGC += agg.totalGC;
+        existing.yearsCovered += 1;
+        map.set(team, existing);
+      }
+    }
+    return { map, yearsCovered };
+  }, [selectedYearList]);
+
   const clubData = useMemo<ClubAgg[]>(() => {
     const baseAgg = (team: string): ClubAgg => ({
       mlsTeam: team,
@@ -352,6 +417,9 @@ export default function ClubSpendingPage() {
       outgoingSpend: 0,
       outgoingCount: 0,
       netSpend: 0,
+      salarySpend: 0,
+      salaryYearsCovered: 0,
+      totalPlayerSpend: 0,
       rows: [],
       outgoingRows: [],
     });
@@ -378,6 +446,13 @@ export default function ClubSpendingPage() {
       map.set(t.mlsTeam, existing);
     });
 
+    salaryByTeam.map.forEach((agg, team) => {
+      const existing = map.get(team) || baseAgg(team);
+      existing.salarySpend = agg.totalGC;
+      existing.salaryYearsCovered = agg.yearsCovered;
+      map.set(team, existing);
+    });
+
     // Ensure every canonical MLS team appears even with zero transfers in the window.
     CANONICAL_TEAMS.forEach(team => {
       if (!map.has(team)) map.set(team, baseAgg(team));
@@ -390,6 +465,7 @@ export default function ClubSpendingPage() {
         // Accounting convention: income − spend. Negative = net spender (red),
         // positive = net seller (green).
         netSpend: d.outgoingSpend - d.totalSpend,
+        totalPlayerSpend: d.totalSpend + d.salarySpend,
         rows: d.rows.sort((a, b) => b.fee - a.fee || b.year - a.year),
         outgoingRows: d.outgoingRows.sort((a, b) => b.fee - a.fee || b.year - a.year),
       }))
@@ -397,7 +473,7 @@ export default function ClubSpendingPage() {
         const multiplier = sortDirection === 'desc' ? -1 : 1;
         return (a[sortKey] - b[sortKey]) * multiplier;
       });
-  }, [rangeTransfers, rangeOutgoing, sortKey, sortDirection]);
+  }, [rangeTransfers, rangeOutgoing, salaryByTeam, sortKey, sortDirection]);
 
   const visibleClubs = useMemo(() => clubData.slice(0, showTop), [clubData, showTop]);
 
@@ -411,19 +487,26 @@ export default function ClubSpendingPage() {
   const summaryStats = useMemo(() => {
     const totalSpend = rangeTransfers.reduce((sum, t) => sum + t.fee, 0);
     const totalOutgoing = rangeOutgoing.reduce((sum, t) => sum + t.fee, 0);
+    const totalSalary = clubData.reduce((sum, c) => sum + c.salarySpend, 0);
     const paidCount = rangeTransfers.filter(t => t.fee > 0).length;
     const topClub = [...clubData].sort((a, b) => b.totalSpend - a.totalSpend)[0];
+    // Years in the user's selection that we have salary data for.
+    const salaryYearsAvailable = selectedYearList.filter(y => DEFINITIVE_RELEASES[y]);
 
     return {
       totalSpend,
       totalOutgoing,
+      totalSalary,
+      totalPlayerSpend: totalSpend + totalSalary,
       totalTransfers: rangeTransfers.length,
       paidCount,
       avgFee: paidCount > 0 ? totalSpend / paidCount : 0,
       topClub: topClub?.mlsTeam || '',
       topClubSpend: topClub?.totalSpend || 0,
+      salaryYearsAvailable,
+      salaryYearsMissing: selectedYearList.filter(y => !DEFINITIVE_RELEASES[y]),
     };
-  }, [rangeTransfers, rangeOutgoing, clubData]);
+  }, [rangeTransfers, rangeOutgoing, clubData, selectedYearList]);
 
   const yearlyByClub = useMemo(() => {
     if (isSingleYear) return [];
@@ -469,6 +552,8 @@ export default function ClubSpendingPage() {
     spend: c.totalSpend / 1_000_000,
     outgoingSpend: c.outgoingSpend / 1_000_000,
     netSpend: c.netSpend / 1_000_000,
+    salarySpend: c.salarySpend / 1_000_000,
+    totalPlayerSpend: c.totalPlayerSpend / 1_000_000,
     transfers: c.transfers,
     outgoingCount: c.outgoingCount,
     avgFee: c.avgFee / 1_000_000,
@@ -538,13 +623,24 @@ export default function ClubSpendingPage() {
         <p className="font-bold text-white mb-1">🏟️ {fixDisplay(team)}</p>
         <p className="text-xs text-white/60 mb-2">{rangeLabel}</p>
         <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs mb-3">
-          <span className={sortKey === 'totalSpend' ? 'text-[var(--verde)]' : 'text-white/60'}>Incoming Spend</span>
+          <span className={sortKey === 'totalSpend' ? 'text-[var(--verde)]' : 'text-white/60'}>Incoming (transfers)</span>
           <span className="text-[var(--verde)] font-semibold text-right">{formatCurrency(club.totalSpend)}</span>
           <span className={sortKey === 'outgoingSpend' ? 'text-[var(--verde)]' : 'text-white/60'}>Outgoing (paid sales)</span>
           <span className="text-white font-semibold text-right">{club.outgoingSpend > 0 ? formatCurrency(club.outgoingSpend) : '-'}</span>
-          <span className={sortKey === 'netSpend' ? 'text-[var(--verde)]' : 'text-white/60'}>Net Spend</span>
+          <span className={sortKey === 'netSpend' ? 'text-[var(--verde)]' : 'text-white/60'}>Net Transfers</span>
           <span className={`font-semibold text-right ${netColor}`}>
             {club.netSpend === 0 ? '-' : `${club.netSpend > 0 ? '+' : '-'}${formatCurrency(Math.abs(club.netSpend))}`}
+          </span>
+          <span className={sortKey === 'salarySpend' ? 'text-[var(--verde)]' : 'text-white/60'}>Salaries (guaranteed)</span>
+          <span className="text-white font-semibold text-right">
+            {club.salarySpend > 0 ? formatCurrency(club.salarySpend) : '-'}
+            {club.salaryYearsCovered > 0 && club.salaryYearsCovered < selectedYearList.length && (
+              <span className="text-white/40 ml-1">({club.salaryYearsCovered}y)</span>
+            )}
+          </span>
+          <span className={sortKey === 'totalPlayerSpend' ? 'text-[var(--verde)]' : 'text-white/60'}>Total Player Spend</span>
+          <span className="text-white font-semibold text-right">
+            {club.totalPlayerSpend > 0 ? formatCurrency(club.totalPlayerSpend) : '-'}
           </span>
           <span className="text-white/60">Transfers (in / out)</span>
           <span className="text-white font-semibold text-right">{club.transfers} / {club.outgoingCount}</span>
@@ -663,13 +759,13 @@ export default function ClubSpendingPage() {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
             <div className="flex items-center gap-2 text-[var(--verde)] mb-1 sm:mb-2">
               <DollarSign className="h-4 w-4 sm:h-5 sm:w-5" />
               <span className="text-xs sm:text-sm font-medium">Incoming</span>
             </div>
-            <p className="text-xl sm:text-3xl font-bold text-white">{formatCurrency(summaryStats.totalSpend)}</p>
+            <p className="text-xl sm:text-2xl font-bold text-white">{formatCurrency(summaryStats.totalSpend)}</p>
             <p className="text-[10px] sm:text-xs text-white/50">{summaryStats.paidCount} paid · {rangeLabel}</p>
           </div>
 
@@ -678,20 +774,20 @@ export default function ClubSpendingPage() {
               <ArrowUpDown className="h-4 w-4 sm:h-5 sm:w-5" />
               <span className="text-xs sm:text-sm font-medium">Outgoing</span>
             </div>
-            <p className="text-xl sm:text-3xl font-bold text-white">{formatCurrency(summaryStats.totalOutgoing)}</p>
+            <p className="text-xl sm:text-2xl font-bold text-white">{formatCurrency(summaryStats.totalOutgoing)}</p>
             <p className="text-[10px] sm:text-xs text-white/50">paid sales</p>
           </div>
 
           <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
             <div className="flex items-center gap-2 text-[var(--verde)] mb-1 sm:mb-2">
               <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
-              <span className="text-xs sm:text-sm font-medium">League Net</span>
+              <span className="text-xs sm:text-sm font-medium">Net Transfers</span>
             </div>
             {(() => {
               const net = summaryStats.totalOutgoing - summaryStats.totalSpend;
               return (
                 <>
-                  <p className={`text-xl sm:text-3xl font-bold ${
+                  <p className={`text-xl sm:text-2xl font-bold ${
                     net < 0 ? 'text-rose-400' : net > 0 ? 'text-emerald-400' : 'text-white'
                   }`}>
                     {net > 0 ? '+' : net < 0 ? '−' : ''}
@@ -705,16 +801,31 @@ export default function ClubSpendingPage() {
 
           <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
             <div className="flex items-center gap-2 text-[var(--verde)] mb-1 sm:mb-2">
-              <Trophy className="h-4 w-4 sm:h-5 sm:w-5" />
-              <span className="text-xs sm:text-sm font-medium">Top Spender</span>
+              <Users className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="text-xs sm:text-sm font-medium">Salaries</span>
             </div>
-            <p className="text-sm sm:text-xl font-bold text-white truncate">{fixDisplay(summaryStats.topClub) || '-'}</p>
-            <p className="text-[10px] sm:text-xs text-white/50">{formatCurrency(summaryStats.topClubSpend)}</p>
+            <p className="text-xl sm:text-2xl font-bold text-white">{formatCurrency(summaryStats.totalSalary)}</p>
+            <p className="text-[10px] sm:text-xs text-white/50">
+              {summaryStats.salaryYearsAvailable.length} of {selectedYearList.length} yr{selectedYearList.length === 1 ? '' : 's'} covered
+            </p>
+          </div>
+
+          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
+            <div className="flex items-center gap-2 text-[var(--verde)] mb-1 sm:mb-2">
+              <Trophy className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="text-xs sm:text-sm font-medium">Total Player $</span>
+            </div>
+            <p className="text-xl sm:text-2xl font-bold text-white">{formatCurrency(summaryStats.totalPlayerSpend)}</p>
+            <p className="text-[10px] sm:text-xs text-white/50">transfers + salaries</p>
           </div>
         </div>
 
-        <p className="text-[10px] sm:text-xs text-white/40 mb-4 -mt-2">
-          Outgoing = paid sales only (free transfers, end-of-loan moves, and intra-MLS trades without fees are excluded).
+        <p className="text-[10px] sm:text-xs text-white/40 mb-4">
+          Outgoing = paid sales only (free transfers, trades without fees excluded).
+          Salaries = MLSPA guaranteed compensation (fall release per year, except 2026 which uses the April release; 2020 not published).
+          {summaryStats.salaryYearsMissing.length > 0 && (
+            <> Salary data unavailable for: {summaryStats.salaryYearsMissing.join(', ')}.</>
+          )}
         </p>
 
         {/* Sort Buttons */}
@@ -725,6 +836,8 @@ export default function ClubSpendingPage() {
               ['totalSpend', 'Incoming'],
               ['outgoingSpend', 'Outgoing'],
               ['netSpend', 'Net Spend'],
+              ['salarySpend', 'Salaries'],
+              ['totalPlayerSpend', 'Total Player Spend'],
               ['transfers', '# Transfers'],
               ['avgFee', 'Avg Fee'],
               ['topFee', 'Top Fee'],
@@ -1039,6 +1152,18 @@ export default function ClubSpendingPage() {
                   </th>
                   <th
                     className="px-4 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
+                    onClick={() => handleSort('salarySpend')}
+                  >
+                    Salaries {sortKey === 'salarySpend' && (sortDirection === 'desc' ? '↓' : '↑')}
+                  </th>
+                  <th
+                    className="px-4 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
+                    onClick={() => handleSort('totalPlayerSpend')}
+                  >
+                    Total $ {sortKey === 'totalPlayerSpend' && (sortDirection === 'desc' ? '↓' : '↑')}
+                  </th>
+                  <th
+                    className="px-4 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
                     onClick={() => handleSort('transfers')}
                   >
                     # In {sortKey === 'transfers' && (sortDirection === 'desc' ? '↓' : '↑')}
@@ -1063,7 +1188,7 @@ export default function ClubSpendingPage() {
               <tbody className="divide-y divide-[var(--obsidian-lighter)]">
                 {clubData.length === 0 ? (
                   <tr>
-                    <td colSpan={10} className="px-6 py-8 text-center text-white/50">
+                    <td colSpan={12} className="px-6 py-8 text-center text-white/50">
                       No clubs in the selected range
                     </td>
                   </tr>
@@ -1113,6 +1238,16 @@ export default function ClubSpendingPage() {
                             </span>
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap text-right">
+                            <span className={`text-sm font-semibold ${sortKey === 'salarySpend' ? 'text-[var(--verde)]' : 'text-white'}`}>
+                              {row.salarySpend > 0 ? formatCurrency(row.salarySpend) : '-'}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap text-right">
+                            <span className={`text-sm font-semibold ${sortKey === 'totalPlayerSpend' ? 'text-[var(--verde)]' : 'text-white'}`}>
+                              {row.totalPlayerSpend > 0 ? formatCurrency(row.totalPlayerSpend) : '-'}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap text-right">
                             <span className={`text-sm font-semibold ${sortKey === 'transfers' ? 'text-[var(--verde)]' : 'text-white'}`}>
                               {row.transfers}
                             </span>
@@ -1133,7 +1268,7 @@ export default function ClubSpendingPage() {
                         </tr>
                         {isExpanded && canExpand && (
                           <tr>
-                            <td colSpan={10} className="bg-[var(--obsidian)] px-6 py-4">
+                            <td colSpan={12} className="bg-[var(--obsidian)] px-6 py-4">
                               <div className="grid lg:grid-cols-2 gap-6">
                                 {row.rows.length > 0 && (
                                   <div>

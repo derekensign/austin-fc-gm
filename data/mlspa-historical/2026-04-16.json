@@ -1,4 +1,10 @@
 {
+  "label": "2026-04-16",
+  "caption": "2026 MLS Player Salaries As of April 16, 2026",
+  "releaseDate": "April 16, 2026",
+  "releaseYear": 2026,
+  "releaseSeason": "spring",
+  "totalPlayers": 916,
   "players": [
     {
       "firstName": "Besard",
@@ -7329,8 +7335,5 @@
       "guaranteedCompensation": 1635665
     }
   ],
-  "releaseDate": "April 16, 2026",
-  "scrapedAt": "2026-05-19T14:50:55.392Z",
-  "totalPlayers": 916,
-  "source": "https://mlsplayers.org/resources/salary-guide"
+  "source": "https://web.archive.org/web/20260512205327/https://mlsplayers.org/resources/salary-guide"
 }

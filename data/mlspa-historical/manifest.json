@@ -1,0 +1,142 @@
+{
+  "parsedAt": "2026-05-19T16:53:50.453Z",
+  "rule": "definitive = fall release for that calendar year, else the most recent earlier release that year",
+  "releases": [
+    {
+      "label": "2018-05-01",
+      "caption": "2018 - 2019 MLS Player Salaries As of May 1, 2018",
+      "releaseDate": "May 1, 2018",
+      "releaseYear": 2018,
+      "releaseSeason": "spring",
+      "totalPlayers": 668,
+      "source": "https://web.archive.org/web/20180511012847/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2018-09-15",
+      "caption": "2018 - 2019 MLS Player Salaries As of September 15th, 2018",
+      "releaseDate": "September 15, 2018",
+      "releaseYear": 2018,
+      "releaseSeason": "fall",
+      "totalPlayers": 693,
+      "source": "https://web.archive.org/web/20181024195737/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2019-09-13",
+      "caption": "2019 MLS Player Salaries As of September 13th, 2019",
+      "releaseDate": "September 13, 2019",
+      "releaseYear": 2019,
+      "releaseSeason": "fall",
+      "totalPlayers": 705,
+      "source": "https://web.archive.org/web/20191011175928/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2021-04-15",
+      "caption": "2021 MLS Player Salaries As of April 15th, 2021",
+      "releaseDate": "April 15, 2021",
+      "releaseYear": 2021,
+      "releaseSeason": "spring",
+      "totalPlayers": 783,
+      "source": "https://web.archive.org/web/20210513195450/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2021-09-30",
+      "caption": "2021 MLS Player Salaries As of September 30th, 2021",
+      "releaseDate": "September 30, 2021",
+      "releaseYear": 2021,
+      "releaseSeason": "fall",
+      "totalPlayers": 868,
+      "source": "https://web.archive.org/web/20211021135445/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2022-04-15",
+      "caption": "2022 MLS Player Salaries As of April 15th, 2022",
+      "releaseDate": "April 15, 2022",
+      "releaseYear": 2022,
+      "releaseSeason": "spring",
+      "totalPlayers": 835,
+      "source": "https://web.archive.org/web/20220517202252/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2022-09-02",
+      "caption": "2022 MLS Player Salaries As of September 2nd, 2022",
+      "releaseDate": "September 2, 2022",
+      "releaseYear": 2022,
+      "releaseSeason": "fall",
+      "totalPlayers": 887,
+      "source": "https://web.archive.org/web/20221023163257/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2023-04-30",
+      "caption": "2023 MLS Player Salaries As of April 30, 2023",
+      "releaseDate": "April 30, 2023",
+      "releaseYear": 2023,
+      "releaseSeason": "spring",
+      "totalPlayers": 872,
+      "source": "https://web.archive.org/web/20230521140725/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2023-09-15",
+      "caption": "2023 MLS Player Salaries As of September 15, 2023",
+      "releaseDate": "September 15, 2023",
+      "releaseYear": 2023,
+      "releaseSeason": "fall",
+      "totalPlayers": 924,
+      "source": "https://web.archive.org/web/20231018172240/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2024-04-25",
+      "caption": "2024 MLS Player Salaries As of April 25, 2024",
+      "releaseDate": "April 25, 2024",
+      "releaseYear": 2024,
+      "releaseSeason": "spring",
+      "totalPlayers": 873,
+      "source": "https://web.archive.org/web/20240516182237/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2024-09-13",
+      "caption": "2024 MLS Player Salaries As of September 13, 2024",
+      "releaseDate": "September 13, 2024",
+      "releaseYear": 2024,
+      "releaseSeason": "fall",
+      "totalPlayers": 910,
+      "source": "https://web.archive.org/web/20241109011031/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2025-05-23",
+      "caption": "2025 MLS Player Salaries As of May 23, 2025",
+      "releaseDate": "May 23, 2025",
+      "releaseYear": 2025,
+      "releaseSeason": "spring",
+      "totalPlayers": 902,
+      "source": "https://web.archive.org/web/20250626151458/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2025-10-01",
+      "caption": "2025 MLS Player Salaries As of October 1, 2025",
+      "releaseDate": "October 1, 2025",
+      "releaseYear": 2025,
+      "releaseSeason": "fall",
+      "totalPlayers": 944,
+      "source": "https://web.archive.org/web/20251030002127/https://mlsplayers.org/resources/salary-guide"
+    },
+    {
+      "label": "2026-04-16",
+      "caption": "2026 MLS Player Salaries As of April 16, 2026",
+      "releaseDate": "April 16, 2026",
+      "releaseYear": 2026,
+      "releaseSeason": "spring",
+      "totalPlayers": 916,
+      "source": "https://web.archive.org/web/20260512205327/https://mlsplayers.org/resources/salary-guide"
+    }
+  ],
+  "definitiveByYear": {
+    "2018": "2018-09-15",
+    "2019": "2019-09-13",
+    "2021": "2021-09-30",
+    "2022": "2022-09-02",
+    "2023": "2023-09-15",
+    "2024": "2024-09-13",
+    "2025": "2025-10-01",
+    "2026": "2026-04-16"
+  }
+}
