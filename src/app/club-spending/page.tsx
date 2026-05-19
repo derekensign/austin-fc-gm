@@ -16,7 +16,6 @@ import {
 } from 'recharts';
 import {
   TrendingUp,
-  Users,
   DollarSign,
   Filter,
   ArrowUpDown,
@@ -66,17 +65,45 @@ function fixDisplay(str: string): string {
 }
 
 const YEARS = [2021, 2022, 2023, 2024, 2025, 2026];
-const MIN_YEAR = YEARS[0];
-const MAX_YEAR = YEARS[YEARS.length - 1];
 
-type SortKey = 'totalSpend' | 'transfers' | 'avgFee' | 'topFee' | 'outgoingSpend' | 'netSpend';
+// Map each name variant in the dataset to a single canonical bucket so totals
+// aren't split between e.g. "Atlanta United" and "Atlanta United FC".
+const CANONICAL_OVERRIDES: Record<string, string> = {
+  'Atlanta United FC': 'Atlanta United',
+  'Chicago Fire': 'Chicago Fire FC',
+  'Columbus Crew SC': 'Columbus Crew',
+  'Houston Dynamo': 'Houston Dynamo FC',
+  'Los Angeles Galaxy': 'LA Galaxy',
+  'Montreal Impact': 'CF Montréal',
+  'Real Salt Lake City': 'Real Salt Lake',
+  'Seattle Sounders': 'Seattle Sounders FC',
+};
+
+function canonicalTeam(team: string): string {
+  return CANONICAL_OVERRIDES[team] || team;
+}
+
+type SortKey = 'totalSpend' | 'outgoingSpend' | 'netSpend' | 'transfers' | 'outgoingCount' | 'avgFee' | 'topFee';
 type SortDirection = 'asc' | 'desc';
+
+type BarRow = {
+  name: string;
+  rawTeam: string;
+  spend: number;
+  outgoingSpend: number;
+  netSpend: number;
+  transfers: number;
+  outgoingCount: number;
+  avgFee: number;
+  topFee: number;
+};
 
 const SORT_KEY_TO_BAR: Record<SortKey, keyof BarRow> = {
   totalSpend: 'spend',
   outgoingSpend: 'outgoingSpend',
   netSpend: 'netSpend',
   transfers: 'transfers',
+  outgoingCount: 'outgoingCount',
   avgFee: 'avgFee',
   topFee: 'topFee',
 };
@@ -86,23 +113,13 @@ const SORT_KEY_LABEL: Record<SortKey, string> = {
   outgoingSpend: 'Outgoing Spend ($M)',
   netSpend: 'Net Spend ($M)',
   transfers: '# Incoming Transfers',
+  outgoingCount: '# Outgoing Sales',
   avgFee: 'Avg Paid Fee ($M)',
   topFee: 'Top Single Fee ($M)',
 };
 
 function barDataKey(k: SortKey): keyof BarRow { return SORT_KEY_TO_BAR[k]; }
 function barLabel(k: SortKey): string { return SORT_KEY_LABEL[k]; }
-
-type BarRow = {
-  name: string;
-  rawTeam: string;
-  spend: number;
-  transfers: number;
-  avgFee: number;
-  topFee: number;
-  outgoingSpend: number;
-  netSpend: number;
-};
 
 const VERDE = '#00b140';
 
@@ -221,38 +238,35 @@ function dedupeArrivals(rows: TransferRecord[]): TransferRecord[] {
 }
 
 const INCOMING_TRANSFERS: TransferRecord[] = dedupeArrivals(
-  ALL_TRANSFERS.filter(t => t.direction === 'arrival')
+  ALL_TRANSFERS
+    .filter(t => t.direction === 'arrival')
+    .map(t => ({ ...t, mlsTeam: canonicalTeam(t.mlsTeam) }))
 );
 
-// Canonical MLS club bucket. The dataset has minor name variations like
-// "Atlanta United" vs "Atlanta United FC" — we collapse to the first form
-// returned by getMLSTeams() that matches.
-const CANONICAL_TEAMS = getMLSTeams();
-const CANONICAL_TOKENS = CANONICAL_TEAMS.map(t => ({
-  team: t,
-  tokens: t.toLowerCase().replace(/\bfc\b|\bcf\b|\bsc\b/g, '').replace(/\s+/g, ' ').trim(),
-}));
+// List of canonical MLS team names, derived from the dataset and collapsed
+// via the canonical override map.
+const CANONICAL_TEAMS = Array.from(new Set(getMLSTeams().map(canonicalTeam))).sort();
 
-function resolveSourceToTeam(sourceClub: string): string | null {
+// Outgoing transfers: paid intra-MLS sales only (fee > 0). The dataset
+// doesn't yet include MLS-to-non-MLS sales; that requires scraping
+// Transfermarkt's "Departures" tab separately. Until then, outgoing
+// is best read as "intra-MLS cash sales" only — labeled as such in the UI.
+function resolveSourceTeam(sourceClub: string, mlsTeam: string): string | null {
   if (!sourceClub) return null;
   const lower = sourceClub.toLowerCase();
-  // Special-case shortened "New York" — could be either. Disambiguate later if needed.
-  for (const { team, tokens } of CANONICAL_TOKENS) {
-    if (lower.includes(tokens) || tokens.includes(lower)) return team;
-  }
-  // Looser match on team-name keywords.
+  // Match against canonical teams using a simple keyword approach.
   const keywords: Array<[string, string]> = [
     ['atlanta', 'Atlanta United'],
     ['austin', 'Austin FC'],
     ['charlotte', 'Charlotte FC'],
-    ['chicago', 'Chicago Fire'],
+    ['chicago', 'Chicago Fire FC'],
     ['colorado', 'Colorado Rapids'],
     ['columbus', 'Columbus Crew'],
     ['cincinnati', 'FC Cincinnati'],
     ['dallas', 'FC Dallas'],
     ['d.c.', 'D.C. United'],
     ['dc united', 'D.C. United'],
-    ['houston', 'Houston Dynamo'],
+    ['houston', 'Houston Dynamo FC'],
     ['lafc', 'Los Angeles FC'],
     ['los angeles fc', 'Los Angeles FC'],
     ['la galaxy', 'LA Galaxy'],
@@ -273,47 +287,63 @@ function resolveSourceToTeam(sourceClub: string): string | null {
     ['san diego', 'San Diego FC'],
     ['san jose', 'San Jose Earthquakes'],
     ['earthquakes', 'San Jose Earthquakes'],
-    ['seattle', 'Seattle Sounders'],
+    ['seattle', 'Seattle Sounders FC'],
     ['sporting', 'Sporting Kansas City'],
     ['kansas', 'Sporting Kansas City'],
     ['st. louis', 'St. Louis CITY SC'],
     ['toronto', 'Toronto FC'],
     ['vancouver', 'Vancouver Whitecaps FC'],
+    // Bare "New York" left ambiguous — return RBNY by convention.
+    ['new york', 'New York Red Bulls'],
   ];
   for (const [kw, canonical] of keywords) {
-    if (lower.includes(kw)) return canonical;
+    if (lower.includes(kw)) {
+      const resolved = canonicalTeam(canonical);
+      // Avoid attributing the source to the same team that's the destination.
+      if (resolved !== canonicalTeam(mlsTeam)) return resolved;
+    }
   }
   return null;
 }
 
-// Outgoing intra-MLS transfers: paid transfers where the source club is
-// itself an MLS team. These represent SALES by the source club. The dataset
-// does not include departures to non-MLS leagues, so this captures only the
-// intra-league market — labeled clearly in the UI.
 type OutgoingRecord = TransferRecord & { sourceTeam: string };
-const OUTGOING_TRANSFERS: OutgoingRecord[] = ALL_TRANSFERS
-  .filter(t => t.fee > 0)
-  .map(t => ({ ...t, sourceTeam: resolveSourceToTeam(t.sourceClub) || '' }))
-  .filter(t => t.sourceTeam && t.sourceTeam !== t.mlsTeam);
+const OUTGOING_TRANSFERS: OutgoingRecord[] = (() => {
+  const mapped = ALL_TRANSFERS
+    .filter(t => t.fee > 0)
+    .map(t => {
+      const dest = canonicalTeam(t.mlsTeam);
+      const src = resolveSourceTeam(t.sourceClub, dest);
+      return src ? { ...t, mlsTeam: dest, sourceTeam: src } : null;
+    })
+    .filter((t): t is OutgoingRecord => t !== null);
+
+  // Dedupe per (sourceTeam, destTeam, lastName, year) — keep the highest fee.
+  const byKey = new Map<string, OutgoingRecord>();
+  for (const row of mapped) {
+    const k = `${row.sourceTeam}|${row.mlsTeam}|${lastNameKey(row.playerName)}|${row.year}`;
+    const existing = byKey.get(k);
+    if (!existing || row.fee > existing.fee) byKey.set(k, row);
+  }
+  return Array.from(byKey.values());
+})();
 
 type ClubAgg = {
   mlsTeam: string;
   transfers: number;
-  totalSpend: number;        // incoming
+  totalSpend: number;
   paidCount: number;
   topFee: number;
   topPlayer: string;
   avgFee: number;
-  outgoingSpend: number;     // intra-MLS sales
+  outgoingSpend: number;
   outgoingCount: number;
-  netSpend: number;          // incoming - outgoing
+  netSpend: number;
   rows: TransferRecord[];
   outgoingRows: OutgoingRecord[];
 };
 
 export default function ClubSpendingPage() {
-  const [startYear, setStartYear] = useState<number>(MIN_YEAR);
-  const [endYear, setEndYear] = useState<number>(MAX_YEAR);
+  const [selectedYears, setSelectedYears] = useState<Set<number>>(new Set(YEARS));
   const [sortKey, setSortKey] = useState<SortKey>('totalSpend');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
   const [showTop, setShowTop] = useState<number>(15);
@@ -325,18 +355,34 @@ export default function ClubSpendingPage() {
     return amount > 0 ? `$${amount.toLocaleString()}` : '-';
   };
 
-  // Normalize range so start <= end, regardless of which control the user changed.
-  const [lo, hi] = startYear <= endYear ? [startYear, endYear] : [endYear, startYear];
-  const isSingleYear = lo === hi;
+  // Sorted, deduped list of selected years for stable display + iteration.
+  const selectedYearList = useMemo(
+    () => Array.from(selectedYears).sort((a, b) => a - b),
+    [selectedYears]
+  );
+  const isSingleYear = selectedYearList.length === 1;
+
+  const toggleYear = (y: number) => {
+    setSelectedYears(prev => {
+      const next = new Set(prev);
+      if (next.has(y)) {
+        // Don't let the user deselect the last remaining year.
+        if (next.size > 1) next.delete(y);
+      } else {
+        next.add(y);
+      }
+      return next;
+    });
+  };
 
   const rangeTransfers = useMemo(
-    () => INCOMING_TRANSFERS.filter(t => t.year >= lo && t.year <= hi),
-    [lo, hi]
+    () => INCOMING_TRANSFERS.filter(t => selectedYears.has(t.year)),
+    [selectedYears]
   );
 
   const rangeOutgoing = useMemo(
-    () => OUTGOING_TRANSFERS.filter(t => t.year >= lo && t.year <= hi),
-    [lo, hi]
+    () => OUTGOING_TRANSFERS.filter(t => selectedYears.has(t.year)),
+    [selectedYears]
   );
 
   const clubData = useMemo<ClubAgg[]>(() => {
@@ -377,8 +423,8 @@ export default function ClubSpendingPage() {
       map.set(t.sourceTeam, existing);
     });
 
-    // Ensure every MLS team appears even with zero transfers in the window.
-    getMLSTeams().forEach(team => {
+    // Ensure every canonical MLS team appears even with zero transfers in the window.
+    CANONICAL_TEAMS.forEach(team => {
       if (!map.has(team)) map.set(team, baseAgg(team));
     });
 
@@ -394,7 +440,7 @@ export default function ClubSpendingPage() {
         const multiplier = sortDirection === 'desc' ? -1 : 1;
         return (a[sortKey] - b[sortKey]) * multiplier;
       });
-  }, [rangeTransfers, sortKey, sortDirection]);
+  }, [rangeTransfers, rangeOutgoing, sortKey, sortDirection]);
 
   const visibleClubs = useMemo(() => clubData.slice(0, showTop), [clubData, showTop]);
 
@@ -410,7 +456,6 @@ export default function ClubSpendingPage() {
     const totalOutgoing = rangeOutgoing.reduce((sum, t) => sum + t.fee, 0);
     const paidCount = rangeTransfers.filter(t => t.fee > 0).length;
     const topClub = [...clubData].sort((a, b) => b.totalSpend - a.totalSpend)[0];
-    const topNet = [...clubData].sort((a, b) => b.netSpend - a.netSpend)[0];
 
     return {
       totalSpend,
@@ -420,15 +465,13 @@ export default function ClubSpendingPage() {
       avgFee: paidCount > 0 ? totalSpend / paidCount : 0,
       topClub: topClub?.mlsTeam || '',
       topClubSpend: topClub?.totalSpend || 0,
-      topNetClub: topNet?.mlsTeam || '',
-      topNetSpend: topNet?.netSpend || 0,
     };
   }, [rangeTransfers, rangeOutgoing, clubData]);
 
   const yearlyByClub = useMemo(() => {
     if (isSingleYear) return [];
     const seriesClubs = visibleClubs.slice(0, 8).map(c => c.mlsTeam);
-    return YEARS.filter(y => y >= lo && y <= hi).map(year => {
+    return selectedYearList.map(year => {
       const row: Record<string, number | string> = { year: year.toString() };
       seriesClubs.forEach(team => {
         const teamSpend = INCOMING_TRANSFERS
@@ -438,7 +481,7 @@ export default function ClubSpendingPage() {
       });
       return row;
     });
-  }, [visibleClubs, isSingleYear, lo, hi]);
+  }, [visibleClubs, isSingleYear, selectedYearList]);
 
   const yearlySeriesClubs = useMemo(
     () => visibleClubs.slice(0, 8).map(c => c.mlsTeam),
@@ -463,18 +506,28 @@ export default function ClubSpendingPage() {
     });
   };
 
-  const barChartData = visibleClubs.map(c => ({
+  const barChartData: BarRow[] = visibleClubs.map(c => ({
     name: fixDisplay(c.mlsTeam),
     rawTeam: c.mlsTeam,
     spend: c.totalSpend / 1_000_000,
-    transfers: c.transfers,
-    avgFee: c.avgFee / 1_000_000,
-    topFee: c.topFee / 1_000_000,
     outgoingSpend: c.outgoingSpend / 1_000_000,
     netSpend: c.netSpend / 1_000_000,
+    transfers: c.transfers,
+    outgoingCount: c.outgoingCount,
+    avgFee: c.avgFee / 1_000_000,
+    topFee: c.topFee / 1_000_000,
   }));
 
-  const rangeLabel = isSingleYear ? `${lo}` : `${lo}–${hi}`;
+  const rangeLabel = useMemo(() => {
+    if (selectedYearList.length === 0) return '';
+    if (selectedYearList.length === 1) return String(selectedYearList[0]);
+    if (selectedYearList.length === YEARS.length) return `${YEARS[0]}–${YEARS[YEARS.length - 1]}`;
+    // Detect contiguous range
+    const min = selectedYearList[0];
+    const max = selectedYearList[selectedYearList.length - 1];
+    const isContiguous = max - min + 1 === selectedYearList.length;
+    return isContiguous ? `${min}–${max}` : selectedYearList.join(', ');
+  }, [selectedYearList]);
 
   // Custom tooltip — shows team aggregate + top 5 signings
   type TooltipPayload = {
@@ -500,7 +553,7 @@ export default function ClubSpendingPage() {
         <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs mb-3">
           <span className="text-white/60">Incoming Spend</span>
           <span className="text-[var(--verde)] font-semibold text-right">{formatCurrency(club.totalSpend)}</span>
-          <span className="text-white/60">Outgoing (intra-MLS)</span>
+          <span className="text-white/60">Outgoing (paid intra-MLS)</span>
           <span className="text-white font-semibold text-right">{club.outgoingSpend > 0 ? formatCurrency(club.outgoingSpend) : '-'}</span>
           <span className="text-white/60">Net Spend</span>
           <span className={`font-semibold text-right ${netColor}`}>
@@ -566,33 +619,39 @@ export default function ClubSpendingPage() {
 
         {/* Filters */}
         <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4 mb-4 sm:mb-6">
-          <div className="flex flex-wrap gap-2 sm:gap-4 items-center">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-[var(--verde)]" />
-              <span className="text-xs sm:text-sm font-medium text-white">Range:</span>
+              <span className="text-xs sm:text-sm font-medium text-white">Years:</span>
             </div>
-
-            <div className="flex items-center gap-1 sm:gap-2">
-              <Calendar className="h-4 w-4 text-white/60 hidden sm:inline" />
-              <select
-                value={startYear}
-                onChange={(e) => setStartYear(Number(e.target.value))}
-                className="bg-[var(--obsidian)] border border-[var(--verde)]/30 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-white text-xs sm:text-sm focus:outline-none focus:border-[var(--verde)]"
+            <Calendar className="h-4 w-4 text-white/60 hidden sm:inline" />
+            <div className="flex flex-wrap gap-1.5">
+              {YEARS.map(y => {
+                const active = selectedYears.has(y);
+                return (
+                  <button
+                    key={`year-${y}`}
+                    onClick={() => toggleYear(y)}
+                    className={`px-2.5 sm:px-3 py-1 rounded-md text-[11px] sm:text-xs font-medium transition-colors ${
+                      active
+                        ? 'bg-[var(--verde)] text-black'
+                        : 'bg-[var(--obsidian)] text-white/60 hover:text-white border border-[var(--verde)]/20'
+                    }`}
+                  >
+                    {y}
+                  </button>
+                );
+              })}
+              <button
+                onClick={() => setSelectedYears(new Set(YEARS))}
+                className={`px-2.5 sm:px-3 py-1 rounded-md text-[11px] sm:text-xs font-medium transition-colors ${
+                  selectedYears.size === YEARS.length
+                    ? 'bg-[var(--verde)]/20 text-[var(--verde)] border border-[var(--verde)]/40'
+                    : 'bg-[var(--obsidian)] text-white/50 hover:text-white border border-[var(--verde)]/20'
+                }`}
               >
-                {YEARS.map(year => (
-                  <option key={year} value={year}>{year}</option>
-                ))}
-              </select>
-              <span className="text-white/50 text-xs sm:text-sm">to</span>
-              <select
-                value={endYear}
-                onChange={(e) => setEndYear(Number(e.target.value))}
-                className="bg-[var(--obsidian)] border border-[var(--verde)]/30 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-white text-xs sm:text-sm focus:outline-none focus:border-[var(--verde)]"
-              >
-                {YEARS.map(year => (
-                  <option key={year} value={year}>{year}</option>
-                ))}
-              </select>
+                All
+              </button>
             </div>
 
             <div className="flex items-center gap-1 sm:gap-2 ml-auto">
@@ -610,34 +669,9 @@ export default function ClubSpendingPage() {
               </select>
             </div>
           </div>
-
-          {/* Quick presets */}
-          <div className="flex flex-wrap gap-1.5 mt-3">
-            <span className="text-[10px] sm:text-xs text-white/40 py-1.5">Presets:</span>
-            {YEARS.map(y => (
-              <button
-                key={`single-${y}`}
-                onClick={() => { setStartYear(y); setEndYear(y); }}
-                className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs transition-colors ${
-                  isSingleYear && lo === y
-                    ? 'bg-[var(--verde)] text-black'
-                    : 'bg-[var(--obsidian)] text-white/60 hover:text-white border border-[var(--verde)]/20'
-                }`}
-              >
-                {y}
-              </button>
-            ))}
-            <button
-              onClick={() => { setStartYear(MIN_YEAR); setEndYear(MAX_YEAR); }}
-              className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs transition-colors ${
-                lo === MIN_YEAR && hi === MAX_YEAR
-                  ? 'bg-[var(--verde)] text-black'
-                  : 'bg-[var(--obsidian)] text-white/60 hover:text-white border border-[var(--verde)]/20'
-              }`}
-            >
-              All
-            </button>
-          </div>
+          <p className="text-[10px] sm:text-xs text-white/40">
+            Tap any year to toggle. Selected: <span className="text-white/70">{rangeLabel}</span>
+          </p>
         </div>
 
         {/* Summary Cards */}
@@ -686,7 +720,7 @@ export default function ClubSpendingPage() {
         </div>
 
         <p className="text-[10px] sm:text-xs text-white/40 mb-4 -mt-2">
-          *Outgoing captures intra-MLS sales only — departures to non-MLS leagues aren&apos;t in this dataset.
+          *Outgoing = paid intra-MLS sales only (free transfers / trades excluded). Sales to non-MLS leagues aren&apos;t in this dataset yet.
         </p>
 
         {/* Sort Buttons */}
@@ -934,7 +968,7 @@ export default function ClubSpendingPage() {
                         )}
                         {row.outgoingRows.length > 0 && (
                           <div>
-                            <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">Outgoing (intra-MLS)</p>
+                            <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">Outgoing — paid intra-MLS</p>
                             <ul className="space-y-1.5">
                               {row.outgoingRows.map((t, i) => (
                                 <li key={`out-${i}`} className="text-xs flex items-center justify-between gap-2">
@@ -993,6 +1027,12 @@ export default function ClubSpendingPage() {
                   </th>
                   <th
                     className="px-4 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
+                    onClick={() => handleSort('outgoingCount')}
+                  >
+                    # Out {sortKey === 'outgoingCount' && (sortDirection === 'desc' ? '↓' : '↑')}
+                  </th>
+                  <th
+                    className="px-4 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
                     onClick={() => handleSort('topFee')}
                   >
                     Top Fee {sortKey === 'topFee' && (sortDirection === 'desc' ? '↓' : '↑')}
@@ -1005,7 +1045,7 @@ export default function ClubSpendingPage() {
               <tbody className="divide-y divide-[var(--obsidian-lighter)]">
                 {clubData.length === 0 ? (
                   <tr>
-                    <td colSpan={9} className="px-6 py-8 text-center text-white/50">
+                    <td colSpan={10} className="px-6 py-8 text-center text-white/50">
                       No clubs in the selected range
                     </td>
                   </tr>
@@ -1060,6 +1100,11 @@ export default function ClubSpendingPage() {
                             </span>
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap text-right">
+                            <span className={`text-sm font-semibold ${sortKey === 'outgoingCount' ? 'text-[var(--verde)]' : 'text-white'}`}>
+                              {row.outgoingCount || '-'}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap text-right">
                             <span className={`text-sm font-semibold ${sortKey === 'topFee' ? 'text-[var(--verde)]' : 'text-white'}`}>
                               {row.topFee > 0 ? formatCurrency(row.topFee) : '-'}
                             </span>
@@ -1070,7 +1115,7 @@ export default function ClubSpendingPage() {
                         </tr>
                         {isExpanded && canExpand && (
                           <tr>
-                            <td colSpan={9} className="bg-[var(--obsidian)] px-6 py-4">
+                            <td colSpan={10} className="bg-[var(--obsidian)] px-6 py-4">
                               <div className="grid lg:grid-cols-2 gap-6">
                                 {row.rows.length > 0 && (
                                   <div>
@@ -1110,7 +1155,7 @@ export default function ClubSpendingPage() {
                                 {row.outgoingRows.length > 0 && (
                                   <div>
                                     <p className="text-xs text-white/40 uppercase tracking-wider mb-2">
-                                      Outgoing intra-MLS ({row.outgoingRows.length})
+                                      Outgoing — paid intra-MLS ({row.outgoingRows.length})
                                     </p>
                                     <table className="w-full text-sm">
                                       <thead>
