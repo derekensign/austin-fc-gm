@@ -5,6 +5,7 @@
 
 import transferData from '../../data/mls-transfers-all-years.json';
 import historicalSupplement from '../../data/mls-transfers-historical-supplement.json';
+import departureData from '../../data/mls-transfers-departures-all-years.json';
 
 export interface TransferRecord {
   playerName: string;
@@ -196,6 +197,33 @@ export const ALL_TRANSFERS: TransferRecord[] = [
   ...supplementalTransfers,
   ...mainTransfers
 ];
+
+// Departures scraped separately from Transfermarkt's per-club departure tables.
+// Fees are EUR like the source data — convert to USD on read. Shape mirrors
+// TransferRecord but is exposed under its own type to keep arrivals/departures
+// segregated for downstream consumers that don't need both.
+export interface DepartureRecord {
+  playerName: string;
+  age: number;
+  position: string;
+  marketValue: number;
+  destinationClub: string;
+  destinationCountry: string;
+  fee: number;
+  feeDisplay: string;
+  mlsTeam: string;
+  direction: 'departure';
+  transferType: 'permanent' | 'loan' | 'free';
+  season: string;
+  year: number;
+}
+
+export const ALL_DEPARTURES: DepartureRecord[] = (departureData as { transfers: DepartureRecord[] }).transfers
+  .map(d => ({
+    ...d,
+    marketValue: Math.round((d.marketValue || 0) * EUR_TO_USD),
+    fee: Math.round((d.fee || 0) * EUR_TO_USD),
+  }));
 
 // Get unique list of MLS teams from the data
 export function getMLSTeams(): string[] {

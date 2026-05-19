@@ -25,7 +25,13 @@ import {
   ChevronDown,
   ChevronRight,
 } from 'lucide-react';
-import { ALL_TRANSFERS, type TransferRecord, getMLSTeams } from '@/data/mls-transfers-all';
+import {
+  ALL_TRANSFERS,
+  ALL_DEPARTURES,
+  type TransferRecord,
+  type DepartureRecord,
+  getMLSTeams,
+} from '@/data/mls-transfers-all';
 
 // Same display fixer as transfer-sources page — the underlying scrape strips some 's' chars.
 function fixDisplay(str: string): string {
@@ -247,84 +253,30 @@ const INCOMING_TRANSFERS: TransferRecord[] = dedupeArrivals(
 // via the canonical override map.
 const CANONICAL_TEAMS = Array.from(new Set(getMLSTeams().map(canonicalTeam))).sort();
 
-// Outgoing transfers: paid intra-MLS sales only (fee > 0). The dataset
-// doesn't yet include MLS-to-non-MLS sales; that requires scraping
-// Transfermarkt's "Departures" tab separately. Until then, outgoing
-// is best read as "intra-MLS cash sales" only — labeled as such in the UI.
-function resolveSourceTeam(sourceClub: string, mlsTeam: string): string | null {
-  if (!sourceClub) return null;
-  const lower = sourceClub.toLowerCase();
-  // Match against canonical teams using a simple keyword approach.
-  const keywords: Array<[string, string]> = [
-    ['atlanta', 'Atlanta United'],
-    ['austin', 'Austin FC'],
-    ['charlotte', 'Charlotte FC'],
-    ['chicago', 'Chicago Fire FC'],
-    ['colorado', 'Colorado Rapids'],
-    ['columbus', 'Columbus Crew'],
-    ['cincinnati', 'FC Cincinnati'],
-    ['dallas', 'FC Dallas'],
-    ['d.c.', 'D.C. United'],
-    ['dc united', 'D.C. United'],
-    ['houston', 'Houston Dynamo FC'],
-    ['lafc', 'Los Angeles FC'],
-    ['los angeles fc', 'Los Angeles FC'],
-    ['la galaxy', 'LA Galaxy'],
-    ['galaxy', 'LA Galaxy'],
-    ['miami', 'Inter Miami CF'],
-    ['minnesota', 'Minnesota United FC'],
-    ['montreal', 'CF Montréal'],
-    ['montréal', 'CF Montréal'],
-    ['nashville', 'Nashville SC'],
-    ['new england', 'New England Revolution'],
-    ['new york city', 'New York City FC'],
-    ['nycfc', 'New York City FC'],
-    ['red bull', 'New York Red Bulls'],
-    ['orlando', 'Orlando City SC'],
-    ['philadelphia', 'Philadelphia Union'],
-    ['portland', 'Portland Timbers'],
-    ['real salt lake', 'Real Salt Lake'],
-    ['san diego', 'San Diego FC'],
-    ['san jose', 'San Jose Earthquakes'],
-    ['earthquakes', 'San Jose Earthquakes'],
-    ['seattle', 'Seattle Sounders FC'],
-    ['sporting', 'Sporting Kansas City'],
-    ['kansas', 'Sporting Kansas City'],
-    ['st. louis', 'St. Louis CITY SC'],
-    ['toronto', 'Toronto FC'],
-    ['vancouver', 'Vancouver Whitecaps FC'],
-    // Bare "New York" left ambiguous — return RBNY by convention.
-    ['new york', 'New York Red Bulls'],
-  ];
-  for (const [kw, canonical] of keywords) {
-    if (lower.includes(kw)) {
-      const resolved = canonicalTeam(canonical);
-      // Avoid attributing the source to the same team that's the destination.
-      if (resolved !== canonicalTeam(mlsTeam)) return resolved;
-    }
-  }
-  return null;
-}
+// Outgoing transfers: paid sales scraped directly from Transfermarkt's
+// per-club Departures tables. We keep only fee > 0 (true cash sales) and
+// dedupe loan→permanent pairs the same way we dedupe arrivals.
+const OUTGOING_TRANSFERS: DepartureRecord[] = (() => {
+  const paid = ALL_DEPARTURES
+    .filter(d => d.fee > 0)
+    .map(d => ({ ...d, mlsTeam: canonicalTeam(d.mlsTeam) }));
 
-type OutgoingRecord = TransferRecord & { sourceTeam: string };
-const OUTGOING_TRANSFERS: OutgoingRecord[] = (() => {
-  const mapped = ALL_TRANSFERS
-    .filter(t => t.fee > 0)
-    .map(t => {
-      const dest = canonicalTeam(t.mlsTeam);
-      const src = resolveSourceTeam(t.sourceClub, dest);
-      return src ? { ...t, mlsTeam: dest, sourceTeam: src } : null;
-    })
-    .filter((t): t is OutgoingRecord => t !== null);
-
-  // Dedupe per (sourceTeam, destTeam, lastName, year) — keep the highest fee.
-  const byKey = new Map<string, OutgoingRecord>();
-  for (const row of mapped) {
-    const k = `${row.sourceTeam}|${row.mlsTeam}|${lastNameKey(row.playerName)}|${row.year}`;
+  // Dedupe per (mlsTeam, lastName, year) — same rationale as the incoming
+  // dedupe: a loan + permanent pair across rows shouldn't double-count.
+  const byKey = new Map<string, DepartureRecord>();
+  for (const row of paid) {
+    const k = `${row.mlsTeam}|${lastNameKey(row.playerName)}|${row.year}`;
     const existing = byKey.get(k);
     if (!existing || row.fee > existing.fee) byKey.set(k, row);
   }
-  return Array.from(byKey.values());
+  // Also collapse cross-year same-player-same-team (loan one year, perm next).
+  const acrossYears = new Map<string, DepartureRecord>();
+  for (const row of byKey.values()) {
+    const k = `${row.mlsTeam}|${lastNameKey(row.playerName)}`;
+    const existing = acrossYears.get(k);
+    if (!existing || row.fee > existing.fee) acrossYears.set(k, row);
+  }
+  return Array.from(acrossYears.values());
 })();
 
 type ClubAgg = {
@@ -339,7 +291,7 @@ type ClubAgg = {
   outgoingCount: number;
   netSpend: number;
   rows: TransferRecord[];
-  outgoingRows: OutgoingRecord[];
+  outgoingRows: DepartureRecord[];
 };
 
 export default function ClubSpendingPage() {
@@ -416,11 +368,11 @@ export default function ClubSpendingPage() {
     });
 
     rangeOutgoing.forEach(t => {
-      const existing = map.get(t.sourceTeam) || baseAgg(t.sourceTeam);
+      const existing = map.get(t.mlsTeam) || baseAgg(t.mlsTeam);
       existing.outgoingSpend += t.fee;
       existing.outgoingCount++;
       existing.outgoingRows.push(t);
-      map.set(t.sourceTeam, existing);
+      map.set(t.mlsTeam, existing);
     });
 
     // Ensure every canonical MLS team appears even with zero transfers in the window.
@@ -432,7 +384,9 @@ export default function ClubSpendingPage() {
       .map(d => ({
         ...d,
         avgFee: d.paidCount > 0 ? d.totalSpend / d.paidCount : 0,
-        netSpend: d.totalSpend - d.outgoingSpend,
+        // Accounting convention: income − spend. Negative = net spender (red),
+        // positive = net seller (green).
+        netSpend: d.outgoingSpend - d.totalSpend,
         rows: d.rows.sort((a, b) => b.fee - a.fee || b.year - a.year),
         outgoingRows: d.outgoingRows.sort((a, b) => b.fee - a.fee || b.year - a.year),
       }))
@@ -541,9 +495,10 @@ export default function ClubSpendingPage() {
     if (!club) return null;
 
     const topFive = club.rows.slice(0, 5);
+    // Accounting: negative = net spender (red), positive = net seller (green).
     const netColor =
-      club.netSpend > 0 ? 'text-rose-400' :
-      club.netSpend < 0 ? 'text-emerald-400' :
+      club.netSpend < 0 ? 'text-rose-400' :
+      club.netSpend > 0 ? 'text-emerald-400' :
       'text-white';
 
     return (
@@ -553,7 +508,7 @@ export default function ClubSpendingPage() {
         <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs mb-3">
           <span className="text-white/60">Incoming Spend</span>
           <span className="text-[var(--verde)] font-semibold text-right">{formatCurrency(club.totalSpend)}</span>
-          <span className="text-white/60">Outgoing (paid intra-MLS)</span>
+          <span className="text-white/60">Outgoing (paid sales)</span>
           <span className="text-white font-semibold text-right">{club.outgoingSpend > 0 ? formatCurrency(club.outgoingSpend) : '-'}</span>
           <span className="text-white/60">Net Spend</span>
           <span className={`font-semibold text-right ${netColor}`}>
@@ -688,10 +643,10 @@ export default function ClubSpendingPage() {
           <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
             <div className="flex items-center gap-2 text-[var(--verde)] mb-1 sm:mb-2">
               <ArrowUpDown className="h-4 w-4 sm:h-5 sm:w-5" />
-              <span className="text-xs sm:text-sm font-medium">Outgoing*</span>
+              <span className="text-xs sm:text-sm font-medium">Outgoing</span>
             </div>
             <p className="text-xl sm:text-3xl font-bold text-white">{formatCurrency(summaryStats.totalOutgoing)}</p>
-            <p className="text-[10px] sm:text-xs text-white/50">intra-MLS only</p>
+            <p className="text-[10px] sm:text-xs text-white/50">paid sales</p>
           </div>
 
           <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
@@ -699,14 +654,20 @@ export default function ClubSpendingPage() {
               <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
               <span className="text-xs sm:text-sm font-medium">League Net</span>
             </div>
-            <p className={`text-xl sm:text-3xl font-bold ${
-              summaryStats.totalSpend - summaryStats.totalOutgoing > 0 ? 'text-rose-400' :
-              summaryStats.totalSpend - summaryStats.totalOutgoing < 0 ? 'text-emerald-400' : 'text-white'
-            }`}>
-              {summaryStats.totalSpend - summaryStats.totalOutgoing > 0 ? '+' : ''}
-              {formatCurrency(summaryStats.totalSpend - summaryStats.totalOutgoing)}
-            </p>
-            <p className="text-[10px] sm:text-xs text-white/50">in − out</p>
+            {(() => {
+              const net = summaryStats.totalOutgoing - summaryStats.totalSpend;
+              return (
+                <>
+                  <p className={`text-xl sm:text-3xl font-bold ${
+                    net < 0 ? 'text-rose-400' : net > 0 ? 'text-emerald-400' : 'text-white'
+                  }`}>
+                    {net > 0 ? '+' : net < 0 ? '−' : ''}
+                    {formatCurrency(Math.abs(net))}
+                  </p>
+                  <p className="text-[10px] sm:text-xs text-white/50">income − spend</p>
+                </>
+              );
+            })()}
           </div>
 
           <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
@@ -720,7 +681,7 @@ export default function ClubSpendingPage() {
         </div>
 
         <p className="text-[10px] sm:text-xs text-white/40 mb-4 -mt-2">
-          *Outgoing = paid intra-MLS sales only (free transfers / trades excluded). Sales to non-MLS leagues aren&apos;t in this dataset yet.
+          Outgoing = paid sales only (free transfers, end-of-loan moves, and intra-MLS trades without fees are excluded).
         </p>
 
         {/* Sort Buttons */}
@@ -892,8 +853,8 @@ export default function ClubSpendingPage() {
                 const accent = getTeamColor(row.mlsTeam, index);
                 const netSign = row.netSpend > 0 ? '+' : row.netSpend < 0 ? '−' : '';
                 const netColor =
-                  row.netSpend > 0 ? 'text-rose-400' :
-                  row.netSpend < 0 ? 'text-emerald-400' :
+                  row.netSpend < 0 ? 'text-rose-400' :
+                  row.netSpend > 0 ? 'text-emerald-400' :
                   'text-white/60';
                 return (
                   <div key={row.mlsTeam}>
@@ -968,14 +929,14 @@ export default function ClubSpendingPage() {
                         )}
                         {row.outgoingRows.length > 0 && (
                           <div>
-                            <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">Outgoing — paid intra-MLS</p>
+                            <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">Outgoing (paid sales)</p>
                             <ul className="space-y-1.5">
                               {row.outgoingRows.map((t, i) => (
                                 <li key={`out-${i}`} className="text-xs flex items-center justify-between gap-2">
                                   <span className="text-white/85 truncate">
                                     <span className="text-white/40 mr-1">{t.year}</span>
                                     {fixDisplay(t.playerName)}
-                                    <span className="text-white/40 ml-1">→ {fixDisplay(t.mlsTeam)}</span>
+                                    <span className="text-white/40 ml-1">→ {fixDisplay(t.destinationClub)}{t.destinationCountry ? ` (${t.destinationCountry})` : ''}</span>
                                   </span>
                                   <span className="whitespace-nowrap font-semibold text-rose-400">
                                     {formatCurrency(t.fee)}
@@ -1155,7 +1116,7 @@ export default function ClubSpendingPage() {
                                 {row.outgoingRows.length > 0 && (
                                   <div>
                                     <p className="text-xs text-white/40 uppercase tracking-wider mb-2">
-                                      Outgoing — paid intra-MLS ({row.outgoingRows.length})
+                                      Outgoing — paid sales ({row.outgoingRows.length})
                                     </p>
                                     <table className="w-full text-sm">
                                       <thead>
@@ -1163,6 +1124,7 @@ export default function ClubSpendingPage() {
                                           <th className="px-2 py-1 text-left">Year</th>
                                           <th className="px-2 py-1 text-left">Player</th>
                                           <th className="px-2 py-1 text-left">To</th>
+                                          <th className="px-2 py-1 text-left">Type</th>
                                           <th className="px-2 py-1 text-right">Fee</th>
                                         </tr>
                                       </thead>
@@ -1174,7 +1136,11 @@ export default function ClubSpendingPage() {
                                               {fixDisplay(t.playerName)}
                                               <span className="text-white/40 ml-1 text-xs">{t.position}</span>
                                             </td>
-                                            <td className="px-2 py-1.5 text-white/70">{fixDisplay(t.mlsTeam)}</td>
+                                            <td className="px-2 py-1.5 text-white/70">
+                                              {fixDisplay(t.destinationClub)}
+                                              <span className="text-white/40 ml-1 text-xs">{t.destinationCountry}</span>
+                                            </td>
+                                            <td className="px-2 py-1.5 text-white/60 capitalize">{t.transferType}</td>
                                             <td className="px-2 py-1.5 text-right font-semibold text-rose-400">
                                               {formatCurrency(t.fee)}
                                             </td>
