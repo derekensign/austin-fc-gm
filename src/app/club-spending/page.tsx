@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { Fragment, useState, useMemo } from 'react';
 import {
   BarChart,
   Bar,
@@ -69,15 +69,109 @@ const YEARS = [2021, 2022, 2023, 2024, 2025, 2026];
 const MIN_YEAR = YEARS[0];
 const MAX_YEAR = YEARS[YEARS.length - 1];
 
-type SortKey = 'totalSpend' | 'transfers' | 'avgFee' | 'topFee';
+type SortKey = 'totalSpend' | 'transfers' | 'avgFee' | 'topFee' | 'outgoingSpend' | 'netSpend';
 type SortDirection = 'asc' | 'desc';
 
+const SORT_KEY_TO_BAR: Record<SortKey, keyof BarRow> = {
+  totalSpend: 'spend',
+  outgoingSpend: 'outgoingSpend',
+  netSpend: 'netSpend',
+  transfers: 'transfers',
+  avgFee: 'avgFee',
+  topFee: 'topFee',
+};
+
+const SORT_KEY_LABEL: Record<SortKey, string> = {
+  totalSpend: 'Incoming Spend ($M)',
+  outgoingSpend: 'Outgoing Spend ($M)',
+  netSpend: 'Net Spend ($M)',
+  transfers: '# Incoming Transfers',
+  avgFee: 'Avg Paid Fee ($M)',
+  topFee: 'Top Single Fee ($M)',
+};
+
+function barDataKey(k: SortKey): keyof BarRow { return SORT_KEY_TO_BAR[k]; }
+function barLabel(k: SortKey): string { return SORT_KEY_LABEL[k]; }
+
+type BarRow = {
+  name: string;
+  rawTeam: string;
+  spend: number;
+  transfers: number;
+  avgFee: number;
+  topFee: number;
+  outgoingSpend: number;
+  netSpend: number;
+};
+
 const VERDE = '#00b140';
-const TEAM_COLORS = [
+
+// Primary brand color per MLS club. Keys are normalized: lowercased, with
+// suffixes like "FC", "SC", "CF" stripped so we can match the various forms
+// that appear in the data ("Atlanta United" vs "Atlanta United FC", etc.).
+const TEAM_COLOR_MAP: Record<string, string> = {
+  'atlanta united': '#80000A',
+  'austin': '#00B140',
+  'charlotte': '#1A85C8',
+  'chicago fire': '#0E2348',
+  'colorado rapids': '#960A2C',
+  'columbus crew': '#FFEF00',
+  'd.c. united': '#000000',
+  'dc united': '#000000',
+  'fc cincinnati': '#FE5000',
+  'cincinnati': '#FE5000',
+  'fc dallas': '#BF0D3E',
+  'dallas': '#BF0D3E',
+  'houston dynamo': '#F36600',
+  'inter miami': '#F7B5CD',
+  'la galaxy': '#00245D',
+  'los angeles galaxy': '#00245D',
+  'lafc': '#000000',
+  'los angeles': '#C39E6D',
+  'minnesota united': '#8CD2F4',
+  'cf montréal': '#0033A0',
+  'montreal impact': '#0033A0',
+  'nashville': '#FFC72C',
+  'new england revolution': '#0A2240',
+  'new york city': '#6CADDE',
+  'new york red bulls': '#ED1C24',
+  'orlando city': '#612E8A',
+  'philadelphia union': '#003049',
+  'portland timbers': '#00482B',
+  'real salt lake': '#A50531',
+  'real salt lake city': '#A50531',
+  'san diego': '#00214E',
+  'san jose earthquakes': '#0051BA',
+  'seattle sounders': '#5D9741',
+  'sporting kansas city': '#93B1D7',
+  'st. louis city': '#C8102E',
+  'toronto': '#A6192E',
+  'vancouver whitecaps': '#00245E',
+};
+
+// Fallback palette for any team without a brand color mapped.
+const FALLBACK_COLORS = [
   '#00b140', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6',
   '#10b981', '#ec4899', '#06b6d4', '#f97316', '#6366f1',
   '#14b8a6', '#a855f7', '#eab308', '#22d3ee', '#f43f5e',
 ];
+
+function normalizeTeamKey(team: string): string {
+  return team
+    .toLowerCase()
+    .replace(/\s+(fc|sc|cf)\b/g, '')
+    .replace(/^(fc|cf|sc)\s+/g, match => match.toLowerCase().startsWith('fc ') ? match.toLowerCase() : '')
+    .trim();
+}
+
+function getTeamColor(team: string, fallbackIdx: number): string {
+  const key = normalizeTeamKey(team);
+  // Try exact normalized match first, then loosen by stripping common prefixes.
+  if (TEAM_COLOR_MAP[key]) return TEAM_COLOR_MAP[key];
+  const looser = key.replace(/^(fc|cf|sc)\s+/, '');
+  if (TEAM_COLOR_MAP[looser]) return TEAM_COLOR_MAP[looser];
+  return FALLBACK_COLORS[fallbackIdx % FALLBACK_COLORS.length];
+}
 
 // Normalize a player name to a dedupe key. Uses the last whitespace-separated
 // token, lowercased and ascii-folded, so "Sebastián Driussi" and "S. Driussi"
@@ -130,15 +224,91 @@ const INCOMING_TRANSFERS: TransferRecord[] = dedupeArrivals(
   ALL_TRANSFERS.filter(t => t.direction === 'arrival')
 );
 
+// Canonical MLS club bucket. The dataset has minor name variations like
+// "Atlanta United" vs "Atlanta United FC" — we collapse to the first form
+// returned by getMLSTeams() that matches.
+const CANONICAL_TEAMS = getMLSTeams();
+const CANONICAL_TOKENS = CANONICAL_TEAMS.map(t => ({
+  team: t,
+  tokens: t.toLowerCase().replace(/\bfc\b|\bcf\b|\bsc\b/g, '').replace(/\s+/g, ' ').trim(),
+}));
+
+function resolveSourceToTeam(sourceClub: string): string | null {
+  if (!sourceClub) return null;
+  const lower = sourceClub.toLowerCase();
+  // Special-case shortened "New York" — could be either. Disambiguate later if needed.
+  for (const { team, tokens } of CANONICAL_TOKENS) {
+    if (lower.includes(tokens) || tokens.includes(lower)) return team;
+  }
+  // Looser match on team-name keywords.
+  const keywords: Array<[string, string]> = [
+    ['atlanta', 'Atlanta United'],
+    ['austin', 'Austin FC'],
+    ['charlotte', 'Charlotte FC'],
+    ['chicago', 'Chicago Fire'],
+    ['colorado', 'Colorado Rapids'],
+    ['columbus', 'Columbus Crew'],
+    ['cincinnati', 'FC Cincinnati'],
+    ['dallas', 'FC Dallas'],
+    ['d.c.', 'D.C. United'],
+    ['dc united', 'D.C. United'],
+    ['houston', 'Houston Dynamo'],
+    ['lafc', 'Los Angeles FC'],
+    ['los angeles fc', 'Los Angeles FC'],
+    ['la galaxy', 'LA Galaxy'],
+    ['galaxy', 'LA Galaxy'],
+    ['miami', 'Inter Miami CF'],
+    ['minnesota', 'Minnesota United FC'],
+    ['montreal', 'CF Montréal'],
+    ['montréal', 'CF Montréal'],
+    ['nashville', 'Nashville SC'],
+    ['new england', 'New England Revolution'],
+    ['new york city', 'New York City FC'],
+    ['nycfc', 'New York City FC'],
+    ['red bull', 'New York Red Bulls'],
+    ['orlando', 'Orlando City SC'],
+    ['philadelphia', 'Philadelphia Union'],
+    ['portland', 'Portland Timbers'],
+    ['real salt lake', 'Real Salt Lake'],
+    ['san diego', 'San Diego FC'],
+    ['san jose', 'San Jose Earthquakes'],
+    ['earthquakes', 'San Jose Earthquakes'],
+    ['seattle', 'Seattle Sounders'],
+    ['sporting', 'Sporting Kansas City'],
+    ['kansas', 'Sporting Kansas City'],
+    ['st. louis', 'St. Louis CITY SC'],
+    ['toronto', 'Toronto FC'],
+    ['vancouver', 'Vancouver Whitecaps FC'],
+  ];
+  for (const [kw, canonical] of keywords) {
+    if (lower.includes(kw)) return canonical;
+  }
+  return null;
+}
+
+// Outgoing intra-MLS transfers: paid transfers where the source club is
+// itself an MLS team. These represent SALES by the source club. The dataset
+// does not include departures to non-MLS leagues, so this captures only the
+// intra-league market — labeled clearly in the UI.
+type OutgoingRecord = TransferRecord & { sourceTeam: string };
+const OUTGOING_TRANSFERS: OutgoingRecord[] = ALL_TRANSFERS
+  .filter(t => t.fee > 0)
+  .map(t => ({ ...t, sourceTeam: resolveSourceToTeam(t.sourceClub) || '' }))
+  .filter(t => t.sourceTeam && t.sourceTeam !== t.mlsTeam);
+
 type ClubAgg = {
   mlsTeam: string;
   transfers: number;
-  totalSpend: number;
+  totalSpend: number;        // incoming
   paidCount: number;
   topFee: number;
   topPlayer: string;
   avgFee: number;
+  outgoingSpend: number;     // intra-MLS sales
+  outgoingCount: number;
+  netSpend: number;          // incoming - outgoing
   rows: TransferRecord[];
+  outgoingRows: OutgoingRecord[];
 };
 
 export default function ClubSpendingPage() {
@@ -164,20 +334,30 @@ export default function ClubSpendingPage() {
     [lo, hi]
   );
 
+  const rangeOutgoing = useMemo(
+    () => OUTGOING_TRANSFERS.filter(t => t.year >= lo && t.year <= hi),
+    [lo, hi]
+  );
+
   const clubData = useMemo<ClubAgg[]>(() => {
+    const baseAgg = (team: string): ClubAgg => ({
+      mlsTeam: team,
+      transfers: 0,
+      totalSpend: 0,
+      paidCount: 0,
+      topFee: 0,
+      topPlayer: '',
+      avgFee: 0,
+      outgoingSpend: 0,
+      outgoingCount: 0,
+      netSpend: 0,
+      rows: [],
+      outgoingRows: [],
+    });
     const map = new Map<string, ClubAgg>();
 
     rangeTransfers.forEach(t => {
-      const existing = map.get(t.mlsTeam) || {
-        mlsTeam: t.mlsTeam,
-        transfers: 0,
-        totalSpend: 0,
-        paidCount: 0,
-        topFee: 0,
-        topPlayer: '',
-        avgFee: 0,
-        rows: [],
-      };
+      const existing = map.get(t.mlsTeam) || baseAgg(t.mlsTeam);
       existing.transfers++;
       existing.totalSpend += t.fee;
       if (t.fee > 0) existing.paidCount++;
@@ -189,27 +369,26 @@ export default function ClubSpendingPage() {
       map.set(t.mlsTeam, existing);
     });
 
+    rangeOutgoing.forEach(t => {
+      const existing = map.get(t.sourceTeam) || baseAgg(t.sourceTeam);
+      existing.outgoingSpend += t.fee;
+      existing.outgoingCount++;
+      existing.outgoingRows.push(t);
+      map.set(t.sourceTeam, existing);
+    });
+
     // Ensure every MLS team appears even with zero transfers in the window.
     getMLSTeams().forEach(team => {
-      if (!map.has(team)) {
-        map.set(team, {
-          mlsTeam: team,
-          transfers: 0,
-          totalSpend: 0,
-          paidCount: 0,
-          topFee: 0,
-          topPlayer: '',
-          avgFee: 0,
-          rows: [],
-        });
-      }
+      if (!map.has(team)) map.set(team, baseAgg(team));
     });
 
     return Array.from(map.values())
       .map(d => ({
         ...d,
         avgFee: d.paidCount > 0 ? d.totalSpend / d.paidCount : 0,
+        netSpend: d.totalSpend - d.outgoingSpend,
         rows: d.rows.sort((a, b) => b.fee - a.fee || b.year - a.year),
+        outgoingRows: d.outgoingRows.sort((a, b) => b.fee - a.fee || b.year - a.year),
       }))
       .sort((a, b) => {
         const multiplier = sortDirection === 'desc' ? -1 : 1;
@@ -228,20 +407,23 @@ export default function ClubSpendingPage() {
 
   const summaryStats = useMemo(() => {
     const totalSpend = rangeTransfers.reduce((sum, t) => sum + t.fee, 0);
+    const totalOutgoing = rangeOutgoing.reduce((sum, t) => sum + t.fee, 0);
     const paidCount = rangeTransfers.filter(t => t.fee > 0).length;
-    const clubsWithSpend = clubData.filter(c => c.totalSpend > 0).length;
-    const topClub = clubData.find(c => c.totalSpend > 0);
+    const topClub = [...clubData].sort((a, b) => b.totalSpend - a.totalSpend)[0];
+    const topNet = [...clubData].sort((a, b) => b.netSpend - a.netSpend)[0];
 
     return {
       totalSpend,
+      totalOutgoing,
       totalTransfers: rangeTransfers.length,
       paidCount,
       avgFee: paidCount > 0 ? totalSpend / paidCount : 0,
-      clubsWithSpend,
       topClub: topClub?.mlsTeam || '',
       topClubSpend: topClub?.totalSpend || 0,
+      topNetClub: topNet?.mlsTeam || '',
+      topNetSpend: topNet?.netSpend || 0,
     };
-  }, [rangeTransfers, clubData]);
+  }, [rangeTransfers, rangeOutgoing, clubData]);
 
   const yearlyByClub = useMemo(() => {
     if (isSingleYear) return [];
@@ -288,6 +470,8 @@ export default function ClubSpendingPage() {
     transfers: c.transfers,
     avgFee: c.avgFee / 1_000_000,
     topFee: c.topFee / 1_000_000,
+    outgoingSpend: c.outgoingSpend / 1_000_000,
+    netSpend: c.netSpend / 1_000_000,
   }));
 
   const rangeLabel = isSingleYear ? `${lo}` : `${lo}–${hi}`;
@@ -304,18 +488,26 @@ export default function ClubSpendingPage() {
     if (!club) return null;
 
     const topFive = club.rows.slice(0, 5);
+    const netColor =
+      club.netSpend > 0 ? 'text-rose-400' :
+      club.netSpend < 0 ? 'text-emerald-400' :
+      'text-white';
 
     return (
-      <div className="bg-[var(--obsidian)] border border-[var(--verde)] rounded-lg p-3 shadow-xl max-w-md">
+      <div className="bg-[var(--obsidian)] border border-[var(--verde)] rounded-lg p-3 shadow-xl max-w-sm">
         <p className="font-bold text-white mb-1">🏟️ {fixDisplay(team)}</p>
         <p className="text-xs text-white/60 mb-2">{rangeLabel}</p>
         <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs mb-3">
-          <span className="text-white/60">Total Spend</span>
+          <span className="text-white/60">Incoming Spend</span>
           <span className="text-[var(--verde)] font-semibold text-right">{formatCurrency(club.totalSpend)}</span>
-          <span className="text-white/60">Transfers</span>
-          <span className="text-white font-semibold text-right">{club.transfers}</span>
-          <span className="text-white/60">Avg Paid Fee</span>
-          <span className="text-white font-semibold text-right">{club.avgFee > 0 ? formatCurrency(club.avgFee) : '-'}</span>
+          <span className="text-white/60">Outgoing (intra-MLS)</span>
+          <span className="text-white font-semibold text-right">{club.outgoingSpend > 0 ? formatCurrency(club.outgoingSpend) : '-'}</span>
+          <span className="text-white/60">Net Spend</span>
+          <span className={`font-semibold text-right ${netColor}`}>
+            {club.netSpend === 0 ? '-' : `${club.netSpend > 0 ? '+' : '-'}${formatCurrency(Math.abs(club.netSpend))}`}
+          </span>
+          <span className="text-white/60">Transfers (in / out)</span>
+          <span className="text-white font-semibold text-right">{club.transfers} / {club.outgoingCount}</span>
           <span className="text-white/60">Top Fee</span>
           <span className="text-white font-semibold text-right">{club.topFee > 0 ? formatCurrency(club.topFee) : '-'}</span>
         </div>
@@ -346,19 +538,19 @@ export default function ClubSpendingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--obsidian)] via-[var(--obsidian-light)] to-[var(--obsidian)]">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Building2 className="h-8 w-8 text-[var(--verde)]" />
-            <h1 className="text-3xl font-display font-bold text-white">
-              MLS Club Incoming Transfer Spend
+        <div className="mb-4 sm:mb-8">
+          <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+            <Building2 className="h-6 w-6 sm:h-8 sm:w-8 text-[var(--verde)]" />
+            <h1 className="text-xl sm:text-3xl font-display font-bold text-white">
+              MLS Club Transfer Spend
             </h1>
           </div>
-          <p className="text-white/60">
-            Rank MLS clubs by incoming transfer fees — pick a single season or a multi-year window
+          <p className="text-xs sm:text-base text-white/60">
+            Rank MLS clubs by incoming + outgoing transfer fees — pick a season or multi-year window
           </p>
-          <p className="text-xs text-white/40 mt-1">
+          <p className="text-[10px] sm:text-xs text-white/40 mt-1">
             Source:{' '}
             <a
               href="https://www.transfermarkt.us/major-league-soccer/transfers/wettbewerb/MLS1"
@@ -368,34 +560,34 @@ export default function ClubSpendingPage() {
             >
               Transfermarkt
             </a>
-            . Fees in USD. Loan-then-permanent duplicates are collapsed (the higher fee is kept).
+            . Fees in USD. Loan + permanent duplicates collapsed.
           </p>
         </div>
 
         {/* Filters */}
-        <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-4 mb-6">
-          <div className="flex flex-wrap gap-4 items-center">
+        <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4 mb-4 sm:mb-6">
+          <div className="flex flex-wrap gap-2 sm:gap-4 items-center">
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-[var(--verde)]" />
-              <span className="text-sm font-medium text-white">Year Range:</span>
+              <span className="text-xs sm:text-sm font-medium text-white">Range:</span>
             </div>
 
-            <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-white/60" />
+            <div className="flex items-center gap-1 sm:gap-2">
+              <Calendar className="h-4 w-4 text-white/60 hidden sm:inline" />
               <select
                 value={startYear}
                 onChange={(e) => setStartYear(Number(e.target.value))}
-                className="bg-[var(--obsidian)] border border-[var(--verde)]/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-[var(--verde)] min-w-[100px]"
+                className="bg-[var(--obsidian)] border border-[var(--verde)]/30 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-white text-xs sm:text-sm focus:outline-none focus:border-[var(--verde)]"
               >
                 {YEARS.map(year => (
                   <option key={year} value={year}>{year}</option>
                 ))}
               </select>
-              <span className="text-white/50 text-sm">to</span>
+              <span className="text-white/50 text-xs sm:text-sm">to</span>
               <select
                 value={endYear}
                 onChange={(e) => setEndYear(Number(e.target.value))}
-                className="bg-[var(--obsidian)] border border-[var(--verde)]/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-[var(--verde)] min-w-[100px]"
+                className="bg-[var(--obsidian)] border border-[var(--verde)]/30 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-white text-xs sm:text-sm focus:outline-none focus:border-[var(--verde)]"
               >
                 {YEARS.map(year => (
                   <option key={year} value={year}>{year}</option>
@@ -403,12 +595,12 @@ export default function ClubSpendingPage() {
               </select>
             </div>
 
-            <div className="flex items-center gap-2 ml-auto">
-              <span className="text-sm text-white/60">Show top:</span>
+            <div className="flex items-center gap-1 sm:gap-2 ml-auto">
+              <span className="text-xs sm:text-sm text-white/60">Top:</span>
               <select
                 value={showTop}
                 onChange={(e) => setShowTop(Number(e.target.value))}
-                className="bg-[var(--obsidian)] border border-[var(--verde)]/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-[var(--verde)]"
+                className="bg-[var(--obsidian)] border border-[var(--verde)]/30 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-white text-xs sm:text-sm focus:outline-none focus:border-[var(--verde)]"
               >
                 <option value={5}>5</option>
                 <option value={10}>10</option>
@@ -420,13 +612,13 @@ export default function ClubSpendingPage() {
           </div>
 
           {/* Quick presets */}
-          <div className="flex flex-wrap gap-2 mt-3">
-            <span className="text-xs text-white/40 py-1.5">Quick presets:</span>
+          <div className="flex flex-wrap gap-1.5 mt-3">
+            <span className="text-[10px] sm:text-xs text-white/40 py-1.5">Presets:</span>
             {YEARS.map(y => (
               <button
                 key={`single-${y}`}
                 onClick={() => { setStartYear(y); setEndYear(y); }}
-                className={`px-3 py-1 rounded-md text-xs transition-colors ${
+                className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs transition-colors ${
                   isSingleYear && lo === y
                     ? 'bg-[var(--verde)] text-black'
                     : 'bg-[var(--obsidian)] text-white/60 hover:text-white border border-[var(--verde)]/20'
@@ -437,71 +629,83 @@ export default function ClubSpendingPage() {
             ))}
             <button
               onClick={() => { setStartYear(MIN_YEAR); setEndYear(MAX_YEAR); }}
-              className={`px-3 py-1 rounded-md text-xs transition-colors ${
+              className={`px-2.5 py-1 rounded-md text-[11px] sm:text-xs transition-colors ${
                 lo === MIN_YEAR && hi === MAX_YEAR
                   ? 'bg-[var(--verde)] text-black'
                   : 'bg-[var(--obsidian)] text-white/60 hover:text-white border border-[var(--verde)]/20'
               }`}
             >
-              All Years
+              All
             </button>
           </div>
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-4">
-            <div className="flex items-center gap-2 text-[var(--verde)] mb-2">
-              <DollarSign className="h-5 w-5" />
-              <span className="text-sm font-medium">League Spend</span>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
+            <div className="flex items-center gap-2 text-[var(--verde)] mb-1 sm:mb-2">
+              <DollarSign className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="text-xs sm:text-sm font-medium">Incoming</span>
             </div>
-            <p className="text-3xl font-bold text-white">{formatCurrency(summaryStats.totalSpend)}</p>
-            <p className="text-xs text-white/50">{rangeLabel}</p>
+            <p className="text-xl sm:text-3xl font-bold text-white">{formatCurrency(summaryStats.totalSpend)}</p>
+            <p className="text-[10px] sm:text-xs text-white/50">{summaryStats.paidCount} paid · {rangeLabel}</p>
           </div>
 
-          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-4">
-            <div className="flex items-center gap-2 text-[var(--verde)] mb-2">
-              <Users className="h-5 w-5" />
-              <span className="text-sm font-medium">Incoming Transfers</span>
+          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
+            <div className="flex items-center gap-2 text-[var(--verde)] mb-1 sm:mb-2">
+              <ArrowUpDown className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="text-xs sm:text-sm font-medium">Outgoing*</span>
             </div>
-            <p className="text-3xl font-bold text-white">{summaryStats.totalTransfers}</p>
-            <p className="text-xs text-white/50">{summaryStats.paidCount} with fees</p>
+            <p className="text-xl sm:text-3xl font-bold text-white">{formatCurrency(summaryStats.totalOutgoing)}</p>
+            <p className="text-[10px] sm:text-xs text-white/50">intra-MLS only</p>
           </div>
 
-          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-4">
-            <div className="flex items-center gap-2 text-[var(--verde)] mb-2">
-              <TrendingUp className="h-5 w-5" />
-              <span className="text-sm font-medium">Avg. Paid Fee</span>
+          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
+            <div className="flex items-center gap-2 text-[var(--verde)] mb-1 sm:mb-2">
+              <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="text-xs sm:text-sm font-medium">League Net</span>
             </div>
-            <p className="text-3xl font-bold text-white">{formatCurrency(summaryStats.avgFee)}</p>
-            <p className="text-xs text-white/50">Across {summaryStats.clubsWithSpend} clubs</p>
+            <p className={`text-xl sm:text-3xl font-bold ${
+              summaryStats.totalSpend - summaryStats.totalOutgoing > 0 ? 'text-rose-400' :
+              summaryStats.totalSpend - summaryStats.totalOutgoing < 0 ? 'text-emerald-400' : 'text-white'
+            }`}>
+              {summaryStats.totalSpend - summaryStats.totalOutgoing > 0 ? '+' : ''}
+              {formatCurrency(summaryStats.totalSpend - summaryStats.totalOutgoing)}
+            </p>
+            <p className="text-[10px] sm:text-xs text-white/50">in − out</p>
           </div>
 
-          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-4">
-            <div className="flex items-center gap-2 text-[var(--verde)] mb-2">
-              <Trophy className="h-5 w-5" />
-              <span className="text-sm font-medium">Top Spender</span>
+          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-4">
+            <div className="flex items-center gap-2 text-[var(--verde)] mb-1 sm:mb-2">
+              <Trophy className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="text-xs sm:text-sm font-medium">Top Spender</span>
             </div>
-            <p className="text-xl font-bold text-white truncate">{fixDisplay(summaryStats.topClub) || '-'}</p>
-            <p className="text-xs text-white/50">{formatCurrency(summaryStats.topClubSpend)}</p>
+            <p className="text-sm sm:text-xl font-bold text-white truncate">{fixDisplay(summaryStats.topClub) || '-'}</p>
+            <p className="text-[10px] sm:text-xs text-white/50">{formatCurrency(summaryStats.topClubSpend)}</p>
           </div>
         </div>
 
+        <p className="text-[10px] sm:text-xs text-white/40 mb-4 -mt-2">
+          *Outgoing captures intra-MLS sales only — departures to non-MLS leagues aren&apos;t in this dataset.
+        </p>
+
         {/* Sort Buttons */}
         <div className="flex flex-wrap gap-2 mb-4">
-          <span className="text-sm text-white/60 py-2">Rank by:</span>
+          <span className="text-xs sm:text-sm text-white/60 py-2">Rank by:</span>
           {(
             [
-              ['totalSpend', 'Total Spend'],
+              ['totalSpend', 'Incoming'],
+              ['outgoingSpend', 'Outgoing'],
+              ['netSpend', 'Net Spend'],
               ['transfers', '# Transfers'],
               ['avgFee', 'Avg Fee'],
-              ['topFee', 'Top Single Fee'],
+              ['topFee', 'Top Fee'],
             ] as Array<[SortKey, string]>
           ).map(([key, label]) => (
             <button
               key={key}
               onClick={() => handleSort(key)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center gap-1 ${
                 sortKey === key
                   ? 'bg-[var(--verde)] text-black'
                   : 'bg-[var(--obsidian-light)] text-white/70 hover:text-white border border-[var(--verde)]/30'
@@ -514,64 +718,49 @@ export default function ClubSpendingPage() {
         </div>
 
         {/* Bar Chart - Club Ranking */}
-        <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-6 mb-8">
-          <h2 className="text-xl font-bold text-white mb-1">
+        <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-6 mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-bold text-white mb-1">
             Club Ranking — {rangeLabel}
-            <span className="text-sm font-normal text-white/50 ml-2">
-              ({sortKey === 'totalSpend' ? 'Total Spend ($M)' :
-                sortKey === 'transfers' ? '# Incoming Transfers' :
-                sortKey === 'avgFee' ? 'Avg Paid Fee ($M)' :
-                'Top Single Fee ($M)'})
+            <span className="block sm:inline text-xs sm:text-sm font-normal text-white/50 sm:ml-2">
+              ({barLabel(sortKey)})
             </span>
           </h2>
-          <p className="text-xs text-white/40 mb-4">
-            Hover a bar to see top signings • click a row in the table below to expand all transfers
+          <p className="text-[11px] sm:text-xs text-white/40 mb-3 sm:mb-4">
+            Tap a bar for team breakdown · tap a row below to expand all transfers
           </p>
-          <div className="h-[600px]">
+          <div className="h-[500px] sm:h-[600px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={barChartData}
                 layout="vertical"
-                margin={{ left: 140, right: 40, top: 10, bottom: 30 }}
+                margin={{ left: 6, right: 16, top: 10, bottom: 30 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                 <XAxis
                   type="number"
                   stroke="rgba(255,255,255,0.5)"
-                  tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}
+                  tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }}
                   tickFormatter={(value) =>
                     sortKey === 'transfers' ? value.toString() : `$${value.toFixed(0)}M`
                   }
                   label={{
-                    value:
-                      sortKey === 'totalSpend' ? 'Total Spend ($ Millions)' :
-                      sortKey === 'transfers' ? '# Incoming Transfers' :
-                      sortKey === 'avgFee' ? 'Avg Paid Fee ($ Millions)' :
-                      'Top Single Fee ($ Millions)',
+                    value: barLabel(sortKey),
                     position: 'bottom',
                     offset: 10,
-                    style: { fill: 'var(--verde)', fontSize: 12, fontWeight: 600 },
+                    style: { fill: 'var(--verde)', fontSize: 11, fontWeight: 600 },
                   }}
                 />
                 <YAxis
                   type="category"
                   dataKey="name"
                   stroke="rgba(255,255,255,0.5)"
-                  width={130}
-                  tick={{ fontSize: 11, fill: 'rgba(255,255,255,0.85)' }}
+                  width={110}
+                  tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.85)' }}
                 />
                 <Tooltip content={<ClubTooltip />} cursor={{ fill: 'rgba(0, 177, 64, 0.08)' }} />
-                <Bar
-                  dataKey={
-                    sortKey === 'totalSpend' ? 'spend' :
-                    sortKey === 'transfers' ? 'transfers' :
-                    sortKey === 'avgFee' ? 'avgFee' :
-                    'topFee'
-                  }
-                  radius={[0, 4, 4, 0]}
-                >
-                  {barChartData.map((_, index) => (
-                    <Cell key={`cell-${index}`} fill={TEAM_COLORS[index % TEAM_COLORS.length]} />
+                <Bar dataKey={barDataKey(sortKey)} radius={[0, 4, 4, 0]}>
+                  {barChartData.map((d, index) => (
+                    <Cell key={`cell-${index}`} fill={getTeamColor(d.rawTeam, index)} />
                   ))}
                 </Bar>
               </BarChart>
@@ -581,32 +770,27 @@ export default function ClubSpendingPage() {
 
         {/* Multi-year per-club trend (only when range spans 2+ seasons) */}
         {!isSingleYear && yearlySeriesClubs.length > 0 && (
-          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-6 mb-8">
-            <h2 className="text-xl font-bold text-white mb-1">
+          <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 p-3 sm:p-6 mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl font-bold text-white mb-1">
               Year-by-Year Spend — Top {yearlySeriesClubs.length} Clubs
             </h2>
-            <p className="text-xs text-white/50 mb-4">
+            <p className="text-[11px] sm:text-xs text-white/50 mb-3 sm:mb-4">
               One line per club. Top clubs determined by current ranking ({rangeLabel}).
             </p>
-            <div className="h-[400px]">
+            <div className="h-[300px] sm:h-[400px]">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={yearlyByClub} margin={{ top: 10, right: 30, left: 10, bottom: 10 }}>
+                <LineChart data={yearlyByClub} margin={{ top: 10, right: 16, left: 4, bottom: 10 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                   <XAxis
                     dataKey="year"
                     stroke="rgba(255,255,255,0.5)"
-                    tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}
+                    tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }}
                   />
                   <YAxis
                     stroke="rgba(255,255,255,0.5)"
-                    tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}
+                    tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }}
                     tickFormatter={(value) => `$${value.toFixed(0)}M`}
-                    label={{
-                      value: 'Spend ($M)',
-                      angle: -90,
-                      position: 'insideLeft',
-                      style: { fill: VERDE, fontSize: 12, fontWeight: 600 },
-                    }}
+                    width={48}
                   />
                   <Tooltip
                     contentStyle={{
@@ -631,66 +815,189 @@ export default function ClubSpendingPage() {
                       </span>
                     )}
                   />
-                  {yearlySeriesClubs.map((team, idx) => (
-                    <Line
-                      key={team}
-                      type="monotone"
-                      dataKey={team}
-                      stroke={TEAM_COLORS[idx % TEAM_COLORS.length]}
-                      strokeWidth={2}
-                      dot={{ r: 4 }}
-                      activeDot={{ r: 6, stroke: 'white', strokeWidth: 2 }}
-                    />
-                  ))}
+                  {yearlySeriesClubs.map((team, idx) => {
+                    const color = getTeamColor(team, idx);
+                    return (
+                      <Line
+                        key={team}
+                        type="monotone"
+                        dataKey={team}
+                        stroke={color}
+                        strokeWidth={2}
+                        dot={{ r: 4, fill: color }}
+                        activeDot={{ r: 6, stroke: 'white', strokeWidth: 2 }}
+                      />
+                    );
+                  })}
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </div>
         )}
 
-        {/* Detail Table — rows expand to show every transfer */}
+        {/* Detail — desktop table, mobile cards */}
         <div className="bg-[var(--obsidian-light)] rounded-xl border border-[var(--verde)]/20 overflow-hidden mb-8">
-          <div className="px-6 py-4 border-b border-[var(--verde)]/20">
-            <h2 className="text-xl font-bold text-white">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-[var(--verde)]/20">
+            <h2 className="text-lg sm:text-xl font-bold text-white">
               Club Spend Detail — {rangeLabel}
-              <span className="text-sm font-normal text-white/50 ml-2">
-                ({clubData.filter(c => c.transfers > 0).length} clubs with activity)
+              <span className="block sm:inline text-xs sm:text-sm font-normal text-white/50 sm:ml-2">
+                ({clubData.filter(c => c.transfers > 0 || c.outgoingCount > 0).length} clubs with activity)
               </span>
             </h2>
-            <p className="text-xs text-white/50 mt-1">Click any row to expand all transfers for that club.</p>
+            <p className="text-[11px] sm:text-xs text-white/50 mt-1">Tap any row to expand transfers in / out.</p>
           </div>
-          <div className="overflow-x-auto">
+
+          {/* Mobile card list (below md) */}
+          <div className="md:hidden divide-y divide-[var(--obsidian-lighter)]">
+            {clubData.length === 0 ? (
+              <div className="px-4 py-8 text-center text-white/50 text-sm">No clubs in the selected range</div>
+            ) : (
+              clubData.map((row, index) => {
+                const isExpanded = expandedTeams.has(row.mlsTeam);
+                const canExpand = row.rows.length > 0 || row.outgoingRows.length > 0;
+                const accent = getTeamColor(row.mlsTeam, index);
+                const netSign = row.netSpend > 0 ? '+' : row.netSpend < 0 ? '−' : '';
+                const netColor =
+                  row.netSpend > 0 ? 'text-rose-400' :
+                  row.netSpend < 0 ? 'text-emerald-400' :
+                  'text-white/60';
+                return (
+                  <div key={row.mlsTeam}>
+                    <button
+                      onClick={() => canExpand && toggleExpanded(row.mlsTeam)}
+                      className={`w-full text-left px-4 py-3 ${canExpand ? 'active:bg-[var(--obsidian)]' : ''}`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span
+                          className="inline-block w-1.5 h-10 rounded-full flex-shrink-0"
+                          style={{ background: accent }}
+                        />
+                        <span className="text-xs text-white/40 font-mono w-6">{index + 1}</span>
+                        <span className="flex-1 min-w-0">
+                          <span className="block text-sm font-semibold text-white truncate">{fixDisplay(row.mlsTeam)}</span>
+                          {row.topPlayer && (
+                            <span className="block text-[11px] text-white/40 truncate">
+                              top: {fixDisplay(row.topPlayer)} {row.topFee > 0 && `· ${formatCurrency(row.topFee)}`}
+                            </span>
+                          )}
+                        </span>
+                        {canExpand && (
+                          isExpanded
+                            ? <ChevronDown className="h-4 w-4 text-white/40 flex-shrink-0" />
+                            : <ChevronRight className="h-4 w-4 text-white/40 flex-shrink-0" />
+                        )}
+                      </div>
+                      <div className="grid grid-cols-3 gap-2 mt-2 pl-7 text-[11px]">
+                        <div>
+                          <div className="text-white/40">In</div>
+                          <div className={`font-semibold ${sortKey === 'totalSpend' ? 'text-[var(--verde)]' : 'text-white'}`}>
+                            {row.totalSpend > 0 ? formatCurrency(row.totalSpend) : '-'}
+                          </div>
+                          <div className="text-white/30">{row.transfers} transfers</div>
+                        </div>
+                        <div>
+                          <div className="text-white/40">Out</div>
+                          <div className={`font-semibold ${sortKey === 'outgoingSpend' ? 'text-[var(--verde)]' : 'text-white'}`}>
+                            {row.outgoingSpend > 0 ? formatCurrency(row.outgoingSpend) : '-'}
+                          </div>
+                          <div className="text-white/30">{row.outgoingCount} sales</div>
+                        </div>
+                        <div>
+                          <div className="text-white/40">Net</div>
+                          <div className={`font-semibold ${sortKey === 'netSpend' ? 'text-[var(--verde)]' : netColor}`}>
+                            {row.netSpend === 0 ? '-' : `${netSign}${formatCurrency(Math.abs(row.netSpend))}`}
+                          </div>
+                          <div className="text-white/30">in − out</div>
+                        </div>
+                      </div>
+                    </button>
+                    {isExpanded && canExpand && (
+                      <div className="bg-[var(--obsidian)] px-4 py-3 space-y-3">
+                        {row.rows.length > 0 && (
+                          <div>
+                            <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">Incoming</p>
+                            <ul className="space-y-1.5">
+                              {row.rows.map((t, i) => (
+                                <li key={`in-${i}`} className="text-xs flex items-center justify-between gap-2">
+                                  <span className="text-white/85 truncate">
+                                    <span className="text-white/40 mr-1">{t.year}</span>
+                                    {fixDisplay(t.playerName)}
+                                    <span className="text-white/40 ml-1">← {fixDisplay(t.sourceClub)}</span>
+                                  </span>
+                                  <span className={`whitespace-nowrap font-semibold ${t.fee > 0 ? 'text-[var(--verde)]' : 'text-white/40'}`}>
+                                    {t.fee > 0 ? formatCurrency(t.fee) : 'Free'}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {row.outgoingRows.length > 0 && (
+                          <div>
+                            <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">Outgoing (intra-MLS)</p>
+                            <ul className="space-y-1.5">
+                              {row.outgoingRows.map((t, i) => (
+                                <li key={`out-${i}`} className="text-xs flex items-center justify-between gap-2">
+                                  <span className="text-white/85 truncate">
+                                    <span className="text-white/40 mr-1">{t.year}</span>
+                                    {fixDisplay(t.playerName)}
+                                    <span className="text-white/40 ml-1">→ {fixDisplay(t.mlsTeam)}</span>
+                                  </span>
+                                  <span className="whitespace-nowrap font-semibold text-rose-400">
+                                    {formatCurrency(t.fee)}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+
+          {/* Desktop table */}
+          <div className="hidden md:block overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="bg-[var(--obsidian)]">
                   <th className="px-3 py-3 w-8"></th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-white/60 uppercase tracking-wider">Rank</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-white/60 uppercase tracking-wider">Club</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-white/60 uppercase tracking-wider">Rank</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-white/60 uppercase tracking-wider">Club</th>
                   <th
-                    className="px-6 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
+                    className="px-4 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
                     onClick={() => handleSort('totalSpend')}
                   >
-                    Total Spend {sortKey === 'totalSpend' && (sortDirection === 'desc' ? '↓' : '↑')}
+                    Incoming {sortKey === 'totalSpend' && (sortDirection === 'desc' ? '↓' : '↑')}
                   </th>
                   <th
-                    className="px-6 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
+                    className="px-4 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
+                    onClick={() => handleSort('outgoingSpend')}
+                  >
+                    Outgoing {sortKey === 'outgoingSpend' && (sortDirection === 'desc' ? '↓' : '↑')}
+                  </th>
+                  <th
+                    className="px-4 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
+                    onClick={() => handleSort('netSpend')}
+                  >
+                    Net {sortKey === 'netSpend' && (sortDirection === 'desc' ? '↓' : '↑')}
+                  </th>
+                  <th
+                    className="px-4 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
                     onClick={() => handleSort('transfers')}
                   >
-                    Transfers {sortKey === 'transfers' && (sortDirection === 'desc' ? '↓' : '↑')}
+                    # In {sortKey === 'transfers' && (sortDirection === 'desc' ? '↓' : '↑')}
                   </th>
                   <th
-                    className="px-6 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
-                    onClick={() => handleSort('avgFee')}
-                  >
-                    Avg Fee {sortKey === 'avgFee' && (sortDirection === 'desc' ? '↓' : '↑')}
-                  </th>
-                  <th
-                    className="px-6 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
+                    className="px-4 py-3 text-right text-xs font-semibold text-white/60 uppercase tracking-wider cursor-pointer hover:text-[var(--verde)] transition-colors"
                     onClick={() => handleSort('topFee')}
                   >
                     Top Fee {sortKey === 'topFee' && (sortDirection === 'desc' ? '↓' : '↑')}
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-white/60 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-white/60 uppercase tracking-wider">
                     Top Signing
                   </th>
                 </tr>
@@ -698,91 +1005,145 @@ export default function ClubSpendingPage() {
               <tbody className="divide-y divide-[var(--obsidian-lighter)]">
                 {clubData.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="px-6 py-8 text-center text-white/50">
+                    <td colSpan={9} className="px-6 py-8 text-center text-white/50">
                       No clubs in the selected range
                     </td>
                   </tr>
                 ) : (
                   clubData.map((row, index) => {
                     const isExpanded = expandedTeams.has(row.mlsTeam);
-                    const canExpand = row.rows.length > 0;
+                    const canExpand = row.rows.length > 0 || row.outgoingRows.length > 0;
+                    const netSign = row.netSpend > 0 ? '+' : row.netSpend < 0 ? '−' : '';
+                    const netColor =
+                      row.netSpend > 0 ? 'text-rose-400' :
+                      row.netSpend < 0 ? 'text-emerald-400' :
+                      'text-white/40';
                     return (
-                      <>
+                      <Fragment key={row.mlsTeam}>
                         <tr
-                          key={row.mlsTeam}
                           className={`transition-colors ${canExpand ? 'cursor-pointer hover:bg-[var(--obsidian)]' : ''}`}
                           onClick={() => canExpand && toggleExpanded(row.mlsTeam)}
                         >
-                          <td className="px-3 py-4 text-white/40">
+                          <td className="px-3 py-3 text-white/40">
                             {canExpand && (
                               isExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />
                             )}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-white/50">{index + 1}</td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="text-sm font-medium text-white">{fixDisplay(row.mlsTeam)}</span>
+                          <td className="px-4 py-3 whitespace-nowrap text-sm text-white/50">{index + 1}</td>
+                          <td className="px-4 py-3 whitespace-nowrap">
+                            <div className="flex items-center gap-2">
+                              <span
+                                className="inline-block w-1 h-5 rounded-full flex-shrink-0"
+                                style={{ background: getTeamColor(row.mlsTeam, index) }}
+                              />
+                              <span className="text-sm font-medium text-white">{fixDisplay(row.mlsTeam)}</span>
+                            </div>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-right">
+                          <td className="px-4 py-3 whitespace-nowrap text-right">
                             <span className={`text-sm font-semibold ${sortKey === 'totalSpend' ? 'text-[var(--verde)]' : 'text-white'}`}>
                               {row.totalSpend > 0 ? formatCurrency(row.totalSpend) : '-'}
                             </span>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-right">
+                          <td className="px-4 py-3 whitespace-nowrap text-right">
+                            <span className={`text-sm font-semibold ${sortKey === 'outgoingSpend' ? 'text-[var(--verde)]' : 'text-white'}`}>
+                              {row.outgoingSpend > 0 ? formatCurrency(row.outgoingSpend) : '-'}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap text-right">
+                            <span className={`text-sm font-semibold ${sortKey === 'netSpend' ? 'text-[var(--verde)]' : netColor}`}>
+                              {row.netSpend === 0 ? '-' : `${netSign}${formatCurrency(Math.abs(row.netSpend))}`}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap text-right">
                             <span className={`text-sm font-semibold ${sortKey === 'transfers' ? 'text-[var(--verde)]' : 'text-white'}`}>
                               {row.transfers}
                             </span>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-right">
-                            <span className={`text-sm font-semibold ${sortKey === 'avgFee' ? 'text-[var(--verde)]' : 'text-white'}`}>
-                              {row.avgFee > 0 ? formatCurrency(row.avgFee) : '-'}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-right">
+                          <td className="px-4 py-3 whitespace-nowrap text-right">
                             <span className={`text-sm font-semibold ${sortKey === 'topFee' ? 'text-[var(--verde)]' : 'text-white'}`}>
                               {row.topFee > 0 ? formatCurrency(row.topFee) : '-'}
                             </span>
                           </td>
-                          <td className="px-6 py-4 text-sm text-white/60 max-w-xs truncate">
+                          <td className="px-4 py-3 text-sm text-white/60 max-w-xs truncate">
                             {row.topPlayer ? fixDisplay(row.topPlayer) : <span className="text-white/30">-</span>}
                           </td>
                         </tr>
                         {isExpanded && canExpand && (
-                          <tr key={`${row.mlsTeam}-expanded`}>
-                            <td colSpan={8} className="bg-[var(--obsidian)] px-6 py-4">
-                              <div className="overflow-x-auto">
-                                <table className="w-full text-sm">
-                                  <thead>
-                                    <tr className="text-xs text-white/40 uppercase tracking-wider">
-                                      <th className="px-3 py-2 text-left">Year</th>
-                                      <th className="px-3 py-2 text-left">Player</th>
-                                      <th className="px-3 py-2 text-left">Pos</th>
-                                      <th className="px-3 py-2 text-left">From</th>
-                                      <th className="px-3 py-2 text-left">Country</th>
-                                      <th className="px-3 py-2 text-left">Type</th>
-                                      <th className="px-3 py-2 text-right">Fee</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    {row.rows.map((t, i) => (
-                                      <tr key={`${row.mlsTeam}-${i}`} className="border-t border-[var(--obsidian-lighter)]">
-                                        <td className="px-3 py-2 text-white/60">{t.year}</td>
-                                        <td className="px-3 py-2 text-white">{fixDisplay(t.playerName)}</td>
-                                        <td className="px-3 py-2 text-white/60">{t.position}</td>
-                                        <td className="px-3 py-2 text-white/70">{fixDisplay(t.sourceClub)}</td>
-                                        <td className="px-3 py-2 text-white/60">{t.sourceCountry}</td>
-                                        <td className="px-3 py-2 text-white/60 capitalize">{t.transferType}</td>
-                                        <td className={`px-3 py-2 text-right font-semibold ${t.fee > 0 ? 'text-[var(--verde)]' : 'text-white/40'}`}>
-                                          {t.fee > 0 ? formatCurrency(t.fee) : 'Free'}
-                                        </td>
-                                      </tr>
-                                    ))}
-                                  </tbody>
-                                </table>
+                          <tr>
+                            <td colSpan={9} className="bg-[var(--obsidian)] px-6 py-4">
+                              <div className="grid lg:grid-cols-2 gap-6">
+                                {row.rows.length > 0 && (
+                                  <div>
+                                    <p className="text-xs text-white/40 uppercase tracking-wider mb-2">Incoming ({row.rows.length})</p>
+                                    <table className="w-full text-sm">
+                                      <thead>
+                                        <tr className="text-[10px] text-white/40 uppercase tracking-wider">
+                                          <th className="px-2 py-1 text-left">Year</th>
+                                          <th className="px-2 py-1 text-left">Player</th>
+                                          <th className="px-2 py-1 text-left">From</th>
+                                          <th className="px-2 py-1 text-left">Type</th>
+                                          <th className="px-2 py-1 text-right">Fee</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {row.rows.map((t, i) => (
+                                          <tr key={`in-${i}`} className="border-t border-[var(--obsidian-lighter)]">
+                                            <td className="px-2 py-1.5 text-white/60">{t.year}</td>
+                                            <td className="px-2 py-1.5 text-white">
+                                              {fixDisplay(t.playerName)}
+                                              <span className="text-white/40 ml-1 text-xs">{t.position}</span>
+                                            </td>
+                                            <td className="px-2 py-1.5 text-white/70">
+                                              {fixDisplay(t.sourceClub)}
+                                              <span className="text-white/40 ml-1 text-xs">{t.sourceCountry}</span>
+                                            </td>
+                                            <td className="px-2 py-1.5 text-white/60 capitalize">{t.transferType}</td>
+                                            <td className={`px-2 py-1.5 text-right font-semibold ${t.fee > 0 ? 'text-[var(--verde)]' : 'text-white/40'}`}>
+                                              {t.fee > 0 ? formatCurrency(t.fee) : 'Free'}
+                                            </td>
+                                          </tr>
+                                        ))}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                )}
+                                {row.outgoingRows.length > 0 && (
+                                  <div>
+                                    <p className="text-xs text-white/40 uppercase tracking-wider mb-2">
+                                      Outgoing intra-MLS ({row.outgoingRows.length})
+                                    </p>
+                                    <table className="w-full text-sm">
+                                      <thead>
+                                        <tr className="text-[10px] text-white/40 uppercase tracking-wider">
+                                          <th className="px-2 py-1 text-left">Year</th>
+                                          <th className="px-2 py-1 text-left">Player</th>
+                                          <th className="px-2 py-1 text-left">To</th>
+                                          <th className="px-2 py-1 text-right">Fee</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {row.outgoingRows.map((t, i) => (
+                                          <tr key={`out-${i}`} className="border-t border-[var(--obsidian-lighter)]">
+                                            <td className="px-2 py-1.5 text-white/60">{t.year}</td>
+                                            <td className="px-2 py-1.5 text-white">
+                                              {fixDisplay(t.playerName)}
+                                              <span className="text-white/40 ml-1 text-xs">{t.position}</span>
+                                            </td>
+                                            <td className="px-2 py-1.5 text-white/70">{fixDisplay(t.mlsTeam)}</td>
+                                            <td className="px-2 py-1.5 text-right font-semibold text-rose-400">
+                                              {formatCurrency(t.fee)}
+                                            </td>
+                                          </tr>
+                                        ))}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                )}
                               </div>
                             </td>
                           </tr>
                         )}
-                      </>
+                      </Fragment>
                     );
                   })
                 )}
