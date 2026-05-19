@@ -65,7 +65,7 @@ function fixDisplay(str: string): string {
     .replace(/Columbu /gi, 'Columbus')
     .replace(/St\. Loui /gi, 'St. Louis')
     .replace(/FC Dalla\b/gi, 'FC Dallas')
-    .replace(/Red Bull /gi, 'Red Bulls');
+    ;
   result = result.replace(/ {2,}/g, ' ').trim();
   return result;
 }
@@ -83,6 +83,9 @@ const CANONICAL_OVERRIDES: Record<string, string> = {
   'Montreal Impact': 'CF Montréal',
   'Real Salt Lake City': 'Real Salt Lake',
   'Seattle Sounders': 'Seattle Sounders FC',
+  // Transfermarkt's per-club departure pages list the Red Bulls in
+  // German-style ordering. Fold to the arrivals naming convention.
+  'Red Bull New York': 'New York Red Bulls',
 };
 
 function canonicalTeam(team: string): string {
@@ -494,7 +497,36 @@ export default function ClubSpendingPage() {
     const club = clubByTeam.get(team);
     if (!club) return null;
 
-    const topFive = club.rows.slice(0, 5);
+    // Pick which list of transfers to show based on the active sort:
+    //  - Outgoing / # Out → top 5 sales
+    //  - Net Spend → mix the highest fees from both sides, tagged in/out
+    //  - default (incoming, transfers, avg, top fee) → top 5 signings
+    type Item = { kind: 'in' | 'out'; year: number; playerName: string; position: string; fee: number; counterparty: string };
+    const inItems: Item[] = club.rows.map(r => ({
+      kind: 'in', year: r.year, playerName: r.playerName, position: r.position, fee: r.fee, counterparty: r.sourceClub,
+    }));
+    const outItems: Item[] = club.outgoingRows.map(r => ({
+      kind: 'out', year: r.year, playerName: r.playerName, position: r.position, fee: r.fee, counterparty: r.destinationClub,
+    }));
+
+    let listLabel: string;
+    let items: Item[];
+    let totalCount: number;
+    if (sortKey === 'outgoingSpend' || sortKey === 'outgoingCount') {
+      items = [...outItems].sort((a, b) => b.fee - a.fee).slice(0, 5);
+      totalCount = club.outgoingCount;
+      listLabel = totalCount > 5 ? `Top 5 sales of ${totalCount}` : 'Sales';
+    } else if (sortKey === 'netSpend') {
+      // Combine and rank by raw fee — gives the biggest single moves either direction.
+      items = [...inItems, ...outItems].sort((a, b) => b.fee - a.fee).slice(0, 5);
+      totalCount = inItems.length + outItems.length;
+      listLabel = totalCount > 5 ? `Top 5 moves of ${totalCount}` : 'Moves';
+    } else {
+      items = [...inItems].sort((a, b) => b.fee - a.fee).slice(0, 5);
+      totalCount = club.transfers;
+      listLabel = totalCount > 5 ? `Top 5 signings of ${totalCount}` : 'Signings';
+    }
+
     // Accounting: negative = net spender (red), positive = net seller (green).
     const netColor =
       club.netSpend < 0 ? 'text-rose-400' :
@@ -506,33 +538,32 @@ export default function ClubSpendingPage() {
         <p className="font-bold text-white mb-1">🏟️ {fixDisplay(team)}</p>
         <p className="text-xs text-white/60 mb-2">{rangeLabel}</p>
         <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs mb-3">
-          <span className="text-white/60">Incoming Spend</span>
+          <span className={sortKey === 'totalSpend' ? 'text-[var(--verde)]' : 'text-white/60'}>Incoming Spend</span>
           <span className="text-[var(--verde)] font-semibold text-right">{formatCurrency(club.totalSpend)}</span>
-          <span className="text-white/60">Outgoing (paid sales)</span>
+          <span className={sortKey === 'outgoingSpend' ? 'text-[var(--verde)]' : 'text-white/60'}>Outgoing (paid sales)</span>
           <span className="text-white font-semibold text-right">{club.outgoingSpend > 0 ? formatCurrency(club.outgoingSpend) : '-'}</span>
-          <span className="text-white/60">Net Spend</span>
+          <span className={sortKey === 'netSpend' ? 'text-[var(--verde)]' : 'text-white/60'}>Net Spend</span>
           <span className={`font-semibold text-right ${netColor}`}>
             {club.netSpend === 0 ? '-' : `${club.netSpend > 0 ? '+' : '-'}${formatCurrency(Math.abs(club.netSpend))}`}
           </span>
           <span className="text-white/60">Transfers (in / out)</span>
           <span className="text-white font-semibold text-right">{club.transfers} / {club.outgoingCount}</span>
-          <span className="text-white/60">Top Fee</span>
-          <span className="text-white font-semibold text-right">{club.topFee > 0 ? formatCurrency(club.topFee) : '-'}</span>
         </div>
-        {topFive.length > 0 && (
+        {items.length > 0 && (
           <>
-            <p className="text-xs text-white/40 uppercase tracking-wider mb-1">
-              {club.transfers > 5 ? `Top 5 of ${club.transfers}` : 'Signings'}
-            </p>
+            <p className="text-xs text-white/40 uppercase tracking-wider mb-1">{listLabel}</p>
             <ul className="space-y-1">
-              {topFive.map((t, i) => (
+              {items.map((t, i) => (
                 <li key={i} className="text-xs flex items-center justify-between gap-3">
                   <span className="text-white/85 truncate">
                     <span className="text-white/40 mr-1">{t.year}</span>
+                    <span className={`mr-1 text-[10px] uppercase tracking-wider ${t.kind === 'in' ? 'text-[var(--verde)]/80' : 'text-rose-400/80'}`}>
+                      {t.kind === 'in' ? '←' : '→'}
+                    </span>
                     {fixDisplay(t.playerName)}
-                    <span className="text-white/40 ml-1">({t.position})</span>
+                    {t.counterparty && <span className="text-white/40 ml-1">{t.kind === 'in' ? 'from' : 'to'} {fixDisplay(t.counterparty)}</span>}
                   </span>
-                  <span className={t.fee > 0 ? 'text-[var(--verde)] font-semibold whitespace-nowrap' : 'text-white/40 whitespace-nowrap'}>
+                  <span className={`whitespace-nowrap font-semibold ${t.kind === 'in' ? 'text-[var(--verde)]' : 'text-rose-400'}`}>
                     {t.fee > 0 ? formatCurrency(t.fee) : 'Free'}
                   </span>
                 </li>
@@ -620,7 +651,9 @@ export default function ClubSpendingPage() {
                 <option value={10}>10</option>
                 <option value={15}>15</option>
                 <option value={20}>20</option>
-                <option value={50}>All</option>
+                <option value={25}>25</option>
+                <option value={30}>30</option>
+                <option value={999}>All</option>
               </select>
             </div>
           </div>
@@ -723,7 +756,13 @@ export default function ClubSpendingPage() {
           <p className="text-[11px] sm:text-xs text-white/40 mb-3 sm:mb-4">
             Tap a bar for team breakdown · tap a row below to expand all transfers
           </p>
-          <div className="h-[500px] sm:h-[600px]">
+          <div
+            style={{
+              // ~32px per bar + ~80px for axes/padding. Floor at 320px so tiny
+              // selections don't collapse.
+              height: `${Math.max(320, barChartData.length * 32 + 80)}px`,
+            }}
+          >
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={barChartData}
@@ -788,19 +827,37 @@ export default function ClubSpendingPage() {
                     width={48}
                   />
                   <Tooltip
-                    contentStyle={{
-                      backgroundColor: 'var(--obsidian)',
-                      border: '1px solid var(--verde)',
-                      borderRadius: '8px',
-                      padding: '12px 16px',
+                    cursor={{ stroke: 'rgba(255,255,255,0.2)', strokeWidth: 1 }}
+                    content={(props) => {
+                      const { active, payload, label } = props as unknown as {
+                        active?: boolean;
+                        label?: string;
+                        payload?: Array<{ name?: string; value?: number; color?: string }>;
+                      };
+                      if (!active || !payload || !payload.length) return null;
+                      // Sort by spend descending so the biggest spender is on top.
+                      const sorted = [...payload]
+                        .filter(p => typeof p.value === 'number')
+                        .sort((a, b) => (b.value ?? 0) - (a.value ?? 0));
+                      return (
+                        <div className="bg-[var(--obsidian)] border border-[var(--verde)] rounded-lg p-3 shadow-xl">
+                          <p className="font-bold text-white mb-2">📅 Season {label}</p>
+                          <ul className="space-y-1">
+                            {sorted.map((p, i) => (
+                              <li key={i} className="text-xs flex items-center justify-between gap-3">
+                                <span className="flex items-center gap-2">
+                                  <span className="inline-block w-2 h-2 rounded-full" style={{ background: p.color }} />
+                                  <span style={{ color: p.color }}>{fixDisplay(String(p.name ?? ''))}</span>
+                                </span>
+                                <span className="font-semibold text-white whitespace-nowrap">
+                                  ${(p.value ?? 0).toFixed(2)}M
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
                     }}
-                    labelStyle={{ color: 'white', fontWeight: 'bold', marginBottom: '8px' }}
-                    itemStyle={{ padding: '2px 0' }}
-                    formatter={(value, name) => {
-                      if (value === undefined) return ['', ''];
-                      return [`$${Number(value).toFixed(2)}M`, fixDisplay(String(name))];
-                    }}
-                    labelFormatter={(label) => `📅 Season ${label}`}
                   />
                   <Legend
                     wrapperStyle={{ paddingTop: '10px' }}
@@ -899,10 +956,10 @@ export default function ClubSpendingPage() {
                         </div>
                         <div>
                           <div className="text-white/40">Net</div>
-                          <div className={`font-semibold ${sortKey === 'netSpend' ? 'text-[var(--verde)]' : netColor}`}>
+                          <div className={`font-semibold ${netColor}`}>
                             {row.netSpend === 0 ? '-' : `${netSign}${formatCurrency(Math.abs(row.netSpend))}`}
                           </div>
-                          <div className="text-white/30">in − out</div>
+                          <div className="text-white/30">income − spend</div>
                         </div>
                       </div>
                     </button>
@@ -1016,8 +1073,8 @@ export default function ClubSpendingPage() {
                     const canExpand = row.rows.length > 0 || row.outgoingRows.length > 0;
                     const netSign = row.netSpend > 0 ? '+' : row.netSpend < 0 ? '−' : '';
                     const netColor =
-                      row.netSpend > 0 ? 'text-rose-400' :
-                      row.netSpend < 0 ? 'text-emerald-400' :
+                      row.netSpend > 0 ? 'text-emerald-400' :
+                      row.netSpend < 0 ? 'text-rose-400' :
                       'text-white/40';
                     return (
                       <Fragment key={row.mlsTeam}>
@@ -1051,7 +1108,7 @@ export default function ClubSpendingPage() {
                             </span>
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap text-right">
-                            <span className={`text-sm font-semibold ${sortKey === 'netSpend' ? 'text-[var(--verde)]' : netColor}`}>
+                            <span className={`text-sm font-semibold ${netColor}`}>
                               {row.netSpend === 0 ? '-' : `${netSign}${formatCurrency(Math.abs(row.netSpend))}`}
                             </span>
                           </td>
